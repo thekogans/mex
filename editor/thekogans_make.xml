@@ -1,0 +1,201 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_editor"
+                project_type = "plugin"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+		        build_type = "Shared"
+                guid = "71e6c51952fa6a7cf0052176f22e9299"
+                schema_version = "2">
+  <plugin_hosts>
+    <project organization = "thekogans"
+             name = "mex"/>
+  </plugin_hosts>
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_command"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl_command"/>
+    <project organization = "thekogans"
+             name = "mex_core"/>
+    <project organization = "thekogans"
+             name = "mex_common"/>
+    <toolchain organization = "thekogans"
+               name = "xerces"/>
+    <toolchain organization = "qt"
+               name = "core"/>
+    <toolchain organization = "qt"
+               name = "gui"/>
+    <toolchain organization = "qt"
+               name = "widgets"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <library>opengl32.lib</library>
+        <library>glu32.lib</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <library>GL</library>
+        <library>GLU</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
+  </dependencies>
+  <cpp_headers prefix = "$(build_directory)/resources">
+    <cpp_header>ui/CameraDefinitionDialog-uic.h</cpp_header>
+    <cpp_header>ui/SpotLightDefinitionDialog-uic.h</cpp_header>
+    <cpp_header>ui/ViewportLayoutDialog-uic.h</cpp_header>
+  </cpp_headers>
+  <cpp_headers prefix = "include">
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Editor.h</cpp_header>
+    <custom_build name = "$(organization)/$(project_directory)/ui/CameraDefinitionDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/CameraDefinitionDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <!-- <custom_build name = "$(organization)/$(project_directory)/ui/SpotLightDefinitionDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/SpotLightDefinitionDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "$(organization)/$(project_directory)/ui/ViewportLayoutDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/ViewportLayoutDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build> -->
+  </cpp_headers>
+  <cpp_sources prefix = "$(build_directory)/resources">
+    <cpp_source>editor-rcc.cpp</cpp_source>
+  </cpp_sources>
+  <cpp_sources prefix = "src">
+    <cpp_source>Editor.cpp</cpp_source>
+    <cpp_source>accelerators/AcceleratorsEditEventHandlers.cpp</cpp_source>
+    <cpp_source>accelerators/AcceleratorsFileEventHandlers.cpp</cpp_source>
+    <cpp_source>filters/FiltersEventHandlers.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarViewViewportsEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCamerasCreateEventHandler.cpp</cpp_source>
+    <cpp_source>statusbar/StatusCommonBarEventHandlers.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarCreateColorEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarSelectionSetAEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarSelectionSetBEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarSelectionSetCEventHandler.cpp</cpp_source>
+    <cpp_source>ui/CameraDefinitionDialog.cpp</cpp_source>
+  </cpp_sources>
+  <cpp_sources prefix = "$(build_directory)/include">
+    <cpp_source>$(organization)/$(project_directory)/ui/CameraDefinitionDialog-moc.cpp</cpp_source>
+    <!-- <cpp_source>$(organization)/$(project_directory)/ui/SpotLightDefinitionDialog-moc.cpp</cpp_source>
+    <cpp_source>$(organization)/$(project_directory)/ui/ViewportLayoutDialog-moc.cpp</cpp_source> -->
+  </cpp_sources>
+  <resources prefix = "resources">
+    <custom_build name = "editor.qrc">
+      <outputs>
+        <output>editor-rcc.cpp</output>
+      </outputs>
+      <message>Running Qt rcc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:rcc))" -name $(project) -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <resource>fourbottomd.bmp</resource>
+    <resource>fourbottomu.bmp</resource>
+    <resource>fourd.bmp</resource>
+    <resource>fourleftd.bmp</resource>
+    <resource>fourleftu.bmp</resource>
+    <resource>fourrightd.bmp</resource>
+    <resource>fourrightu.bmp</resource>
+    <resource>fourtopd.bmp</resource>
+    <resource>fourtopu.bmp</resource>
+    <resource>fouru.bmp</resource>
+    <resource>singled.bmp</resource>
+    <resource>singleu.bmp</resource>
+    <resource>threebottomd.bmp</resource>
+    <resource>threebottomu.bmp</resource>
+    <resource>threehorzd.bmp</resource>
+    <resource>threehorzu.bmp</resource>
+    <resource>threeleftd.bmp</resource>
+    <resource>threeleftu.bmp</resource>
+    <resource>threerightd.bmp</resource>
+    <resource>threerightu.bmp</resource>
+    <resource>threetopd.bmp</resource>
+    <resource>threetopu.bmp</resource>
+    <resource>threevertd.bmp</resource>
+    <resource>threevertu.bmp</resource>
+    <resource>twohorzd.bmp</resource>
+    <resource>twohorzu.bmp</resource>
+    <resource>twovertd.bmp</resource>
+    <resource>twovertu.bmp</resource>
+    <resource>toolbar/a.bmp</resource>
+    <resource>toolbar/axis.bmp</resource>
+    <resource>toolbar/b.bmp</resource>
+    <resource>toolbar/c.bmp</resource>
+    <resource>toolbar/createcolor.bmp</resource>
+    <resource>toolbar/localaxis.bmp</resource>
+    <resource>toolbar/maximize.bmp</resource>
+    <resource>toolbar/new.bmp</resource>
+    <resource>toolbar/open.bmp</resource>
+    <resource>toolbar/pan.bmp</resource>
+    <resource>toolbar/redo.bmp</resource>
+    <resource>toolbar/save.bmp</resource>
+    <resource>toolbar/selected.bmp</resource>
+    <resource>toolbar/undo.bmp</resource>
+    <resource>toolbar/zoomext.bmp</resource>
+    <resource>toolbar/zoomin.bmp</resource>
+    <resource>toolbar/zoomout.bmp</resource>
+    <resource>toolbar/zoomwin.bmp</resource>
+    <custom_build name = "ui/CameraDefinitionDialog.ui">
+      <outputs>
+        <output>ui/CameraDefinitionDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/SpotLightDefinitionDialog.ui">
+      <outputs>
+        <output>ui/SpotLightDefinitionDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/ViewportLayoutDialog.ui">
+      <outputs>
+        <output>ui/ViewportLayoutDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+  </resources>
+  <resources prefix = "resources"
+             install = "yes">
+    <resource>accelerators/accelerators.xml</resource>
+    <resource>filters/filters.xml</resource>
+    <resource>menubar/menubar.xml</resource>
+    <resource>speedbar/speedbar.xml</resource>
+    <resource>statusbar/speedbar.xml</resource>
+    <resource>toolbar/toolbar.xml</resource>
+  </resources>
+</thekogans_make>

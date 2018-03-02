@@ -1,0 +1,6 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE filters SYSTEM "../filters.dtd" []>
+<filters>
+    <item filter = "3D Studio Editor Files (*.3DS)" ext = "3ds" flags = "Read,Write" eventHandler = "Filters3DSEventHandler"/>
+    <item filter = "3D Studio Project Files (*.PRJ)" ext = "prj" flags = "Read,Write" eventHandler = "FiltersPRJEventHandler"/>
+</filters>

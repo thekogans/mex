@@ -1,0 +1,94 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_lofter"
+                project_type = "plugin"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                build_type = "Shared"
+                guid = "c9b6c4ffd72a2276548e99e7729ee19a"
+                schema_version = "2">
+  <plugin_hosts>
+    <project organization = "thekogans"
+             name = "mex"/>
+  </plugin_hosts>
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_command"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl_command"/>
+    <project organization = "thekogans"
+             name = "mex_core"/>
+    <project organization = "thekogans"
+             name = "mex_common"/>
+    <toolchain organization = "thekogans"
+               name = "xerces"/>
+    <toolchain organization = "qt"
+               name = "core"/>
+    <toolchain organization = "qt"
+               name = "gui"/>
+    <toolchain organization = "qt"
+               name = "widgets"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <library>opengl32.lib</library>
+        <library>glu32.lib</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <library>GL</library>
+        <library>GLU</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
+  </dependencies>
+  <cpp_headers prefix = "$(build_directory)/resources">
+    <cpp_header>ui/ViewportLayoutDialog-uic.h</cpp_header>
+  </cpp_headers>
+  <cpp_headers prefix = "include">
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Lofter.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>Lofter.cpp</cpp_source>
+    <cpp_source>accelerators/AcceleratorsEditEventHandlers.cpp</cpp_source>
+    <cpp_source>accelerators/AcceleratorsFileEventHandlers.cpp</cpp_source>
+    <cpp_source>filters/FiltersEventHandlers.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarViewViewportsEventHandler.cpp</cpp_source>
+    <cpp_source>statusbar/StatusBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarCommonEventHandlers.cpp</cpp_source>
+  </cpp_sources>
+  <resources prefix = "resources">
+    <resource>accelerators/accelerators.xml</resource>
+    <resource>filters/filters.xml</resource>
+    <resource>menubar/menubar.xml</resource>
+    <resource>speedbar/speedbar.xml</resource>
+    <resource>statusbar/statusbar.xml</resource>
+    <resource>toolbar/toolbar.xml</resource>
+    <custom_build name = "ui/ViewportLayoutDialog.ui">
+      <outputs>
+        <output>ui/ViewportLayoutDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+  </resources>
+</thekogans_make>

@@ -1,0 +1,200 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE speedbar SYSTEM "../speedbar.dtd" []>
+<speedbar>
+    <popup text = "Hierarchy">
+        <item text = "Link" eventHandler = "SpeedBarHierarchyLinkEventHandler"/>
+        <item text = "Unlink" eventHandler = "SpeedBarHierarchyUnlinkEventHandler"/>
+        <item text = "Link Info" eventHandler = "SpeedBarHierarchyLinkInfoEventHandler"/>
+        <item text = "Place Pivot" eventHandler = "SpeedBarHierarchyPlacePivotEventHandler"/>
+        <item text = "Object Pivot" eventHandler = "SpeedBarHierarchyObjectPivotEventHandler"/>
+        <item text = "Center Pivot" eventHandler = "SpeedBarHierarchyCenterPivotEventHandler"/>
+        <item text = "Create Dummy" eventHandler = "SpeedBarHierarchyCreateDummyEventHandler"/>
+        <item text = "Dup Links" eventHandler = "SpeedBarHierarchyDupLinksEventHandler"/>
+        <item text = "Dup Branches" eventHandler = "SpeedBarHierarchyDupBrancesEventHandler"/>
+        <item text = "Inherit Links" eventHandler = "SpeedBarHierarchyInheritLinksEventHandler"/>
+        <item text = "Show Tree" eventHandler = "SpeedBarHierarchyShowTreeEventHandler"/>
+    </popup>
+    <popup text = "Object">
+        <item text = "Move" eventHandler = "SpeedBarObjectMoveEventHandler"/>
+        <item text = "Rotate" eventHandler = "SpeedBarObjectRotateEventHandler"/>
+        <item text = "Rotate Abs." eventHandler = "SpeedBarObjectRotateAbsEventHandler"/>
+        <item text = "Scale" eventHandler = "SpeedBarObjectScaleEventHandler"/>
+        <item text = "Squash" eventHandler = "SpeedBarObjectSquashEventHandler"/>
+        <popup text = "Morph...">
+            <item text = "Assign" eventHandler = "SpeedBarObjectMorphAssignEventHandler"/>
+            <item text = "Options" eventHandler = "SpeedBarObjectMorphOptionsEventHandler"/>
+        </popup>
+        <item text = "Show Path" eventHandler = "SpeedBarObjectShowPathEventHandler"/>
+        <item text = "Snapshot" eventHandler = "SpeedBarObjectSnapshotEventHandler"/>
+        <item text = "Delete" eventHandler = "SpeedBarObjectDeleteEventHandler"/>
+        <popup text = "Tracks...">
+            <item text = "Loop" eventHandler = "SpeedBarObjectTracksLoopEventHandler"/>
+            <item text = "Copy" eventHandler = "SpeedBarObjectTracksCopyEventHandler"/>
+            <item text = "Reverse" eventHandler = "SpeedBarObjectTracksReverseEventHandler"/>
+            <item text = "File Insert" eventHandler = "SpeedBarObjectTracksFileInsertEventHandler"/>
+        </popup>
+        <item text = "Attributes" eventHandler = "SpeedBarObjectAttributesEventHandler"/>
+        <item text = "Motion Blur" eventHandler = "SpeedBarObjectMotionBlurEventHandler"/>
+    </popup>
+    <popup text = "Lights">
+        <item text = "Ambient" eventHandler = "SpeedBarLightsAmbientEventHandler"/>
+        <popup text = "Omni...">
+            <item text = "Create" eventHandler = "SpeedBarLightsOmniCreateEventHandler"/>
+            <item text = "Move" eventHandler = "SpeedBarLightsOmniMoveEventHandler"/>
+            <item text = "Place Hilite" eventHandler = "SpeedBarLightsOmniPlaceHiliteEventHandler"/>
+            <item text = "Adjust" eventHandler = "SpeedBarLightsOmniAdjustEventHandler"/>
+            <item text = "Show Path" eventHandler = "SpeedBarLightsOmniShowPathEventHandler"/>
+            <item text = "Delete" eventHandler = "SpeedBarLightsOmniDeleteEventHandler"/>
+        </popup>
+        <popup text = "Spot...">
+            <item text = "Create" eventHandler = "SpeedBarLightsSpotCreateEventHandler"/>
+            <item text = "Move" eventHandler = "SpeedBarLightsSpotMoveEventHandler"/>
+            <item text = "Place Hilite" eventHandler = "SpeedBarLightsSpotPlaceHiliteEventHandler"/>
+            <item text = "Hotspot" eventHandler = "SpeedBarLightsSpotHotspotEventHandler"/>
+            <item text = "Falloff" eventHandler = "SpeedBarLightsSpotFalloffEventHandler"/>
+            <item text = "Roll" eventHandler = "SpeedBarLightsSpotRollEventHandler"/>
+            <item text = "Dolly" eventHandler = "SpeedBarLightsSpotDollyEventHandler"/>
+            <item text = "Adjust" eventHandler = "SpeedBarLightsSpotAdjustEventHandler"/>
+            <item text = "Show Path" eventHandler = "SpeedBarLightsSpotShowPathEventHandler"/>
+            <item text = "Delete" eventHandler = "SpeedBarLightsSpotDeleteEventHandler"/>
+        </popup>
+        <popup text = "Tracks...">
+            <item text = "Loop" eventHandler = "SpeedBarLightsTracksLoopEventHandler"/>
+            <item text = "Copy" eventHandler = "SpeedBarLightsTracksCopyEventHandler"/>
+            <item text = "Reverse" eventHandler = "SpeedBarLightsTracksReverseEventHandler"/>
+            <item text = "File Insert" eventHandler = "SpeedBarLightsTracksFileInsertEventHandler"/>
+        </popup>
+    </popup>
+    <popup text = "Cameras">
+        <item text = "Create" eventHandler = "SpeedBarCamerasCreateEventHandler"/>
+        <item text = "Move" eventHandler = "SpeedBarCamerasMoveEventHandler"/>
+        <item text = "Roll" eventHandler = "SpeedBarCamerasRollEventHandler"/>
+        <item text = "FOV" eventHandler = "SpeedBarCamerasFOVEventHandler"/>
+        <item text = "Dolly" eventHandler = "SpeedBarCamerasDollyEventHandler"/>
+        <item text = "Perspective" eventHandler = "SpeedBarCamerasPerspectiveEventHandler"/>
+        <item text = "Adjust" eventHandler = "SpeedBarCamerasAdjustEventHandler"/>
+        <item text = "Show Path" eventHandler = "SpeedBarCamerasShowPathEventHandler"/>
+        <item text = "Delete" eventHandler = "SpeedBarCamerasDeleteEventHandler"/>
+        <popup text = "Tracks...">
+            <item text = "Loop" eventHandler = "SpeedBarCamerasTracksLoopEventHandler"/>
+            <item text = "Copy" eventHandler = "SpeedBarCamerasTracksCopyEventHandler"/>
+            <item text = "Reverse" eventHandler = "SpeedBarCamerasTracksReverseEventHandler"/>
+            <item text = "File Insert" eventHandler = "SpeedBarCamerasTracksFileInsertEventHandler"/>
+        </popup>
+    </popup>
+    <popup text = "Paths">
+        <popup text = "Get...">
+            <item text = "Shaper" eventHandler = "SpeedBarPathsGetShaperEventHandler"/>
+            <item text = "Lofter" eventHandler = "SpeedBarPathsGetLofterEventHandler"/>
+            <item text = "Disk" eventHandler = "SpeedBarPathsGetDiskEventHandler"/>
+        </popup>
+        <item text = "Show-Hide" eventHandler = "SpeedBarPathsShowHideEventHandler"/>
+        <item text = "Hide All" eventHandler = "SpeedBarPathsHideAllEventHandler"/>
+        <item text = "Follow" eventHandler = "SpeedBarPathsFollowEventHandler"/>
+        <item text = "Move Key" eventHandler = "SpeedBarPathsMoveKeyEventHandler"/>
+        <item text = "Add Key" eventHandler = "SpeedBarPathsAddKeyEventHandler"/>
+        <item text = "Delete Key" eventHandler = "SpeedBarPathsDeleteKeyEventHandler"/>
+        <popup text = "Adjust TCB...">
+            <item text = "Tension" eventHandler = "SpeedBarPathsAdjustTCBTensionEventHandler"/>
+            <item text = "Continuity" eventHandler = "SpeedBarPathsAdjustTCBContinuityEventHandler"/>
+            <item text = "Bias" eventHandler = "SpeedBarPathsAdjustTCBBiasEventHandler"/>
+        </popup>
+        <popup text = "Adjust...">
+            <item text = "Key Time" eventHandler = "SpeedBarPathsAdjustKeyTimeEventHandler"/>
+            <item text = "Ease To" eventHandler = "SpeedBarPathsAdjustEaseToEventHandler"/>
+            <item text = "Ease From" eventHandler = "SpeedBarPathsAdjustEaseFromEventHandler"/>
+        </popup>
+    </popup>
+    <popup text = "Preview">
+        <item text = "Make" eventHandler = "SpeedBarPreviewMakeEventHandler"/>
+        <item text = "Play" eventHandler = "SpeedBarPreviewPlayEventHandler"/>
+        <item text = "View Flic" eventHandler = "SpeedBarPreviewViewFlicEventHandler"/>
+        <item text = "Set Speed" eventHandler = "SpeedBarPreviewSetSpeedEventHandler"/>
+        <item text = "Save" eventHandler = "SpeedBarPreviewSaveEventHandler"/>
+    </popup>
+    <popup text = "Renderer">
+        <item text = "Render View" eventHandler = "SpeedBarRenderRenderViewEventHandler"/>
+        <item text = "Render Region" eventHandler = "SpeedBarRenderRenderRegionEventHandler"/>
+        <item text = "Render Blowup" eventHandler = "SpeedBarRenderRenderBlowupEventHandler"/>
+        <item text = "Render Object" eventHandler = "SpeedBarRenderRenderObjectEventHandler"/>
+        <item text = "Render Last" eventHandler = "SpeedBarRenderRenderLastEventHandler"/>
+        <item text = "Video Post" eventHandler = "SpeedBarRenderVideoPostEventHandler"/>
+        <popup text = "Setup...">
+            <item text = "Atmosphere" eventHandler = "SpeedBarRenderSetupAtmosphereEventHandler"/>
+            <item text = "Background" eventHandler = "SpeedBarRenderSetupBackgroundEventHandler"/>
+            <item text = "Configure" eventHandler = "SpeedBarRenderSetupConfigureEventHandler"/>
+            <item text = "Options" eventHandler = "SpeedBarRenderSetupOptionsEventHandler"/>
+            <item text = "Shadows" eventHandler = "SpeedBarRenderSetupShadowsEventHandler"/>
+            <item text = "Make .CUB" eventHandler = "SpeedBarRenderSetupMakeCUBEventHandler"/>
+            <item text = "Make .VUE" eventHandler = "SpeedBarRenderSetupMakeVUEEventHandler"/>
+        </popup>
+        <popup text = "View...">
+            <item text = "Image" eventHandler = "SpeedBarRenderViewImageEventHandler"/>
+            <item text = "Flic" eventHandler = "SpeedBarRenderViewFlicEventHandler"/>
+            <item text = "Last" eventHandler = "SpeedBarRenderViewLastEventHandler"/>
+            <item text = "Save Last" eventHandler = "SpeedBarRenderViewSaveLastEventHandler"/>
+        </popup>
+        <popup text = "VTR Control...">
+            <item text = "VTR Setup" eventHandler = "SpeedBarRenderVTRControlVTRSetupEventHandler"/>
+            <item text = "Set Inpoint" eventHandler = "SpeedBarRenderVTRControlSetInpointEventHandler"/>
+            <item text = "Control" eventHandler = "SpeedBarRenderVTRControlControlEventHandler"/>
+            <item text = "Record" eventHandler = "SpeedBarRenderVTRControlRecordEventHandler"/>
+            <item text = "Disk-to-VTR" eventHandler = "SpeedBarRenderVTRControlDisktoVTREventHandler"/>
+        </popup>
+    </popup>
+    <popup text = "Display">
+        <popup text = "Hide...">
+            <item text = "Object" eventHandler = "SpeedBarDisplayHideObjectEventHandler"/>
+            <item text = "All" eventHandler = "SpeedBarDisplayHideAllEventHandler"/>
+            <item text = "By Name" eventHandler = "SpeedBarDisplayHideByNameEventHandler"/>
+            <item text = "By Color" eventHandler = "SpeedBarDisplayHideByColorEventHandler"/>
+            <item text = "Lights" eventHandler = "SpeedBarDisplayHideLightsEventHandler"/>
+            <item text = "Cameras" eventHandler = "SpeedBarDisplayHideCamerasEventHandler"/>
+        </popup>
+        <popup text = "Unhide...">
+            <item text = "All" eventHandler = "SpeedBarDisplayUnhideAllEventHandler"/>
+            <item text = "By Name" eventHandler = "SpeedBarDisplayUnhideByNameEventHandler"/>
+            <item text = "By Color" eventHandler = "SpeedBarDisplayUnhideByColorEventHandler"/>
+            <item text = "Lights" eventHandler = "SpeedBarDisplayUnhideLightsEventHandler"/>
+            <item text = "Cameras" eventHandler = "SpeedBarDisplayUnhideCamerasEventHandler"/>
+        </popup>
+        <popup text = "Geometry...">
+            <item text = "See Thru" eventHandler = "SpeedBarDisplayGeometrySeeThruEventHandler"/>
+            <item text = "Backface" eventHandler = "SpeedBarDisplayGeometryBackfaceEventHandler"/>
+            <item text = "Full Detail" eventHandler = "SpeedBarDisplayGeometryFullDetailEventHandler"/>
+            <item text = "Box" eventHandler = "SpeedBarDisplayGeometryBoxEventHandler"/>
+        </popup>
+        <popup text = "Const...">
+            <item text = "Place" eventHandler = "SpeedBarDisplayConstPlaceEventHandler"/>
+            <item text = "Show" eventHandler = "SpeedBarDisplayConstShowEventHandler"/>
+            <item text = "Hide" eventHandler = "SpeedBarDisplayConstHideEventHandler"/>
+            <item text = "Home" eventHandler = "SpeedBarDisplayConstHomeEventHandler"/>
+        </popup>
+        <popup text = "Tape...">
+            <item text = "Move" eventHandler = "SpeedBarDisplayTapeMoveEventHandler"/>
+            <item text = "Find" eventHandler = "SpeedBarDisplayTapeFindEventHandler"/>
+            <item text = "Show" eventHandler = "SpeedBarDisplayTapeShowEventHandler"/>
+            <item text = "Hide" eventHandler = "SpeedBarDisplayTapeHideEventHandler"/>
+            <item text = "Toggle Vsnap" eventHandler = "SpeedBarDisplayTapeToggleVsnapEventHandler"/>
+        </popup>
+        <popup text = "Speed...">
+            <item text = "Fastdraw" eventHandler = "SpeedBarDisplaySpeedFastdrawEventHandler"/>
+            <item text = "Fulldraw" eventHandler = "SpeedBarDisplaySpeedFulldrawEventHandler"/>
+            <item text = "Set Fast" eventHandler = "SpeedBarDisplaySpeedSetFastEventHandler"/>
+            <item text = "By Name" eventHandler = "SpeedBarDisplaySpeedByNameEventHandler"/>
+            <item text = "By Color" eventHandler = "SpeedBarDisplaySpeedByColorEventHandler"/>
+            <item text = "Object" eventHandler = "SpeedBarDisplaySpeedObjectEventHandler"/>
+        </popup>
+        <popup text = "Freeze...">
+            <item text = "By Name" eventHandler = "SpeedBarDisplayFreezeByNameEventHandler"/>
+            <item text = "By Color" eventHandler = "SpeedBarDisplayFreezeByColorEventHandler"/>
+            <item text = "Object" eventHandler = "SpeedBarDisplayFreezeObjectEventHandler"/>
+        </popup>
+    </popup>
+    <popup text = "Time">
+        <item text = "Go to Frame" eventHandler = "SpeedBarTimeGotoFrameEventHandler"/>
+        <item text = "Total Frames" eventHandler = "SpeedBarTimeTotalFramesEventHandler"/>
+        <item text = "Define Segment" eventHandler = "SpeedBarTimeDefineSegmentEventHandler"/>
+        <item text = "Scale Segment" eventHandler = "SpeedBarTimeScaleSegmentEventHandler"/>
+    </popup>
+</speedbar>

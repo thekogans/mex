@@ -1,0 +1,139 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE speedbar SYSTEM "../speedbar.dtd" []>
+<speedbar>
+    <popup text = "Shapes">
+        <popup text = "Get">
+            <item text = "Shaper" eventHandler = "SpeedBarShapesGetShaperEventHandler"/>
+            <item text = "Disk" eventHandler = "SpeedBarShapesGetDiskEventHandler"/>
+            <item text = "Level" eventHandler = "SpeedBarShapesGetLevelEventHandler"/>
+        </popup>
+        <popup text = "Put...">
+            <item text = "Shaper" eventHandler = "SpeedBarShapesPutShaperEventHandler"/>
+            <item text = "Disk" eventHandler = "SpeedBarShapesPutDiskEventHandler"/>
+            <item text = "Level" eventHandler = "SpeedBarShapesPutLevelEventHandler"/>
+        </popup>
+        <item text = "Pick" eventHandler = "SpeedBarShapesPickEventHandler"/>
+        <item text = "Move" eventHandler = "SpeedBarShapesMoveEventHandler"/>
+        <item text = "Rotate" eventHandler = "SpeedBarShapesRotateEventHandler"/>
+        <item text = "Scale" eventHandler = "SpeedBarShapesScaleEventHandler"/>
+        <item text = "Compare" eventHandler = "SpeedBarShapesCompareEventHandler"/>
+        <item text = "Center" eventHandler = "SpeedBarShapesCenterEventHandler"/>
+        <popup text = "Align...">
+            <item text = "Left" eventHandler = "SpeedBarShapesAlignLeftEventHandler"/>
+            <item text = "Right" eventHandler = "SpeedBarShapesAlignRightEventHandler"/>
+        </popup>
+        <item text = "Delete" eventHandler = "SpeedBarShapesDeleteEventHandler"/>
+        <item text = "Steps" eventHandler = "SpeedBarShapesStepsEventHandler"/>
+    </popup>
+    <popup text = "Path">
+        <popup text = "Get...">
+            <item text = "Shaper" eventHandler = "SpeedBarPathGetShaperEventHandler"/>
+            <item text = "Disk" eventHandler = "SpeedBarPathGetDiskEventHandler"/>
+        </popup>
+        <item text = "Put" eventHandler = "SpeedBarPathPutEventHandler"/>
+        <item text = "Move Vertex" eventHandler = "SpeedBarPathMoveVertexEventHandler"/>
+        <item text = "Move Path" eventHandler = "SpeedBarPathMovePathEventHandler"/>
+        <item text = "Insert Vertex" eventHandler = "SpeedBarPathInsertVertexEventHandler"/>
+        <item text = "2D Scale" eventHandler = "SpeedBarPath2DScaleEventHandler"/>
+        <item text = "3D Scale" eventHandler = "SpeedBarPath3DScaleEventHandler"/>
+        <item text = "Skew" eventHandler = "SpeedBarPathSkewEventHandler"/>
+        <item text = "Mirror" eventHandler = "SpeedBarPathMirrorEventHandler"/>
+        <item text = "Refine" eventHandler = "SpeedBarPathRefineEventHandler"/>
+        <item text = "SurfRev" eventHandler = "SpeedBarPathSurfRevEventHandler"/>
+        <item text = "Helix" eventHandler = "SpeedBarPathHelixEventHandler"/>
+        <item text = "Rotate" eventHandler = "SpeedBarPathRotateEventHandler"/>
+        <item text = "Default Angle" eventHandler = "SpeedBarPathDefaultAngleEventHandler"/>
+        <item text = "Straighten" eventHandler = "SpeedBarPathStraightenEventHandler"/>
+        <item text = "Default Path" eventHandler = "SpeedBarPathDefaultPathEventHandler"/>
+        <item text = "Open" eventHandler = "SpeedBarPathOpenEventHandler"/>
+        <item text = "Delete Vertex" eventHandler = "SpeedBarPathDeleteVertexEventHandler"/>
+        <item text = "Steps" eventHandler = "SpeedBarPathStepsEventHandler"/>
+    </popup>
+    <popup text = "Deform">
+        <popup text = "Scale..." eventHandler = "SpeedBarDeformScaleEventHandler">
+            <item text = "Move" eventHandler = "SpeedBarDeformScaleMoveEventHandler"/>
+            <item text = "Insert" eventHandler = "SpeedBarDeformScaleInsertEventHandler"/>
+            <item text = "Refine" eventHandler = "SpeedBarDeformScaleRefineEventHandler"/>
+            <item text = "Delete" eventHandler = "SpeedBarDeformScaleDeleteEventHandler"/>
+            <item text = "Limits" eventHandler = "SpeedBarDeformScaleLimitsEventHandler"/>
+            <item text = "Reset" eventHandler = "SpeedBarDeformScaleResetEventHandler"/>
+            <item text = "Swap" eventHandler = "SpeedBarDeformScaleSwapEventHandler"/>
+            <popup text = "Symmetry...">
+                <item text = "On" eventHandler = "SpeedBarDeformScaleSymmetryOnEventHandler"/>
+                <item text = "Off" eventHandler = "SpeedBarDeformScaleSymmetryOffEventHandler"/>
+            </popup>
+        </popup>
+        <popup text = "Twist..." eventHandler = "SpeedBarDeformTwistEventHandler">
+            <item text = "Move" eventHandler = "SpeedBarDeformTwistMoveEventHandler"/>
+            <item text = "Insert" eventHandler = "SpeedBarDeformTwistInsertEventHandler"/>
+            <item text = "Refine" eventHandler = "SpeedBarDeformTwistRefineEventHandler"/>
+            <item text = "Delete" eventHandler = "SpeedBarDeformTwistDeleteEventHandler"/>
+            <item text = "Limits" eventHandler = "SpeedBarDeformTwistLimitsEventHandler"/>
+            <item text = "Reset" eventHandler = "SpeedBarDeformTwistResetEventHandler"/>
+        </popup>
+        <popup text = "Teeter..." eventHandler = "SpeedBarDeformTeeterEventHandler">
+            <item text = "Move" eventHandler = "SpeedBarDeformTeeterMoveEventHandler"/>
+            <item text = "Insert" eventHandler = "SpeedBarDeformTeeterInsertEventHandler"/>
+            <item text = "Refine" eventHandler = "SpeedBarDeformTeeterRefineEventHandler"/>
+            <item text = "Delete" eventHandler = "SpeedBarDeformTeeterDeleteEventHandler"/>
+            <item text = "Limits" eventHandler = "SpeedBarDeformTeeterLimitsEventHandler"/>
+            <item text = "Reset" eventHandler = "SpeedBarDeformTeeterResetEventHandler"/>
+            <item text = "Swap" eventHandler = "SpeedBarDeformTeeterSwapEventHandler"/>
+            <popup text = "Symmetry...">
+                <item text = "On" eventHandler = "SpeedBarDeformTeeterSymmetryOnEventHandler"/>
+                <item text = "Off" eventHandler = "SpeedBarDeformTeeterSymmetryOffEventHandler"/>
+            </popup>
+        </popup>
+        <popup text = "Bevel..." eventHandler = "SpeedBarDeformBevelEventHandler">
+            <item text = "Move" eventHandler = "SpeedBarDeformBevelMoveEventHandler"/>
+            <item text = "Insert" eventHandler = "SpeedBarDeformBevelInsertEventHandler"/>
+            <item text = "Refine" eventHandler = "SpeedBarDeformBevelRefineEventHandler"/>
+            <item text = "Delete" eventHandler = "SpeedBarDeformBevelDeleteEventHandler"/>
+            <item text = "Limits" eventHandler = "SpeedBarDeformBevelLimitsEventHandler"/>
+            <item text = "Reset" eventHandler = "SpeedBarDeformBevelResetEventHandler"/>
+        </popup>
+        <popup text = "Fit..." eventHandler = "SpeedBarDeformFitEventHandler">
+            <popup text = "Get...">
+                <item text = "Shaper" eventHandler = "SpeedBarDeformFitGetShaperEventHandler"/>
+                <item text = "Disk" eventHandler = "SpeedBarDeformFitGetDiskEventHandler"/>
+            </popup>
+            <item text = "Put" eventHandler = "SpeedBarDeformFitPutEventHandler"/>
+            <item text = "Refine" eventHandler = "SpeedBarDeformFitRefineEventHandler"/>
+            <item text = "Reset" eventHandler = "SpeedBarDeformFitResetEventHandler"/>
+            <item text = "Swap" eventHandler = "SpeedBarDeformFitSwapEventHandler"/>
+            <popup text = "Symmetry...">
+                <item text = "On" eventHandler = "SpeedBarDeformFitSymmetryOnEventHandler"/>
+                <item text = "Off" eventHandler = "SpeedBarDeformFitSymmetryOffEventHandler"/>
+            </popup>
+            <item text = "Gen Path" eventHandler = "SpeedBarDeformFitGenPathEventHandler"/>
+        </popup>
+        <item text = "Preview" eventHandler = "SpeedBarDeformPreviewEventHandler"/>
+    </popup>
+    <popup text = "3D Display">
+        <item text = "Choose" eventHandler = "SpeedBar_3DDisplayChooseEventHandler"/>
+        <item text = "On" eventHandler = "SpeedBar_3DDisplayOnEventHandler"/>
+        <item text = "Off" eventHandler = "SpeedBar_3DDisplayOffEventHandler"/>
+        <popup text = "Const...">
+            <item text = "Place" eventHandler = "SpeedBar_3DDisplayConstPlaceEventHandler"/>
+            <item text = "Show" eventHandler = "SpeedBar_3DDisplayConstShowEventHandler"/>
+            <item text = "Hide" eventHandler = "SpeedBar_3DDisplayConstHideEventHandler"/>
+            <item text = "Home" eventHandler = "SpeedBar_3DDisplayConstHomeEventHandler"/>
+        </popup>
+        <popup text = "Tape...">
+            <item text = "Move" eventHandler = "SpeedBar_3DDisplayTapeMoveEventHandler"/>
+            <item text = "Find" eventHandler = "SpeedBar_3DDisplayTapeFindEventHandler"/>
+            <item text = "Show" eventHandler = "SpeedBar_3DDisplayTapeShowEventHandler"/>
+            <item text = "Hide" eventHandler = "SpeedBar_3DDisplayTapeHideEventHandler"/>
+            <item text = "Toggle Vsnap" eventHandler = "SpeedBar_3DDisplayTapeToggleVsnapEventHandler"/>
+        </popup>
+        <popup text = "Speed...">
+            <item text = "Fastdraw" eventHandler = "SpeedBar_3DDisplaySpeedFastdrawEventHandler"/>
+            <item text = "Fulldraw" eventHandler = "SpeedBar_3DDisplaySpeedFulldrawEventHandler"/>
+            <item text = "Set Fast" eventHandler = "SpeedBar_3DDisplaySpeedSetFastEventHandler"/>
+        </popup>
+    </popup>
+    <popup text = "Objects">
+        <item text = "Make" eventHandler = "SpeedBarObjectsMakeEventHandler"/>
+        <item text = "Preview" eventHandler = "SpeedBarObjectsPreviewEventHandler"/>
+    </popup>
+</speedbar>

@@ -1,0 +1,7 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!ELEMENT accelerators (item*)>
+<!ELEMENT item (CDATA)>
+<!ATTLIST item
+    ch CDATA #REQUIRED
+    flags CDATA #IMPLIED
+    eventHandler CDATA #REQUIRED>

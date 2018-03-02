@@ -1,0 +1,8 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE accelerators SYSTEM "../accelerators.dtd" []>
+<accelerators>
+    <item ch = "n" flags = "Ctrl" eventHandler = "AcceleratorsFileNewEventHandler"/>
+    <item ch = "o" flags = "Ctrl" eventHandler = "AcceleratorsFileOpenEventHandler"/>
+    <item ch = "z" flags = "Ctrl" eventHandler = "AcceleratorsEditUndoEventHandler"/>
+    <item ch = "y" flags = "Ctrl" eventHandler = "AcceleratorsEditRedoEventHandler"/>
+</accelerators>

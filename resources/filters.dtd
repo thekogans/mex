@@ -1,0 +1,8 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!ELEMENT filters (item*)>
+<!ELEMENT item (CDATA)>
+<!ATTLIST item
+    filter CDATA #REQUIRED
+    ext CDATA #REQUIRED
+    flags CDATA #REQUIRED
+    eventHandler CDATA #REQUIRED>

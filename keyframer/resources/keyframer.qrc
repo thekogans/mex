@@ -1,0 +1,33 @@
+<!DOCTYPE RCC>
+<RCC>
+    <qresource>
+        <file>fourbottomd.bmp</file>
+        <file>fourbottomu.bmp</file>
+        <file>fourd.bmp</file>
+        <file>fouru.bmp</file>
+        <file>fourleftd.bmp</file>
+        <file>fourleftu.bmp</file>
+        <file>fourrightd.bmp</file>
+        <file>fourrightu.bmp</file>
+        <file>fourtopd.bmp</file>
+        <file>fourtopu.bmp</file>
+        <file>singled.bmp</file>
+        <file>singleu.bmp</file>
+        <file>threebottomd.bmp</file>
+        <file>threebottomu.bmp</file>
+        <file>threehorzd.bmp</file>
+        <file>threehorzu.bmp</file>
+        <file>threeleftd.bmp</file>
+        <file>threeleftu.bmp</file>
+        <file>threerightd.bmp</file>
+        <file>threerightu.bmp</file>
+        <file>threetopd.bmp</file>
+        <file>threetopu.bmp</file>
+        <file>threevertd.bmp</file>
+        <file>threevertu.bmp</file>
+        <file>twohorzd.bmp</file>
+        <file>twohorzu.bmp</file>
+        <file>twovertd.bmp</file>
+        <file>twovertu.bmp</file>
+    </qresource>
+</RCC>

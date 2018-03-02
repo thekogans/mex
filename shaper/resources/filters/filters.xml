@@ -1,0 +1,6 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE filters SYSTEM "../filters.dtd" []>
+<filters>
+    <item filter = "3D Studio Shaper Files (*.SHP)" ext = "shp" flags = "Read,Write" eventHandler = "FiltersSHPEventHandler"/>
+    <item filter = "3D Studio Project Files (*.PRJ)" ext = "prj" flags = "Read,Write" eventHandler = "FiltersPRJEventHandler"/>
+</filters>

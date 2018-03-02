@@ -1,0 +1,137 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_core"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                build_type = "Shared"
+                guid = "a717729970ff14caef6c428546ce78e5"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_command"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl_command"/>
+    <toolchain organization = "thekogans"
+               name = "xerces"/>
+    <toolchain organization = "qt"
+               name = "core"/>
+    <toolchain organization = "qt"
+               name = "gui"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <library>opengl32.lib</library>
+        <library>glu32.lib</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <library>GL</library>
+        <library>GLU</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
+  </dependencies>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/Accelerators.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CursorMgr.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Filters.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/MenuBar.h</cpp_header>
+    <custom_build name = "$(organization)/$(project_directory)/ModalLoop.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ModalLoop-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <cpp_header>$(organization)/$(project_directory)/Model.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Module.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/SelectingTool.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/SpeedBar.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/StatusBar.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Tool.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ToolBar.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/UI.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Util.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ViewLayout.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawViewFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawViewLayoutFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/FlipFramebufferFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/SetCurrModuleFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/SetViewLayoutFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/TransactionFactory.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "$(build_directory)/resources">
+    <cpp_source>core-rcc.cpp</cpp_source>
+  </cpp_sources>
+  <cpp_sources prefix = "$(build_directory)/include">
+    <cpp_source>$(organization)/$(project_directory)/ModalLoop-moc.cpp</cpp_source>
+  </cpp_sources>
+  <cpp_sources prefix = "src">
+    <cpp_source>Accelerators.cpp</cpp_source>
+    <cpp_source>CursorMgr.cpp</cpp_source>
+    <cpp_source>Filters.cpp</cpp_source>
+    <cpp_source>MenuBar.cpp</cpp_source>
+    <cpp_source>ModalLoop.cpp</cpp_source>
+    <cpp_source>Model.cpp</cpp_source>
+    <cpp_source>Module.cpp</cpp_source>
+    <cpp_source>SelectingTool.cpp</cpp_source>
+    <cpp_source>SpeedBar.cpp</cpp_source>
+    <cpp_source>StatusBar.cpp</cpp_source>
+    <cpp_source>Tool.cpp</cpp_source>
+    <cpp_source>ToolBar.cpp</cpp_source>
+    <cpp_source>UI.cpp</cpp_source>
+    <cpp_source>Util.cpp</cpp_source>
+    <cpp_source>ViewLayout.cpp</cpp_source>
+    <cpp_source>command/DrawViewFinalOperation.cpp</cpp_source>
+    <cpp_source>command/DrawViewLayoutFinalOperation.cpp</cpp_source>
+    <cpp_source>command/FlipFramebufferFinalOperation.cpp</cpp_source>
+    <cpp_source>command/SetCurrModuleFinalOperation.cpp</cpp_source>
+    <cpp_source>command/SetViewLayoutFinalOperation.cpp</cpp_source>
+    <cpp_source>command/TransactionFactory.cpp</cpp_source>
+  </cpp_sources>
+  <resources prefix = "resources">
+    <custom_build name = "core.qrc">
+      <outputs>
+        <output>core-rcc.cpp</output>
+      </outputs>
+      <message>Running Qt rcc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:rcc))" -name $(project) -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <resource>ccw.bmp</resource>
+    <resource>cw.bmp</resource>
+    <resource>down.bmp</resource>
+    <resource>fourway.bmp</resource>
+    <resource>horizontal.bmp</resource>
+    <resource>left.bmp</resource>
+    <resource>nesw.bmp</resource>
+    <resource>nwse.bmp</resource>
+    <resource>pick11.bmp</resource>
+    <resource>pick3.bmp</resource>
+    <resource>pick5.bmp</resource>
+    <resource>pick7.bmp</resource>
+    <resource>pick9.bmp</resource>
+    <resource>right.bmp</resource>
+    <resource>up.bmp</resource>
+    <resource>vertical.bmp</resource>
+  </resources>
+</thekogans_make>

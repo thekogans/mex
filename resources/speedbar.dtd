@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!ELEMENT speedbar ((popup | item)*)>
+<!ELEMENT popup ((popup | item)*)>
+<!ATTLIST popup
+    text CDATA #REQUIRED
+    statusTip CDATA #IMPLIED
+    eventHandler CDATA #IMPLIED>
+<!ELEMENT item (EMPTY)>
+<!ATTLIST item
+    text CDATA #REQUIRED
+    statusTip CDATA #IMPLIED
+    eventHandler CDATA #REQUIRED>

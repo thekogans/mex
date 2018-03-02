@@ -1,0 +1,21 @@
+<!DOCTYPE RCC>
+<RCC>
+    <qresource>
+        <file>pick11.bmp</file>
+        <file>pick3.bmp</file>
+        <file>pick5.bmp</file>
+        <file>pick7.bmp</file>
+        <file>pick9.bmp</file>
+        <file>fourway.bmp</file>
+        <file>horizontal.bmp</file>
+        <file>vertical.bmp</file>
+        <file>down.bmp</file>
+        <file>left.bmp</file>
+        <file>right.bmp</file>
+        <file>up.bmp</file>
+        <file>cw.bmp</file>
+        <file>ccw.bmp</file>
+        <file>nesw.bmp</file>
+        <file>nwse.bmp</file>
+    </qresource>
+</RCC>

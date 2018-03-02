@@ -1,0 +1,99 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_3ds_opengl"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                guid = "f979fcdf5ef8425073b313d030c5ebc4"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <library>opengl32.lib</library>
+        <library>glu32.lib</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <library>GL</library>
+        <library>GLU</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
+  </dependencies>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/Axis.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BMP.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/DefaultPalette.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Icons.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Image.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Jitter.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Material.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Module.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Project.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Tape.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Util.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Version.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/View.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ViewLayout.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Viewport3D.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/Camera.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/Editor.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/Element.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/Light.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/Mesh.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/SolidMesh.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/WireMesh.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/CameraNode.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/Keyframer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/LightNode.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/ObjectNode.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/SolidObjectNode.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/SpotLightNode.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/WireObjectNode.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/lofter/Lofter.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/BezierPolygon.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/Hook.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/Shaper.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>BMP.cpp</cpp_source>
+    <cpp_source>Icons.cpp</cpp_source>
+    <cpp_source>Image.cpp</cpp_source>
+    <cpp_source>Material.cpp</cpp_source>
+    <cpp_source>Module.cpp</cpp_source>
+    <cpp_source>Project.cpp</cpp_source>
+    <cpp_source>Util.cpp</cpp_source>
+    <cpp_source>Version.cpp</cpp_source>
+    <cpp_source>View.cpp</cpp_source>
+    <cpp_source>ViewLayout.cpp</cpp_source>
+    <cpp_source>editor/Camera.cpp</cpp_source>
+    <cpp_source>editor/Editor.cpp</cpp_source>
+    <cpp_source>editor/Element.cpp</cpp_source>
+    <cpp_source>editor/Light.cpp</cpp_source>
+    <cpp_source>editor/SolidMesh.cpp</cpp_source>
+    <cpp_source>editor/WireMesh.cpp</cpp_source>
+    <cpp_source>keyframer/CameraNode.cpp</cpp_source>
+    <cpp_source>keyframer/Keyframer.cpp</cpp_source>
+    <cpp_source>keyframer/LightNode.cpp</cpp_source>
+    <cpp_source>keyframer/SolidObjectNode.cpp</cpp_source>
+    <cpp_source>keyframer/SpotLightNode.cpp</cpp_source>
+    <cpp_source>keyframer/WireObjectNode.cpp</cpp_source>
+    <cpp_source>lofter/Lofter.cpp</cpp_source>
+    <cpp_source>shaper/BezierPolygonSpecializations.cpp</cpp_source>
+    <cpp_source>shaper/Shaper.cpp</cpp_source>
+  </cpp_sources>
+</thekogans_make>

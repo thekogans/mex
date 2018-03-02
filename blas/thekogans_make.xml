@@ -1,0 +1,80 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_blas"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                guid = "cd6f07e6deb8c75a3052342ea0541c35"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+  </dependencies>
+  <cpp_preprocessor_definitions>
+    <if condition = "$(TOOLCHAIN_OS) == 'Windows'">
+      <cpp_preprocessor_definition>_CRT_SECURE_NO_WARNINGS</cpp_preprocessor_definition>
+    </if>
+  </cpp_preprocessor_definitions>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/AngleAxis.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BezierCubic.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Bound.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BoundRegion.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Circle.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CircleRegion.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Ellipse.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/EllipseRegion.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/EulerAngles.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Extents.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Line.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/MathUtil.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Matrix.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Matrix2.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Matrix3.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Matrix4.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Point.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Point2.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Point3.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Point4.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Polygon.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/PolygonRegion.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Quaternion.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Ray.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Rect.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Region.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Size.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Triangle.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Version.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>AngleAxis.cpp</cpp_source>
+    <cpp_source>BezierCubic.cpp</cpp_source>
+    <cpp_source>BezierCubicSpecializations.cpp</cpp_source>
+    <cpp_source>Bound.cpp</cpp_source>
+    <cpp_source>BoundRegionSpecializations.cpp</cpp_source>
+    <cpp_source>BoundSpecializations.cpp</cpp_source>
+    <cpp_source>Circle.cpp</cpp_source>
+    <cpp_source>CircleRegion.cpp</cpp_source>
+    <cpp_source>Constants.cpp</cpp_source>
+    <cpp_source>Ellipse.cpp</cpp_source>
+    <cpp_source>EllipseRegion.cpp</cpp_source>
+    <cpp_source>EulerAngles.cpp</cpp_source>
+    <cpp_source>LineSpecializations.cpp</cpp_source>
+    <cpp_source>Matrix2.cpp</cpp_source>
+    <cpp_source>Matrix3.cpp</cpp_source>
+    <cpp_source>Matrix4.cpp</cpp_source>
+    <cpp_source>Point.cpp</cpp_source>
+    <cpp_source>Point2.cpp</cpp_source>
+    <cpp_source>Point3.cpp</cpp_source>
+    <cpp_source>Point4.cpp</cpp_source>
+    <cpp_source>PolygonRegionSpecializations.cpp</cpp_source>
+    <cpp_source>PolygonSpecializations.cpp</cpp_source>
+    <cpp_source>Quaternion.cpp</cpp_source>
+    <cpp_source>Ray.cpp</cpp_source>
+    <cpp_source>Rect.cpp</cpp_source>
+    <cpp_source>Size.cpp</cpp_source>
+    <cpp_source>Version.cpp</cpp_source>
+  </cpp_sources>
+</thekogans_make>

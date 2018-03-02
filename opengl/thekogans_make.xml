@@ -1,0 +1,87 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_opengl"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                guid = "e8bd50f8f7061f92dd5a7b29822c0a73"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <library>opengl32.lib</library>
+        <library>glu32.lib</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <library>GL</library>
+        <library>GLU</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
+  </dependencies>
+  <cpp_preprocessor_definitions>
+    <if condition = "$(TOOLCHAIN_OS) == 'Windows'">
+      <cpp_preprocessor_definition>_CRT_SECURE_NO_WARNINGS</cpp_preprocessor_definition>
+    </if>
+  </cpp_preprocessor_definitions>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/BindFramebuffer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BindRenderbuffer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BindTexture.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BlendFunc.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/BlitFramebuffer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ClearColor.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ClientState.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Color.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CullFace.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/DepthFunc.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/DrawBuffer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Enable.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Extensions.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Font.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/FontMgr.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Framebuffer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/LineStipple.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/LineWidth.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/LogicOp.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ModelView.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/PackAlignment.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Projection.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Renderbuffer.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Scissor.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ShadeModel.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/SwapRect.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Texture.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/UnpackAlignment.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Util.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Version.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Viewport.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Viewport2D.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/f32Color.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/glext.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ui8Color.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>BindFramebuffer.cpp</cpp_source>
+    <cpp_source>BindRenderbuffer.cpp</cpp_source>
+    <cpp_source>BlitFramebuffer.cpp</cpp_source>
+    <cpp_source>ClientState.cpp</cpp_source>
+    <cpp_source>Extensions.cpp</cpp_source>
+    <cpp_source>Font.cpp</cpp_source>
+    <cpp_source>FontMgr.cpp</cpp_source>
+    <cpp_source>Framebuffer.cpp</cpp_source>
+    <cpp_source>Renderbuffer.cpp</cpp_source>
+    <cpp_source>SwapRect.cpp</cpp_source>
+    <cpp_source>Util.cpp</cpp_source>
+    <cpp_source>Version.cpp</cpp_source>
+  </cpp_sources>
+</thekogans_make>

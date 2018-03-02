@@ -1,0 +1,7 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE statusbar SYSTEM "../statusbar.dtd" []>
+<statusbar>
+    <item width = "75" eventHandler = "StatusBarCursorPositionEventHandler"/>
+    <item width = "15" eventHandler = "StatusBarStartFrameEventHandler"/>
+    <item width = "15" eventHandler = "StatusBarEndFrameEventHandler"/>
+</statusbar>

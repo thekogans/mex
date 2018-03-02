@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE modules SYSTEM "modules.dtd" []>
+<modules>
+    <module name = "2D Shaper"
+            path = "shaper/thekogans_mex_shaper"
+            menuBarPath = "shaper/menubar.xml"
+            toolBarPath = "shaper/toolbar.xml"
+            speedBarPath = "shaper/speedbar.xml"
+            statusBarPath = "shaper/statusbar.xml"
+            acceleratorsPath = "shaper/accelerators.xml"
+            filtersPath = "shaper/filters.xml"/>
+    <module name = "3D Lofter"
+            path = "lofter/thekogans_mex_lofter"
+            menuBarPath = "lofter/menubar.xml"
+            toolBarPath = "lofter/toolbar.xml"
+            speedBarPath = "lofter/speedbar.xml"
+            statusBarPath = "lofter/statusbar.xml"
+            acceleratorsPath = "lofter/accelerators.xml"
+            filtersPath = "lofter/filters.xml"/>
+    <module name = "3D Editor"
+            path = "editor/thekogans_mex_editor"
+            menuBarPath = "editor/menubar.xml"
+            toolBarPath = "editor/toolbar.xml"
+            speedBarPath = "editor/speedbar.xml"
+            statusBarPath = "editor/statusbar.xml"
+            acceleratorsPath = "editor/accelerators.xml"
+            filtersPath = "editor/filters.xml"
+            default = "true"/>
+    <module name = "Keyframer"
+            path = "keyframer/thekogans_mex_keyframer"
+            menuBarPath = "keyframer/menubar.xml"
+            toolBarPath = "keyframer/toolbar.xml"
+            speedBarPath = "keyframer/speedbar.xml"
+            statusBarPath = "keyframer/statusbar.xml"
+            acceleratorsPath = "keyframer/accelerators.xml"
+            filtersPath = "keyframer/filters.xml"/>
+</modules>

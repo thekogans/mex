@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE menubar SYSTEM "../menubar.dtd" []>
+<menubar>
+    <popup text = "&amp;File">
+        <item text = "&amp;New...&#x9;Ctrl+N" eventHandler = "MenuBarFileNewEventHandler"/>
+        <item text = "&amp;Reset" eventHandler = "MenuBarFileResetEventHandler"/>
+        <separator/>
+        <item text = "&amp;Open...&#x9;Ctrl+O" eventHandler = "MenuBarFileOpenEventHandler"/>
+        <item text = "&amp;Merge..." eventHandler = "MenuBarFileMergeEventHandler"/>
+        <separator/>
+        <item text = "&amp;Save&#x9;Ctrl+S" eventHandler = "MenuBarFileSaveEventHandler"/>
+        <item text = "Save &amp;As..." eventHandler = "MenuBarFileSaveAsEventHandler"/>
+        <separator/>
+        <item text = "Pre&amp;ferences..." eventHandler = "MenuBarFilePreferencesEventHandler"/>
+        <item text = "S&amp;cene Info..." eventHandler = "MenuBarFileSceneInfoEventHandler"/>
+        <separator/>
+        <item text = "E&amp;xit" eventHandler = "MenuBarFileExitEventHandler"/>
+    </popup>
+    <popup text = "&amp;Edit">
+        <item text = "&amp;Undo&#x9;Ctrl+Z" eventHandler = "MenuBarEditUndoEventHandler"/>
+        <item text = "&amp;Redo&#x9;Ctrl+Y" eventHandler = "MenuBarEditRedoEventHandler"/>
+        <separator/>
+        <item text = "&amp;Clear Edit History" eventHandler = "MenuBarEditClearEditHistoryEventHandler"/>
+        <item text = "&amp;Maintain Edit History..." eventHandler = "MenuBarEditMaintainEditHistoryEventHandler"/>
+    </popup>
+    <popup text = "&amp;View">
+        <item text = "&amp;Redraw" eventHandler = "MenuBarViewRedrawEventHandler"/>
+        <item text = "Re&amp;draw All" eventHandler = "MenuBarViewRedrawAllEventHandler"/>
+        <separator/>
+        <item text = "&amp;Viewports..." eventHandler = "MenuBarViewViewportsEventHandler"/>
+        <item text = "Dra&amp;wing Aids..." eventHandler = "MenuBarViewDrawingAidsEventHandler"/>
+        <item text = "&amp;Grid Extents" eventHandler = "MenuBarViewGridExtentsEventHandler"/>
+        <item text = "&amp;Unit Setup..." eventHandler = "MenuBarViewUnitSetupEventHandler"/>
+        <separator/>
+        <item text = "Use S&amp;nap" eventHandler = "MenuBarViewUseSnapEventHandler"/>
+        <item text = "U&amp;se Grid" eventHandler = "MenuBarViewUseGridEventHandler"/>
+        <item text = "&amp;Fastview" eventHandler = "MenuBarViewFastviewEventHandler"/>
+        <item text = "Scroll &amp;Lock" eventHandler = "MenuBarViewScrollLockEventHandler"/>
+        <item text = "Disa&amp;ble" eventHandler = "MenuBarViewDisableEventHandler"/>
+        <item text = "Safe Fra&amp;me" eventHandler = "MenuBarViewSafeFrameEventHandler"/>
+        <item text = "&amp;See Background" eventHandler = "MenuBarViewSeeBackgroundEventHandler"/>
+        <item text = "&amp;Adjust Background..." eventHandler = "MenuBarViewAdjustBackgroundEventHandler"/>
+        <separator/>
+        <item text = "Verte&amp;x Snap" eventHandler = "MenuBarViewVertexSnapEventHandler"/>
+        <separator/>
+        <item text = "Sav&amp;e Current" eventHandler = "MenuBarViewSaveCurrentEventHandler"/>
+        <item text = "Rest&amp;ore Saved" eventHandler = "MenuBarViewRestoreSavedEventHandler"/>
+        <item text = "Angle Sna&amp;p" eventHandler = "MenuBarViewAngleSnapEventHandler"/>
+    </popup>
+    <popup text = "&amp;Modules">
+        <item text = "Modules" modules = "yes"/>
+    </popup>
+    <popup text = "&amp;Window">
+        <item text = "&amp;Menu Bar" eventHandler = "MenuBarWindowMenuBarEventHandler"/>
+        <item text = "&amp;Tool Bar" eventHandler = "MenuBarWindowToolBarEventHandler"/>
+        <item text = "&amp;Speed Bar" eventHandler = "MenuBarWindowSpeedBarEventHandler"/>
+        <item text = "&amp;Console" eventHandler = "MenuBarWindowConsoleEventHandler"/>
+        <item text = "St&amp;atus Bar" eventHandler = "MenuBarWindowStatusBarEventHandler"/>
+    </popup>
+    <popup text = "&amp;Help">
+        <item text = "&amp;About..." eventHandler = "MenuBarHelpAboutEventHandler"/>
+    </popup>
+</menubar>

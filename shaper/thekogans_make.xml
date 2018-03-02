@@ -1,0 +1,368 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_shaper"
+                project_type = "plugin"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                build_type = "Shared"
+                guid = "9ca45a94e37bae4f6a8a90f8fce529bb"
+                schema_version = "2">
+  <plugin_hosts>
+    <project organization = "thekogans"
+             name = "mex"/>
+  </plugin_hosts>
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_command"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl_command"/>
+    <project organization = "thekogans"
+             name = "mex_core"/>
+    <project organization = "thekogans"
+             name = "mex_common"/>
+    <toolchain organization = "thekogans"
+               name = "freetype"/>
+    <toolchain organization = "thekogans"
+               name = "xerces"/>
+    <toolchain organization = "qt"
+               name = "core"/>
+    <toolchain organization = "qt"
+               name = "gui"/>
+    <toolchain organization = "qt"
+               name = "widgets"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <library>opengl32.lib</library>
+        <library>glu32.lib</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <library>GL</library>
+        <library>GLU</library>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
+  </dependencies>
+  <cpp_headers prefix = "$(build_directory)/resources">
+    <cpp_header>ui/3DDisplayDialog-uic.h</cpp_header>
+    <cpp_header>ui/ArrayLinearDialog-uic.h</cpp_header>
+    <cpp_header>ui/ArrayMoveDialog-uic.h</cpp_header>
+    <cpp_header>ui/ArrayRadialDialog-uic.h</cpp_header>
+    <cpp_header>ui/ArrayRotateDialog-uic.h</cpp_header>
+    <cpp_header>ui/TextDialog-uic.h</cpp_header>
+    <cpp_header>ui/ViewportLayoutDialog-uic.h</cpp_header>
+  </cpp_headers>
+  <cpp_headers prefix = "include">
+    <cpp_header>$(organization)/$(project_directory)/BezierPolygon.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/PolygonSelectingTool.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Shaper.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Util.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/VertexSelectingTool.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/AssignPolygonsInRegionCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawPolygonCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawPolygonFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawPolygonsCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawPolygonsFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawSegmentCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/DrawVertexFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/ErasePolygonCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/ErasePolygonsCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/EraseSegmentCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/FreezePolygonsInRegionCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/HidePolygonsInRegionCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/SelectPolygonsInRegionCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/ThawPolygonsInRegionCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/UnassignPolygonsInRegionCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/command/UnselectPolygonsInRegionCommand.h</cpp_header>
+    <custom_build name = "$(organization)/$(project_directory)/ui/3DDisplayDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/3DDisplayDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "$(organization)/$(project_directory)/ui/ArrayLinearDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/ArrayLinearDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "$(organization)/$(project_directory)/ui/ArrayMoveDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/ArrayMoveDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "$(organization)/$(project_directory)/ui/ArrayRadialDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/ArrayRadialDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "$(organization)/$(project_directory)/ui/ArrayRotateDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/ArrayRotateDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "$(organization)/$(project_directory)/ui/TextDialog.h">
+      <outputs>
+        <output>$(organization)/$(project_directory)/ui/TextDialog-moc.cpp</output>
+      </outputs>
+      <message>Running Qt moc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:moc))" -p "$(organization)/$(project_directory)/ui" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>BezierPolygon.cpp</cpp_source>
+    <cpp_source>PolygonSelectingTool.cpp</cpp_source>
+    <cpp_source>Shaper.cpp</cpp_source>
+    <cpp_source>Util.cpp</cpp_source>
+    <cpp_source>VertexSelectingTool.cpp</cpp_source>
+    <cpp_source>accelerators/AcceleratorsEditEventHandlers.cpp</cpp_source>
+    <cpp_source>accelerators/AcceleratorsFileEventHandlers.cpp</cpp_source>
+    <cpp_source>command/AssignPolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>command/DrawPolygonCommand.cpp</cpp_source>
+    <cpp_source>command/DrawPolygonFinalOperation.cpp</cpp_source>
+    <cpp_source>command/DrawPolygonsCommand.cpp</cpp_source>
+    <cpp_source>command/DrawPolygonsFinalOperation.cpp</cpp_source>
+    <cpp_source>command/DrawSegmentCommand.cpp</cpp_source>
+    <cpp_source>command/DrawVertexFinalOperation.cpp</cpp_source>
+    <cpp_source>command/ErasePolygonCommand.cpp</cpp_source>
+    <cpp_source>command/ErasePolygonsCommand.cpp</cpp_source>
+    <cpp_source>command/EraseSegmentCommand.cpp</cpp_source>
+    <cpp_source>command/FreezePolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>command/HidePolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>command/SelectPolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>command/ThawPolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>command/UnassignPolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>command/UnselectPolygonsInRegionCommand.cpp</cpp_source>
+    <cpp_source>filters/FiltersEventHandlers.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarViewViewportsEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateArcEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateArrayLinearEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateArrayMoveEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateArrayRadialEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateArrayRotateEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateCircleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateCloseEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateConnectEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateCopyEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateEllipseEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateFreehandDrawEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateLineEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateNgonEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateOpenEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateOutlineEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreatePolyConnectEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateQuadEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateStar1EventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateStar2EventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarCreateTextEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplay3DDisplayChooseEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplay3DDisplayOffEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplay3DDisplayOnEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFirstOffEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFirstOnEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezeAllEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezeInvertEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezeNoneEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezePolygonCircleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezePolygonCrossingEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezePolygonFenceEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezePolygonQuadEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezePolygonSingleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayFreezePolygonWindowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHideAllEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHideInvertEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHideNoneEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHidePolygonCircleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHidePolygonCrossingEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHidePolygonFenceEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHidePolygonQuadEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHidePolygonSingleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayHidePolygonWindowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayTapeHideEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarDisplayTapeShowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyAxisHideEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyAxisShowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyPolygonMirrorEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyPolygonMoveEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyPolygonRotateEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyPolygonScaleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyPolygonSkewEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyPolygonSliceEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifySegmentAdjustEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifySegmentBreakEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifySegmentCurveEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifySegmentDeleteEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifySegmentLinearEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifySegmentRefineEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyVertexAdjustEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarModifyVertexMoveEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectAllEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectInvertEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectNoneEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectPolygonCircleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectPolygonCrossingEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectPolygonFenceEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectPolygonQuadEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectPolygonSingleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectPolygonWindowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectVertexCircleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectVertexFenceEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectVertexQuadEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarSelectVertexSingleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAllEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAssignCircleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAssignCrossingEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAssignFenceEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAssignQuadEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAssignSingleEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeAssignWindowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeHookHideEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeHookShowEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeInvertEventHandler.cpp</cpp_source>
+    <cpp_source>speedbar/SpeedBarShapeNoneEventHandler.cpp</cpp_source>
+    <cpp_source>statusbar/StatusBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarCommonEventHandlers.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarSelectionSetAEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarSelectionSetBEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarSelectionSetCEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarToggleLocalAxisEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarToggleSelectedEventHandler.cpp</cpp_source>
+    <cpp_source>ui/3DDisplayDialog.cpp</cpp_source>
+    <cpp_source>ui/ArrayLinearDialog.cpp</cpp_source>
+    <cpp_source>ui/ArrayMoveDialog.cpp</cpp_source>
+    <cpp_source>ui/ArrayRadialDialog.cpp</cpp_source>
+    <cpp_source>ui/ArrayRotateDialog.cpp</cpp_source>
+    <cpp_source>ui/TextDialog.cpp</cpp_source>
+  </cpp_sources>
+  <cpp_sources prefix = "$(build_directory)/resources">
+    <cpp_source>shaper-rcc.cpp</cpp_source>
+  </cpp_sources>
+  <cpp_sources prefix = "$(build_directory)/include">
+    <cpp_source>$(organization)/$(project_directory)/ui/3DDisplayDialog-moc.cpp</cpp_source>
+    <cpp_source>$(organization)/$(project_directory)/ui/ArrayLinearDialog-moc.cpp</cpp_source>
+    <cpp_source>$(organization)/$(project_directory)/ui/ArrayMoveDialog-moc.cpp</cpp_source>
+    <cpp_source>$(organization)/$(project_directory)/ui/ArrayRadialDialog-moc.cpp</cpp_source>
+    <cpp_source>$(organization)/$(project_directory)/ui/ArrayRotateDialog-moc.cpp</cpp_source>
+    <cpp_source>$(organization)/$(project_directory)/ui/TextDialog-moc.cpp</cpp_source>
+  </cpp_sources>
+  <resources prefix = "resources">
+    <resource>fourbottomd.bmp</resource>
+    <resource>fourbottomu.bmp</resource>
+    <resource>fourd.bmp</resource>
+    <resource>fourleftd.bmp</resource>
+    <resource>fourleftu.bmp</resource>
+    <resource>fourrightd.bmp</resource>
+    <resource>fourrightu.bmp</resource>
+    <resource>fourtopd.bmp</resource>
+    <resource>fourtopu.bmp</resource>
+    <resource>fouru.bmp</resource>
+    <custom_build name = "shaper.qrc">
+      <outputs>
+        <output>shaper-rcc.cpp</output>
+      </outputs>
+      <message>Running Qt rcc on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:rcc))" -name $(project) -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/3DDisplayDialog.ui">
+      <outputs>
+        <output>ui/3DDisplayDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/ArrayLinearDialog.ui">
+      <outputs>
+        <output>ui/ArrayLinearDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/ArrayMoveDialog.ui">
+      <outputs>
+        <output>ui/ArrayMoveDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/ArrayRadialDialog.ui">
+      <outputs>
+        <output>ui/ArrayRadialDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/ArrayRotateDialog.ui">
+      <outputs>
+        <output>ui/ArrayRotateDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/TextDialog.ui">
+      <outputs>
+        <output>ui/TextDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <custom_build name = "ui/ViewportLayoutDialog.ui">
+      <outputs>
+        <output>ui/ViewportLayoutDialog-uic.h</output>
+      </outputs>
+      <message>Running Qt uic on $(name)</message>
+      <recipe>"$(to_build_system_path -p:$(get_toolchain_program -o:qt -p:uic))" -o "$(to_system_path -p:$(outputs[0]))" "$(to_system_path -p:$(name))"</recipe>
+    </custom_build>
+    <resource>singled.bmp</resource>
+    <resource>singleu.bmp</resource>
+    <resource>threebottomd.bmp</resource>
+    <resource>threebottomu.bmp</resource>
+    <resource>threehorzd.bmp</resource>
+    <resource>threehorzu.bmp</resource>
+    <resource>threeleftd.bmp</resource>
+    <resource>threeleftu.bmp</resource>
+    <resource>threerightd.bmp</resource>
+    <resource>threerightu.bmp</resource>
+    <resource>threetopd.bmp</resource>
+    <resource>threetopu.bmp</resource>
+    <resource>threevertd.bmp</resource>
+    <resource>threevertu.bmp</resource>
+    <resource>twohorzd.bmp</resource>
+    <resource>twohorzu.bmp</resource>
+    <resource>twovertd.bmp</resource>
+    <resource>twovertu.bmp</resource>
+    <resource>accelerators/accelerators.xml</resource>
+    <resource>filters/filters.xml</resource>
+    <resource>menubar/menubar.xml</resource>
+    <resource>speedbar/speedbar.xml</resource>
+    <resource>statusbar/statusbar.xml</resource>
+    <resource>toolbar/toolbar.xml</resource>
+  </resources>
+</thekogans_make>

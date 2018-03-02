@@ -1,0 +1,46 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_command"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                guid = "597fa30922a3a676442de1391dbab4ae"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+  </dependencies>
+  <cpp_preprocessor_definitions>
+    <if condition = "$(TOOLCHAIN_OS) == 'Windows'">
+      <cpp_preprocessor_definition>_CRT_SECURE_NO_WARNINGS</cpp_preprocessor_definition>
+    </if>
+  </cpp_preprocessor_definitions>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/Command.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CommandDispatcher.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ComplexTypeCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CompoundCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CompoundFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/FinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/GroupFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/OwnerVectorCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/SimpleTypeCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Transaction.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/TransactionFactory.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/stdVectorCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Version.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>Command.cpp</cpp_source>
+    <cpp_source>CommandDispatcher.cpp</cpp_source>
+    <cpp_source>CompoundCommand.cpp</cpp_source>
+    <cpp_source>CompoundFinalOperation.cpp</cpp_source>
+    <cpp_source>FinalOperation.cpp</cpp_source>
+    <cpp_source>GroupFinalOperation.cpp</cpp_source>
+    <cpp_source>SimpleTypeCommandSpecializations.cpp</cpp_source>
+    <cpp_source>Transaction.cpp</cpp_source>
+    <cpp_source>Version.cpp</cpp_source>
+  </cpp_sources>
+</thekogans_make>

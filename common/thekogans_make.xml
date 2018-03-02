@@ -1,0 +1,98 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_common"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                build_type = "Shared"
+                guid = "1db4b0176c768af5bbf55da6dce38bc6"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_command"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext_command"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_opengl_command"/>
+    <project organization = "thekogans"
+             name = "mex_core"/>
+    <toolchain organization = "thekogans"
+               name = "xerces"/>
+    <toolchain organization = "qt"
+               name = "core"/>
+    <toolchain organization = "qt"
+               name = "gui"/>
+    <toolchain organization = "qt"
+               name = "widgets"/>
+  </dependencies>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CursorMgrSetClipSizeFinalOperation.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/FileOpenCommand.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/accelerators/AcceleratorsEditRedoEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/accelerators/AcceleratorsEditUndoEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/accelerators/AcceleratorsFileOpenEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/accelerators/ImplementCommonAcceleratorsItemEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/filters/Filters3DSEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/filters/FiltersLFTEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/filters/FiltersPRJEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/filters/FiltersSHPEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/filters/ImplementCommonFiltersItemEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/ImplementCommonMenuBarItemEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/MenuBarFileOpenEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/MenuBarWindowConsoleEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/MenuBarWindowMenuBarEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/MenuBarWindowSpeedBarEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/MenuBarWindowStatusBarEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/menubar/MenuBarWindowToolBarEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/speedbar/ImplementCommonSpeedBarItemEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/statusbar/ImplementCommonStatusBarItemEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/statusbar/StatusBarCursorPositionEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/statusbar/StatusBarToolStatusEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ImplementCommonToolBarItemEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarEditRedoEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarEditUndoEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarFileOpenEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarPanEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarToggleMaximizedEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarZoomExtentsEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarZoomInEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarZoomOutEventHandler.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/toolbar/ToolBarZoomWindowEventHandler.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>FileOpenCommand.cpp</cpp_source>
+    <cpp_source>filters/Filters3DSEventHandler.cpp</cpp_source>
+    <cpp_source>filters/FiltersLFTEventHandler.cpp</cpp_source>
+    <cpp_source>filters/FiltersPRJEventHandler.cpp</cpp_source>
+    <cpp_source>filters/FiltersSHPEventHandler.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarWindowConsoleEventHandler.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarWindowMenuBarEventHandler.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarWindowSpeedBarEventHandler.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarWindowStatusBarEventHandler.cpp</cpp_source>
+    <cpp_source>menubar/MenuBarWindowToolBarEventHandler.cpp</cpp_source>
+    <cpp_source>statusbar/StatusBarCursorPositionEventHandler.cpp</cpp_source>
+    <cpp_source>statusbar/StatusBarToolStatusEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarPanEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarToggleMaximizedEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarZoomExtentsEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarZoomInEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarZoomOutEventHandler.cpp</cpp_source>
+    <cpp_source>toolbar/ToolBarZoomWindowEventHandler.cpp</cpp_source>
+  </cpp_sources>
+</thekogans_make>

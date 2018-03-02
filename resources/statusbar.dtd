@@ -1,0 +1,6 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!ELEMENT statusbar (item*)>
+<!ELEMENT item (CDATA)>
+<!ATTLIST item
+    width CDATA #REQUIRED
+    eventHandler CDATA #REQUIRED>

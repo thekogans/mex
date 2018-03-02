@@ -1,0 +1,11 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!ELEMENT toolbar ((item | separator)*)>
+<!ATTLIST toolbar
+    width CDATA #REQUIRED
+    height CDATA #REQUIRED>
+<!ELEMENT item (CDATA)>
+<!ATTLIST item
+    toolTip CDATA #IMPLIED
+    statusTip CDATA #IMPLIED
+    eventHandler CDATA #REQUIRED>
+<!ELEMENT separator (EMPTY)>

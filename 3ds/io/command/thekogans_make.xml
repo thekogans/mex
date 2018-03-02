@@ -1,0 +1,59 @@
+<thekogans_make organization = "thekogans"
+                project = "mex_3ds_io_command"
+                project_type = "library"
+                major_version = "0"
+                minor_version = "1"
+                patch_version = "0"
+                guid = "2b5697d5f9f8eae616c5e3e775daabf5"
+                schema_version = "2">
+  <dependencies>
+    <project organization = "thekogans"
+             name = "util"/>
+    <project organization = "thekogans"
+             name = "mex_blas"/>
+    <project organization = "thekogans"
+             name = "mex_command"/>
+    <project organization = "thekogans"
+             name = "mex_opengl"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_io"/>
+    <project organization = "thekogans"
+             name = "mex_3ds_ext"/>
+  </dependencies>
+  <cpp_headers prefix = "include"
+               install = "yes">
+    <cpp_header>$(organization)/$(project_directory)/BlasSimpleTypeCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/CommandSpecializations.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Config.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ProjectCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/Version.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ViewCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/ViewLayoutCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/editor/EditorCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/KeyframerCommandSpecializations.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/keyframer/KeyframerCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/lofter/LofterCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/BezierPolygonCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/BezierPolygonSegmentCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/BezierPolygonVertexCommands.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/ShaperCommandSpecializations.h</cpp_header>
+    <cpp_header>$(organization)/$(project_directory)/shaper/ShaperCommands.h</cpp_header>
+  </cpp_headers>
+  <cpp_sources prefix = "src">
+    <cpp_source>BlasSimpleTypeCommands.cpp</cpp_source>
+    <cpp_source>CommandSpecializations.cpp</cpp_source>
+    <cpp_source>ProjectCommands.cpp</cpp_source>
+    <cpp_source>Version.cpp</cpp_source>
+    <cpp_source>ViewCommands.cpp</cpp_source>
+    <cpp_source>ViewLayoutCommands.cpp</cpp_source>
+    <cpp_source>editor/EditorCommands.cpp</cpp_source>
+    <cpp_source>keyframer/KeyframerCommandSpecializations.cpp</cpp_source>
+    <cpp_source>keyframer/KeyframerCommands.cpp</cpp_source>
+    <cpp_source>lofter/LofterCommands.cpp</cpp_source>
+    <cpp_source>shaper/BezierPolygonCommandSpecializations.cpp</cpp_source>
+    <cpp_source>shaper/BezierPolygonSegmentCommands.cpp</cpp_source>
+    <cpp_source>shaper/BezierPolygonVertexCommandSpecializations.cpp</cpp_source>
+    <cpp_source>shaper/ShaperCommandSpecializations.cpp</cpp_source>
+    <cpp_source>shaper/ShaperCommands.cpp</cpp_source>
+  </cpp_sources>
+</thekogans_make>
