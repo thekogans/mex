@@ -92,12 +92,16 @@ namespace thekogans {
                     }
                 }
 
-                void Shaper::WriteMASTER_SCALE (util::f32 masterScale, util::File &file) const {
+                void Shaper::WriteMASTER_SCALE (
+                        util::f32 masterScale,
+                        util::File &file) const {
                     ChunkWriter chunk (file, MASTER_SCALE);
                     chunk << masterScale;
                 }
 
-                void Shaper::WriteSHAPE_HOOK (const blas::Point2 &pt, util::File &file) const {
+                void Shaper::WriteSHAPE_HOOK (
+                        const blas::Point2 &pt,
+                        util::File &file) const {
                     ChunkWriter chunk (file, SHAPE_HOOK);
                     chunk << pt;
                 }
@@ -110,7 +114,9 @@ namespace thekogans {
                     ChunkWriter chunk (file, SHAPE_NOT_OK);
                 }
 
-                void Shaper::WritePOLY_2D (const BezierPolygon3 &polygon, util::File &file) const {
+                void Shaper::WritePOLY_2D (
+                        const BezierPolygon3 &polygon,
+                        util::File &file) const {
                     ChunkWriter chunk (file, POLY_2D);
                     chunk << polygon;
                 }

@@ -49,7 +49,7 @@ namespace thekogans {
 
             void ArrayRotateDialog::accept () {
                 util::ui32 objectsInArray_ =
-                    atoi (totalNumberInArrayLineEdit->text ().toStdString ().c_str ());
+                    util::stringToui32 (totalNumberInArrayLineEdit->text ().toStdString ().c_str ());
                 if (objectsInArray_ < 2) {
                     // FIXME: display error message
                     assert (0);

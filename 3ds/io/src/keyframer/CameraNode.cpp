@@ -24,7 +24,10 @@ namespace thekogans {
 
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (CameraNode)
 
-                CameraNode::CameraNode (util::ui16 id, const Camera &camera) : Node (id, camera.name) {
+                CameraNode::CameraNode (
+                        util::ui16 id,
+                        const Camera &camera) :
+                        Node (id, camera.name) {
                     positionTrack.keys.push_back (Point3Track::Key (0, camera.position));
                     fovTrack.keys.push_back (f32Track::Key (0, Camera::Lens2FOV (camera.lens)));
                     rollTrack.keys.push_back (f32Track::Key (0, camera.roll));

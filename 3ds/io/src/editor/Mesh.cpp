@@ -65,14 +65,23 @@ namespace thekogans {
                             std::vector<blas::Bound3> bounds;
 
                         public:
-                            CalcBoundJob (blas::Bound3 &bound_, const std::vector<blas::Point3> &vertices_,
-                                const std::vector<util::ui16> &vertexFlags_, const blas::Matrix3 &xform_) :
-                                bound (bound_), vertices (vertices_), vertexFlags (vertexFlags_), xform (xform_) {}
+                            CalcBoundJob (
+                                blas::Bound3 &bound_,
+                                const std::vector<blas::Point3> &vertices_,
+                                const std::vector<util::ui16> &vertexFlags_,
+                                const blas::Matrix3 &xform_) :
+                                bound (bound_),
+                                vertices (vertices_),
+                                vertexFlags (vertexFlags_),
+                                xform (xform_) {}
 
                             virtual void Prolog (std::size_t chunks) throw () {
                                 bounds.insert (bounds.begin (), chunks, blas::Bound3::Empty);
                             }
-                            virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                            virtual void Execute (
+                                    std::size_t sidx,
+                                    std::size_t eidx,
+                                    std::size_t rank) throw () {
                                 for (; sidx < eidx; ++sidx) {
                                     if (!util::Flags16 (vertexFlags[sidx]).Test (io::Mesh::Hidden)) {
                                         bounds[rank] += vertices[sidx] * xform;
@@ -97,13 +106,21 @@ namespace thekogans {
                             std::vector<blas::Bound3> bounds;
 
                         public:
-                            CalcBoundJob (blas::Bound3 &bound_, const std::vector<blas::Point3> &vertices_,
-                                const blas::Matrix3 &xform_) : bound (bound_), vertices (vertices_), xform (xform_) {}
+                            CalcBoundJob (
+                                blas::Bound3 &bound_,
+                                const std::vector<blas::Point3> &vertices_,
+                                const blas::Matrix3 &xform_) :
+                                bound (bound_),
+                                vertices (vertices_),
+                                xform (xform_) {}
 
                             virtual void Prolog (std::size_t chunks) throw () {
                                 bounds.insert (bounds.begin (), chunks, blas::Bound3::Empty);
                             }
-                            virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                            virtual void Execute (
+                                    std::size_t sidx,
+                                    std::size_t eidx,
+                                    std::size_t rank) throw () {
                                 for (; sidx < eidx; ++sidx) {
                                     bounds[rank] += vertices[sidx] * xform;
                                 }

@@ -24,7 +24,10 @@ namespace thekogans {
 
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (SpotLightNode)
 
-                SpotLightNode::SpotLightNode (util::ui16 id, const Light &light) : Node (id, light.name) {
+                SpotLightNode::SpotLightNode (
+                        util::ui16 id,
+                        const Light &light) :
+                        Node (id, light.name) {
                     assert (light.spot.get ());
                     positionTrack.keys.push_back (Point3Track::Key (0, light.position));
                     colorTrack.keys.push_back (

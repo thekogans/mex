@@ -100,15 +100,15 @@ namespace thekogans {
                         }
                         case io::Project::Units::Architectural: {
                             util::i32 in = 0;
-                            util::i32 ft = atoi (str);
+                            util::i32 ft = util::stringToi32 (str);
                             const char *ptr = strchr (str, '\'');
                             if (ptr) {
-                                in = atoi (ptr + 1);
+                                in = util::stringToi32 (ptr + 1);
                             }
                             util::i32 frac = 0;
                             ptr = strchr (str, '\"');
                             if (ptr) {
-                                frac = atoi (ptr + 1);
+                                frac = util::stringToi32 (ptr + 1);
                             }
                         #define Sign(x) ((x) < 0 ? -1 : 1)
                             util::f32 val = (((util::f32)frac / units.denominator + in) / 12.0f +

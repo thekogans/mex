@@ -155,8 +155,8 @@ namespace thekogans {
                     parser.parse (path.c_str ());
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes =
                         parser.getDocument ()->getDocumentElement ()->getAttributes ();
-                    width = atoi (util::GetAttributeValue ("width", attributes).c_str ());
-                    height = atoi (util::GetAttributeValue ("height", attributes).c_str ());
+                    width = util::stringToui32 (util::GetAttributeValue ("width", attributes).c_str ());
+                    height = util::stringToui32 (util::GetAttributeValue ("height", attributes).c_str ());
                     const XERCES_CPP_NAMESPACE::DOMNodeList *children =
                         parser.getDocument ()->getDocumentElement ()->getChildNodes ();
                     for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {

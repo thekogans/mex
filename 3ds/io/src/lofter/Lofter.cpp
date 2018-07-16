@@ -167,7 +167,9 @@ namespace thekogans {
                     }
                 }
 
-                void Lofter::ReadSHAPE_2D (Shape &shape, ChunkReader &mainChunk) {
+                void Lofter::ReadSHAPE_2D (
+                        Shape &shape,
+                        ChunkReader &mainChunk) {
                     mainChunk >> shape.level >> shape.polygons;
                 }
 
@@ -265,7 +267,9 @@ namespace thekogans {
                     }
                 }
 
-                void Lofter::ReadDeformationCurve (Deformation::Curve &curve, ChunkReader &mainChunk) {
+                void Lofter::ReadDeformationCurve (
+                        Deformation::Curve &curve,
+                        ChunkReader &mainChunk) {
                     util::ui16 vertexCount;
                     mainChunk >> vertexCount;
                     curve.bezierPolygon.vertices.resize (vertexCount);
@@ -289,33 +293,45 @@ namespace thekogans {
                     }
                 }
 
-                void Lofter::WriteMASTER_SCALE (util::f32 masterScale, util::File &file) const {
+                void Lofter::WriteMASTER_SCALE (
+                        util::f32 masterScale,
+                        util::File &file) const {
                     ChunkWriter chunk (file, MASTER_SCALE);
                     chunk << masterScale;
                 }
 
-                void Lofter::WriteINTERPCT (util::ui16 steps, util::File &file) const {
+                void Lofter::WriteINTERPCT (
+                        util::ui16 steps,
+                        util::File &file) const {
                     ChunkWriter chunk (file, INTERPCT);
                     chunk << steps;
                 }
 
-                void Lofter::WritePATH_3D (const Path &path, util::File &file) const {
+                void Lofter::WritePATH_3D (
+                        const Path &path,
+                        util::File &file) const {
                     ChunkWriter chunk (file, PATH_3D);
                     chunk << path.steps << path.polygon;
                     WritePATH_MATRIX (path.transform, file);
                 }
 
-                void Lofter::WritePATH_MATRIX (const Path::Transform &transform, util::File &file) const {
+                void Lofter::WritePATH_MATRIX (
+                        const Path::Transform &transform,
+                        util::File &file) const {
                     ChunkWriter chunk (file, PATH_MATRIX);
                     chunk << transform.x << transform.y << transform.z;
                 }
 
-                void Lofter::WriteSHAPE_2D (const Shape &shape, util::File &file) const {
+                void Lofter::WriteSHAPE_2D (
+                        const Shape &shape,
+                        util::File &file) const {
                     ChunkWriter chunk (file, SHAPE_2D);
                     chunk << shape.level << shape.polygons;
                 }
 
-                void Lofter::WriteM_SCALE (const ScaleDeformation &scaleDeformation, util::File &file) const {
+                void Lofter::WriteM_SCALE (
+                        const ScaleDeformation &scaleDeformation,
+                        util::File &file) const {
                     ChunkWriter chunk (file, M_SCALE);
                     chunk << scaleDeformation.symmetry;
                     WriteDEFORM_LIMIT (scaleDeformation.limit, file);
@@ -323,13 +339,17 @@ namespace thekogans {
                     WriteDeformationCurve (YZ_CURVE, scaleDeformation.yzCurve, file);
                 }
 
-                void Lofter::WriteM_TWIST (const TwistDeformation &twistDeformation, util::File &file) const {
+                void Lofter::WriteM_TWIST (
+                        const TwistDeformation &twistDeformation,
+                        util::File &file) const {
                     ChunkWriter chunk (file, M_TWIST);
                     WriteDEFORM_LIMIT (twistDeformation.limit, file);
                     WriteDeformationCurve (XZ_CURVE, twistDeformation.xzCurve, file);
                 }
 
-                void Lofter::WriteM_TEETER (const TeeterDeformation &teeterDeformation, util::File &file) const {
+                void Lofter::WriteM_TEETER (
+                        const TeeterDeformation &teeterDeformation,
+                        util::File &file) const {
                     ChunkWriter chunk (file, M_TEETER);
                     chunk << teeterDeformation.symmetry;
                     WriteDEFORM_LIMIT (teeterDeformation.limit, file);
@@ -337,25 +357,34 @@ namespace thekogans {
                     WriteDeformationCurve (YZ_CURVE, teeterDeformation.yzCurve, file);
                 }
 
-                void Lofter::WriteM_BEVEL (const BevelDeformation &bevelDeformation, util::File &file) const {
+                void Lofter::WriteM_BEVEL (
+                        const BevelDeformation &bevelDeformation,
+                        util::File &file) const {
                     ChunkWriter chunk (file, M_BEVEL);
                     WriteDEFORM_LIMIT (bevelDeformation.limit, file);
                     WriteDeformationCurve (XZ_CURVE, bevelDeformation.xzCurve, file);
                 }
 
-                void Lofter::WriteM_FIT (const FitDeformation &fitDeformation, util::File &file) const {
+                void Lofter::WriteM_FIT (
+                        const FitDeformation &fitDeformation,
+                        util::File &file) const {
                     ChunkWriter chunk (file, M_FIT);
                     chunk << fitDeformation.symmetry;
                     WriteDeformationCurve (XZ_CURVE, fitDeformation.xzCurve, file);
                     WriteDeformationCurve (YZ_CURVE, fitDeformation.yzCurve, file);
                 }
 
-                void Lofter::WriteDEFORM_LIMIT (util::f32 limit, util::File &file) const {
+                void Lofter::WriteDEFORM_LIMIT (
+                        util::f32 limit,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DEFORM_LIMIT);
                     chunk << limit;
                 }
 
-                void Lofter::WriteDeformationCurve (util::ui16 id, const Deformation::Curve &curve, util::File &file) const {
+                void Lofter::WriteDeformationCurve (
+                        util::ui16 id,
+                        const Deformation::Curve &curve,
+                        util::File &file) const {
                     ChunkWriter chunk (file, id);
                     util::ui16 vertexCount = (util::ui16)curve.bezierPolygon.vertices.size ();
                     chunk << vertexCount;

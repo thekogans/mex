@@ -302,8 +302,12 @@ namespace thekogans {
                                 break;
                             case VIEW_USER:
                                 defaultView.type = View::User;
-                                chunk >> defaultView.target >> defaultView.width >>
-                                    defaultView.horizontalAngle >> defaultView.verticalAngle >> defaultView.bankAngle;
+                                chunk >>
+                                    defaultView.target >>
+                                    defaultView.width >>
+                                    defaultView.horizontalAngle >>
+                                    defaultView.verticalAngle >>
+                                    defaultView.bankAngle;
                                 break;
                             case VIEW_CAMERA:
                                 defaultView.type = View::Camera;
@@ -374,13 +378,25 @@ namespace thekogans {
                     }
                 }
 
-                inline ChunkReader &operator >> (ChunkReader &chunk, Mesh::Map &map) {
-                    chunk >> map.type >> map.tilex >> map.tiley >> map.center >> map.scale >>
-                        map.xform >> map.planarWidth >> map.planarHeight >> map.cylindricalHeight;
+                inline ChunkReader &operator >> (
+                        ChunkReader &chunk,
+                        Mesh::Map &map) {
+                    chunk >>
+                        map.type >>
+                        map.tilex >>
+                        map.tiley >>
+                        map.center >>
+                        map.scale >>
+                        map.xform >>
+                        map.planarWidth >>
+                        map.planarHeight >>
+                        map.cylindricalHeight;
                     return chunk;
                 }
 
-                void Editor::ReadN_TRI_OBJECT (Mesh &mesh, ChunkReader &mainChunk) {
+                void Editor::ReadN_TRI_OBJECT (
+                        Mesh &mesh,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -439,12 +455,16 @@ namespace thekogans {
                     }
                 }
 
-                inline ChunkReader &operator >> (ChunkReader &chunk, Mesh::Face &face) {
+                inline ChunkReader &operator >> (
+                        ChunkReader &chunk,
+                        Mesh::Face &face) {
                     chunk >> face.a >> face.b >> face.c >> face.flags;
                     return chunk;
                 }
 
-                void Editor::ReadFACE_ARRAY (Mesh &mesh, ChunkReader &mainChunk) {
+                void Editor::ReadFACE_ARRAY (
+                        Mesh &mesh,
+                        ChunkReader &mainChunk) {
                     util::ui16 faceCount;
                     mainChunk >> faceCount;
                     mesh.faces.resize (faceCount);
@@ -490,7 +510,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::ReadN_DIRECT_LIGHT (Light &light, ChunkReader &mainChunk) {
+                void Editor::ReadN_DIRECT_LIGHT (
+                        Light &light,
+                        ChunkReader &mainChunk) {
                     mainChunk >> light.position;
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
@@ -531,7 +553,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::ReadDL_SPOTLIGHT (Light::Spot &spot, ChunkReader &mainChunk) {
+                void Editor::ReadDL_SPOTLIGHT (
+                        Light::Spot &spot,
+                        ChunkReader &mainChunk) {
                     mainChunk >> spot.target >> spot.hotSpot >> spot.fallOff;
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
@@ -555,9 +579,10 @@ namespace thekogans {
                                 spot.shadow.type = Light::Spot::Shadow::UseRayTraceShadow;
                                 break;
                             case DL_LOCAL_SHADOW2:
-                                chunk >> spot.shadow.bias;
-                                chunk >> spot.shadow.filter;
-                                chunk >> spot.shadow.mapSize;
+                                chunk >>
+                                    spot.shadow.bias >>
+                                    spot.shadow.filter >>
+                                    spot.shadow.mapSize;
                                 spot.shadow.local = true;
                                 break;
                             case DL_RAY_BIAS:
@@ -577,8 +602,14 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::ReadN_CAMERA (Camera &camera, ChunkReader &mainChunk) {
-                    mainChunk >> camera.position >> camera.target >> camera.roll >> camera.lens;
+                void Editor::ReadN_CAMERA (
+                        Camera &camera,
+                        ChunkReader &mainChunk) {
+                    mainChunk >>
+                        camera.position >>
+                        camera.target >>
+                        camera.roll >>
+                        camera.lens;
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -647,43 +678,63 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteVIEW_TOP (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_TOP (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_TOP);
                     chunk << defaultView.target << defaultView.width;
                 }
 
-                void Editor::WriteVIEW_BOTTOM (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_BOTTOM (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_BOTTOM);
                     chunk << defaultView.target << defaultView.width;
                 }
 
-                void Editor::WriteVIEW_LEFT (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_LEFT (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_LEFT);
                     chunk << defaultView.target << defaultView.width;
                 }
 
-                void Editor::WriteVIEW_RIGHT (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_RIGHT (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_RIGHT);
                     chunk << defaultView.target << defaultView.width;
                 }
 
-                void Editor::WriteVIEW_FRONT (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_FRONT (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_FRONT);
                     chunk << defaultView.target << defaultView.width;
                 }
 
-                void Editor::WriteVIEW_BACK (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_BACK (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_BACK);
                     chunk << defaultView.target << defaultView.width;
                 }
 
-                void Editor::WriteVIEW_USER (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_USER (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_USER);
-                    chunk << defaultView.target << defaultView.width <<
-                        defaultView.horizontalAngle << defaultView.verticalAngle << defaultView.bankAngle;
+                    chunk <<
+                        defaultView.target <<
+                        defaultView.width <<
+                        defaultView.horizontalAngle <<
+                        defaultView.verticalAngle <<
+                        defaultView.bankAngle;
                 }
 
-                void Editor::WriteVIEW_CAMERA (const DefaultView &defaultView, util::File &file) const {
+                void Editor::WriteVIEW_CAMERA (
+                        const DefaultView &defaultView,
+                        util::File &file) const {
                     ChunkWriter chunk (file, VIEW_CAMERA);
                     chunk << defaultView.cameraName;
                 }
@@ -766,8 +817,11 @@ namespace thekogans {
                 void Editor::WriteAtmosphere (util::File &file) const {
                     {
                         ChunkWriter chunk (file, FOG);
-                        chunk << atmosphere.fog.nearPlane << atmosphere.fog.nearDensity <<
-                            atmosphere.fog.farPlane << atmosphere.fog.farDensity;
+                        chunk <<
+                            atmosphere.fog.nearPlane <<
+                            atmosphere.fog.nearDensity <<
+                            atmosphere.fog.farPlane <<
+                            atmosphere.fog.farDensity;
                         WriteColor (COLOR_F, atmosphere.fog.color, file);
                         if (atmosphere.fog.background) {
                             WriteFOG_BGND (file);
@@ -775,14 +829,20 @@ namespace thekogans {
                     }
                     {
                         ChunkWriter chunk (file, LAYER_FOG);
-                        chunk << atmosphere.layerFog.zmin << atmosphere.layerFog.zmax
-                              << atmosphere.layerFog.density << atmosphere.layerFog.flags;
+                        chunk <<
+                            atmosphere.layerFog.zmin <<
+                            atmosphere.layerFog.zmax <<
+                            atmosphere.layerFog.density <<
+                            atmosphere.layerFog.flags;
                         WriteColor (COLOR_F, atmosphere.layerFog.color, file);
                     }
                     {
                         ChunkWriter chunk (file, DISTANCE_CUE);
-                        chunk << atmosphere.distanceCue.nearPlane << atmosphere.distanceCue.nearDim <<
-                            atmosphere.distanceCue.farPlane << atmosphere.distanceCue.farDim;
+                        chunk <<
+                            atmosphere.distanceCue.nearPlane <<
+                            atmosphere.distanceCue.nearDim <<
+                            atmosphere.distanceCue.farPlane <<
+                            atmosphere.distanceCue.farDim;
                         if (atmosphere.distanceCue.background) {
                             WriteDCUE_BGND (file);
                         }
@@ -828,7 +888,9 @@ namespace thekogans {
                     chunk << constructionPlane;
                 }
 
-                void Editor::WriteMesh (const Mesh &mesh, util::File &file) const {
+                void Editor::WriteMesh (
+                        const Mesh &mesh,
+                        util::File &file) const {
                     ChunkWriter chunk (file, NAMED_OBJECT);
                     chunk << mesh.name;
                     WriteN_TRI_OBJECT (mesh, file);
@@ -858,19 +920,25 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteLight (const Light &light, util::File &file) const {
+                void Editor::WriteLight (
+                        const Light &light,
+                        util::File &file) const {
                     ChunkWriter chunk (file, NAMED_OBJECT);
                     chunk << light.name;
                     WriteN_DIRECT_LIGHT (light, file);
                 }
 
-                void Editor::WriteCamera (const Camera &camera, util::File &file) const {
+                void Editor::WriteCamera (
+                        const Camera &camera,
+                        util::File &file) const {
                     ChunkWriter chunk (file, NAMED_OBJECT);
                     chunk << camera.name;
                     WriteN_CAMERA (camera, file);
                 }
 
-                void Editor::WriteN_TRI_OBJECT (const Mesh &mesh, util::File &file) const {
+                void Editor::WriteN_TRI_OBJECT (
+                        const Mesh &mesh,
+                        util::File &file) const {
                     if (mesh.vertices.size () > USHRT_MAX ||
                         mesh.vertexFlags.size () > USHRT_MAX ||
                         mesh.textureVertices.size () > USHRT_MAX ||
@@ -904,7 +972,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WritePOINT_ARRAY (const std::vector<blas::Point3> &vertices, util::File &file) const {
+                void Editor::WritePOINT_ARRAY (
+                        const std::vector<blas::Point3> &vertices,
+                        util::File &file) const {
                     ChunkWriter chunk (file, POINT_ARRAY);
                     util::ui16 count = (util::ui16)vertices.size ();
                     chunk << count;
@@ -913,7 +983,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WritePOINT_FLAG_ARRAY (const std::vector<util::ui16> &vertexFlags, util::File &file) const {
+                void Editor::WritePOINT_FLAG_ARRAY (
+                        const std::vector<util::ui16> &vertexFlags,
+                        util::File &file) const {
                     ChunkWriter chunk (file, POINT_FLAG_ARRAY);
                     util::ui16 count = (util::ui16)vertexFlags.size ();
                     chunk << count;
@@ -922,7 +994,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteTEX_VERTS (const std::vector<blas::Point2> &textureVertices, util::File &file) const {
+                void Editor::WriteTEX_VERTS (
+                        const std::vector<blas::Point2> &textureVertices,
+                        util::File &file) const {
                     ChunkWriter chunk (file, TEX_VERTS);
                     util::ui16 count = (util::ui16)textureVertices.size ();
                     chunk << count;
@@ -931,30 +1005,40 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteMESH_TEXTURE_INFO (const Mesh::Map &map, util::File &file) const {
+                void Editor::WriteMESH_TEXTURE_INFO (
+                        const Mesh::Map &map,
+                        util::File &file) const {
                     ChunkWriter chunk (file, MESH_TEXTURE_INFO);
                     chunk << map.type << map.tilex << map.tiley << map.center << map.scale <<
                         map.xform << map.planarWidth << map.planarHeight << map.cylindricalHeight;
                 }
 
-                void Editor::WriteMESH_MATRIX (const blas::Matrix3 &xform, util::File &file) const {
+                void Editor::WriteMESH_MATRIX (
+                        const blas::Matrix3 &xform,
+                        util::File &file) const {
                     ChunkWriter chunk (file, MESH_MATRIX);
                     chunk << xform;
                 }
 
-                void Editor::WriteMESH_COLOR (util::ui8 paletteIndex, util::File &file) const {
+                void Editor::WriteMESH_COLOR (
+                        util::ui8 paletteIndex,
+                        util::File &file) const {
                     ChunkWriter chunk (file, MESH_COLOR);
                     chunk << paletteIndex;
                 }
 
                 namespace {
-                    inline ChunkWriter &operator << (ChunkWriter &chunk, const Mesh::Face &face) {
+                    inline ChunkWriter &operator << (
+                            ChunkWriter &chunk,
+                            const Mesh::Face &face) {
                         chunk << face.a << face.b << face.c << face.flags;
                         return chunk;
                     }
                 }
 
-                void Editor::WriteFACE_ARRAY (const Mesh &mesh, util::File &file) const {
+                void Editor::WriteFACE_ARRAY (
+                        const Mesh &mesh,
+                        util::File &file) const {
                     ChunkWriter chunk (file, FACE_ARRAY);
                     util::ui16 count = (util::ui16)mesh.faces.size ();
                     chunk << count;
@@ -973,14 +1057,18 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteSMOOTH_GROUP (const std::vector<util::ui32> &faceSmoothGroups, util::File &file) const {
+                void Editor::WriteSMOOTH_GROUP (
+                        const std::vector<util::ui32> &faceSmoothGroups,
+                        util::File &file) const {
                     ChunkWriter chunk (file, SMOOTH_GROUP);
                     for (std::size_t i = 0, count = faceSmoothGroups.size (); i < count; ++i) {
                         chunk << faceSmoothGroups[i];
                     }
                 }
 
-                void Editor::WriteMSH_MAT_GROUP (const Mesh::Material &material, util::File &file) const {
+                void Editor::WriteMSH_MAT_GROUP (
+                        const Mesh::Material &material,
+                        util::File &file) const {
                     if (!material.faces.empty ()) {
                         ChunkWriter chunk (file, MSH_MAT_GROUP);
                         chunk << material.name;
@@ -992,7 +1080,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteMSH_BOXMAP (const std::vector<std::string> &boxMap, util::File &file) const {
+                void Editor::WriteMSH_BOXMAP (
+                        const std::vector<std::string> &boxMap,
+                        util::File &file) const {
                     assert (boxMap.size () == 6);
                     ChunkWriter chunk (file, MSH_BOXMAP);
                     for (util::ui32 i = 0; i < 6; ++i) {
@@ -1000,12 +1090,16 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WritePROC_NAME (const std::string &procName, util::File &file) const {
+                void Editor::WritePROC_NAME (
+                        const std::string &procName,
+                        util::File &file) const {
                     ChunkWriter chunk (file, PROC_NAME);
                     chunk << procName;
                 }
 
-                void Editor::WritePROC_DATA (const std::vector<util::ui8> &procData, util::File &file) const {
+                void Editor::WritePROC_DATA (
+                        const std::vector<util::ui8> &procData,
+                        util::File &file) const {
                     ChunkWriter chunk (file, PROC_DATA);
                     chunk.Write (&procData[0], (util::ui32)procData.size ());
                 }
@@ -1067,12 +1161,16 @@ namespace thekogans {
                     ChunkWriter chunk (file, DL_OFF);
                 }
 
-                void Editor::WriteDL_OUTER_RANGE (util::f32 outer, util::File &file) const {
+                void Editor::WriteDL_OUTER_RANGE (
+                        util::f32 outer,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_OUTER_RANGE);
                     chunk << outer;
                 }
 
-                void Editor::WriteDL_INNER_RANGE (util::f32 inner, util::File &file) const {
+                void Editor::WriteDL_INNER_RANGE (
+                        util::f32 inner,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_INNER_RANGE);
                     chunk << inner;
                 }
@@ -1081,17 +1179,23 @@ namespace thekogans {
                     ChunkWriter chunk (file, DL_ATTENUATE);
                 }
 
-                void Editor::WriteDL_MULTIPLIER (util::f32 multiplier, util::File &file) const {
+                void Editor::WriteDL_MULTIPLIER (
+                        util::f32 multiplier,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_MULTIPLIER);
                     chunk << multiplier;
                 }
 
-                void Editor::WriteDL_EXCLUDE (const std::string &exclude, util::File &file) const {
+                void Editor::WriteDL_EXCLUDE (
+                        const std::string &exclude,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_EXCLUDE);
                     chunk << exclude;
                 }
 
-                void Editor::WriteDL_SPOTLIGHT (const Light::Spot &spot, util::File &file) const {
+                void Editor::WriteDL_SPOTLIGHT (
+                        const Light::Spot &spot,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_SPOTLIGHT);
                     chunk << spot.target << spot.hotSpot << spot.fallOff;
                     WriteDL_SPOT_ROLL (spot.roll, file);
@@ -1120,7 +1224,9 @@ namespace thekogans {
                     }
                 }
 
-                void Editor::WriteDL_SPOT_ROLL (util::f32 roll, util::File &file) const {
+                void Editor::WriteDL_SPOT_ROLL (
+                        util::f32 roll,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_SPOT_ROLL);
                     chunk << roll;
                 }
@@ -1129,7 +1235,9 @@ namespace thekogans {
                     ChunkWriter chunk (file, DL_SHADOWED);
                 }
 
-                void Editor::WriteDL_LOCAL_SHADOW2 (const Light::Spot::Shadow &shadow, util::File &file) const {
+                void Editor::WriteDL_LOCAL_SHADOW2 (
+                        const Light::Spot::Shadow &shadow,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_LOCAL_SHADOW2);
                     chunk << shadow.bias << shadow.filter << shadow.mapSize;
                 }
@@ -1142,12 +1250,16 @@ namespace thekogans {
                     ChunkWriter chunk (file, DL_SPOT_RECTANGULAR);
                 }
 
-                void Editor::WriteDL_SPOT_ASPECT (util::f32 aspect, util::File &file) const {
+                void Editor::WriteDL_SPOT_ASPECT (
+                        util::f32 aspect,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_SPOT_ASPECT);
                     chunk << aspect;
                 }
 
-                void Editor::WriteDL_PROJECTOR (const std::string &bitmap, util::File &file) const {
+                void Editor::WriteDL_PROJECTOR (
+                        const std::string &bitmap,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_PROJECTOR);
                     chunk << bitmap;
                 }
@@ -1156,7 +1268,9 @@ namespace thekogans {
                     ChunkWriter chunk (file, DL_SPOT_OVERSHOOT);
                 }
 
-                void Editor::WriteDL_RAY_BIAS (util::f32 rayBias, util::File &file) const {
+                void Editor::WriteDL_RAY_BIAS (
+                        util::f32 rayBias,
+                        util::File &file) const {
                     ChunkWriter chunk (file, DL_RAY_BIAS);
                     chunk << rayBias;
                 }
@@ -1165,7 +1279,9 @@ namespace thekogans {
                     ChunkWriter chunk (file, DL_RAYSHAD);
                 }
 
-                void Editor::WriteN_CAMERA (const Camera &camera, util::File &file) const {
+                void Editor::WriteN_CAMERA (
+                        const Camera &camera,
+                        util::File &file) const {
                     ChunkWriter chunk (file, N_CAMERA);
                     chunk << camera.position << camera.target << camera.roll << camera.lens;
                     if (camera.showCone) {
@@ -1178,7 +1294,9 @@ namespace thekogans {
                     ChunkWriter chunk (file, CAM_SEE_CONE);
                 }
 
-                void Editor::WriteCAM_RANGES (const Camera::Ranges &ranges, util::File &file) const {
+                void Editor::WriteCAM_RANGES (
+                        const Camera::Ranges &ranges,
+                        util::File &file) const {
                     ChunkWriter chunk (file, CAM_RANGES);
                     chunk << ranges.hither << ranges.yon;
                 }

@@ -119,7 +119,7 @@ namespace thekogans {
                         }
                         util::ui32 inc = 1;
                         if (length < name.size ()) {
-                            inc = atoi (&name[length]) + 1;
+                            inc = util::stringToui32 (&name[length]) + 1;
                         }
                         return name.substr (0, length) + util::ui32Tostring (inc, "%02d");
                     }

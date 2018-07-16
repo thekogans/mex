@@ -24,12 +24,18 @@ namespace thekogans {
 
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (TargetNode)
 
-                TargetNode::TargetNode (util::ui16 id, const Light &light) : Node (id, light.name) {
+                TargetNode::TargetNode (
+                        util::ui16 id,
+                        const Light &light) :
+                        Node (id, light.name) {
                     assert (light.spot.get ());
                     targetTrack.keys.push_back (Point3Track::Key (0, light.spot->target));
                 }
 
-                TargetNode::TargetNode (util::ui16 id, const Camera &camera) : Node (id, camera.name) {
+                TargetNode::TargetNode (
+                        util::ui16 id,
+                        const Camera &camera) :
+                        Node (id, camera.name) {
                     targetTrack.keys.push_back (Point3Track::Key (0, camera.target));
                 }
 

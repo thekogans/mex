@@ -31,8 +31,12 @@ namespace thekogans {
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (Light::Spot)
 
                 // FIXME: move to ext?
-                bool Light::Spot::Cone::CalcPoints (const blas::Point3 &position, const blas::Point3 &target,
-                    util::f32 fov, util::f32 roll, std::vector<blas::Point3> &points) const {
+                bool Light::Spot::Cone::CalcPoints (
+                        const blas::Point3 &position,
+                        const blas::Point3 &target,
+                        util::f32 fov,
+                        util::f32 roll,
+                        std::vector<blas::Point3> &points) const {
                     blas::Point3 pt = position - target;
                     util::f32 x = pt.Length () * tanf (util::RAD (fov) * 0.5f);
                     if (util::IS_ZERO (x)) {

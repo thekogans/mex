@@ -70,7 +70,7 @@ namespace thekogans {
             }
 
             void ArrayLinearDialog::OnCalculate (bool) {
-                util::ui32 objectsInArray = atoi (totalNumberInArrayLineEdit->text ().toStdString ().c_str ());
+                util::ui32 objectsInArray = util::stringToui32 (totalNumberInArrayLineEdit->text ().toStdString ().c_str ());
                 if (objectsInArray < 2) {
                     // "Need at least two polygons for array.";
                     return;
@@ -109,7 +109,7 @@ namespace thekogans {
 
             void ArrayLinearDialog::accept () {
                 OnCalculate (true);
-                util::ui32 objectsInArray_ = atoi (totalNumberInArrayLineEdit->text ().toStdString ().c_str ());
+                util::ui32 objectsInArray_ = util::stringToui32 (totalNumberInArrayLineEdit->text ().toStdString ().c_str ());
                 if (objectsInArray_ < 2) {
                     // FIXME: display error message
                     assert (0);

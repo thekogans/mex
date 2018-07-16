@@ -54,7 +54,7 @@ namespace thekogans {
             namespace {
                 void ParseItem (const XERCES_CPP_NAMESPACE::DOMNode &node, Module &module, std::vector<StatusBar::Item *> &items) {
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes = node.getAttributes ();
-                    util::ui32 width = atoi (util::GetAttributeValue ("width", attributes).c_str ());
+                    util::ui32 width = util::stringToui32 (util::GetAttributeValue ("width", attributes).c_str ());
                     std::string eventHandlerName = module.GetType () +
                         util::GetAttributeValue ("eventHandler", attributes);
                     StatusBar::Item::EventHandler *eventHandler =

@@ -29,8 +29,13 @@ namespace thekogans {
 
                 const char * const ObjectNode::DUMMY_NAME = "$$$DUMMY";
 
-                ObjectNode::ObjectNode (util::ui16 id, const Mesh &mesh) : Node (id, mesh.name),
-                    pivot (blas::Point3::Zero), bound (mesh.GetBound3 ()), morphSmooth (24.0f) {
+                ObjectNode::ObjectNode (
+                        util::ui16 id,
+                        const Mesh &mesh) :
+                        Node (id, mesh.name),
+                        pivot (blas::Point3::Zero),
+                        bound (mesh.GetBound3 ()),
+                        morphSmooth (24.0f) {
                     blas::Point3 translation;
                     blas::Quaternion rotation;
                     blas::Point3 scale;

@@ -150,7 +150,9 @@ namespace thekogans {
                     WriteAMBIENT_NODE_TAG (ambientNode, file);
                 }
 
-                const ObjectNode *Keyframer::GetObjectNode (const std::string &name, const std::string &instanceName) const {
+                const ObjectNode *Keyframer::GetObjectNode (
+                        const std::string &name,
+                        const std::string &instanceName) const {
                     for (std::size_t i = 0, count = objectNodes.size (); i < count; ++i) {
                         if (objectNodes[i]->name == name && objectNodes[i]->instanceName == instanceName) {
                             return objectNodes[i];
@@ -204,7 +206,9 @@ namespace thekogans {
                     return 0;
                 }
 
-                void Keyframer::ReadOBJECT_NODE_TAG (ObjectNode &objectNode, ChunkReader &mainChunk) {
+                void Keyframer::ReadOBJECT_NODE_TAG (
+                        ObjectNode &objectNode,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -212,7 +216,11 @@ namespace thekogans {
                                 chunk >> objectNode.id;
                                 break;
                             case NODE_HDR:
-                                chunk >> objectNode.name >> objectNode.flags1 >> objectNode.flags2 >> objectNode.parent;
+                                chunk >>
+                                    objectNode.name >>
+                                    objectNode.flags1 >>
+                                    objectNode.flags2 >>
+                                    objectNode.parent;
                                 break;
                             case PIVOT:
                                 chunk >> objectNode.pivot;
@@ -256,7 +264,9 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::ReadLIGHT_NODE_TAG (LightNode &lightNode, ChunkReader &mainChunk) {
+                void Keyframer::ReadLIGHT_NODE_TAG (
+                        LightNode &lightNode,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -264,7 +274,11 @@ namespace thekogans {
                                 chunk >> lightNode.id;
                                 break;
                             case NODE_HDR:
-                                chunk >> lightNode.name >> lightNode.flags1 >> lightNode.flags2 >> lightNode.parent;
+                                chunk >>
+                                    lightNode.name >>
+                                    lightNode.flags1 >>
+                                    lightNode.flags2 >>
+                                    lightNode.parent;
                                 break;
                             case POS_TRACK_TAG:
                                 chunk >> lightNode.positionTrack;
@@ -279,7 +293,9 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::ReadTargetNode (TargetNode &targetNode, ChunkReader &mainChunk) {
+                void Keyframer::ReadTargetNode (
+                        TargetNode &targetNode,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -287,7 +303,11 @@ namespace thekogans {
                                 chunk >> targetNode.id;
                                 break;
                             case NODE_HDR:
-                                chunk >> targetNode.name >> targetNode.flags1 >> targetNode.flags2 >> targetNode.parent;
+                                chunk >>
+                                    targetNode.name >>
+                                    targetNode.flags1 >>
+                                    targetNode.flags2 >>
+                                    targetNode.parent;
                                 break;
                             case POS_TRACK_TAG:
                                 chunk >> targetNode.targetTrack;
@@ -299,7 +319,9 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::ReadSPOTLIGHT_NODE_TAG (SpotLightNode &spotLightNode, ChunkReader &mainChunk) {
+                void Keyframer::ReadSPOTLIGHT_NODE_TAG (
+                        SpotLightNode &spotLightNode,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -307,7 +329,11 @@ namespace thekogans {
                                 chunk >> spotLightNode.id;
                                 break;
                             case NODE_HDR:
-                                chunk >> spotLightNode.name >> spotLightNode.flags1 >> spotLightNode.flags2 >> spotLightNode.parent;
+                                chunk >>
+                                    spotLightNode.name >>
+                                    spotLightNode.flags1 >>
+                                    spotLightNode.flags2 >>
+                                    spotLightNode.parent;
                                 break;
                             case POS_TRACK_TAG:
                                 chunk >> spotLightNode.positionTrack;
@@ -331,7 +357,9 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::ReadCAMERA_NODE_TAG (CameraNode &cameraNode, ChunkReader &mainChunk) {
+                void Keyframer::ReadCAMERA_NODE_TAG (
+                        CameraNode &cameraNode,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -339,7 +367,11 @@ namespace thekogans {
                                 chunk >> cameraNode.id;
                                 break;
                             case NODE_HDR:
-                                chunk >> cameraNode.name >> cameraNode.flags1 >> cameraNode.flags2 >> cameraNode.parent;
+                                chunk >>
+                                    cameraNode.name >>
+                                    cameraNode.flags1 >>
+                                    cameraNode.flags2 >>
+                                    cameraNode.parent;
                                 break;
                             case POS_TRACK_TAG:
                                 chunk >> cameraNode.positionTrack;
@@ -357,7 +389,9 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::ReadAMBIENT_NODE_TAG (AmbientNode &ambientNode, ChunkReader &mainChunk) {
+                void Keyframer::ReadAMBIENT_NODE_TAG (
+                        AmbientNode &ambientNode,
+                        ChunkReader &mainChunk) {
                     while (!mainChunk.IsEnd ()) {
                         ChunkReader chunk (mainChunk);
                         switch (chunk.GetID ()) {
@@ -366,7 +400,11 @@ namespace thekogans {
                                 assert (ambientNode.id == util::NIDX16);
                                 break;
                             case NODE_HDR:
-                                chunk >> ambientNode.name >> ambientNode.flags1 >> ambientNode.flags2 >> ambientNode.parent;
+                                chunk >>
+                                    ambientNode.name >>
+                                    ambientNode.flags1 >>
+                                    ambientNode.flags2 >>
+                                    ambientNode.parent;
                                 assert (ambientNode.name == "$AMBIENT$");
                                 assert (ambientNode.parent == util::NIDX16);
                                 break;
@@ -380,32 +418,49 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::WriteKFHDR (util::ui16 version, const std::string &fileName,
-                    util::ui32 segmentLength, util::File &file) const {
+                void Keyframer::WriteKFHDR (
+                        util::ui16 version,
+                        const std::string &fileName,
+                        util::ui32 segmentLength,
+                        util::File &file) const {
                     ChunkWriter chunk (file, KFHDR);
                     chunk << version << fileName << segmentLength;
                 }
 
-                void Keyframer::WriteKFSEG (const Segment &segment, util::File &file) const {
+                void Keyframer::WriteKFSEG (
+                        const Segment &segment,
+                        util::File &file) const {
                     ChunkWriter chunk (file, KFSEG);
                     chunk << segment.startFrame << segment.endFrame;
                 }
 
-                void Keyframer::WriteKFCURTIME (util::ui32 segmentCurrFrame, util::File &file) const {
+                void Keyframer::WriteKFCURTIME (
+                        util::ui32 segmentCurrFrame,
+                        util::File &file) const {
                     ChunkWriter chunk (file, KFCURTIME);
                     chunk << segmentCurrFrame;
                 }
 
                 template<typename T>
-                void WriteTrack (util::File &file, util::ui16 id, const Track<T> &track) {
+                void WriteTrack (
+                        util::File &file,
+                        util::ui16 id,
+                        const Track<T> &track) {
                     ChunkWriter chunk (file, id);
                     file << track;
                 }
 
-                void Keyframer::WriteOBJECT_NODE_TAG (const ObjectNode &objectNode, util::File &file) const {
+                void Keyframer::WriteOBJECT_NODE_TAG (
+                        const ObjectNode &objectNode,
+                        util::File &file) const {
                     ChunkWriter chunk (file, OBJECT_NODE_TAG);
                     WriteNODE_ID (objectNode.id, file);
-                    WriteNODE_HDR (objectNode.name, objectNode.flags1,objectNode.flags2, objectNode.parent, file);
+                    WriteNODE_HDR (
+                        objectNode.name,
+                        objectNode.flags1,
+                        objectNode.flags2,
+                        objectNode.parent,
+                        file);
                     WritePIVOT (objectNode.pivot, file);
                     if (!objectNode.instanceName.empty ()) {
                         WriteINSTANCE_NAME (objectNode.instanceName, file);
@@ -432,45 +487,69 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::WriteNODE_ID (util::ui16 id, util::File &file) const {
+                void Keyframer::WriteNODE_ID (
+                        util::ui16 id,
+                        util::File &file) const {
                     ChunkWriter chunk (file, NODE_ID);
                     chunk << id;
                 }
 
-                void Keyframer::WriteNODE_HDR (const std::string &name, util::ui16 flags1, util::ui16 flags2, util::ui16 parent, util::File &file) const {
+                void Keyframer::WriteNODE_HDR (
+                        const std::string &name,
+                        util::ui16 flags1,
+                        util::ui16 flags2,
+                        util::ui16 parent,
+                        util::File &file) const {
                     ChunkWriter chunk (file, NODE_HDR);
                     chunk << name << flags1 << flags2 << parent;
                 }
 
-                void Keyframer::WritePIVOT (const blas::Point3 &pivot, util::File &file) const {
+                void Keyframer::WritePIVOT (
+                        const blas::Point3 &pivot,
+                        util::File &file) const {
                     ChunkWriter chunk (file, PIVOT);
                     chunk << pivot;
                 }
 
-                void Keyframer::WriteINSTANCE_NAME (const std::string &instanceName, util::File &file) const {
+                void Keyframer::WriteINSTANCE_NAME (
+                        const std::string &instanceName,
+                        util::File &file) const {
                     ChunkWriter chunk (file, INSTANCE_NAME);
                     chunk << instanceName;
                 }
 
-                void Keyframer::WriteBOUNDBOX (const blas::Bound3 &bound, util::File &file) const {
+                void Keyframer::WriteBOUNDBOX (
+                        const blas::Bound3 &bound,
+                        util::File &file) const {
                     ChunkWriter chunk (file, BOUNDBOX);
                     chunk << bound;
                 }
 
-                void Keyframer::WriteMORPH_SMOOTH (util::f32 morphSmooth, util::File &file) const {
+                void Keyframer::WriteMORPH_SMOOTH (
+                        util::f32 morphSmooth,
+                        util::File &file) const {
                     ChunkWriter chunk (file, MORPH_SMOOTH);
                     chunk << morphSmooth;
                 }
 
-                void Keyframer::WriteXDATA_SECTION (const std::vector<util::ui8> &xdata, util::File &file) const {
+                void Keyframer::WriteXDATA_SECTION (
+                        const std::vector<util::ui8> &xdata,
+                        util::File &file) const {
                     ChunkWriter chunk (file, XDATA_SECTION);
                     chunk.Write (&xdata[0], (util::ui32)xdata.size ());
                 }
 
-                void Keyframer::WriteLIGHT_NODE_TAG (const LightNode &lightNode, util::File &file) const {
+                void Keyframer::WriteLIGHT_NODE_TAG (
+                        const LightNode &lightNode,
+                        util::File &file) const {
                     ChunkWriter chunk (file, LIGHT_NODE_TAG);
                     WriteNODE_ID (lightNode.id, file);
-                    WriteNODE_HDR (lightNode.name, lightNode.flags1, lightNode.flags2, lightNode.parent, file);
+                    WriteNODE_HDR (
+                        lightNode.name,
+                        lightNode.flags1,
+                        lightNode.flags2,
+                        lightNode.parent,
+                        file);
                     if (!lightNode.positionTrack.keys.empty ()) {
                         WriteTrack (file, POS_TRACK_TAG, lightNode.positionTrack);
                     }
@@ -479,19 +558,34 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::WriteTarget (util::ui16 id, const TargetNode &targetNode, util::File &file) const {
+                void Keyframer::WriteTarget (
+                        util::ui16 id,
+                        const TargetNode &targetNode,
+                        util::File &file) const {
                     ChunkWriter chunk (file, id);
                     WriteNODE_ID (targetNode.id, file);
-                    WriteNODE_HDR (targetNode.name, targetNode.flags1, targetNode.flags2, targetNode.parent, file);
+                    WriteNODE_HDR (
+                        targetNode.name,
+                        targetNode.flags1,
+                        targetNode.flags2,
+                        targetNode.parent,
+                        file);
                     if (!targetNode.targetTrack.keys.empty ()) {
                         WriteTrack (file, POS_TRACK_TAG, targetNode.targetTrack);
                     }
                 }
 
-                void Keyframer::WriteSPOTLIGHT_NODE_TAG (const SpotLightNode &spotLightNode, util::File &file) const {
+                void Keyframer::WriteSPOTLIGHT_NODE_TAG (
+                        const SpotLightNode &spotLightNode,
+                        util::File &file) const {
                     ChunkWriter chunk (file, SPOTLIGHT_NODE_TAG);
                     WriteNODE_ID (spotLightNode.id, file);
-                    WriteNODE_HDR (spotLightNode.name, spotLightNode.flags1, spotLightNode.flags2, spotLightNode.parent, file);
+                    WriteNODE_HDR (
+                        spotLightNode.name,
+                        spotLightNode.flags1,
+                        spotLightNode.flags2,
+                        spotLightNode.parent,
+                        file);
                     if (!spotLightNode.positionTrack.keys.empty ()) {
                         WriteTrack (file, POS_TRACK_TAG, spotLightNode.positionTrack);
                     }
@@ -509,10 +603,17 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::WriteCAMERA_NODE_TAG (const CameraNode &cameraNode, util::File &file) const {
+                void Keyframer::WriteCAMERA_NODE_TAG (
+                        const CameraNode &cameraNode,
+                        util::File &file) const {
                     ChunkWriter chunk (file, CAMERA_NODE_TAG);
                     WriteNODE_ID (cameraNode.id, file);
-                    WriteNODE_HDR (cameraNode.name, cameraNode.flags1, cameraNode.flags2, cameraNode.parent, file);
+                    WriteNODE_HDR (
+                        cameraNode.name,
+                        cameraNode.flags1,
+                        cameraNode.flags2,
+                        cameraNode.parent,
+                        file);
                     if (!cameraNode.positionTrack.keys.empty ()) {
                         WriteTrack (file, POS_TRACK_TAG, cameraNode.positionTrack);
                     }
@@ -524,10 +625,17 @@ namespace thekogans {
                     }
                 }
 
-                void Keyframer::WriteAMBIENT_NODE_TAG (const AmbientNode &ambientNode, util::File &file) const {
+                void Keyframer::WriteAMBIENT_NODE_TAG (
+                        const AmbientNode &ambientNode,
+                        util::File &file) const {
                     ChunkWriter chunk (file, AMBIENT_NODE_TAG);
                     WriteNODE_ID (ambientNode.id, file);
-                    WriteNODE_HDR (ambientNode.name, ambientNode.flags1, ambientNode.flags2, ambientNode.parent, file);
+                    WriteNODE_HDR (
+                        ambientNode.name,
+                        ambientNode.flags1,
+                        ambientNode.flags2,
+                        ambientNode.parent,
+                        file);
                     if (!ambientNode.colorTrack.keys.empty ()) {
                         WriteTrack (file, COL_TRACK_TAG, ambientNode.colorTrack);
                     }
