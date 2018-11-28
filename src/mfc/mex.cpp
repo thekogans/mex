@@ -27,11 +27,11 @@ namespace thekogans {
                         m_pMainWnd = mainFrame;
                         // The environment is now set. Time to load the modules.
                         core::Module::LoadModules (
-                        #if defined (TOOLCHAIN_CONFIG_Debug)
+                        #if defined (THEKOGANS_MEX_CONFIG_Debug)
                             "modulesd.xml"
-                        #else // defined (TOOLCHAIN_CONFIG_Debug)
+                        #else // defined (THEKOGANS_MEX_CONFIG_Debug)
                             "modules.xml"
-                        #endif // defined (TOOLCHAIN_CONFIG_Debug)
+                        #endif // defined (THEKOGANS_MEX_CONFIG_Debug)
                         );
                         core::Module *module = core::Module::GetCurrModule ();
                         if (module != 0) {

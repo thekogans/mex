@@ -63,17 +63,17 @@ namespace thekogans {
                 const std::string GetConfig () {
                     return std::string (TOOLCHAIN_TRIPLET) +
                     #if defined (TOOLCHAIN_OS_Windows)
-                    #if defined (TOOLCHAIN_CONFIG_Debug)
+                    #if defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
                         "-Debug.";
-                    #else // defined (TOOLCHAIN_CONFIG_Debug)
+                    #else // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
                         "-Release.";
-                    #endif // defined (TOOLCHAIN_CONFIG_Debug)
+                    #endif // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
                     #else // defined (TOOLCHAIN_OS_Windows)
-                    #if defined (TOOLCHAIN_CONFIG_Debug)
+                    #if defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
                         "-Debug";
-                    #else // defined (TOOLCHAIN_CONFIG_Debug)
+                    #else // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
                         "-Release";
-                    #endif // defined (TOOLCHAIN_CONFIG_Debug)
+                    #endif // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
                     #endif // defined (TOOLCHAIN_OS_Windows)
                 }
 

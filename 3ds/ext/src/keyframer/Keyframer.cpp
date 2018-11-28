@@ -186,14 +186,14 @@ namespace thekogans {
                             }
                         }
                     }
-                #if defined (TOOLCHAIN_CONFIG_Debug)
+                #if defined (THEKOGANS_MEX_3DS_EXT_CONFIG_Debug)
                     {
                         typedef std::vector<ObjectNode *>::const_iterator const_iterator;
                         for (const_iterator it = objectNodeRoots.begin (), end = objectNodeRoots.end (); it != end; ++it) {
                             DumpHierarchy (**it, 0);
                         }
                     }
-                #endif // defined (TOOLCHAIN_CONFIG_Debug)
+                #endif // defined (THEKOGANS_MEX_3DS_EXT_CONFIG_Debug)
                 }
 
                 View::UniquePtr Keyframer::GetView (const io::View &view) const {

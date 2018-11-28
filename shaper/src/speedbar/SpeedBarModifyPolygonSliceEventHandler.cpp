@@ -25,11 +25,11 @@
 #include "PickInfo2D.h"
 #include "Module2D.h"
 
-#if defined (TOOLCHAIN_CONFIG_Debug)
+#if defined (THEKOGANS_MEX_SHAPER_CONFIG_Debug)
     #define new DEBUG_NEW
     #undef THIS_FILE
     static char THIS_FILE[] = __FILE__;
-#endif // TOOLCHAIN_CONFIG_Debug
+#endif // defined (THEKOGANS_MEX_SHAPER_CONFIG_Debug)
 
 namespace MEX {
 

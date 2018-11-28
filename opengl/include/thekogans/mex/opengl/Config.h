@@ -76,15 +76,15 @@
         (GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1,
             GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
     #define _LIB_THEKOGANS_MEX_OPENGL_API __stdcall
-    #if defined (TOOLCHAIN_TYPE_Shared)
+    #if defined (THEKOGANS_MEX_OPENGL_TYPE_Shared)
         #if defined (_LIB_THEKOGANS_MEX_OPENGL_BUILD)
             #define _LIB_THEKOGANS_MEX_OPENGL_DECL __declspec (dllexport)
         #else // defined (_LIB_THEKOGANS_MEX_OPENGL_BUILD)
             #define _LIB_THEKOGANS_MEX_OPENGL_DECL __declspec (dllimport)
         #endif // defined (_LIB_THEKOGANS_MEX_OPENGL_BUILD)
-    #else // defined (TOOLCHAIN_TYPE_Shared)
+    #else // defined (THEKOGANS_MEX_OPENGL_TYPE_Shared)
         #define _LIB_THEKOGANS_MEX_OPENGL_DECL
-    #endif // defined (TOOLCHAIN_TYPE_Shared)
+    #endif // defined (THEKOGANS_MEX_OPENGL_TYPE_Shared)
     #pragma warning (disable: 4251)  // using non-exported as public in exported
     #pragma warning (disable: 4786)
 #else // defined (TOOLCHAIN_OS_Windows)

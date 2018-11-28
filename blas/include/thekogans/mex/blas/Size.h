@@ -40,12 +40,27 @@ namespace thekogans {
                 static const Size Empty;
 
                 Size () {}
-                Size (util::ui16 x_, util::ui16 y_, util::ui16 width_, util::ui16 height_) :
-                    x (x_), y (y_), width (width_), height (height_) {}
-                Size (const Point &origin, const Extents &extents) :
-                    x (origin.x), y (origin.y), width (extents.width), height (extents.height) {}
+                Size (
+                    util::ui16 x_,
+                    util::ui16 y_,
+                    util::ui16 width_,
+                    util::ui16 height_) :
+                    x (x_),
+                    y (y_),
+                    width (width_),
+                    height (height_) {}
+                Size (
+                    const Point &origin,
+                    const Extents &extents) :
+                    x (origin.x),
+                    y (origin.y),
+                    width (extents.width),
+                    height (extents.height) {}
                 Size (const Size &size) :
-                    x (size.x), y (size.y), width (size.width), height (size.height) {}
+                    x (size.x),
+                    y (size.y),
+                    width (size.width),
+                    height (size.height) {}
                 explicit Size (const Rect &rect);
 
                 inline Size &operator = (const Size &size) {
@@ -60,8 +75,12 @@ namespace thekogans {
 
                 Size &operator = (const Rect &rect);
 
-                inline util::ui16 Right () const {return x + width - 1;}
-                inline util::ui16 Top () const {return y + height - 1;}
+                inline util::ui16 Right () const {
+                    return x + width - 1;
+                }
+                inline util::ui16 Top () const {
+                    return y + height - 1;
+                }
 
                 inline void Swap (Size &size) {
                     std::swap (x, size.x);
@@ -71,20 +90,30 @@ namespace thekogans {
                 }
             };
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator & (const Size &s1, const Size &s2);
-            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator | (const Size &s1, const Size &s2);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator & (
+                const Size &s1,
+                const Size &s2);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator | (
+                const Size &s1,
+                const Size &s2);
 
-            inline bool operator == (const Size &size1, const Size &size2) {
+            inline bool operator == (
+                    const Size &size1,
+                    const Size &size2) {
                 return size1.x == size2.x && size1.y == size2.y &&
                     size1.width == size2.width && size1.height == size2.height;
             }
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Size &size) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Size &size) {
                 serializer << size.x << size.y << size.width << size.height;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Size &size) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Size &size) {
                 serializer >> size.x >> size.y >> size.width >> size.height;
                 return serializer;
             }

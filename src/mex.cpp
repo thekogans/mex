@@ -38,19 +38,19 @@ using namespace thekogans::mex;
 int main (int argc, char *argv[]) {
     QApplication application (argc, argv);
     Q_INIT_RESOURCE (mex);
-#if defined (TOOLCHAIN_CONFIG_Release)
+#if defined (THEKOGANS_MEX_CONFIG_Release)
     std::unique_ptr<QSplashScreen> splashScreen (new QSplashScreen);
     assert (splashScreen.get () != 0);
     splashScreen->setPixmap (QPixmap (":/images/splash.jpg"));
     splashScreen->show ();
     splashScreen->showMessage ("Setting up the UI...",
         Qt::AlignBottom | Qt::AlignLeft, Qt::white);
-#endif // TOOLCHAIN_CONFIG_Release
+#endif // defined (THEKOGANS_MEX_CONFIG_Release)
     MainWindow mainWindow;
-#if defined (TOOLCHAIN_CONFIG_Release)
+#if defined (THEKOGANS_MEX_CONFIG_Release)
     splashScreen->showMessage ("Loading modules...",
         Qt::AlignBottom | Qt::AlignLeft, Qt::white);
-#endif // defined (TOOLCHAIN_CONFIG_Release)
+#endif // defined (THEKOGANS_MEX_CONFIG_Release)
     // The environment is now set. Time to load the modules.
     core::Module::LoadModules ("modules.xml");
     core::Module *module = core::Module::GetCurrModule ();
@@ -58,19 +58,18 @@ int main (int argc, char *argv[]) {
         module->SetFocus ();
     }
     mainWindow.show ();
-#if defined (TOOLCHAIN_CONFIG_Release)
+#if defined (THEKOGANS_MEX_CONFIG_Release)
     splashScreen->finish (&mainWindow);
     splashScreen.reset ();
-#endif // defined (TOOLCHAIN_CONFIG_Release)
+#endif // defined (THEKOGANS_MEX_CONFIG_Release)
+    THEKOGANS_UTIL_LOG_INIT (
+        util::LoggerMgr::Debug,
+        util::LoggerMgr::All);
+    THEKOGANS_UTIL_LOG_ADD_LOGGER (util::Logger::Ptr (new util::ConsoleLogger));
+    THEKOGANS_UTIL_IMPLEMENT_LOG_FLUSHER;
     THEKOGANS_UTIL_TRY {
-        THEKOGANS_UTIL_LOG_INIT (
-            util::LoggerMgr::Debug,
-            util::LoggerMgr::All);
-        THEKOGANS_UTIL_LOG_ADD_LOGGER (
-            util::Logger::Ptr (new util::ConsoleLogger));
         application.exec ();
     }
     THEKOGANS_UTIL_CATCH_AND_LOG
-    THEKOGANS_UTIL_LOG_FLUSH
     return 0;
 }
