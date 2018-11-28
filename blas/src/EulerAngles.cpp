@@ -36,7 +36,7 @@ namespace thekogans {
                 if (matrix.x.x < 0.0f && matrix.z.z < 0.0f) {
                     cosY = -cosY;
                 }
-                return fabsf (cosY) > util::EPSILON ?
+                return fabsf (cosY) > EPSILON ?
                     EulerAngles (Point3 (
                         atan2f (matrix.y.z / cosY, matrix.z.z / cosY),
                         -atan2f (sinY, cosY),

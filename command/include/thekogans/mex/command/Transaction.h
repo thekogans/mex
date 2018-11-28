@@ -29,7 +29,9 @@ namespace thekogans {
         namespace command {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL Transaction : public CompoundCommand {
-                typedef std::unique_ptr<Transaction> UniquePtr;
+                /// \brief
+                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<Transaction>.
+                typedef util::ThreadSafeRefCounted::Ptr<Transaction> Ptr;
 
                 THEKOGANS_UTIL_DECLARE_HEAP (Transaction)
 
@@ -60,8 +62,8 @@ namespace thekogans {
                     return committing;
                 }
 
-                void AddCommand (Command::UniquePtr command);
-                void AddFinalOperation (FinalOperation::UniquePtr finalOperation);
+                void AddCommand (Command::Ptr command);
+                void AddFinalOperation (FinalOperation::Ptr finalOperation);
             };
 
         } // namespace command

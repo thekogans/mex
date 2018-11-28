@@ -80,7 +80,7 @@ namespace thekogans {
                     return *this;
                 }
 
-                inline bool IsLinear (util::f32 eps = util::EPSILON) const {
+                inline bool IsLinear (util::f32 eps = EPSILON) const {
                     return (p1 - p2).IsZero (eps) && (p3 - p4).IsZero (eps);
                 }
 
@@ -91,7 +91,7 @@ namespace thekogans {
                 inline T GetPoint (
                         util::f32 t,
                         bool optimize = true,
-                        util::f32 eps = util::EPSILON) const {
+                        util::f32 eps = EPSILON) const {
                     return optimize && IsLinear (eps) ?
                         util::LERP (t, p1, p4) :
                         B0 (t) * p1 + B1 (t) * p2 + B2 (t) * p3 + B3 (t) * p4;
@@ -104,12 +104,12 @@ namespace thekogans {
                     BezierCubic &left,
                     BezierCubic &right,
                     bool optimize = true,
-                    util::f32 eps = util::EPSILON) const;
+                    util::f32 eps = EPSILON) const;
 
                 struct DefaultFlatnessTest :
                         public std::unary_function<const BezierCubic<T> &, bool> {
                     util::ui32 flatness;
-                    DefaultFlatnessTest (util::ui32 flatness_ = util::EPSILON) :
+                    DefaultFlatnessTest (util::ui32 flatness_ = EPSILON) :
                         flatness (flatness_) {}
                     bool operator () (const BezierCubic<T> &cubic) {
                         // This test was lifted directly from:

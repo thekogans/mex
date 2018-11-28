@@ -39,20 +39,17 @@ namespace thekogans {
                 return true;
             }
 
-            void Transaction::AddCommand (Command::UniquePtr command) {
-                assert (command.get () != 0);
-                if (command.get () != 0) {
-                    commands.push_back (command.get ());
-                    command.release ();
+            void Transaction::AddCommand (Command::Ptr command) {
+                assert (command.Get () != 0);
+                if (command.Get () != 0) {
+                    commands.push_back (command);
                 }
             }
 
-            void Transaction::AddFinalOperation (
-                    FinalOperation::UniquePtr finalOperation) {
-                assert (finalOperation.get () != 0);
-                if (finalOperation.get () != 0) {
-                    finalOperations.push_back (finalOperation.get ());
-                    finalOperation.release ();
+            void Transaction::AddFinalOperation (FinalOperation::Ptr finalOperation) {
+                assert (finalOperation.Get () != 0);
+                if (finalOperation.Get () != 0) {
+                    finalOperations.push_back (finalOperation);
                 }
             }
 

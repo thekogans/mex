@@ -19,7 +19,7 @@
 #define __thekogans_mex_command_CompoundFinalOperation_h
 
 #include <memory>
-#include "thekogans/util/AbstractOwnerVector.h"
+#include <vector>
 #include "thekogans/mex/command/Config.h"
 #include "thekogans/mex/command/FinalOperation.h"
 
@@ -29,9 +29,9 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL CompoundFinalOperation : public FinalOperation {
             protected:
-                util::AbstractOwnerVector<FinalOperation> finalOperations;
+                std::vector<FinalOperation::Ptr> finalOperations;
 
-                bool ExecuteAndAddFinalOperation (FinalOperation::UniquePtr finalOperation);
+                bool ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation);
             };
 
         } // namespace command

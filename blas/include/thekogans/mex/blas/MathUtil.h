@@ -37,7 +37,7 @@ namespace thekogans {
             inline util::f32 acosf (util::f32 value) {
                 // acos that does not return NaN with rounding errors
                 if (value <= -1.0f) {
-                    return util::PI;
+                    return PI;
                 }
                 if (value >= 1.0f) {
                     return 0.0f;

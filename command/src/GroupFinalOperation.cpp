@@ -24,19 +24,16 @@ namespace thekogans {
             THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION (GroupFinalOperation)
 
             bool GroupFinalOperation::Execute () {
-                for (std::size_t i = 0,
-                        count = finalOperations.size (); i < count; ++i) {
+                for (std::size_t i = 0, count = finalOperations.size (); i < count; ++i) {
                     finalOperations[i]->Execute ();
                 }
                 return true;
             }
 
-            void GroupFinalOperation::AddFinalOperation (
-                    FinalOperation::UniquePtr finalOperation) {
-                assert (finalOperation.get () != 0);
-                if (finalOperation.get () != 0) {
-                    finalOperations.push_back (finalOperation.get ());
-                    finalOperation.release ();
+            void GroupFinalOperation::AddFinalOperation (FinalOperation::Ptr finalOperation) {
+                assert (finalOperation.Get () != 0);
+                if (finalOperation.Get () != 0) {
+                    finalOperations.push_back (finalOperation);
                 }
             }
 

@@ -23,12 +23,11 @@ namespace thekogans {
         namespace command {
 
             bool CompoundFinalOperation::ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr finalOperation) {
-                assert (finalOperation.get () != 0);
-                if (finalOperation.get () != 0) {
+                    FinalOperation::Ptr finalOperation) {
+                assert (finalOperation.Get () != 0);
+                if (finalOperation.Get () != 0) {
                     if (finalOperation->Execute ()) {
-                        finalOperations.push_back (finalOperation.get ());
-                        finalOperation.release ();
+                        finalOperations.push_back (finalOperation);
                         return true;
                     }
                 }

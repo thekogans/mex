@@ -38,7 +38,7 @@ namespace thekogans {
                 length = 1.0f / length;
                 util::f32 angle = atan2f (y * length, x * length);
                 while (angle < 0.0f) {
-                    angle += util::TWOPI;
+                    angle += TWOPI;
                 }
                 return angle;
             }
@@ -122,7 +122,7 @@ namespace thekogans {
             _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (const Point2 &p1, const Point2 &p2, util::f32 eps) {
                 util::f32 angle = p1.AngleWithXAxis (eps) - p2.AngleWithXAxis (eps);
                 while (angle < 0.0f) {
-                    angle += util::TWOPI;
+                    angle += TWOPI;
                 }
                 return angle;
             }

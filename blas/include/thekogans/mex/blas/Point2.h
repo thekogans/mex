@@ -113,14 +113,14 @@ namespace thekogans {
 
                 inline Point2 Perpendicular () const {return Point2 (-y, x);}
 
-                util::f32 AngleWithXAxis (util::f32 eps = util::EPSILON) const;
-                util::f32 Normalize (util::f32 eps = util::EPSILON);
+                util::f32 AngleWithXAxis (util::f32 eps = EPSILON) const;
+                util::f32 Normalize (util::f32 eps = EPSILON);
 
                 inline util::f32 Length () const {
                     return sqrtf (x * x + y * y);
                 }
 
-                inline bool IsZero (util::f32 eps = util::EPSILON) const {
+                inline bool IsZero (util::f32 eps = EPSILON) const {
                     return util::IS_ZERO (x, eps) && util::IS_ZERO (y, eps);
                 }
 
@@ -133,7 +133,7 @@ namespace thekogans {
                 inline bool IsBetweenEq (
                         const Point2 &p1,
                         const Point2 &p2,
-                        util::f32 eps = util::EPSILON) const {
+                        util::f32 eps = EPSILON) const {
                     return
                         util::IS_BETWEEN_EQ (x, p1.x, p2.x, eps) &&
                         util::IS_BETWEEN_EQ (y, p1.y, p2.y, eps);
@@ -185,7 +185,7 @@ namespace thekogans {
                 return (p1 - p2).Length ();
             }
 
-            inline Point2 Normalize (const Point2 &pt, util::f32 eps = util::EPSILON) {
+            inline Point2 Normalize (const Point2 &pt, util::f32 eps = EPSILON) {
                 util::f32 length = pt.Length ();
                 if (!util::IS_ZERO (length, eps)) {
                     length = 1.0f / length;
@@ -204,11 +204,11 @@ namespace thekogans {
             _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (
                 const Point2 &p1,
                 const Point2 &p2,
-                util::f32 eps = util::EPSILON);
+                util::f32 eps = EPSILON);
             _LIB_THEKOGANS_MEX_BLAS_DECL Point2 _LIB_THEKOGANS_MEX_BLAS_API Bisect (
                 const Point2 &p1,
                 const Point2 &p2,
-                util::f32 eps = util::EPSILON);
+                util::f32 eps = EPSILON);
             _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip2 (
                 Point2 &p1,
                 Point2 &p2,

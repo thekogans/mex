@@ -54,65 +54,58 @@ namespace thekogans {
                 return activeTransactions.empty () || activeTransactions.back ()->IsEmpty ();
             }
 
-            void CommandDispatcher::BeginTransaction (
-                    TransactionFactory::UniquePtr transactionFactory_) {
-                transactionFactory = std::move (transactionFactory_);
-                Transaction::UniquePtr transaction;
-                if (transactionFactory.get () != 0) {
+            void CommandDispatcher::BeginTransaction (TransactionFactory::Ptr transactionFactory_) {
+                transactionFactory = transactionFactory_;
+                Transaction::Ptr transaction;
+                if (transactionFactory.Get () != 0) {
                     transaction = transactionFactory->CreateTransaction ();
                 }
                 else {
                     // FIXME: Pick a better name.
-                    transaction.reset (new Transaction ("thekogans::command::Transaction"));
+                    transaction.Reset (new Transaction ("thekogans::command::Transaction"));
                 }
-                assert (transaction.get () != 0);
-                activeTransactions.push_back (transaction.get ());
-                transaction.release ();
+                assert (transaction.Get () != 0);
+                activeTransactions.push_back (transaction);
             }
 
             void CommandDispatcher::CheckpointTransaction () {
                 if (IsTransactionPending ()) {
                     CommitTransaction ();
                 }
-                BeginTransaction (std::move (transactionFactory));
+                BeginTransaction (transactionFactory);
             }
 
             void CommandDispatcher::RollbackTransaction () {
                 if (IsTransactionPending ()) {
                     AbortTransaction ();
                 }
-                BeginTransaction (std::move (transactionFactory));
+                BeginTransaction (transactionFactory);
             }
 
             void CommandDispatcher::CommitTransaction () {
                 assert (!activeTransactions.empty ());
                 if (!activeTransactions.empty ()) {
-                    Transaction::UniquePtr transaction (activeTransactions.back ());
+                    Transaction::Ptr transaction (activeTransactions.back ());
                     activeTransactions.pop_back ();
                     if (!transaction->IsEmpty ()) {
                         if (!activeTransactions.empty ()) {
                             assert (transaction->IsUndoable ());
                             assert (!transaction->IsCommitting ());
                             activeTransactions.back ()->AddCommand (
-                                Command::UniquePtr (transaction.release ()));
+                                util::dynamic_refcounted_pointer_cast<Command> (transaction));
                         }
                         else if (transaction->IsUndoable ()) {
                             if (CanRedo ()) {
-                                for (std::size_t i = currentTransaction,
-                                        count = retiredTransactions.size (); i < count; ++i) {
-                                    delete retiredTransactions[i];
-                                }
                                 retiredTransactions.erase (
                                     retiredTransactions.begin () + currentTransaction,
                                     retiredTransactions.end ());
                             }
                             transaction->Optimize ();
-                            retiredTransactions.push_back (transaction.get ());
-                            transaction.release ();
+                            retiredTransactions.push_back (transaction);
                             ++currentTransaction;
                         }
                         else if (transaction->IsCommitting ()) {
-                            retiredTransactions.deleteAndClear ();
+                            retiredTransactions.clear ();
                             currentTransaction = 0;
                         }
                     }
@@ -122,34 +115,31 @@ namespace thekogans {
             void CommandDispatcher::AbortTransaction () {
                 assert (!activeTransactions.empty ());
                 if (!activeTransactions.empty ()) {
-                    Transaction::UniquePtr transaction (
-                        activeTransactions.back ());
+                    Transaction::Ptr transaction (activeTransactions.back ());
                     activeTransactions.pop_back ();
                     transaction->Optimize ();
                     transaction->Undo ();
                 }
             }
 
-            bool CommandDispatcher::ExecuteAndAddCommand (
-                    Command::UniquePtr command) {
+            bool CommandDispatcher::ExecuteAndAddCommand (Command::Ptr command) {
                 assert (!activeTransactions.empty ());
-                assert (command.get () != 0);
-                if (!activeTransactions.empty () && command.get () != 0) {
+                assert (command.Get () != 0);
+                if (!activeTransactions.empty () && command.Get () != 0) {
                     if (command->Execute ()) {
-                        activeTransactions.back ()->AddCommand (std::move (command));
+                        activeTransactions.back ()->AddCommand (command);
                         return true;
                     }
                 }
                 return false;
             }
 
-            bool CommandDispatcher::ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr finalOperation) {
+            bool CommandDispatcher::ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation) {
                 assert (!activeTransactions.empty ());
-                assert (finalOperation.get () != 0);
-                if (!activeTransactions.empty () && finalOperation.get () != 0) {
+                assert (finalOperation.Get () != 0);
+                if (!activeTransactions.empty () && finalOperation.Get () != 0) {
                     if (finalOperation->Execute ()) {
-                        activeTransactions.back ()->AddFinalOperation (std::move (finalOperation));
+                        activeTransactions.back ()->AddFinalOperation (finalOperation);
                         return true;
                     }
                 }

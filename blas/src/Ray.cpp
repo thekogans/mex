@@ -34,7 +34,7 @@ namespace thekogans {
                 Point3 p = Cross (direction, edge2);
                 // if determinant is near zero, ray lies in plane of triangle
                 util::f32 det = Dot (edge1, p);
-                if (det < util::EPSILON) {
+                if (det < EPSILON) {
                     return false;
                 }
                 // calculate distance from triangle.v0 to ray origin

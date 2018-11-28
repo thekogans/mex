@@ -31,7 +31,7 @@ namespace thekogans {
 
                 virtual bool Execute ();
 
-                void AddFinalOperation (FinalOperation::UniquePtr finalOperation);
+                void AddFinalOperation (FinalOperation::Ptr finalOperation);
             };
 
         } // namespace command

@@ -25,7 +25,7 @@ namespace thekogans {
         namespace blas {
 
             Polygon2 Circle::ToPolygon (std::size_t pointCount) const {
-                Matrix2 xform = Matrix2::RotateZ (util::TWOPI / pointCount) * Matrix2::Translate (center);
+                Matrix2 xform = Matrix2::RotateZ (TWOPI / pointCount) * Matrix2::Translate (center);
                 std::vector<Point2> points;
                 points.resize (pointCount);
                 points[0] = Point2::X * radius;

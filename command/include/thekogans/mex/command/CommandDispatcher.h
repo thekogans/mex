@@ -20,7 +20,7 @@
 
 #include <memory>
 #include <string>
-#include "thekogans/util/OwnerVector.h"
+#include <vector>
 #include "thekogans/mex/command/Config.h"
 #include "thekogans/mex/command/Command.h"
 #include "thekogans/mex/command/FinalOperation.h"
@@ -33,9 +33,9 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL CommandDispatcher {
             protected:
-                TransactionFactory::UniquePtr transactionFactory;
-                util::OwnerVector<Transaction> activeTransactions;
-                util::OwnerVector<Transaction> retiredTransactions;
+                TransactionFactory::Ptr transactionFactory;
+                std::vector<Transaction::Ptr> activeTransactions;
+                std::vector<Transaction::Ptr> retiredTransactions;
                 std::size_t currentTransaction;
 
             public:
@@ -55,8 +55,8 @@ namespace thekogans {
                 bool IsTransactionPending (const std::string &name = std::string ()) const;
                 bool IsPendingTransactionEmpty () const;
                 // Transactions can nest.
-                void BeginTransaction (TransactionFactory::UniquePtr transactionFactory_ =
-                    TransactionFactory::UniquePtr ());
+                void BeginTransaction (
+                    TransactionFactory::Ptr transactionFactory_ = TransactionFactory::Ptr ());
                 void CheckpointTransaction ();
                 void RollbackTransaction ();
                 void CommitTransaction ();
@@ -66,8 +66,8 @@ namespace thekogans {
                 // NOTE: The Return value/Parameter idiom used throughout thekogans* is:
                 //      - raw pointer = owned by callee
                 //      - std::unique_ptr = owned by caller
-                bool ExecuteAndAddCommand (Command::UniquePtr command);
-                bool ExecuteAndAddFinalOperation (FinalOperation::UniquePtr finalOperation);
+                bool ExecuteAndAddCommand (Command::Ptr command);
+                bool ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation);
             };
 
         } // namespace command

@@ -19,18 +19,21 @@
 #define __thekogans_mex_command_TransactionFactory_h
 
 #include <memory>
+#include "thekogans/util/RefCounted.h"
 #include "thekogans/mex/command/Transaction.h"
 
 namespace thekogans {
     namespace mex {
         namespace command {
 
-            struct _LIB_THEKOGANS_MEX_COMMAND_DECL TransactionFactory {
-                typedef std::unique_ptr<TransactionFactory> UniquePtr;
+            struct _LIB_THEKOGANS_MEX_COMMAND_DECL TransactionFactory : public util::ThreadSafeRefCounted {
+                /// \brief
+                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<TransactionFactory>.
+                typedef util::ThreadSafeRefCounted::Ptr<TransactionFactory> Ptr;
 
                 virtual ~TransactionFactory () {}
 
-                virtual Transaction::UniquePtr CreateTransaction () = 0;
+                virtual Transaction::Ptr CreateTransaction () = 0;
             };
 
         } // namespace command

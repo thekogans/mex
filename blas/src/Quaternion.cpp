@@ -126,10 +126,10 @@ namespace thekogans {
             _LIB_THEKOGANS_MEX_BLAS_DECL Quaternion _LIB_THEKOGANS_MEX_BLAS_API Slerp (util::f32 t, const Quaternion &quat1, const Quaternion &quat2) {
                 util::f32 cosom = quat1.x * quat2.x + quat1.y * quat2.y + quat1.z * quat2.z + quat1.w * quat2.w;
 
-                if ((1.0f + cosom) > util::EPSILON) {
+                if ((1.0f + cosom) > EPSILON) {
                     util::f32 sclp;
                     util::f32 sclq;
-                    if ((1.0f - cosom) > util::EPSILON) {
+                    if ((1.0f - cosom) > EPSILON) {
                         // usual case
                         util::f32 omega = acosf (cosom);
                         util::f32 sinom = sinf (omega);
@@ -149,8 +149,8 @@ namespace thekogans {
                 }
 
                 // ends nearly opposite
-                util::f32 sclp = sinf ((1.0f - t) * util::HALFPI);
-                util::f32 sclq = sinf (t * util::HALFPI);
+                util::f32 sclp = sinf ((1.0f - t) * HALFPI);
+                util::f32 sclq = sinf (t * HALFPI);
 
                 return Quaternion (
                     sclp * quat1.x + sclq * -quat1.y,
@@ -168,25 +168,25 @@ namespace thekogans {
                 const Quaternion &t2,       // end tangent quaternion
                 const Quaternion &quat2) {  // end quaternion
                 util::f32 omega = angle * 0.5f;
-                if (omega < util::PI - util::EPSILON) {
+                if (omega < PI - EPSILON) {
                     return Squad (t, quat1, t1, t2, quat2);
                 }
                 util::f32 nrevs = 0.0f;
-                while (omega > util::PI - util::EPSILON) {
-                    omega -= util::PI;
+                while (omega > PI - EPSILON) {
+                    omega -= PI;
                     nrevs += 1.0f;
                 }
                 if (omega < 0.0f) {
                     omega = 0.0f;
                 }
                 // in first 90 degrees
-                util::f32 s = t * angle / util::PI;       // 2 * t * (omega + Npi) / pi
+                util::f32 s = t * angle / PI;       // 2 * t * (omega + Npi) / pi
                 if (s < 1.0f) {
                     Quaternion pp = quat1 * Quaternion (axis.x, axis.y, axis.z, 0.0f);
                     return Squad (s, quat1, t1, pp, pp);
                 }
                 // middle part, on great circle (quat1, q)
-                util::f32 v = s + 1.0f - 2.0f * (nrevs + (omega / util::PI));
+                util::f32 v = s + 1.0f - 2.0f * (nrevs + (omega / PI));
                 if (v <= 0.0f) {
                     while (s >= 2.0f) {
                         s -= 2.0f;

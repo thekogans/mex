@@ -19,7 +19,7 @@
 #define __thekogans_mex_command_CompoundCommand_h
 
 #include <memory>
-#include "thekogans/util/AbstractOwnerVector.h"
+#include <vector>
 #include "thekogans/mex/command/Config.h"
 #include "thekogans/mex/command/Command.h"
 #include "thekogans/mex/command/FinalOperation.h"
@@ -30,8 +30,8 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL CompoundCommand : public Command {
             protected:
-                util::AbstractOwnerVector<Command> commands;
-                util::AbstractOwnerVector<FinalOperation> finalOperations;
+                std::vector<Command::Ptr> commands;
+                std::vector<FinalOperation::Ptr> finalOperations;
 
             public:
                 inline bool IsEmpty () const {
@@ -43,8 +43,8 @@ namespace thekogans {
 
             protected:
                 // These are meant to be called from CompoundCommand derived Execute ().
-                bool ExecuteAndAddCommand (Command::UniquePtr command);
-                bool ExecuteAndAddFinalOperation (FinalOperation::UniquePtr finalOperation);
+                bool ExecuteAndAddCommand (Command::Ptr command);
+                bool ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation);
             };
 
         } // namespace command

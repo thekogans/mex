@@ -20,6 +20,7 @@
 
 #include <memory>
 #include <typeinfo>
+#include "thekogans/util/RefCounted.h"
 #include "thekogans/util/Heap.h"
 #include "thekogans/mex/command/Config.h"
 
@@ -27,8 +28,10 @@ namespace thekogans {
     namespace mex {
         namespace command {
 
-            struct _LIB_THEKOGANS_MEX_COMMAND_DECL Command {
-                typedef std::unique_ptr<Command> UniquePtr;
+            struct _LIB_THEKOGANS_MEX_COMMAND_DECL Command : public util::ThreadSafeRefCounted {
+                /// \brief
+                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<Command>.
+                typedef util::ThreadSafeRefCounted::Ptr<Command> Ptr;
 
                 Command ();
                 virtual ~Command ();

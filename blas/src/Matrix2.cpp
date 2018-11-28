@@ -64,12 +64,12 @@ namespace thekogans {
 
                 util::f32 angle1 = atan2f (p1.y, p1.x);
                 if (angle1 < 0.0f) {
-                    angle1 += util::TWOPI;
+                    angle1 += TWOPI;
                 }
 
                 util::f32 angle2 = atan2f (p2.y, p2.x);
                 if (angle2 < 0.0f) {
-                    angle2 += util::TWOPI;
+                    angle2 += TWOPI;
                 }
 
                 return RotateZ (angle2 - angle1) * Scale (Point2 (scale, scale));

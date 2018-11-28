@@ -29,7 +29,7 @@ namespace thekogans {
 
             Polygon2 Ellipse::ToPolygon (std::size_t pointCount) const {
                 util::f32 angle = 0.0f;
-                const util::f32 dangle = util::TWOPI / pointCount;
+                const util::f32 dangle = TWOPI / pointCount;
                 const util::f32 width = bound.Extents ().x * 0.5f;
                 const util::f32 height = bound.Extents ().y * 0.5f;
                 const blas::Point2 center = bound.Center ();

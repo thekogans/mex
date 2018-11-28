@@ -67,12 +67,11 @@ namespace thekogans {
                 return true;
             }
 
-            bool CompoundCommand::ExecuteAndAddCommand (Command::UniquePtr command) {
-                assert (command.get () != 0);
-                if (command.get () != 0) {
+            bool CompoundCommand::ExecuteAndAddCommand (Command::Ptr command) {
+                assert (command.Get () != 0);
+                if (command.Get () != 0) {
                     if (command->Execute ()) {
-                        commands.push_back (command.get ());
-                        command.release ();
+                        commands.push_back (command);
                         return true;
                     }
                     command->Undo ();
@@ -80,13 +79,11 @@ namespace thekogans {
                 return false;
             }
 
-            bool CompoundCommand::ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr finalOperation) {
-                assert (finalOperation.get () != 0);
-                if (finalOperation.get () != 0) {
+            bool CompoundCommand::ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation) {
+                assert (finalOperation.Get () != 0);
+                if (finalOperation.Get () != 0) {
                     if (finalOperation->Execute ()) {
-                        finalOperations.push_back (finalOperation.get ());
-                        finalOperation.release ();
+                        finalOperations.push_back (finalOperation);
                         return true;
                     }
                 }

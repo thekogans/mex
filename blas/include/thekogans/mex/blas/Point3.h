@@ -125,17 +125,17 @@ namespace thekogans {
                     return Point3 (-y, x, 0.0f);
                 }
 
-                util::f32 Normalize (util::f32 eps = util::EPSILON);
+                util::f32 Normalize (util::f32 eps = EPSILON);
 
                 inline util::f32 Length () const {
                     return sqrtf (x * x + y * y + z * z);
                 }
 
-                inline bool IsZero (util::f32 eps = util::EPSILON) const {
+                inline bool IsZero (util::f32 eps = EPSILON) const {
                     return util::IS_ZERO (x, eps) && util::IS_ZERO (y, eps) && util::IS_ZERO (z, eps);
                 }
 
-                inline bool IsBetweenEq (const Point3 &p1, const Point3 &p2, util::f32 eps = util::EPSILON) const {
+                inline bool IsBetweenEq (const Point3 &p1, const Point3 &p2, util::f32 eps = EPSILON) const {
                     return
                         util::IS_BETWEEN_EQ (x, p1.x, p2.x, eps) &&
                         util::IS_BETWEEN_EQ (y, p1.y, p2.y, eps) &&
@@ -146,7 +146,7 @@ namespace thekogans {
                 bool InBound (const Bound<Point3> &bound) const;
                 bool InPolygon (const Polygon<Point3> &polygon) const;
 
-                Point2 Project (bool perspective, util::f32 eps = util::EPSILON) const;
+                Point2 Project (bool perspective, util::f32 eps = EPSILON) const;
             };
 
             inline bool operator == (const Point3 &p1, const Point3 &p2) {
@@ -197,7 +197,7 @@ namespace thekogans {
                 return (p1 - p2).Length ();
             }
 
-            inline Point3 Normalize (const Point3 &pt, util::f32 eps = util::EPSILON) {
+            inline Point3 Normalize (const Point3 &pt, util::f32 eps = EPSILON) {
                 util::f32 length = pt.Length ();
                 return util::IS_ZERO (length, eps) ? Point3::Zero : pt / length;
             }
@@ -221,11 +221,11 @@ namespace thekogans {
             _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (
                 const Point3 &p1,
                 const Point3 &p2,
-                util::f32 eps = util::EPSILON);
+                util::f32 eps = EPSILON);
             _LIB_THEKOGANS_MEX_BLAS_DECL Point3 _LIB_THEKOGANS_MEX_BLAS_API Bisect (
                 const Point3 &p1,
                 const Point3 &p2,
-                util::f32 eps = util::EPSILON);
+                util::f32 eps = EPSILON);
 
             // Sutherland-Kohen line clipper.
             // Orthographic

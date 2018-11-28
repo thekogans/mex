@@ -274,7 +274,7 @@ namespace thekogans {
                     }
                 }
                 else {
-                    Matrix<T> matrix = Matrix<T>::RotateX (util::HALFPI);
+                    Matrix<T> matrix = Matrix<T>::RotateX (HALFPI);
                     for (std::size_t i = 0; i < points.size (); ++i) {
                         frames[i] = matrix * Matrix<T>::Translate (points[i]);
                     }

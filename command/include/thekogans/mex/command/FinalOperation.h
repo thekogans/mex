@@ -20,6 +20,7 @@
 
 #include <memory>
 #include <typeinfo>
+#include "thekogans/util/RefCounted.h"
 #include "thekogans/util/Heap.h"
 #include "thekogans/mex/command/Config.h"
 
@@ -27,8 +28,10 @@ namespace thekogans {
     namespace mex {
         namespace command {
 
-            struct _LIB_THEKOGANS_MEX_COMMAND_DECL FinalOperation {
-                typedef std::unique_ptr<FinalOperation> UniquePtr;
+            struct _LIB_THEKOGANS_MEX_COMMAND_DECL FinalOperation : public util::ThreadSafeRefCounted {
+                /// \brief
+                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<FinalOperation>.
+                typedef util::ThreadSafeRefCounted::Ptr<FinalOperation> Ptr;
 
                 FinalOperation ();
                 virtual ~FinalOperation ();

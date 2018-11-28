@@ -43,7 +43,7 @@ namespace thekogans {
                 util::f32 c = Cx * Cx + Cy * Cy - circle.radius * circle.radius;
                 util::f32 d = b * b - 4.0f * a * c;
                 // roots are imaginary, quick reject
-                if (d < util::EPSILON) {
+                if (d < EPSILON) {
                     return false;
                 }
             #define SAME_SIGN(a, b) (((a) * (b)) > 0.0f)
