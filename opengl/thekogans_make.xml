@@ -7,10 +7,10 @@
                 guid = "e8bd50f8f7061f92dd5a7b29822c0a73"
                 schema_version = "2">
   <dependencies>
-    <project organization = "thekogans"
-             name = "util"/>
-    <project organization = "thekogans"
-             name = "mex_blas"/>
+    <dependency organization = "thekogans"
+                name = "util"/>
+    <dependency organization = "thekogans"
+                name = "mex_blas"/>
     <choose>
       <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
         <library>opengl32.lib</library>

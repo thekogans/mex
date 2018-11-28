@@ -7,18 +7,18 @@
                 guid = "85a0d8e9065043dbecc7d27367b733a5"
                 schema_version = "2">
   <dependencies>
-    <project organization = "thekogans"
-             name = "util"/>
-    <project organization = "thekogans"
-             name = "mex_blas"/>
-    <project organization = "thekogans"
-             name = "mex_command"/>
-    <project organization = "thekogans"
-             name = "mex_opengl"/>
-    <project organization = "thekogans"
-             name = "mex_3ds_io"/>
-    <project organization = "thekogans"
-             name = "mex_3ds_ext"/>
+    <dependency organization = "thekogans"
+                name = "util"/>
+    <dependency organization = "thekogans"
+                name = "mex_blas"/>
+    <dependency organization = "thekogans"
+                name = "mex_command"/>
+    <dependency organization = "thekogans"
+                name = "mex_opengl"/>
+    <dependency organization = "thekogans"
+                name = "mex_3ds_io"/>
+    <dependency organization = "thekogans"
+                name = "mex_3ds_ext"/>
   </dependencies>
   <cpp_headers prefix = "include"
                install = "yes">
