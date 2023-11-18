@@ -108,8 +108,8 @@ namespace thekogans {
 
                 struct DefaultFlatnessTest :
                         public std::unary_function<const BezierCubic<T> &, bool> {
-                    util::ui32 flatness;
-                    DefaultFlatnessTest (util::ui32 flatness_ = EPSILON) :
+                    util::f32 flatness;
+                    DefaultFlatnessTest (util::f32 flatness_ = EPSILON) :
                         flatness (flatness_) {}
                     bool operator () (const BezierCubic<T> &cubic) {
                         // This test was lifted directly from:

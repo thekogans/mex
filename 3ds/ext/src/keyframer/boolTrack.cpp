@@ -23,7 +23,10 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                boolTrack::boolTrack (const io::boolTrack &track_, const io::Keyframer::Segment &segment) : track (track_) {
+                boolTrack::boolTrack (
+                        const io::boolTrack &track_,
+                        const io::Keyframer::Segment &segment) :
+                        track (track_) {
                     tweenCache.resize (segment.length + 1);
                     for (util::ui32 frame = 0, count = segment.length + 1; frame < count; ++frame) {
                         tweenCache[frame] = GetTweenHelper (frame);
@@ -34,11 +37,9 @@ namespace thekogans {
                     if (track.keys.empty ()) {
                         return true;
                     }
-
                     if (track.IsRepeats ()) {
                         frame = track.keys[0].frame + frame % (track.keys.back ().frame - track.keys[0].frame);
                     }
-
                     if (frame < track.keys[0].frame) {
                         if (!track.IsLoops ()) {
                             return true;
@@ -51,7 +52,6 @@ namespace thekogans {
                         }
                         frame = track.keys[0].frame + frame % track.keys.back ().frame;
                     }
-
                     std::size_t kidx = 0;
                     while (kidx < track.keys.size () && track.keys[kidx].frame < frame) {
                         ++kidx;

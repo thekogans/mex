@@ -39,12 +39,25 @@ namespace thekogans {
                 Point4 t;
 
                 Matrix<Point4> () {}
-                Matrix<Point4> (const Point4 &x_, const Point4 &y_, const Point4 &z_, const Point4 &t_) :
-                    x (x_), y (y_), z (z_), t (t_) {}
+                Matrix<Point4> (
+                    const Point4 &x_,
+                    const Point4 &y_,
+                    const Point4 &z_,
+                    const Point4 &t_) :
+                    x (x_),
+                    y (y_),
+                    z (z_),
+                    t (t_) {}
                 Matrix<Point4> (const Matrix<Point4> &matrix) :
-                    x (matrix.x), y (matrix.y), z (matrix.z), t (matrix.t) {}
+                    x (matrix.x),
+                    y (matrix.y),
+                    z (matrix.z),
+                    t (matrix.t) {}
                 explicit Matrix<Point4> (const Matrix3 &matrix) :
-                    x (matrix.x, 0.0f), y (matrix.y, 0.0f), z (matrix.z, 0.0f), t (matrix.t, 1.0f) {}
+                    x (matrix.x, 0.0f),
+                    y (matrix.y, 0.0f),
+                    z (matrix.z, 0.0f),
+                    t (matrix.t, 1.0f) {}
 
                 static const Matrix<Point4> Zero;
                 static const Matrix<Point4> Identity;
@@ -64,11 +77,17 @@ namespace thekogans {
                 static Matrix<Point4> Scale (const Point3 &pt);
                 static Matrix<Point4> Skew (util::f32 x, util::f32 y);
                 static Matrix<Point4> Shear (const Point3 &pt);
-                static Matrix<Point4> LookAt (const Point3 &position, const Point3 &target,
-                    const Point3 &up = Point3::Z, util::f32 roll = 0.0f);
+                static Matrix<Point4> LookAt (
+                    const Point3 &position,
+                    const Point3 &target,
+                    const Point3 &up = Point3::Z,
+                    util::f32 roll = 0.0f);
                 static Matrix<Point4> Orthographic (const blas::Bound<Point3> &frustum);
-                static Matrix<Point4> Perspective(util::f32 fovy,
-                    util::f32 aspect, util::f32 zNear, util::f32 zFar);
+                static Matrix<Point4> Perspective(
+                    util::f32 fovy,
+                    util::f32 aspect,
+                    util::f32 zNear,
+                    util::f32 zFar);
 
                 inline const Point4 &operator [] (util::ui32 index) const {
                     assert (index < 4);
@@ -101,14 +120,19 @@ namespace thekogans {
             };
 
             _LIB_THEKOGANS_MEX_BLAS_DECL Matrix4 _LIB_THEKOGANS_MEX_BLAS_API operator * (
-                const Matrix4 &m1, const Matrix4 &m2);
+                const Matrix4 &m1,
+                const Matrix4 &m2);
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Matrix4 &matrix) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Matrix4 &matrix) {
                 serializer << matrix.x << matrix.y << matrix.z << matrix.t;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Matrix4 &matrix) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Matrix4 &matrix) {
                 serializer >> matrix.x >> matrix.y >> matrix.z >> matrix.t;
                 return serializer;
             }

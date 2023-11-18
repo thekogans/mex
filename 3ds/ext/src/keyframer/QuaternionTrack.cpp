@@ -24,8 +24,10 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                QuaternionTrack::QuaternionTrack (const io::AngleAxisTrack &track_,
-                    const io::Keyframer::Segment &segment) : track (track_) {
+                QuaternionTrack::QuaternionTrack (
+                        const io::AngleAxisTrack &track_,
+                        const io::Keyframer::Segment &segment) :
+                        track (track_) {
                     {
                         // vectorize
                         for (std::size_t i = 0, count = track.keys.size (); i < count; ++i) {
@@ -133,7 +135,6 @@ namespace thekogans {
                             qm = (keys[kidx].quat / qprev).Log ();
                         }
                     }
-
                     blas::Quaternion qp (blas::Quaternion::Identity);
                     if (kidx < count - 1 || track.IsLoops ()) {
                         std::size_t i1 = kidx == count - 1 ? 0 : kidx + 1;
@@ -149,14 +150,12 @@ namespace thekogans {
                             qp = (qnext / keys[kidx].quat).Log ();
                         }
                     }
-
                     if (kidx == 0 && !track.IsLoops ()) {
                         qm = qp;
                     }
                     if (kidx == count - 1 && !track.IsLoops ()) {
                         qp = qm;
                     }
-
                     util::f32 fp = 1.0f;
                     util::f32 fn = 1.0f;
                     util::f32 cm = 1.0f - keys[kidx].continuity;
@@ -182,7 +181,6 @@ namespace thekogans {
                         fp = fp + c - c * fp;
                         fn = fn + c - c * fn;
                     }
-
                     util::f32 tm = 0.5f * (1.0f - keys[kidx].tension);
                     util::f32 cp = 2.0f - cm;
                     util::f32 bm = 1.0f - keys[kidx].bias;
@@ -193,7 +191,6 @@ namespace thekogans {
                     util::f32 ksp  = -tmcp * bm * fp;
                     util::f32 kdm  = tmcp * bp * fn;
                     util::f32 kdp  = tmcm * bm * fn - 1.0f;
-
                     blas::Quaternion  qa (
                         0.5f * (kdm * qm.x + kdp * qp.x),
                         0.5f * (kdm * qm.y + kdp * qp.y),
@@ -204,7 +201,6 @@ namespace thekogans {
                         0.5f * (ksm * qm.y + ksp * qp.y),
                         0.5f * (ksm * qm.z + ksp * qp.z),
                         0.5f * (ksm * qm.w + ksp * qp.w));
-
                     keys[kidx].ds = keys[kidx].quat * qa.Exp ();
                     keys[kidx].dd = keys[kidx].quat * qb.Exp ();
                 }

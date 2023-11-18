@@ -24,11 +24,14 @@ namespace thekogans {
 
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (SpotLightTargetNode)
 
-                SpotLightTargetNode::SpotLightTargetNode (const io::Light &light_,
-                    const io::TargetNode &targetNode_, const io::Keyframer::Segment &segment) :
-                    Node (targetNode_), light (light_), targetNode (targetNode_),
-                    targetTrack (targetNode.targetTrack, segment) {
-                }
+                SpotLightTargetNode::SpotLightTargetNode (
+                    const io::Light &light_,
+                    const io::TargetNode &targetNode_,
+                    const io::Keyframer::Segment &segment) :
+                    Node (targetNode_),
+                    light (light_),
+                    targetNode (targetNode_),
+                    targetTrack (targetNode.targetTrack, segment) {}
 
                 blas::Bound2 SpotLightTargetNode::GetBound2 (const blas::Matrix3 &xform) const {
                     blas::Point2 pt (target * xform);

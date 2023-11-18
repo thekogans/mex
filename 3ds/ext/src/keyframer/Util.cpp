@@ -24,7 +24,9 @@ namespace thekogans {
             namespace ext {
 
                 _LIB_THEKOGANS_MEX_3DS_EXT_DECL util::f32 _LIB_THEKOGANS_MEX_3DS_EXT_API Ease (
-                        util::f32 u, util::f32 a, util::f32 b) {
+                        util::f32 u,
+                        util::f32 a,
+                        util::f32 b) {
                     util::f32 s = a + b;
                     if (u == 0.0f || u == 1.0f || s == 0.0f) {
                         return u;
@@ -46,8 +48,11 @@ namespace thekogans {
                 }
 
                 _LIB_THEKOGANS_MEX_3DS_EXT_DECL blas::Matrix3 _LIB_THEKOGANS_MEX_3DS_EXT_API GetPRSFrameXform (
-                        const Point3Track &positionTrack, const QuaternionTrack &rotationTrack,
-                        const Point3Track &scaleTrack, util::ui32 frame, const blas::Matrix3 &parentXform) {
+                        const Point3Track &positionTrack,
+                        const QuaternionTrack &rotationTrack,
+                        const Point3Track &scaleTrack,
+                        util::ui32 frame,
+                        const blas::Matrix3 &parentXform) {
                     blas::Matrix3 xform =
                         blas::Matrix3::Scale (scaleTrack.GetTween (frame)) *
                         blas::Matrix3::FromQuaternion (rotationTrack.GetTween (frame)) *

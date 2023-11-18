@@ -23,7 +23,9 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                void f32Key::CompDeriv (const f32Key &prev, const f32Key &next) {
+                void f32Key::CompDeriv (
+                        const f32Key &prev,
+                        const f32Key &next) {
                     util::f32 fp;
                     util::f32 fn;
                     util::f32 dt = (util::f32 (next.frame) - util::f32 (prev.frame)) * 0.5f;
@@ -50,7 +52,6 @@ namespace thekogans {
                     util::f32 kdp = tmcm * bm * fn;
                     util::f32 delm = value - prev.value;
                     util::f32 delp = next.value - value;
-
                     ds = ksm * delm + ksp * delp;
                     dd = kdm * delm + kdp * delp;
                 }
@@ -65,7 +66,10 @@ namespace thekogans {
                     dd = 0.0f;
                 }
 
-                void f32Key::CompDerivFirstLoop (const f32Key &prev, const f32Key &next, util::f32 segmentLength) {
+                void f32Key::CompDerivFirstLoop (
+                        const f32Key &prev,
+                        const f32Key &next,
+                        util::f32 segmentLength) {
                     util::f32 fp;
                     util::f32 fn;
                     util::f32 dt = (segmentLength + next.frame - prev.frame) * 0.5f;
@@ -92,12 +96,14 @@ namespace thekogans {
                     util::f32 kdp = tmcm * bm * fn;
                     util::f32 delm = value - prev.value;
                     util::f32 delp = next.value - value;
-
                     ds = ksm * delm + ksp * delp;
                     dd = kdm * delm + kdp * delp;
                 }
 
-                void f32Key::CompDerivLastLoop (const f32Key &prev, const f32Key &next, util::f32 segmentLength) {
+                void f32Key::CompDerivLastLoop (
+                        const f32Key &prev,
+                        const f32Key &next,
+                        util::f32 segmentLength) {
                     util::f32 fp;
                     util::f32 fn;
                     util::f32 dt = (segmentLength + next.frame - prev.frame) * 0.5f;
@@ -124,7 +130,6 @@ namespace thekogans {
                     util::f32 kdp = tmcm * bm * fn;
                     util::f32 delm = value - prev.value;
                     util::f32 delp = next.value - value;
-
                     ds = ksm * delm + ksp * delp;
                     dd = kdm * delm + kdp * delp;
                 }

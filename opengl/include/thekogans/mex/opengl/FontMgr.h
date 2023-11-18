@@ -23,14 +23,14 @@
 #include "thekogans/util/Types.h"
 #include "thekogans/util/OwnerMap.h"
 #include "thekogans/util/Singleton.h"
-#include "thekogans/util/Mutex.h"
+#include "thekogans/util/SpinLock.h"
 #include "thekogans/mex/opengl/Config.h"
 
 namespace thekogans {
     namespace mex {
         namespace opengl {
 
-            struct _LIB_THEKOGANS_MEX_OPENGL_DECL FontMgr : public util::Singleton<FontMgr, util::Mutex> {
+            struct _LIB_THEKOGANS_MEX_OPENGL_DECL FontMgr : public util::Singleton<FontMgr, util::SpinLock> {
                 struct _LIB_THEKOGANS_MEX_OPENGL_DECL Font {
                     typedef std::unique_ptr<Font> UniquePtr;
 

@@ -27,15 +27,19 @@ namespace thekogans {
                 namespace {
                     struct MeshWithName {
                         const std::string &name;
-                        explicit MeshWithName (const std::string &name_) : name (name_) {}
+                        explicit MeshWithName (const std::string &name_) :
+                            name (name_) {}
                         inline bool operator () (const io::Mesh *mesh) const {
                             return mesh->name == name;
                         }
                     };
                 }
 
-                MorphTrack::MorphTrack (const io::stringTrack &track_, const util::OwnerVector<io::Mesh> &meshes,
-                    const io::Keyframer::Segment &segment) : track (track_) {
+                MorphTrack::MorphTrack (
+                        const io::stringTrack &track_,
+                        const util::OwnerVector<io::Mesh> &meshes,
+                        const io::Keyframer::Segment &segment) :
+                        track (track_) {
                     // Initialize morphTracks.
                     if (!track.keys.empty ()) {
                         std::vector<const io::Mesh *> morphTargets;
@@ -47,16 +51,23 @@ namespace thekogans {
                                 const util::OwnerVector<io::Mesh> &meshes;
 
                             public:
-                                GetMorphTargetsJob (std::vector<const io::Mesh *> &morphTargets_,
-                                    const io::stringTrack &track_, const util::OwnerVector<io::Mesh> &meshes_) :
-                                    morphTargets (morphTargets_), track (track_), meshes (meshes_) {
+                                GetMorphTargetsJob (
+                                        std::vector<const io::Mesh *> &morphTargets_,
+                                        const io::stringTrack &track_,
+                                        const util::OwnerVector<io::Mesh> &meshes_) :
+                                        morphTargets (morphTargets_),
+                                        track (track_),
+                                        meshes (meshes_) {
                                     morphTargets.insert (morphTargets.begin (), track.keys.size (), 0);
                                 }
 
                                 virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
                                     for (; sidx < eidx; ++sidx) {
                                         util::OwnerVector<io::Mesh>::const_iterator it =
-                                            std::find_if (meshes.begin (), meshes.end (), MeshWithName (track.keys[sidx].value));
+                                            std::find_if (
+                                                meshes.begin (),
+                                                meshes.end (),
+                                                MeshWithName (track.keys[sidx].value));
                                         if (it != meshes.end ()) {
                                             morphTargets[sidx] = *it;
                                         }
@@ -80,11 +91,17 @@ namespace thekogans {
                                 std::vector<blas::Matrix3> ixforms;
 
                             public:
-                                CreateMorphTracksJob (util::OwnerVector<io::Point3Track> &ioMorphTracks_,
-                                    util::OwnerVector<Point3Track> &morphTracks_, const std::vector<const io::Mesh *> &morphTargets_,
-                                    const io::stringTrack &track_, const io::Keyframer::Segment &segment_) :
-                                    ioMorphTracks (ioMorphTracks_), morphTracks (morphTracks_), morphTargets (morphTargets_),
-                                    track (track_), segment (segment_) {
+                                CreateMorphTracksJob (
+                                        util::OwnerVector<io::Point3Track> &ioMorphTracks_,
+                                        util::OwnerVector<Point3Track> &morphTracks_,
+                                        const std::vector<const io::Mesh *> &morphTargets_,
+                                        const io::stringTrack &track_,
+                                        const io::Keyframer::Segment &segment_) :
+                                        ioMorphTracks (ioMorphTracks_),
+                                        morphTracks (morphTracks_),
+                                        morphTargets (morphTargets_),
+                                        track (track_),
+                                        segment (segment_) {
                                     assert (!morphTargets.empty ());
                                     ioMorphTracks.insert (ioMorphTracks.begin (), morphTargets[0]->vertices.size (), 0);
                                     morphTracks.insert (morphTracks.begin (), morphTargets[0]->vertices.size (), 0);
@@ -113,10 +130,15 @@ namespace thekogans {
                                             key.value = morphTargets[i]->vertices[sidx] * ixforms[i];
                                             ioMorphTracks[sidx]->keys.push_back (key);
                                         #else // defined (TOOLCHAIN_OS_Windows)
-                                            ioMorphTracks[sidx]->keys.push_back (io::Point3Track::Key (track.keys[i].frame,
-                                                track.keys[i].flags, track.keys[i].tension, track.keys[i].continuity,
-                                                track.keys[i].bias, track.keys[i].easeFrom, track.keys[i].easeTo,
-                                                morphTargets[i]->vertices[sidx] * ixforms[i]));
+                                            ioMorphTracks[sidx]->keys.push_back (
+                                                io::Point3Track::Key (track.keys[i].frame,
+                                                    track.keys[i].flags,
+                                                    track.keys[i].tension,
+                                                    track.keys[i].continuity,
+                                                    track.keys[i].bias,
+                                                    track.keys[i].easeFrom,
+                                                    track.keys[i].easeTo,
+                                                    morphTargets[i]->vertices[sidx] * ixforms[i]));
                                         #endif // defined (TOOLCHAIN_OS_Windows)
                                         }
                                         morphTracks[sidx] = new Point3Track (*ioMorphTracks[sidx], segment);

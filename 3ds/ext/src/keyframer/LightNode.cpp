@@ -26,13 +26,14 @@ namespace thekogans {
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (LightNode)
 
                 LightNode::LightNode (
-                        const io::Light &light_,
-                        const io::LightNode &lightNode_,
-                        const io::Keyframer::Segment &segment) :
-                    Node (lightNode_), light (light_), lightNode (lightNode_),
+                    const io::Light &light_,
+                    const io::LightNode &lightNode_,
+                    const io::Keyframer::Segment &segment) :
+                    Node (lightNode_),
+                    light (light_),
+                    lightNode (lightNode_),
                     positionTrack (lightNode.positionTrack, segment),
-                    colorTrack (lightNode.colorTrack, segment) {
-                }
+                    colorTrack (lightNode.colorTrack, segment) {}
 
                 io::Light::UniquePtr LightNode::Snapshot () const {
                     io::Light::UniquePtr newLight (new io::Light (light));

@@ -60,11 +60,9 @@ namespace thekogans {
                     if (keys.empty ()) {
                         return 0.0f;
                     }
-
                     if (track.IsRepeats ()) {
                         frame = keys[0].frame + frame % (keys.back ().frame - keys[0].frame);
                     }
-
                     if (frame < keys[0].frame) {
                         if (!track.IsLoops ()) {
                             return keys[0].value;
@@ -77,7 +75,6 @@ namespace thekogans {
                         }
                         frame = keys[0].frame + frame % keys.back ().frame;
                     }
-
                     std::size_t kidx = 0;
                     while (kidx < keys.size () && keys[kidx].frame < frame) {
                         ++kidx;
@@ -85,17 +82,19 @@ namespace thekogans {
                     if (kidx == keys.size () || (kidx && frame != keys[kidx].frame)) {
                         --kidx;
                     }
-
                     if (frame == keys[kidx].frame) {
                         return keys[kidx].value;
                     }
-
-                    util::f32 t = Ease (static_cast<util::f32> (frame - keys[kidx].frame) / (keys[kidx + 1].frame - keys[kidx].frame),
-                        keys[kidx].easeFrom, keys[kidx + 1].easeTo);
-
-                    return GetHermiteSplinePoint (t,
-                        keys[kidx].value, keys[kidx + 1].value,
-                        keys[kidx].dd, keys[kidx + 1].ds);
+                    util::f32 t = Ease (
+                        static_cast<util::f32> (frame - keys[kidx].frame) / (keys[kidx + 1].frame - keys[kidx].frame),
+                        keys[kidx].easeFrom,
+                        keys[kidx + 1].easeTo);
+                    return GetHermiteSplinePoint (
+                        t,
+                        keys[kidx].value,
+                        keys[kidx + 1].value,
+                        keys[kidx].dd,
+                        keys[kidx + 1].ds);
                 }
 
             } // namespace ext

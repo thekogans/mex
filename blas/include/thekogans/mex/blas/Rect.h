@@ -36,8 +36,15 @@ namespace thekogans {
                 static const Rect Zero;
 
                 Rect () {}
-                Rect (util::i32 left_, util::i32 top_, util::i32 right_, util::i32 bottom_) :
-                    left (left_), top (top_), right (right_), bottom (bottom_) {}
+                Rect (
+                    util::i32 left_,
+                    util::i32 top_,
+                    util::i32 right_,
+                    util::i32 bottom_) :
+                    left (left_),
+                    top (top_),
+                    right (right_),
+                    bottom (bottom_) {}
                 explicit Rect (const Size &size);
 
                 inline Rect &operator = (const Rect &rect) {

@@ -22,10 +22,11 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                AmbientNode::AmbientNode (const io::AmbientNode &ambientNode_,
-                        const io::Keyframer::Segment &segment) :
-                    ambientNode (ambientNode_), colorTrack (ambientNode.colorTrack, segment) {
-                }
+                AmbientNode::AmbientNode (
+                    const io::AmbientNode &ambientNode_,
+                    const io::Keyframer::Segment &segment) :
+                    ambientNode (ambientNode_),
+                    colorTrack (ambientNode.colorTrack, segment) {}
 
             } // namespace ext
         } // namespace _3ds

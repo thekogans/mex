@@ -21,7 +21,7 @@
 #include <set>
 #include <string>
 #include "thekogans/util/Singleton.h"
-#include "thekogans/util/Mutex.h"
+#include "thekogans/util/SpinLock.h"
 #include "thekogans/mex/opengl/Config.h"
 
 namespace thekogans {
@@ -29,7 +29,7 @@ namespace thekogans {
         namespace opengl {
 
             struct _LIB_THEKOGANS_MEX_OPENGL_DECL Extensions :
-                    public util::Singleton<Extensions, util::Mutex> {
+                    public util::Singleton<Extensions, util::SpinLock> {
                 std::set<std::string> extensions;
 
                 Extensions ();

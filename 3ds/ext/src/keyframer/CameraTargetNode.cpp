@@ -24,11 +24,14 @@ namespace thekogans {
 
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (CameraTargetNode)
 
-                CameraTargetNode::CameraTargetNode (const io::Camera &camera_,
-                    const io::TargetNode &targetNode_, const io::Keyframer::Segment &segment) :
-                    Node (targetNode_), camera (camera_), targetNode (targetNode_),
-                    targetTrack (targetNode.targetTrack, segment) {
-                }
+                CameraTargetNode::CameraTargetNode (
+                    const io::Camera &camera_,
+                    const io::TargetNode &targetNode_,
+                    const io::Keyframer::Segment &segment) :
+                    Node (targetNode_),
+                    camera (camera_),
+                    targetNode (targetNode_),
+                    targetTrack (targetNode.targetTrack, segment) {}
 
                 blas::Bound2 CameraTargetNode::GetBound2 (const blas::Matrix3 &xform) const {
                     blas::Point2 pt (target * xform);

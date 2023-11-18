@@ -40,12 +40,27 @@ namespace thekogans {
                 Point3 t;
 
                 Matrix<Point3> () {}
-                Matrix<Point3> (const Point3 &x_, const Point3 &y_, const Point3 &z_, const Point3 &t_) :
-                    x (x_), y (y_), z (z_), t (t_) {}
+                Matrix<Point3> (
+                    const Point3 &x_,
+                    const Point3 &y_,
+                    const Point3 &z_,
+                    const Point3 &t_) :
+                    x (x_),
+                    y (y_),
+                    z (z_),
+                    t (t_) {}
                 Matrix<Point3> (const Matrix<Point3> &matrix) :
-                    x (matrix.x), y (matrix.y), z (matrix.z), t (matrix.t) {}
-                Matrix<Point3> (const Matrix<Point2> &matrix, const Point3 z_ = Point3::Zero) :
-                    x (matrix.x), y (matrix.y), z (z_), t (matrix.t) {}
+                    x (matrix.x),
+                    y (matrix.y),
+                    z (matrix.z),
+                    t (matrix.t) {}
+                Matrix<Point3> (
+                    const Matrix<Point2> &matrix,
+                    const Point3 z_ = Point3::Zero) :
+                    x (matrix.x),
+                    y (matrix.y),
+                    z (z_),
+                    t (matrix.t) {}
 
                 static const Matrix<Point3> Zero;
                 static const Matrix<Point3> Identity;
@@ -77,11 +92,17 @@ namespace thekogans {
                 // Takes viewer parameter and computes a matrix which when
                 // applied to points, transforms them in to viewer space.
                 // IMPORTANT: Assumes fov and roll are in radians.
-                static Matrix<Point3> AimViewer (const Point3 &position,
-                    const Point3 &target, util::f32 fov, util::f32 roll);
+                static Matrix<Point3> AimViewer (
+                    const Point3 &position,
+                    const Point3 &target,
+                    util::f32 fov,
+                    util::f32 roll);
 
-                static Matrix<Point3> LookAt (const Point3 &position, const Point3 &target,
-                    const Point3 &up = Point3::Z, util::f32 roll = 0.0f);
+                static Matrix<Point3> LookAt (
+                    const Point3 &position,
+                    const Point3 &target,
+                    const Point3 &up = Point3::Z,
+                    util::f32 roll = 0.0f);
 
                 static Matrix<Point3> FromQuaternion (const Quaternion &quat);
                 static Matrix<Point3> FromEulerAngles (const EulerAngles &eulerAngles);
@@ -111,25 +132,39 @@ namespace thekogans {
 
                 Matrix<Point3> Invert () const;
                 util::f32 Determinant () const;
-                bool Decompose (Point3 &translation, Quaternion &rotation, Point3 &scale) const;
+                bool Decompose (
+                    Point3 &translation,
+                    Quaternion &rotation,
+                    Point3 &scale) const;
 
                 Point3 XformNormal (const Point3 &normal) const;
 
                 inline Matrix<Point3> Transpose () const {
-                    return Matrix<Point3> (Point3 (x.x, y.x, z.x), Point3 (x.y, y.y, z.y), Point3 (x.z, y.z, z.z), t);
+                    return Matrix<Point3> (
+                        Point3 (x.x, y.x, z.x),
+                        Point3 (x.y, y.y, z.y),
+                        Point3 (x.z, y.z, z.z), t);
                 }
 
-                inline bool IsLeftHanded () const {return Dot (Cross (x, y), z) < 0.0f;}
+                inline bool IsLeftHanded () const {
+                    return Dot (Cross (x, y), z) < 0.0f;
+                }
             };
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix3 _LIB_THEKOGANS_MEX_BLAS_API operator * (const Matrix3 &m1, const Matrix3 &m2);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix3 _LIB_THEKOGANS_MEX_BLAS_API operator * (
+                const Matrix3 &m1,
+                const Matrix3 &m2);
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Matrix3 &matrix) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Matrix3 &matrix) {
                 serializer << matrix.x << matrix.y << matrix.z << matrix.t;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Matrix3 &matrix) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Matrix3 &matrix) {
                 serializer >> matrix.x >> matrix.y >> matrix.z >> matrix.t;
                 return serializer;
             }

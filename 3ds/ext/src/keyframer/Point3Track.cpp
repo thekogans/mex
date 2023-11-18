@@ -25,7 +25,10 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                Point3Track::Point3Track (const io::Point3Track &track_, const io::Keyframer::Segment &segment) : track (track_) {
+                Point3Track::Point3Track (
+                        const io::Point3Track &track_,
+                        const io::Keyframer::Segment &segment) :
+                        track (track_) {
                     {
                         // vectorize
                         for (std::size_t i = 0, count = track.keys.size (); i < count; ++i) {

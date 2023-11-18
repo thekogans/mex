@@ -45,8 +45,10 @@ namespace thekogans {
                 virtual bool CircleInRegion (const Circle &circle, bool cross = true) const = 0;
                 virtual bool EllipseInRegion (const Ellipse &ellipse, bool cross = true) const = 0;
                 virtual bool PolygonInRegion (const Polygon<T> &polygon, bool cross = true) const = 0;
-                virtual bool BezierCubicInRegion (const BezierCubic<T> &bezierCubic,
-                    util::ui32 steps, bool cross = true) const = 0;
+                virtual bool BezierCubicInRegion (
+                    const BezierCubic<T> &bezierCubic,
+                    util::ui32 steps,
+                    bool cross = true) const = 0;
             };
 
             typedef Region<Point2> Region2;

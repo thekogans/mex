@@ -36,12 +36,17 @@ namespace thekogans {
                     util::ui32 z;
                     Point3Sign () {}
                     Point3Sign (const Point3 &pt) :
-                        x (pt.x < 0.0f ? 1 : 0), y (pt.y < 0.0f ? 1 : 0), z (pt.z < 0.0f ? 1 : 0) {}
+                        x (pt.x < 0.0f ? 1 : 0),
+                        y (pt.y < 0.0f ? 1 : 0),
+                        z (pt.z < 0.0f ? 1 : 0) {}
                 } oneOverDirectionSign;
 
                 Ray () {}
-                Ray (const Point3 &origin_, const Point3 &direction_) :
-                    origin (origin_), direction (direction_),
+                Ray (
+                    const Point3 &origin_,
+                    const Point3 &direction_) :
+                    origin (origin_),
+                    direction (direction_),
                     oneOverDirection (1.0f / direction.x, 1.0f / direction.y, 1.0f / direction.z),
                     oneOverDirectionSign (oneOverDirection) {}
 

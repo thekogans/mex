@@ -26,16 +26,21 @@ namespace thekogans {
 
                 THEKOGANS_UTIL_IMPLEMENT_HEAP (ObjectNode)
 
-                ObjectNode::ObjectNode (const io::Mesh &mesh_, const io::ObjectNode &objectNode_,
-                    const util::OwnerVector<io::Mesh> &meshes, const io::Keyframer::Segment &segment) :
-                    Node (objectNode_), mesh (mesh_), objectNode (objectNode_),
-                    positionTrack (objectNode.positionTrack, segment),
-                    rotationTrack (objectNode.rotationTrack, segment),
-                    scaleTrack (objectNode.scaleTrack, segment),
-                    hideTrack (objectNode.hideTrack, segment),
-                    morphTrack (objectNode.morphTrack, meshes, segment),
-                    ixform (mesh.xform.Invert ()),
-                    isXformLeftHanded (mesh.xform.IsLeftHanded ()) {
+                ObjectNode::ObjectNode (
+                        const io::Mesh &mesh_,
+                        const io::ObjectNode &objectNode_,
+                        const util::OwnerVector<io::Mesh> &meshes,
+                        const io::Keyframer::Segment &segment) :
+                        Node (objectNode_),
+                        mesh (mesh_),
+                        objectNode (objectNode_),
+                        positionTrack (objectNode.positionTrack, segment),
+                        rotationTrack (objectNode.rotationTrack, segment),
+                        scaleTrack (objectNode.scaleTrack, segment),
+                        hideTrack (objectNode.hideTrack, segment),
+                        morphTrack (objectNode.morphTrack, meshes, segment),
+                        ixform (mesh.xform.Invert ()),
+                        isXformLeftHanded (mesh.xform.IsLeftHanded ()) {
                     vertices.resize (mesh.vertices.size ());
                 }
 
@@ -53,7 +58,9 @@ namespace thekogans {
                     return newMesh;
                 }
 
-                void ObjectNode::SetCurrentFrame (util::ui32 frame, const blas::Matrix3 &parentXform) {
+                void ObjectNode::SetCurrentFrame (
+                        util::ui32 frame,
+                        const blas::Matrix3 &parentXform) {
                     blas::Matrix3 frameXform = GetFrameXform (frame, parentXform);
                     xform = blas::Matrix3::Translate (-objectNode.pivot) * frameXform;
                     if (isXformLeftHanded) {
@@ -69,10 +76,15 @@ namespace thekogans {
                             const blas::Matrix3 &xform;
 
                         public:
-                            MorphVerticesJob (std::vector<blas::Point3> &vertices_,
+                            MorphVerticesJob (
+                                std::vector<blas::Point3> &vertices_,
                                 const util::OwnerVector<Point3Track> &morphTracks_,
-                                const util::ui32 frame_, const blas::Matrix3 &xform_) :
-                                vertices (vertices_), morphTracks (morphTracks_), frame (frame_), xform (xform_) {}
+                                const util::ui32 frame_,
+                                const blas::Matrix3 &xform_) :
+                                vertices (vertices_),
+                                morphTracks (morphTracks_),
+                                frame (frame_),
+                                xform (xform_) {}
 
                             virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
                                 for (; sidx < eidx; ++sidx) {

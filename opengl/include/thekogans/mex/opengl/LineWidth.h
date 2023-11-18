@@ -31,7 +31,7 @@ namespace thekogans {
 
             public:
                 LineWidth (util::f32 newLineWidth) {
-                    glGetFloatv (GL_LINE_WIDTH , &oldLineWidth);
+                    glGetFloatv (GL_LINE_WIDTH, &oldLineWidth);
                     glLineWidth (newLineWidth);
                 }
                 ~LineWidth () {

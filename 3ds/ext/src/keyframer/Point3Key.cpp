@@ -24,7 +24,9 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                void Point3Key::CompDeriv (const Point3Key &prev, const Point3Key &next) {
+                void Point3Key::CompDeriv (
+                        const Point3Key &prev,
+                        const Point3Key &next) {
                     util::f32 fp;
                     util::f32 fn;
                     util::f32 dt = (util::f32 (next.frame) - util::f32 (prev.frame)) * 0.5f;
@@ -51,7 +53,6 @@ namespace thekogans {
                     util::f32 kdp = tmcm * bm * fn;
                     blas::Point3 delm = value - prev.value;
                     blas::Point3 delp = next.value - value;
-
                     ds = ksm * delm + ksp * delp;
                     dd = kdm * delm + kdp * delp;
                 }
@@ -66,7 +67,10 @@ namespace thekogans {
                     dd = blas::Point3::Zero;
                 }
 
-                void Point3Key::CompDerivFirstLoop (const Point3Key &prev, const Point3Key &next, util::f32 segmentLength) {
+                void Point3Key::CompDerivFirstLoop (
+                        const Point3Key &prev,
+                        const Point3Key &next,
+                        util::f32 segmentLength) {
                     util::f32 fp;
                     util::f32 fn;
                     util::f32 dt = (segmentLength + next.frame - prev.frame) * 0.5f;
@@ -93,12 +97,14 @@ namespace thekogans {
                     util::f32 kdp = tmcm * bm * fn;
                     blas::Point3 delm = value - prev.value;
                     blas::Point3 delp = next.value - value;
-
                     ds = ksm * delm + ksp * delp;
                     dd = kdm * delm + kdp * delp;
                 }
 
-                void Point3Key::CompDerivLastLoop (const Point3Key &prev, const Point3Key &next, util::f32 segmentLength) {
+                void Point3Key::CompDerivLastLoop (
+                        const Point3Key &prev,
+                        const Point3Key &next,
+                        util::f32 segmentLength) {
                     util::f32 fp;
                     util::f32 fn;
                     util::f32 dt = (segmentLength + next.frame - prev.frame) * 0.5f;
@@ -125,7 +131,6 @@ namespace thekogans {
                     util::f32 kdp = tmcm * bm * fn;
                     blas::Point3 delm = value - prev.value;
                     blas::Point3 delp = next.value - value;
-
                     ds = ksm * delm + ksp * delp;
                     dd = kdm * delm + kdp * delp;
                 }
