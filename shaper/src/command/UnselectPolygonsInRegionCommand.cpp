@@ -47,13 +47,12 @@ namespace thekogans {
                     // NOTE: We don't check for selected here because the polygon may
                     // have only some of its vertices selected. In that case, those will
                     // need to be unselected.
-                    _3ds::io::command::BezierPolygon2ClearFlagsCommand::UniquePtr
+                    command::Command::SharedPtr
                         bezierPolygonClearFlagsCommand (
                             new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                 *bezierPolygon, selectMask));
                     if (bezierPolygonClearFlagsCommand->Execute ()) {
-                        commands.push_back (bezierPolygonClearFlagsCommand.get ());
-                        bezierPolygonClearFlagsCommand.release ();
+                        commands.push_back (bezierPolygonClearFlagsCommand);
                         bezierPolygons.push_back (bezierPolygon);
                     }
                 }
@@ -63,12 +62,12 @@ namespace thekogans {
                 assert (!bezierPolygons.empty ());
                 for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount (); i < count; ++i) {
                     ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new DrawPolygonsFinalOperation (
                                 core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                 }
                 ExecuteAndAddFinalOperation (
-                    command::FinalOperation::UniquePtr (
+                    command::FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 return true;
             }

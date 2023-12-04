@@ -42,7 +42,7 @@ namespace thekogans {
 
                 virtual void OnSetFocus () {
                     core::GetCommandDispatcher ().BeginTransaction (
-                        command::TransactionFactory::UniquePtr (
+                        command::TransactionFactory::SharedPtr (
                             new core::command::TransactionFactory ("SpeedBarDisplayHideAllEventHandler")));
                     std::vector<_3ds::io::BezierPolygon2 *> bezierPolygons;
                     for (std::size_t i = 0, count = core::GetIOProject ().shaper.polygons2.size (); i < count; ++i) {
@@ -53,12 +53,12 @@ namespace thekogans {
                             // FIXME: We need to check the return code.
                             for (util::ui32 j = 0, viewCount = core::GetIOProject ().shaper.viewLayout.GetViewCount (); j < viewCount; ++j) {
                                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new ErasePolygonCommand (
                                             core::GetIOProject ().shaper.viewLayout[j], *bezierPolygon)));
                             }
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                         *bezierPolygon, _3ds::io::BezierPolygon2::Vertex::Hidden)));
                             bezierPolygons.push_back (bezierPolygon);
@@ -67,7 +67,7 @@ namespace thekogans {
                     if (!bezierPolygons.empty ()) {
                         assert (!core::GetCommandDispatcher ().IsPendingTransactionEmpty ());
                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         core::GetCommandDispatcher ().CommitTransaction ();
                     }

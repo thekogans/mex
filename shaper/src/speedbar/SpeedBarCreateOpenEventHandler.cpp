@@ -73,7 +73,7 @@ namespace thekogans {
                                     core::GetIOProject ().shaper.steps);
                                 if (pickInfo.FindFirst ()) {
                                     vertexIndex = pickInfo.vertexIndex;
-                                    bezierPolygon = 
+                                    bezierPolygon =
                                         core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                                     bound = _3ds::ext::BezierPolygon2 (*bezierPolygon).GetBound (
                                         core::GetIOProject ().shaper.steps);
@@ -112,7 +112,7 @@ namespace thekogans {
                                         AddPolygon (std::move (bezierPolygon2), false);
                                     }
                                     ExecuteAndAddFinalOperation (
-                                        command::FinalOperation::UniquePtr (
+                                        command::FinalOperation::SharedPtr (
                                             new core::command::FlipFramebufferFinalOperation));
                                     CommitTransaction ();
                                 }

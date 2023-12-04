@@ -65,7 +65,7 @@ namespace thekogans {
                                 blas::Region2::UniquePtr (new blas::BoundRegion2 (GetPickBound (view, pt))),
                                 core::GetIOProject ().shaper.steps);
                             if (pickInfo.FindFirst ()) {
-                                _3ds::io::BezierPolygon2 *bezierPolygon = 
+                                _3ds::io::BezierPolygon2 *bezierPolygon =
                                     core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                                 assert (bezierPolygon != 0);
                                 assert (pickInfo.vertexIndex != util::NIDX);
@@ -85,7 +85,7 @@ namespace thekogans {
                                     AddPolygon (std::move (bezierPolygon2), false);
                                 }
                                 ExecuteAndAddFinalOperation (
-                                    command::FinalOperation::UniquePtr (
+                                    command::FinalOperation::SharedPtr (
                                         new core::command::FlipFramebufferFinalOperation));
                                 CommitTransaction ();
                             }

@@ -86,11 +86,11 @@ namespace thekogans {
                             core::WaitCursor waitCursor;
                             if (IsCtrl () ?
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new UnassignPolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (new blas::BoundRegion2 (bound.Normalize ()))))) :
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new AssignPolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (new blas::BoundRegion2 (bound.Normalize ())))))) {
                                 CommitTransaction ();

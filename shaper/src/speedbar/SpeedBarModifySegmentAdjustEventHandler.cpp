@@ -113,22 +113,22 @@ namespace thekogans {
                         else if (state == 3) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2VertexSetRedCommand (
                                         *bezierPolygon, vertexIndex1,
                                         bezierPolygon->vertices[vertexIndex1].red * red1)));
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2VertexSetYellowCommand (
                                         *bezierPolygon, vertexIndex1,
                                         bezierPolygon->vertices[vertexIndex1].yellow * yellow1)));
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2VertexSetRedCommand (
                                         *bezierPolygon, vertexIndex2,
                                         bezierPolygon->vertices[vertexIndex2].red * red2)));
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2VertexSetYellowCommand (
                                         *bezierPolygon, vertexIndex2,
                                         bezierPolygon->vertices[vertexIndex2].yellow * yellow2)));

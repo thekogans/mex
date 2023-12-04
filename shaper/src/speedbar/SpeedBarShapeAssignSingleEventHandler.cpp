@@ -106,25 +106,25 @@ namespace thekogans {
                                     for (std::size_t i = 0, count = bezierPolygons.size (); i < count; ++i) {
                                         if (_3ds::ext::BezierPolygon2 (*bezierPolygons[i]).IsShape ()) {
                                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                                command::Command::UniquePtr (
+                                                command::Command::SharedPtr (
                                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                                         *bezierPolygons[i], _3ds::io::BezierPolygon2::Vertex::Shape)));
                                         }
                                         else {
                                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                                command::Command::UniquePtr (
+                                                command::Command::SharedPtr (
                                                     new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                                         *bezierPolygons[i], _3ds::io::BezierPolygon2::Vertex::Shape)));
                                         }
                                     }
                                     for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount (); i < count; ++i) {
                                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                                            command::FinalOperation::UniquePtr (
+                                            command::FinalOperation::SharedPtr (
                                                 new DrawPolygonsFinalOperation (
                                                     core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                                     }
                                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                                        command::FinalOperation::UniquePtr (
+                                        command::FinalOperation::SharedPtr (
                                             new core::command::FlipFramebufferFinalOperation));
                                     CommitTransaction ();
                                 }

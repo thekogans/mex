@@ -51,7 +51,7 @@ namespace thekogans {
                         util::ui16 selectMask = core::GetIOProject ().shaper.selectMask;
                         _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                             _3ds::ext::BezierPolygon2::PickInfo::Vertex,
-                            core::GetIOProject ().shaper.polygons2, 
+                            core::GetIOProject ().shaper.polygons2,
                             blas::Region2::UniquePtr (new blas::BoundRegion2 (bound)),
                             core::GetIOProject ().shaper.steps);
                         for (bool found = pickInfo.FindFirst (); found; found = pickInfo.FindNext ()) {
@@ -62,7 +62,7 @@ namespace thekogans {
                                 bezierPolygon->vertices[pickInfo.vertexIndex];
                             if (!vertex.IsSelected (selectMask)) {
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                             *bezierPolygon, pickInfo.vertexIndex, vertex.flags | selectMask)));
                             }
@@ -72,10 +72,10 @@ namespace thekogans {
                         }
                         // FIXME: replace with DrawPolygonsFinalOperation.
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::DrawViewLayoutFinalOperation (module)));
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         return true;
                     }
@@ -109,7 +109,7 @@ namespace thekogans {
                                 bezierPolygon->vertices[pickInfo.vertexIndex];
                             if (vertex.IsSelected (selectMask)) {
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                             *bezierPolygon, pickInfo.vertexIndex, vertex.flags & ~selectMask)));
                             }
@@ -119,10 +119,10 @@ namespace thekogans {
                         }
                         // FIXME: replace with DrawPolygonsFinalOperation.
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::DrawViewLayoutFinalOperation (module)));
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                             return true;
                     }
@@ -135,10 +135,10 @@ namespace thekogans {
                 const blas::Bound2 &bound, bool unselect) {
                 return unselect ?
                     ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new UnselectVerticesInBoundCommand (module, bound))) :
                     ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new SelectVerticesInBoundCommand (module, bound)));
             }
 

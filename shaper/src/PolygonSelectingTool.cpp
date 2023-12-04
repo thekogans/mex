@@ -62,13 +62,12 @@ namespace thekogans {
                                 core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                             assert (bezierPolygon != 0);
                             if (!_3ds::ext::BezierPolygon2 (*bezierPolygon).IsSelected (selectMask)) {
-                                _3ds::io::command::BezierPolygon2SetFlagsCommand::SharedPtr
+                                command::Command::SharedPtr
                                     bezierPolygonSetFlagsCommand (
                                         new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                             *bezierPolygon, selectMask));
                                 if (bezierPolygonSetFlagsCommand->Execute ()) {
-                                    commands.push_back (bezierPolygonSetFlagsCommand.get ());
-                                    bezierPolygonSetFlagsCommand.release ();
+                                    commands.push_back (bezierPolygonSetFlagsCommand);
                                 }
                             }
                         }
@@ -115,13 +114,12 @@ namespace thekogans {
                             // NOTE: We don't check for selected here because the polygon may
                             // have only some of its vertices selected. In that case, those will
                             // need to be unselected.
-                            _3ds::io::command::BezierPolygon2ClearFlagsCommand::SharedPtr
+                            command::Command::SharedPtr
                                 bezierPolygonClearFlagsCommand (
                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                         *bezierPolygon, selectMask));
                             if (bezierPolygonClearFlagsCommand->Execute ()) {
-                                commands.push_back (bezierPolygonClearFlagsCommand.get ());
-                                bezierPolygonClearFlagsCommand.release ();
+                                commands.push_back (bezierPolygonClearFlagsCommand);
                             }
                         }
                         if (commands.empty ()) {

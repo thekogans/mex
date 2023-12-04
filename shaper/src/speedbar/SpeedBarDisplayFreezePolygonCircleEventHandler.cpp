@@ -85,11 +85,11 @@ namespace thekogans {
                             core::WaitCursor waitCursor;
                             if (circle.radius != 0.0f && IsCtrl () ?
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new ThawPolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (new blas::CircleRegion (circle))))) :
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new FreezePolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (new blas::CircleRegion (circle)))))) {
                                 CommitTransaction ();

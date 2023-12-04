@@ -112,7 +112,7 @@ namespace thekogans {
                                     for (std::size_t i = 0, count = bezierPolygons.size (); i < count; ++i) {
                                         if (!bezierPolygons[i]->IsClosed ()) {
                                             ExecuteAndAddCommand (
-                                                command::Command::UniquePtr (
+                                                command::Command::SharedPtr (
                                                     new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                                         *bezierPolygons[i],
                                                         bezierPolygons[i]->vertices.size () - 1,
@@ -124,7 +124,7 @@ namespace thekogans {
                                     }
                                     if (!IsPendingTransactionEmpty ()) {
                                         ExecuteAndAddFinalOperation (
-                                            command::FinalOperation::UniquePtr (
+                                            command::FinalOperation::SharedPtr (
                                                 new core::command::FlipFramebufferFinalOperation));
                                         CommitTransaction ();
                                     }

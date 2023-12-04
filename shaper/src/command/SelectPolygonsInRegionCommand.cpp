@@ -45,13 +45,12 @@ namespace thekogans {
                         core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                     assert (bezierPolygon != 0);
                     if (!_3ds::ext::BezierPolygon2 (*bezierPolygon).IsSelected (selectMask)) {
-                        _3ds::io::command::BezierPolygon2SetFlagsCommand::UniquePtr
+                        command::Command::SharedPtr
                             bezierPolygonSetFlagsCommand (
                                 new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                     *bezierPolygon, selectMask));
                         if (bezierPolygonSetFlagsCommand->Execute ()) {
-                            commands.push_back (bezierPolygonSetFlagsCommand.get ());
-                            bezierPolygonSetFlagsCommand.release ();
+                            commands.push_back (bezierPolygonSetFlagsCommand);
                             bezierPolygons.push_back (bezierPolygon);
                         }
                     }
@@ -62,12 +61,12 @@ namespace thekogans {
                 assert (!bezierPolygons.empty ());
                 for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount (); i < count; ++i) {
                     ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new DrawPolygonsFinalOperation (
                                 core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                 }
                 ExecuteAndAddFinalOperation (
-                    command::FinalOperation::UniquePtr (
+                    command::FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 return true;
             }

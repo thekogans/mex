@@ -151,7 +151,7 @@ namespace thekogans {
                                 }
                                 if (!IsPendingTransactionEmpty ()) {
                                     ExecuteAndAddFinalOperation (
-                                        command::FinalOperation::UniquePtr (
+                                        command::FinalOperation::SharedPtr (
                                             new core::command::FlipFramebufferFinalOperation));
                                     CommitTransaction ();
                                 }

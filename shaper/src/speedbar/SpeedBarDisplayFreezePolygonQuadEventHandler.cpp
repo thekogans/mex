@@ -84,12 +84,12 @@ namespace thekogans {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             if (IsCtrl () ?
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new ThawPolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (
                                                 new blas::BoundRegion2 (bound.Normalize ()))))) :
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new FreezePolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (
                                                 new blas::BoundRegion2 (bound.Normalize ())))))) {

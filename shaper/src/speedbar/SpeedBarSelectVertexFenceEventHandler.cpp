@@ -164,7 +164,7 @@ namespace thekogans {
                                                         _3ds::ext::BezierPolygon2 (*bezierPolygon).IsSelected (
                                                             selectMask);
                                                     ExecuteAndAddCommand (
-                                                        command::Command::UniquePtr (
+                                                        command::Command::SharedPtr (
                                                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                                                 *bezierPolygon,
                                                                 j,
@@ -174,7 +174,7 @@ namespace thekogans {
                                                                 count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                                                                 k < count; ++k) {
                                                             ExecuteAndAddFinalOperation (
-                                                                command::FinalOperation::UniquePtr (
+                                                                command::FinalOperation::SharedPtr (
                                                                     new DrawPolygonFinalOperation (
                                                                         core::GetIOProject ().shaper.viewLayout[k],
                                                                         *bezierPolygon)));
@@ -185,7 +185,7 @@ namespace thekogans {
                                                                 count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                                                                 k < count; ++k) {
                                                             ExecuteAndAddFinalOperation (
-                                                                command::FinalOperation::UniquePtr (
+                                                                command::FinalOperation::SharedPtr (
                                                                     new DrawVertexFinalOperation (
                                                                         core::GetIOProject ().shaper.viewLayout[k],
                                                                         *bezierPolygon, j)));
@@ -196,7 +196,7 @@ namespace thekogans {
                                                 else if (!IsCtrl () &&
                                                         !bezierPolygon->vertices[j].IsSelected (selectMask)) {
                                                     ExecuteAndAddCommand (
-                                                        command::Command::UniquePtr (
+                                                        command::Command::SharedPtr (
                                                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                                                 *bezierPolygon,
                                                                 j,
@@ -207,7 +207,7 @@ namespace thekogans {
                                                                 count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                                                                 k < count; ++k) {
                                                             ExecuteAndAddFinalOperation (
-                                                                command::FinalOperation::UniquePtr (
+                                                                command::FinalOperation::SharedPtr (
                                                                     new DrawPolygonFinalOperation (
                                                                         core::GetIOProject ().shaper.viewLayout[k],
                                                                         *bezierPolygon)));
@@ -218,7 +218,7 @@ namespace thekogans {
                                                                 count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                                                                 k < count; ++k) {
                                                             ExecuteAndAddFinalOperation (
-                                                                command::FinalOperation::UniquePtr (
+                                                                command::FinalOperation::SharedPtr (
                                                                     new DrawVertexFinalOperation (
                                                                         core::GetIOProject ().shaper.viewLayout[k],
                                                                         *bezierPolygon, j)));
@@ -233,7 +233,7 @@ namespace thekogans {
                             }
                             if (commitTransaction) {
                                 ExecuteAndAddFinalOperation (
-                                    command::FinalOperation::UniquePtr (
+                                    command::FinalOperation::SharedPtr (
                                         new core::command::FlipFramebufferFinalOperation));
                                 CommitTransaction ();
                             }

@@ -43,7 +43,7 @@ namespace thekogans {
 
                 virtual void OnSetFocus () {
                     core::GetCommandDispatcher ().BeginTransaction (
-                        command::TransactionFactory::UniquePtr (
+                        command::TransactionFactory::SharedPtr (
                             new core::command::TransactionFactory ("SpeedBarDisplayHideInvertEventHandler")));
                     for (std::size_t i = 0, count = core::GetIOProject ().shaper.polygons2.size (); i < count; ++i) {
                         _3ds::io::BezierPolygon2 *bezierPolygon = core::GetIOProject ().shaper.polygons2[i];
@@ -53,12 +53,12 @@ namespace thekogans {
                                 // FIXME: We need to check the return code.
                                 for (util::ui32 j = 0, viewCount = core::GetIOProject ().shaper.viewLayout.GetViewCount (); j < viewCount; ++j) {
                                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                        command::Command::UniquePtr (
+                                        command::Command::SharedPtr (
                                             new ErasePolygonCommand (
                                                 core::GetIOProject ().shaper.viewLayout[j], *bezierPolygon)));
                                 }
                                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                             *bezierPolygon, _3ds::io::BezierPolygon2::Vertex::Hidden)));
                             }
@@ -67,12 +67,12 @@ namespace thekogans {
                             assert (!_3ds::ext::BezierPolygon2 (*bezierPolygon).IsFrozen ());
                             // FIXME: We need to check the return code.
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                         *bezierPolygon, _3ds::io::BezierPolygon2::Vertex::Hidden)));
                             for (util::ui32 j = 0, viewCount = core::GetIOProject ().shaper.viewLayout.GetViewCount (); j < viewCount; ++j) {
                                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new DrawPolygonCommand (
                                             core::GetIOProject ().shaper.viewLayout[j], *bezierPolygon)));
                             }
@@ -80,7 +80,7 @@ namespace thekogans {
                     }
                     if (!core::GetCommandDispatcher ().IsPendingTransactionEmpty ()) {
                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         core::GetCommandDispatcher ().CommitTransaction ();
                     }

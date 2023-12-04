@@ -164,7 +164,7 @@ namespace thekogans {
                                 // Add the new polygon.
                                 AddPolygon (std::move (bezierPolygon), false);
                                 ExecuteAndAddFinalOperation (
-                                    command::FinalOperation::UniquePtr (
+                                    command::FinalOperation::SharedPtr (
                                         new core::command::FlipFramebufferFinalOperation));
                                 CommitTransaction ();
                                 core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);

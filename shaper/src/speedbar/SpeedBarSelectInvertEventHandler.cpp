@@ -42,7 +42,7 @@ namespace thekogans {
 
                 virtual void OnSetFocus () {
                     core::GetCommandDispatcher ().BeginTransaction (
-                        command::TransactionFactory::UniquePtr (
+                        command::TransactionFactory::SharedPtr (
                             new core::command::TransactionFactory ("SpeedBarSelectInvertEventHandler")));
                     std::vector<_3ds::io::BezierPolygon2 *> bezierPolygons;
                     util::ui16 selectMask = core::GetIOProject ().shaper.selectMask;
@@ -52,14 +52,14 @@ namespace thekogans {
                         if (!_3ds::ext::BezierPolygon2 (*bezierPolygon).IsSelected (selectMask)) {
                             // FIXME: We need to check the return code.
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                         *bezierPolygon, selectMask)));
                         }
                         else {
                             // FIXME: We need to check the return code.
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                         *bezierPolygon, selectMask)));
                         }
@@ -69,12 +69,12 @@ namespace thekogans {
                         assert (!core::GetCommandDispatcher ().IsPendingTransactionEmpty ());
                         for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount (); i < count; ++i) {
                             core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                                command::FinalOperation::UniquePtr (
+                                command::FinalOperation::SharedPtr (
                                     new DrawPolygonsFinalOperation (
                                         core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                         }
                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         core::GetCommandDispatcher ().CommitTransaction ();
                     }

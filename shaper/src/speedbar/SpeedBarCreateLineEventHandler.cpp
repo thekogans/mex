@@ -171,11 +171,11 @@ namespace thekogans {
                                                 view, vertexIndex, xform);
                                         UnhideVertexSegments (ioBezierPolygon (), vertexIndex);
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new _3ds::io::command::BezierPolygon2DeleteVertexCommand (
                                                     ioBezierPolygon (), vertexIndex--)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                                     ioBezierPolygon (), vertexIndex,
                                                     ioBezierPolygon ().vertices[vertexIndex].flags |
@@ -205,7 +205,7 @@ namespace thekogans {
                                             view, vertexIndex, xform);
                                         UnhideVertexSegments (ioBezierPolygon (), vertexIndex);
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new _3ds::io::command::BezierPolygon2DeleteVertexCommand (
                                                     ioBezierPolygon (), vertexIndex)));
                                         _3ds::io::BezierPolygon2::UniquePtr newBezierPolygon =
@@ -232,7 +232,7 @@ namespace thekogans {
                                 BezierPolygon (ioBezierPolygon ()).DrawVertexSegments (
                                     view, vertexIndex, xform);
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new _3ds::io::command::BezierPolygon2VertexSetPtCommand (
                                             ioBezierPolygon (), vertexIndex,
                                             ioBezierPolygon ().vertices[vertexIndex].pt * xform)));
@@ -255,7 +255,7 @@ namespace thekogans {
                                 EraseSegment (ioBezierPolygon (), vertexIndex, nextVertexIndex);
                             }
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2InsertVertexCommand (
                                         ioBezierPolygon (),
                                         ++vertexIndex,
@@ -271,12 +271,12 @@ namespace thekogans {
                             BezierPolygon (ioBezierPolygon ()).DrawVertexSegments (
                                 view, vertexIndex, red, yellow);
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2VertexSetRedCommand (
                                         ioBezierPolygon (), vertexIndex,
                                         ioBezierPolygon ().vertices[vertexIndex].red * red)));
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2VertexSetYellowCommand (
                                         ioBezierPolygon (), vertexIndex,
                                         ioBezierPolygon ().vertices[vertexIndex].yellow * yellow)));
@@ -287,7 +287,7 @@ namespace thekogans {
                                 DrawSegment (ioBezierPolygon (), previousVertexIndex, vertexIndex);
                             }
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2InsertVertexCommand (
                                         ioBezierPolygon (),
                                         ++vertexIndex,
@@ -313,7 +313,7 @@ namespace thekogans {
                             BezierPolygon (ioBezierPolygon ()).DrawVertexSegments (view, vertexIndex, xform);
                             UnhideVertexSegments (ioBezierPolygon (), vertexIndex);
                             ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2DeleteVertexCommand (
                                         ioBezierPolygon (), vertexIndex--)));
                             if (selected) {
