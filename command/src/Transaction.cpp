@@ -39,14 +39,14 @@ namespace thekogans {
                 return true;
             }
 
-            void Transaction::AddCommand (Command::Ptr command) {
+            void Transaction::AddCommand (Command::SharedPtr command) {
                 assert (command.Get () != 0);
                 if (command.Get () != 0) {
                     commands.push_back (command);
                 }
             }
 
-            void Transaction::AddFinalOperation (FinalOperation::Ptr finalOperation) {
+            void Transaction::AddFinalOperation (FinalOperation::SharedPtr finalOperation) {
                 assert (finalOperation.Get () != 0);
                 if (finalOperation.Get () != 0) {
                     finalOperations.push_back (finalOperation);

@@ -33,9 +33,9 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL CommandDispatcher {
             protected:
-                TransactionFactory::Ptr transactionFactory;
-                std::vector<Transaction::Ptr> activeTransactions;
-                std::vector<Transaction::Ptr> retiredTransactions;
+                TransactionFactory::SharedPtr transactionFactory;
+                std::vector<Transaction::SharedPtr> activeTransactions;
+                std::vector<Transaction::SharedPtr> retiredTransactions;
                 std::size_t currentTransaction;
 
             public:
@@ -56,7 +56,7 @@ namespace thekogans {
                 bool IsPendingTransactionEmpty () const;
                 // Transactions can nest.
                 void BeginTransaction (
-                    TransactionFactory::Ptr transactionFactory_ = TransactionFactory::Ptr ());
+                    TransactionFactory::SharedPtr transactionFactory_ = TransactionFactory::SharedPtr ());
                 void CheckpointTransaction ();
                 void RollbackTransaction ();
                 void CommitTransaction ();
@@ -66,8 +66,8 @@ namespace thekogans {
                 // NOTE: The Return value/Parameter idiom used throughout thekogans* is:
                 //      - raw pointer = owned by callee
                 //      - std::unique_ptr = owned by caller
-                bool ExecuteAndAddCommand (Command::Ptr command);
-                bool ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation);
+                bool ExecuteAndAddCommand (Command::SharedPtr command);
+                bool ExecuteAndAddFinalOperation (FinalOperation::SharedPtr finalOperation);
             };
 
         } // namespace command

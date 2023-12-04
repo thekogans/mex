@@ -48,7 +48,7 @@ namespace thekogans {
                             // FIXME: Replace these with blas::BezierPolygon2
                             // This will consolidate the drawing code in opengl.
                             blas::Polygon2::UniquePtr outer;
-                            util::OwnerVector<blas::Polygon2> inner;
+                            util::OwnerVectorWithCopyCtor<blas::Polygon2> inner;
 
                             explicit Polygon (const blas::Polygon2 &polygon) :
                                 outer (new blas::Polygon2 (polygon)) {}
@@ -64,7 +64,7 @@ namespace thekogans {
                                 return *this;
                             }
                         };
-                        util::OwnerVector<Polygon> polygons;
+                        util::OwnerVectorWithCopyCtor<Polygon> polygons;
 
                         Shape (
                             const io::Lofter::Shape &shape_,
@@ -85,7 +85,7 @@ namespace thekogans {
                         Shape &operator = (const Shape &);
                         void AddPolygon (const blas::Polygon2 &polygon);
                     };
-                    util::OwnerVector<Shape> shapes;
+                    util::OwnerVectorWithCopyCtor<Shape> shapes;
                     struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL ScaleDeformation {
                         typedef std::unique_ptr<ScaleDeformation> UniquePtr;
                         const io::Lofter::ScaleDeformation &deformation;

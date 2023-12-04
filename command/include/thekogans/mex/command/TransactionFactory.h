@@ -26,14 +26,14 @@ namespace thekogans {
     namespace mex {
         namespace command {
 
-            struct _LIB_THEKOGANS_MEX_COMMAND_DECL TransactionFactory : public util::ThreadSafeRefCounted {
+            struct _LIB_THEKOGANS_MEX_COMMAND_DECL TransactionFactory : public util::RefCounted {
                 /// \brief
-                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<TransactionFactory>.
-                typedef util::ThreadSafeRefCounted::Ptr<TransactionFactory> Ptr;
+                /// Declare \see{util::RefCounted} pointers.
+                THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (TransactionFactory)
 
                 virtual ~TransactionFactory () {}
 
-                virtual Transaction::Ptr CreateTransaction () = 0;
+                virtual Transaction::SharedPtr CreateTransaction () = 0;
             };
 
         } // namespace command

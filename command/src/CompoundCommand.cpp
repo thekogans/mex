@@ -67,7 +67,7 @@ namespace thekogans {
                 return true;
             }
 
-            bool CompoundCommand::ExecuteAndAddCommand (Command::Ptr command) {
+            bool CompoundCommand::ExecuteAndAddCommand (Command::SharedPtr command) {
                 assert (command.Get () != 0);
                 if (command.Get () != 0) {
                     if (command->Execute ()) {
@@ -79,7 +79,7 @@ namespace thekogans {
                 return false;
             }
 
-            bool CompoundCommand::ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation) {
+            bool CompoundCommand::ExecuteAndAddFinalOperation (FinalOperation::SharedPtr finalOperation) {
                 assert (finalOperation.Get () != 0);
                 if (finalOperation.Get () != 0) {
                     if (finalOperation->Execute ()) {

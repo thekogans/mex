@@ -47,8 +47,13 @@ namespace thekogans {
                 bool &showCone;
 
             public:
-                CameraDefinitionDialog (core::Module &module_, std::string &name_,
-                    util::f32 &roll_, util::f32 &fov_, bool &showCone_, QWidget *parent = 0);
+                CameraDefinitionDialog (
+                    core::Module &module_,
+                    std::string &name_,
+                    util::f32 &roll_,
+                    util::f32 &fov_,
+                    bool &showCone_,
+                    QWidget *parent = 0);
 
             private:
                 void DoLens (util::f32 lens);

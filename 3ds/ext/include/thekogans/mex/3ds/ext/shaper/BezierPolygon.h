@@ -493,7 +493,7 @@ namespace thekogans {
                     bool IsFrozen () const;
 
                     bool IsClockWise () const;
-                    bool IsCircular (util::f32 eps = util::EPSILON) const;
+                    bool IsCircular (util::f32 eps = EPSILON) const;
 
                     inline std::size_t PreviousVertexIndex (std::size_t vertexIndex) const {
                         assert (!bezierPolygon.vertices.empty ());
@@ -579,7 +579,7 @@ namespace thekogans {
                     THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::UniquePtr Simplify (util::f32 amount) const;
                     THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::UniquePtr Linear () const;
                     THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::UniquePtr Curve () const;
-                    THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::UniquePtr Weld (util::f32 eps = util::EPSILON) const;
+                    THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::UniquePtr Weld (util::f32 eps = EPSILON) const;
 
                     void CrossHorizontal (
                         util::f32 y,

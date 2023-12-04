@@ -39,7 +39,7 @@ namespace thekogans {
                         std::vector<io::Mesh::Face> &faces = mesh->faces;
                         faces.resize (teeth * 12);
                         blas::Point3 box[8];
-                        util::f32 dtheta = util::TWOPI / teeth;
+                        util::f32 dtheta = TWOPI / teeth;
                         util::f32 hheight = height * 0.5f;
                         {
                             util::f32 qdtheta = dtheta * 0.25f;

@@ -29,9 +29,9 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL CompoundFinalOperation : public FinalOperation {
             protected:
-                std::vector<FinalOperation::Ptr> finalOperations;
+                std::vector<FinalOperation::SharedPtr> finalOperations;
 
-                bool ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation);
+                bool ExecuteAndAddFinalOperation (FinalOperation::SharedPtr finalOperation);
             };
 
         } // namespace command

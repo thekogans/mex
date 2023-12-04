@@ -54,9 +54,9 @@ namespace thekogans {
                 return activeTransactions.empty () || activeTransactions.back ()->IsEmpty ();
             }
 
-            void CommandDispatcher::BeginTransaction (TransactionFactory::Ptr transactionFactory_) {
+            void CommandDispatcher::BeginTransaction (TransactionFactory::SharedPtr transactionFactory_) {
                 transactionFactory = transactionFactory_;
-                Transaction::Ptr transaction;
+                Transaction::SharedPtr transaction;
                 if (transactionFactory.Get () != 0) {
                     transaction = transactionFactory->CreateTransaction ();
                 }
@@ -85,14 +85,14 @@ namespace thekogans {
             void CommandDispatcher::CommitTransaction () {
                 assert (!activeTransactions.empty ());
                 if (!activeTransactions.empty ()) {
-                    Transaction::Ptr transaction (activeTransactions.back ());
+                    Transaction::SharedPtr transaction (activeTransactions.back ());
                     activeTransactions.pop_back ();
                     if (!transaction->IsEmpty ()) {
                         if (!activeTransactions.empty ()) {
                             assert (transaction->IsUndoable ());
                             assert (!transaction->IsCommitting ());
                             activeTransactions.back ()->AddCommand (
-                                util::dynamic_refcounted_pointer_cast<Command> (transaction));
+                                util::dynamic_refcounted_sharedptr_cast<Command> (transaction));
                         }
                         else if (transaction->IsUndoable ()) {
                             if (CanRedo ()) {
@@ -115,14 +115,14 @@ namespace thekogans {
             void CommandDispatcher::AbortTransaction () {
                 assert (!activeTransactions.empty ());
                 if (!activeTransactions.empty ()) {
-                    Transaction::Ptr transaction (activeTransactions.back ());
+                    Transaction::SharedPtr transaction (activeTransactions.back ());
                     activeTransactions.pop_back ();
                     transaction->Optimize ();
                     transaction->Undo ();
                 }
             }
 
-            bool CommandDispatcher::ExecuteAndAddCommand (Command::Ptr command) {
+            bool CommandDispatcher::ExecuteAndAddCommand (Command::SharedPtr command) {
                 assert (!activeTransactions.empty ());
                 assert (command.Get () != 0);
                 if (!activeTransactions.empty () && command.Get () != 0) {
@@ -134,7 +134,7 @@ namespace thekogans {
                 return false;
             }
 
-            bool CommandDispatcher::ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation) {
+            bool CommandDispatcher::ExecuteAndAddFinalOperation (FinalOperation::SharedPtr finalOperation) {
                 assert (!activeTransactions.empty ());
                 assert (finalOperation.Get () != 0);
                 if (!activeTransactions.empty () && finalOperation.Get () != 0) {

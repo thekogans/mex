@@ -30,8 +30,8 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL CompoundCommand : public Command {
             protected:
-                std::vector<Command::Ptr> commands;
-                std::vector<FinalOperation::Ptr> finalOperations;
+                std::vector<Command::SharedPtr> commands;
+                std::vector<FinalOperation::SharedPtr> finalOperations;
 
             public:
                 inline bool IsEmpty () const {
@@ -43,8 +43,8 @@ namespace thekogans {
 
             protected:
                 // These are meant to be called from CompoundCommand derived Execute ().
-                bool ExecuteAndAddCommand (Command::Ptr command);
-                bool ExecuteAndAddFinalOperation (FinalOperation::Ptr finalOperation);
+                bool ExecuteAndAddCommand (Command::SharedPtr command);
+                bool ExecuteAndAddFinalOperation (FinalOperation::SharedPtr finalOperation);
             };
 
         } // namespace command

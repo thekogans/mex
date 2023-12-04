@@ -30,8 +30,8 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_COMMAND_DECL Transaction : public CompoundCommand {
                 /// \brief
-                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<Transaction>.
-                typedef util::ThreadSafeRefCounted::Ptr<Transaction> Ptr;
+                /// Declare \see{util::RefCounted} pointers.
+                THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (Transaction)
 
                 THEKOGANS_UTIL_DECLARE_HEAP (Transaction)
 
@@ -62,8 +62,8 @@ namespace thekogans {
                     return committing;
                 }
 
-                void AddCommand (Command::Ptr command);
-                void AddFinalOperation (FinalOperation::Ptr finalOperation);
+                void AddCommand (Command::SharedPtr command);
+                void AddFinalOperation (FinalOperation::SharedPtr finalOperation);
             };
 
         } // namespace command

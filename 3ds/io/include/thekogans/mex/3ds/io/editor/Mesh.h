@@ -174,7 +174,7 @@ namespace thekogans {
                             return *this;
                         }
                     };
-                    util::OwnerVector<Material> materials;
+                    util::OwnerVectorWithCopyCtor<Material> materials;
                     blas::Matrix3 xform;
                     util::ui8 paletteIndex;
                     struct _LIB_THEKOGANS_MEX_3DS_IO_DECL Map {

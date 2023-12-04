@@ -46,7 +46,7 @@ namespace thekogans {
                     if (!mesh.IsHidden ()) {
                         ShadeModel shadeModel (GL_SMOOTH);
                         Enable lighting (GL_LIGHTING, true);
-                        Enable depthTest(GL_DEPTH_TEST, true);
+                        Enable depthTest (GL_DEPTH_TEST, true);
                         DepthFunc depthFunc (GL_LEQUAL);
                         Enable enableCullFace (GL_CULL_FACE, !project.display.seeThrough);
                         CullFace cullFace (GL_BACK);

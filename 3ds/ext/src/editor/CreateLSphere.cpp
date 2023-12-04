@@ -39,9 +39,9 @@ namespace thekogans {
                         faces.resize (segs * (bands - 1) * 2);
                         util::ui32 vertexIndex = 0;
                         {
-                            util::f32 dphi = util::PI / bands;
+                            util::f32 dphi = PI / bands;
                             util::f32 phi = dphi;
-                            util::f32 dtheta = util::TWOPI / segs;
+                            util::f32 dtheta = TWOPI / segs;
                             // top vertex
                             vertices[vertexIndex++] = blas::Point3 (0.0f, 0.0f, radius);
                             // middle vertices

@@ -40,7 +40,7 @@ namespace thekogans {
                         faces.resize ((segs + 1) * bands * 2);
                         util::ui32 vertexIndex = 0;
                         {
-                            util::f32 dtheta = 2.0f * util::PI / bands;
+                            util::f32 dtheta = 2.0f * PI / bands;
                             util::f32 dheight = height / segs;
                             height *= 0.5f;
                             vertices[vertexIndex++] = blas::Point3 (0.0f, 0.0f, height);

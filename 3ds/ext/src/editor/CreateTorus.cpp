@@ -38,8 +38,8 @@ namespace thekogans {
                         vertices.resize (segs * bands);
                         std::vector<io::Mesh::Face> &faces = mesh->faces;
                         faces.resize (segs * bands * 2);
-                        util::f32 dtheta1 = 2.0f * util::PI / bands;
-                        util::f32 dtheta2 = 2.0f * util::PI / segs;
+                        util::f32 dtheta1 = 2.0f * PI / bands;
+                        util::f32 dtheta2 = 2.0f * PI / segs;
                         {
                             // vertices
                             util::f32 theta1 = 0.0f;

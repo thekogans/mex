@@ -123,7 +123,7 @@ namespace thekogans {
                     std::size_t count = keys.size ();
                     blas::Quaternion qm (blas::Quaternion::Identity);
                     if (kidx > 0 || track.IsLoops ()) {
-                        if (keys[kidx].value.angle > util::TWOPI - util::EPSILON) {
+                        if (keys[kidx].value.angle > TWOPI - EPSILON) {
                             qm = blas::Quaternion (keys[kidx].value.axis.x,
                                 keys[kidx].value.axis.y, keys[kidx].value.axis.z, 0.0f).Log ();
                         }
@@ -138,7 +138,7 @@ namespace thekogans {
                     blas::Quaternion qp (blas::Quaternion::Identity);
                     if (kidx < count - 1 || track.IsLoops ()) {
                         std::size_t i1 = kidx == count - 1 ? 0 : kidx + 1;
-                        if (keys[i1].value.angle > util::TWOPI - util::EPSILON) {
+                        if (keys[i1].value.angle > TWOPI - EPSILON) {
                             qp = blas::Quaternion (keys[i1].value.axis.x,
                                 keys[i1].value.axis.y, keys[i1].value.axis.z, 0.0f).Log ();
                         }

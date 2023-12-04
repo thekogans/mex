@@ -71,7 +71,7 @@ namespace thekogans {
             //          cursor (LEFT_RIGHT, UP_DOWN or BOTH).
             //
             // To get a feel for how the various tool variables and
-            // functions are used, see the tool examples provided with MEX. 
+            // functions are used, see the tool examples provided with MEX.
 
             struct _LIB_THEKOGANS_MEX_CORE_DECL Tool {
                 struct Viewport2D {
@@ -91,7 +91,8 @@ namespace thekogans {
                     opengl::Color color;
 
                 public:
-                    Viewport2D (const _3ds::opengl::View &view,
+                    Viewport2D (
+                        const _3ds::opengl::View &view,
                         const opengl::ui8Color &color_ = _3ds::opengl::SystemXORPalette[_3ds::opengl::WHITE]) :
                         shadeModel (GL_FLAT),
                         lighting (GL_LIGHTING, false),

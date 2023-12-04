@@ -260,7 +260,7 @@ namespace thekogans {
                     }
 
                     // Weld mesh vertices that are within weldThreshold of each other.
-                    void WeldMeshVertices (io::Mesh &mesh, util::f32 weldThreshold = util::EPSILON) {
+                    void WeldMeshVertices (io::Mesh &mesh, util::f32 weldThreshold = EPSILON) {
                         std::size_t vertexCount = mesh.vertices.size ();
                         std::vector<util::ui16> vertexMap;
                         vertexMap.resize (vertexCount);

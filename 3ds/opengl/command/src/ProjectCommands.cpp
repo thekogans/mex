@@ -32,17 +32,17 @@ namespace thekogans {
                 namespace command {
 
                     bool ProjectValidateAfterOpenCommand::Execute () {
-                        ExecuteAndAddCommand (Command::UniquePtr (
+                        ExecuteAndAddCommand (Command::SharedPtr (
                             new ShaperValidateAfterOpenCommand (project.shaper)));
-                        ExecuteAndAddCommand (Command::UniquePtr (
+                        ExecuteAndAddCommand (Command::SharedPtr (
                             new LofterValidateAfterOpenCommand (project.lofter)));
-                        ExecuteAndAddCommand (Command::UniquePtr (
+                        ExecuteAndAddCommand (Command::SharedPtr (
                             new EditorValidateAfterOpenCommand (project.editor)));
-                        ExecuteAndAddCommand (Command::UniquePtr (
+                        ExecuteAndAddCommand (Command::SharedPtr (
                             new KeyframerValidateAfterOpenCommand (project.keyframer)));
-                        //ExecuteAndAddCommand (Command::UniquePtr (
+                        //ExecuteAndAddCommand (Command::SharedPtr (
                             //new MaterialsEditorValidateAfterOpenCommand (project.materialsEditor)));
-                        //ExecuteAndAddCommand (Command::UniquePtr (
+                        //ExecuteAndAddCommand (Command::SharedPtr (
                             //new VideoPostValidateAfterOpenCommand (project.videoPost)));
                         return true;
                     }

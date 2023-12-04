@@ -28,7 +28,7 @@ namespace thekogans {
 
                     bool EditorValidateAfterOpenCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new openglEditorComplexTypeSwapCommand (editor, newEditor)));
                         return true;
                     }

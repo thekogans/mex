@@ -28,10 +28,10 @@ namespace thekogans {
     namespace mex {
         namespace command {
 
-            struct _LIB_THEKOGANS_MEX_COMMAND_DECL FinalOperation : public util::ThreadSafeRefCounted {
+            struct _LIB_THEKOGANS_MEX_COMMAND_DECL FinalOperation : public util::RefCounted {
                 /// \brief
-                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<FinalOperation>.
-                typedef util::ThreadSafeRefCounted::Ptr<FinalOperation> Ptr;
+                /// Declare \see{util::RefCounted} pointers.
+                THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (FinalOperation)
 
                 FinalOperation ();
                 virtual ~FinalOperation ();

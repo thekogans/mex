@@ -28,10 +28,10 @@ namespace thekogans {
     namespace mex {
         namespace command {
 
-            struct _LIB_THEKOGANS_MEX_COMMAND_DECL Command : public util::ThreadSafeRefCounted {
+            struct _LIB_THEKOGANS_MEX_COMMAND_DECL Command : public util::RefCounted {
                 /// \brief
-                /// Convenient typedef for util::ThreadSafeRefCounted::Ptr<Command>.
-                typedef util::ThreadSafeRefCounted::Ptr<Command> Ptr;
+                /// Declare \see{util::RefCounted} pointers.
+                THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (Command)
 
                 Command ();
                 virtual ~Command ();

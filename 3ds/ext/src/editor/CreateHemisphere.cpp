@@ -40,9 +40,9 @@ namespace thekogans {
                         util::ui32 vertexIndex = 0;
                         util::f32 halfRadius = radius * 0.5f;
                         {
-                            util::f32 dphi = util::PI / (bands * 2.0f);
+                            util::f32 dphi = PI / (bands * 2.0f);
                             util::f32 phi = dphi;
-                            util::f32 dtheta = 2.0f * util::PI / segs;
+                            util::f32 dtheta = 2.0f * PI / segs;
                             // top
                             vertices[vertexIndex++] = blas::Point3 (0.0f, 0.0f, halfRadius);
                             // middle

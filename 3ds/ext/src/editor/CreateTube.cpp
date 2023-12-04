@@ -41,7 +41,7 @@ namespace thekogans {
                         std::vector<io::Mesh::Face> &faces = mesh->faces;
                         faces.resize ((segs + 1) * bands * 4);
                         {
-                            util::f32 dtheta = 2.0f * util::PI / bands;
+                            util::f32 dtheta = 2.0f * PI / bands;
                             util::f32 dheight = height / segs;
                             height *= 0.5f;
                             for (util::ui32 i = 0, vertexIndex = 0; i <= segs; ++i, height -= dheight) {

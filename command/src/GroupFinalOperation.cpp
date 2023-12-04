@@ -30,7 +30,7 @@ namespace thekogans {
                 return true;
             }
 
-            void GroupFinalOperation::AddFinalOperation (FinalOperation::Ptr finalOperation) {
+            void GroupFinalOperation::AddFinalOperation (FinalOperation::SharedPtr finalOperation) {
                 assert (finalOperation.Get () != 0);
                 if (finalOperation.Get () != 0) {
                     finalOperations.push_back (finalOperation);

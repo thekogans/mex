@@ -62,7 +62,7 @@ namespace thekogans {
                     else {
                         // Generate circle.
                         count = 16;
-                        blas::Matrix3 xform = blas::Matrix3::RotateZ (util::TWOPI / count);
+                        blas::Matrix3 xform = blas::Matrix3::RotateZ (TWOPI / count);
                         points_.push_back (blas::Point3 (x, 0.0f, 0.0f));
                         for (util::ui32 i = 0; i < 15; ++i) {
                             points_.push_back (points_.back () * xform);

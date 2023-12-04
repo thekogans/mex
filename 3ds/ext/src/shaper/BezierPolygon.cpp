@@ -291,7 +291,7 @@ namespace thekogans {
                         FitCubic (*bezierPolygon.get (), polygon, 0,
                             polygon.points.size () - 1, polygon.ComputeLeftTangent (0),
                             polygon.ComputeRightTangent (polygon.points.size () - 1), error);
-                        WeldVertices (*bezierPolygon.get (), util::EPSILON);
+                        WeldVertices (*bezierPolygon.get (), EPSILON);
                         if (!bezierPolygon->vertices.empty ()) {
                             bezierPolygon->vertices[0].flags = io::BezierPolygon2::Vertex::First;
                             bezierPolygon->vertices.back ().flags = io::BezierPolygon2::Vertex::Last;
@@ -323,7 +323,7 @@ namespace thekogans {
 
                 _LIB_THEKOGANS_MEX_3DS_EXT_DECL io::BezierPolygon2::UniquePtr _LIB_THEKOGANS_MEX_3DS_EXT_API Circle (
                         const blas::Point2 &center, util::f32 radius) {
-                    return Arc (center, radius, 0.0f, util::TWOPI, 4, false, true);
+                    return Arc (center, radius, 0.0f, TWOPI, 4, false, true);
                 }
 
                 _LIB_THEKOGANS_MEX_3DS_EXT_DECL io::BezierPolygon2::UniquePtr _LIB_THEKOGANS_MEX_3DS_EXT_API Ellipse (
@@ -354,11 +354,11 @@ namespace thekogans {
                         std::size_t vertexCount,
                         bool curved) {
                     if (curved) {
-                        return Arc (center, radius, angle, util::TWOPI, vertexCount, false, true);
+                        return Arc (center, radius, angle, TWOPI, vertexCount, false, true);
                     }
                     io::BezierPolygon2::UniquePtr bezierPolygon (new io::BezierPolygon2 ());
                     bezierPolygon->vertices.resize (vertexCount);
-                    util::f32 dangle = util::TWOPI / vertexCount;
+                    util::f32 dangle = TWOPI / vertexCount;
                     for (std::size_t i = 0; i < vertexCount; ++i) {
                         bezierPolygon->vertices[i] = io::BezierPolygon2::Vertex (
                             blas::Point2 (center.x + radius * cosf (angle + i * dangle),
@@ -376,7 +376,7 @@ namespace thekogans {
                         bool curved) {
                     io::BezierPolygon2::UniquePtr bezierPolygon (new io::BezierPolygon2 ());
                     bezierPolygon->vertices.resize (10);
-                    util::f32 dangle = util::TWOPI / 5;
+                    util::f32 dangle = TWOPI / 5;
                     for (std::size_t i = 0; i < 5; ++i) {
                         bezierPolygon->vertices[i * 2] = io::BezierPolygon2::Vertex (
                             blas::Point2 (
@@ -416,7 +416,7 @@ namespace thekogans {
                         bool curved) {
                     io::BezierPolygon2::UniquePtr bezierPolygon (new io::BezierPolygon2 ());
                     bezierPolygon->vertices.resize (vertexCount * 2);
-                    util::f32 dangle = util::TWOPI / vertexCount;
+                    util::f32 dangle = TWOPI / vertexCount;
                     util::f32 halfDangle = dangle * 0.5f;
                     for (std::size_t i = 0; i < vertexCount; ++i) {
                         bezierPolygon->vertices[i * 2] = io::BezierPolygon2::Vertex (

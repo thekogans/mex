@@ -28,7 +28,7 @@ namespace thekogans {
 
                     bool ShaperValidateAfterOpenCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new openglShaperComplexTypeSwapCommand (shaper, newShaper)));
                         return true;
                     }

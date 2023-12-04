@@ -23,7 +23,7 @@ namespace thekogans {
         namespace command {
 
             bool CompoundFinalOperation::ExecuteAndAddFinalOperation (
-                    FinalOperation::Ptr finalOperation) {
+                    FinalOperation::SharedPtr finalOperation) {
                 assert (finalOperation.Get () != 0);
                 if (finalOperation.Get () != 0) {
                     if (finalOperation->Execute ()) {
