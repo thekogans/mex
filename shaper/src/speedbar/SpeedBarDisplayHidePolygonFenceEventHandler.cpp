@@ -119,7 +119,7 @@ namespace thekogans {
                                 polygon.closed = true;
                                 core::WaitCursor waitCursor;
                                 if (ExecuteAndAddCommand (
-                                        command::Command::UniquePtr (
+                                        command::Command::SharedPtr (
                                             new HidePolygonsInRegionCommand (
                                                 blas::Region2::UniquePtr (new blas::PolygonRegion2 (polygon)))))) {
                                     CommitTransaction ();

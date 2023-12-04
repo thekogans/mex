@@ -41,14 +41,14 @@ namespace thekogans {
 
                     virtual bool Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new _3ds::io::command::ViewLayoutToggleMaximizedCommand (
                                     module.GetIOModule ().viewLayout)));
                         ExecuteAndAddFinalOperation (
-                            FinalOperation::UniquePtr (
+                            FinalOperation::SharedPtr (
                                 new core::command::DrawViewLayoutFinalOperation (module)));
                         ExecuteAndAddFinalOperation (
-                            FinalOperation::UniquePtr (
+                            FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         return true;
                     }
@@ -59,11 +59,11 @@ namespace thekogans {
 
             void ToolBarToggleMaximizedEventHandler::OnClickLeft () {
                 core::GetCommandDispatcher ().BeginTransaction (
-                    TransactionFactory::UniquePtr (
+                    TransactionFactory::SharedPtr (
                         new core::command::TransactionFactory (
                             "ToolBarToggleMaximizedEventHandler")));
                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                    Command::UniquePtr (
+                    Command::SharedPtr (
                         new ToggleMaximizedCommand (module)));
                 core::GetCommandDispatcher ().CommitTransaction ();
             }

@@ -46,13 +46,13 @@ namespace thekogans {
                             // 0.0f here avoids a whole lot of grief down
                             // the road.
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new OwnerVectorBezierPolygon2clearCommand (
                                         shaper.polygons2)));
                             for (std::size_t i = 0,
                                     count = shaper.polygons3.size (); i < count; ++i) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new OwnerVectorBezierPolygon2push_backCommand (
                                             shaper.polygons2,
                                             io::BezierPolygon3To2 (*shaper.polygons3[i]))));
@@ -65,44 +65,44 @@ namespace thekogans {
                         if (!shaper.viewLayout.layout.IsValid () ||
                                 shaper.viewLayout.views3.size () != 5) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutlayoutSetCommand (
                                         shaper.viewLayout.layout,
                                         io::ViewLayout::Layout (
                                             io::ViewLayout::Layout::Single))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewclearCommand (
                                         shaper.viewLayout.views3)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         shaper.viewLayout.views3,
                                         io::ShapeView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         shaper.viewLayout.views3, io::View ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         shaper.viewLayout.views3, io::View ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         shaper.viewLayout.views3, io::View ())));
                             // Place holder used in maximize/minimize logic.
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         shaper.viewLayout.views3, io::View ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutSetSizeCommand (
                                         shaper.viewLayout,
                                         blas::Size (0, 0, 1024, 768))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         shaper.viewLayout[0],
                                         ext::Shaper (shaper).GetViewBound (
@@ -112,7 +112,7 @@ namespace thekogans {
                             bool maximized = shaper.viewLayout.layout.maximized;
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             shaper.viewLayout)));
                             }
@@ -121,7 +121,7 @@ namespace thekogans {
                                 if (!shaper.viewLayout[i].IsValid () ||
                                         !shaper.viewLayout[i].IsShape ()) {
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new stdVectorViewassignCommand (
                                                 shaper.viewLayout.views3, i,
                                                 io::ShapeView (blas::Size::Empty))));
@@ -129,14 +129,14 @@ namespace thekogans {
                             }
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             shaper.viewLayout)));
                             }
                         }
-                        // From here on out we will write only newer views3. 
+                        // From here on out we will write only newer views3.
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new stdVectorViewclearCommand (
                                     shaper.viewLayout.views)));
                         return true;
@@ -148,13 +148,13 @@ namespace thekogans {
                         // BezierPolygon3
                         {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new OwnerVectorBezierPolygon3clearCommand (
                                         shaper.polygons3)));
                             for (std::size_t i = 0,
                                     count = shaper.polygons2.size (); i < count; ++i) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new OwnerVectorBezierPolygon3push_backCommand (
                                             shaper.polygons3,
                                             io::BezierPolygon2To3 (*shaper.polygons2[i]))));

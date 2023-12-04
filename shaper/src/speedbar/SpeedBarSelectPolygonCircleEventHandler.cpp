@@ -84,16 +84,16 @@ namespace thekogans {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             core::WaitCursor waitCursor;
                             if (circle.radius != 0.0f && IsCtrl () ?
-                                ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
-                                        new UnselectPolygonsInRegionCommand (
-                                            blas::Region2::UniquePtr (
-                                                new blas::CircleRegion (circle))))) :
-                                ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
-                                        new SelectPolygonsInRegionCommand (
-                                            blas::Region2::UniquePtr (
-                                                new blas::CircleRegion (circle)))))) {
+                                    ExecuteAndAddCommand (
+                                        command::Command::SharedPtr (
+                                            new UnselectPolygonsInRegionCommand (
+                                                blas::Region2::UniquePtr (
+                                                    new blas::CircleRegion (circle))))) :
+                                    ExecuteAndAddCommand (
+                                        command::Command::SharedPtr (
+                                            new SelectPolygonsInRegionCommand (
+                                                blas::Region2::UniquePtr (
+                                                    new blas::CircleRegion (circle)))))) {
                                 CommitTransaction ();
                             }
                             else {

@@ -38,7 +38,7 @@ namespace thekogans {
                             std::vector<io::BezierPolygon3::Vertex> &vertices = lofter.path.polygon.vertices;
                             if (vertices.empty ()) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new stdVectorBezierPolygon3Vertexpush_backCommand (
                                             vertices,
                                             io::BezierPolygon3::Vertex (
@@ -47,7 +47,7 @@ namespace thekogans {
                                                 blas::Point3::Zero,
                                                 io::BezierPolygon3::Vertex::First))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new stdVectorBezierPolygon3Vertexpush_backCommand (
                                             vertices,
                                             io::BezierPolygon3::Vertex (
@@ -73,7 +73,7 @@ namespace thekogans {
                                             vertices[j].red.z != 0.0f ||
                                             vertices[j].yellow.z != 0.0f) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new stdVectorBezierPolygon3VertexassignCommand (
                                                     vertices,
                                                     j,
@@ -93,42 +93,42 @@ namespace thekogans {
                         if (!lofter.viewLayout.layout.IsValid (io::ViewLayout::Layout::FourLeft) ||
                             lofter.viewLayout.views3.size () != 5) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutlayoutSetCommand (
                                         lofter.viewLayout.layout,
                                         io::ViewLayout::Layout (io::ViewLayout::Layout::FourLeft))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewclearCommand (
                                         lofter.viewLayout.views3)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         lofter.viewLayout.views3,
                                         io::TopView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         lofter.viewLayout.views3,
                                         io::FrontView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         lofter.viewLayout.views3,
                                         io::UserView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         lofter.viewLayout.views3,
                                         io::ShapeView (blas::Size::Empty))));
                             // Place holder used in maximize/minimize logic.
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         lofter.viewLayout.views3,
                                         io::View ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutSetSizeCommand (
                                         lofter.viewLayout,
                                         blas::Size (0, 0, 1024, 768))));
@@ -136,22 +136,22 @@ namespace thekogans {
                             const ext::Lofter::Shape *shape = extLofter.GetCurrShape ();
                             if (shape != 0) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewZoomBoundCommand (
                                             lofter.viewLayout[0],
                                             extLofter.GetViewBound (ext::View (lofter.viewLayout[0])))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewZoomBoundCommand (
                                             lofter.viewLayout[1],
                                             extLofter.GetViewBound (ext::View (lofter.viewLayout[1])))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewZoomBoundCommand (
                                             lofter.viewLayout[2],
                                             extLofter.GetViewBound (ext::View (lofter.viewLayout[2])))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewZoomBoundCommand (
                                             lofter.viewLayout[3],
                                             shape->GetBound2 (ext::View (lofter.viewLayout[3]).xform))));
@@ -161,14 +161,14 @@ namespace thekogans {
                             bool maximized = lofter.viewLayout.layout.maximized;
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             lofter.viewLayout)));
                             }
                             for (std::size_t i = 0; i < lofter.viewLayout.GetViewCount (); ++i) {
                                 if (!lofter.viewLayout[i].IsValid ()) {
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new stdVectorViewassignCommand (
                                                 lofter.viewLayout.views3,
                                                 i,
@@ -177,14 +177,14 @@ namespace thekogans {
                             }
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             lofter.viewLayout)));
                             }
                         }
-                        // From here on out we will write only newer views3. 
+                        // From here on out we will write only newer views3.
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new stdVectorViewclearCommand (
                                     lofter.viewLayout.views)));
                         return true;

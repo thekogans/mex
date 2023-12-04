@@ -174,17 +174,17 @@ namespace thekogans {
                                                 path.GetFullFileName ();
                                         }
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::ioProjectComplexTypeSwapCommand (
                                                     core::GetIOProject (),
                                                     core::GetIOProject ())));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::extProjectComplexTypeSwapCommand (
                                                     core::GetExtProject (),
                                                     core::GetExtProject ())));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::openglProjectComplexTypeSwapCommand (
                                                     core::GetOpenGLProject (),
                                                     core::GetOpenGLProject ())));
@@ -216,32 +216,32 @@ namespace thekogans {
                                                 path.GetFullFileName ();
                                         }
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::ioEditorComplexTypeSwapCommand (
                                                     core::GetIOProject ().editor,
                                                     core::GetIOProject ().editor)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::ioKeyframerComplexTypeSwapCommand (
                                                     core::GetIOProject ().keyframer,
                                                     core::GetIOProject ().keyframer)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::extEditorComplexTypeSwapCommand (
                                                     core::GetExtProject ().editor,
                                                     core::GetExtProject ().editor)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::extKeyframerComplexTypeSwapCommand (
                                                     core::GetExtProject ().keyframer,
                                                     core::GetExtProject ().keyframer)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::openglEditorComplexTypeSwapCommand (
                                                     core::GetOpenGLProject ().editor,
                                                     core::GetOpenGLProject ().editor)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::openglKeyframerComplexTypeSwapCommand (
                                                     core::GetOpenGLProject ().keyframer,
                                                     core::GetOpenGLProject ().keyframer)));
@@ -261,17 +261,17 @@ namespace thekogans {
                                                 path.GetFullFileName ();
                                         }
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::ioLofterComplexTypeSwapCommand (
                                                     core::GetIOProject ().lofter,
                                                     core::GetIOProject ().lofter)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::extLofterComplexTypeSwapCommand (
                                                     core::GetExtProject ().lofter,
                                                     core::GetExtProject ().lofter)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::openglLofterComplexTypeSwapCommand (
                                                     core::GetOpenGLProject ().lofter,
                                                     core::GetOpenGLProject ().lofter)));
@@ -291,17 +291,17 @@ namespace thekogans {
                                                 path.GetFullFileName ();
                                         }
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::ioShaperComplexTypeSwapCommand (
                                                     core::GetIOProject ().shaper,
                                                     core::GetIOProject ().shaper)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::extShaperComplexTypeSwapCommand (
                                                     core::GetExtProject ().shaper,
                                                     core::GetExtProject ().shaper)));
                                         ExecuteAndAddCommand (
-                                            command::Command::UniquePtr (
+                                            command::Command::SharedPtr (
                                                 new thekogans::mex::command::openglShaperComplexTypeSwapCommand (
                                                     core::GetOpenGLProject ().shaper,
                                                     core::GetOpenGLProject ().shaper)));
@@ -319,7 +319,7 @@ namespace thekogans {
                                     }
                                 }
                                 ExecuteAndAddFinalOperation (
-                                    command::FinalOperation::UniquePtr (
+                                    command::FinalOperation::SharedPtr (
                                         new core::command::SetViewLayoutFinalOperation (module)));
                                 return true;
                             }

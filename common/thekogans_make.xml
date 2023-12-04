@@ -32,12 +32,31 @@
                 name = "mex_core"/>
     <toolchain organization = "thekogans"
                name = "xerces"/>
-    <toolchain organization = "qt"
-               name = "core"/>
-    <toolchain organization = "qt"
-               name = "gui"/>
-    <toolchain organization = "qt"
-               name = "widgets"/>
+    <choose>
+      <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <toolchain organization = "qt"
+                   name = "core"/>
+        <toolchain organization = "qt"
+                   name = "gui"/>
+        <toolchain organization = "qt"
+                   name = "widgwts"/>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <toolchain organization = "qt"
+                   name = "core"/>
+        <toolchain organization = "qt"
+                   name = "gui"/>
+        <toolchain organization = "qt"
+                   name = "widgets"/>
+      </when>
+      <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>QtCore</framework>
+        <framework>QtGui</framework>
+        <framework>QtWidgets</framework>
+        <framework>OpenGL</framework>
+        <framework>AGL</framework>
+      </when>
+    </choose>
   </dependencies>
   <cpp_headers prefix = "include"
                install = "yes">

@@ -66,7 +66,7 @@ namespace thekogans {
                                 blas::Region2::UniquePtr (new blas::BoundRegion2 (bound)),
                                 core::GetIOProject ().shaper.steps);
                             if (pickInfo.FindFirst ()) {
-                                _3ds::io::BezierPolygon2 *bezierPolygon = 
+                                _3ds::io::BezierPolygon2 *bezierPolygon =
                                     core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                                 std::size_t vertexIndex1 = pickInfo.vertexIndex;
                                 assert (vertexIndex1 != util::NIDX);
@@ -82,7 +82,7 @@ namespace thekogans {
                                     EraseSegment (*bezierPolygon, vertexIndex1, vertexIndex2, false);
                                 }
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new _3ds::io::command::BezierPolygon2SegmentRefineCommand (
                                             *bezierPolygon, vertexIndex1, vertexIndex2, bound, core::GetIOProject ().shaper.steps)));
                                 if (selected) {

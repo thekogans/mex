@@ -47,12 +47,12 @@ namespace thekogans {
                             count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                             i < count; ++i) {
                         ExecuteAndAddCommand (
-                            command::Command::UniquePtr (
+                            command::Command::SharedPtr (
                                 new ErasePolygonCommand (
                                     core::GetIOProject ().shaper.viewLayout[i], *bezierPolygon)));
                     }
                     ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                 *bezierPolygon, _3ds::io::BezierPolygon2::Vertex::Hidden)));
                 }
@@ -60,7 +60,7 @@ namespace thekogans {
                     return false;
                 }
                 ExecuteAndAddFinalOperation (
-                    command::FinalOperation::UniquePtr (
+                    command::FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 return true;
             }

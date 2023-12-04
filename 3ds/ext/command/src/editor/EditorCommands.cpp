@@ -28,7 +28,7 @@ namespace thekogans {
 
                     bool EditorValidateAfterOpenCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new extEditorComplexTypeSwapCommand (editor, newEditor)));
                         return true;
                     }

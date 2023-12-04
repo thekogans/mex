@@ -83,7 +83,7 @@ namespace thekogans {
                         else if (state == 3) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             if (ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new HidePolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (
                                                 new blas::BoundRegion2 (bound.Normalize ())))))) {

@@ -63,9 +63,6 @@ namespace thekogans {
                 void AbortTransaction ();
 
                 // NOTE: These methods are only available between BeginTransaction/CommitTransaction calls.
-                // NOTE: The Return value/Parameter idiom used throughout thekogans* is:
-                //      - raw pointer = owned by callee
-                //      - std::unique_ptr = owned by caller
                 bool ExecuteAndAddCommand (Command::SharedPtr command);
                 bool ExecuteAndAddFinalOperation (FinalOperation::SharedPtr finalOperation);
             };

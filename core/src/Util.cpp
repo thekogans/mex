@@ -106,7 +106,7 @@ namespace thekogans {
                     const opengl::ui8Color &color) {
                 std::vector<blas::Point2> points;
                 {
-                    const util::f32 dangle = util::TWOPI / segs;
+                    const util::f32 dangle = TWOPI / segs;
                     for (util::ui32 i = 0; i < segs; ++i) {
                         points.push_back (circle.center +
                             blas::Point2 (circle.radius * cosf (angle), circle.radius * sinf (angle)));
@@ -125,7 +125,7 @@ namespace thekogans {
                 std::vector<blas::Point2> points;
                 {
                     points.resize (10);
-                    const util::f32 dangle = util::TWOPI / 5.0f;
+                    const util::f32 dangle = TWOPI / 5.0f;
                     for (util::ui32 i = 0; i < 5; ++i) {
                         points[i * 2] = center +
                             blas::Point2 (radius * cosf (angle), radius * sinf (angle));

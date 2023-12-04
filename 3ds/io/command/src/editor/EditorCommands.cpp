@@ -41,65 +41,65 @@ namespace thekogans {
                         if (!editor.viewLayout.layout.IsValid () ||
                                 editor.viewLayout.views3.size () != 5) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutlayoutSetCommand (
                                         editor.viewLayout.layout,
                                         io::ViewLayout::Layout (
                                             io::ViewLayout::Layout::Four))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewclearCommand (
                                         editor.viewLayout.views3)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         editor.viewLayout.views3,
                                         io::TopView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         editor.viewLayout.views3,
                                         io::FrontView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         editor.viewLayout.views3,
                                         io::LeftView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         editor.viewLayout.views3,
                                         io::UserView (blas::Size::Empty))));
                             // Place holder used in maximize/minimize logic.
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         editor.viewLayout.views3, io::View ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutSetSizeCommand (
                                         editor.viewLayout,
                                         blas::Size (0, 0, 1024, 768))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         editor.viewLayout[0],
                                         ext::Editor (editor).GetViewBound (
                                             ext::View (editor.viewLayout[0])))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (editor.
                                         viewLayout[1],
                                         ext::Editor (editor).GetViewBound (
                                             ext::View (editor.viewLayout[1])))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         editor.viewLayout[2],
                                         ext::Editor (editor).GetViewBound (
                                             ext::View (editor.viewLayout[2])))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         editor.viewLayout[3],
                                         ext::Editor (editor).GetViewBound (
@@ -109,7 +109,7 @@ namespace thekogans {
                             bool maximized = editor.viewLayout.layout.maximized;
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             editor.viewLayout)));
                             }
@@ -117,14 +117,14 @@ namespace thekogans {
                             for (std::size_t i = 0; i < editor.viewLayout.GetViewCount (); ++i) {
                                 if (!editor.viewLayout[i].IsValid ()) {
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new stdVectorViewassignCommand (
                                                 editor.viewLayout.views3, i, io::View ())));
                                 }
                                 if (editor.viewLayout[i].IsCamera ()) {
                                     if (editor.GetCamera (editor.viewLayout[i].name.value) == 0) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new stdVectorViewassignCommand (
                                                     editor.viewLayout.views3, i, io::View ())));
                                     }
@@ -134,7 +134,7 @@ namespace thekogans {
                                         editor.GetLight (editor.viewLayout[i].name.value);
                                     if (light == 0 || light->spot.get () == 0) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new stdVectorViewassignCommand (
                                                     editor.viewLayout.views3, i, io::View ())));
                                     }
@@ -142,14 +142,14 @@ namespace thekogans {
                             }
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             editor.viewLayout)));
                             }
                         }
-                        // From here on out we will write only newer views3. 
+                        // From here on out we will write only newer views3.
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new stdVectorViewclearCommand (
                                     editor.viewLayout.views)));
                         return true;

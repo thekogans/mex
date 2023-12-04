@@ -183,14 +183,14 @@ namespace thekogans {
 
                         virtual bool Execute () {
                             ExecuteAndAddCommand (
-                                thekogans::mex::command::Command::UniquePtr (
+                                thekogans::mex::command::Command::SharedPtr (
                                     new thekogans::mex::command::stdVectorinsertCommand<
                                     THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> (
                                         bezierPolygon.vertices, index, vertex)));
                             if (index == 0) {
                                 if (!bezierPolygon.vertices[0].IsFirst ()) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 0,
@@ -200,7 +200,7 @@ namespace thekogans {
                                 if (bezierPolygon.vertices.size () > 1 &&
                                         bezierPolygon.vertices[1].IsFirst ()) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 1,
@@ -211,7 +211,7 @@ namespace thekogans {
                             if (index == bezierPolygon.vertices.size () - 1) {
                                 if (!bezierPolygon.vertices[index].IsLast ()) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 index,
@@ -221,7 +221,7 @@ namespace thekogans {
                                 if (bezierPolygon.vertices.size () > 1 &&
                                         bezierPolygon.vertices[index - 1].IsLast ()) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 index - 1,
@@ -230,7 +230,7 @@ namespace thekogans {
                                 }
                                 if (bezierPolygon.vertices[index - 1].IsClosed ()) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 index - 1,
@@ -238,7 +238,7 @@ namespace thekogans {
                                                 ~io::BezierPolygon<T>::Vertex::Closed)));
                                     if (!bezierPolygon.vertices[index].IsClosed ()) {
                                         ExecuteAndAddCommand (
-                                            thekogans::mex::command::Command::UniquePtr (
+                                            thekogans::mex::command::Command::SharedPtr (
                                                 new BezierPolygonVertexSetFlagsCommand<T> (
                                                     bezierPolygon,
                                                     index,
@@ -272,7 +272,7 @@ namespace thekogans {
                         virtual bool Execute () {
                             bool closed = bezierPolygon.vertices[index].IsClosed ();
                             ExecuteAndAddCommand (
-                                thekogans::mex::command::Command::UniquePtr (
+                                thekogans::mex::command::Command::SharedPtr (
                                     new thekogans::mex::command::stdVectoreraseCommand<
                                         THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> (
                                             bezierPolygon.vertices, index)));
@@ -280,7 +280,7 @@ namespace thekogans {
                                 if (index == 0) {
                                     assert (!bezierPolygon.vertices[0].IsFirst ());
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 0,
@@ -290,7 +290,7 @@ namespace thekogans {
                                 if (index == bezierPolygon.vertices.size ()) {
                                     assert (!bezierPolygon.vertices[index - 1].IsLast ());
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon,
                                                 index - 1,
@@ -299,7 +299,7 @@ namespace thekogans {
                                     if (closed) {
                                         assert (!bezierPolygon.vertices[index - 1].IsClosed ());
                                         ExecuteAndAddCommand (
-                                            thekogans::mex::command::Command::UniquePtr (
+                                            thekogans::mex::command::Command::SharedPtr (
                                                 new BezierPolygonVertexSetFlagsCommand<T> (
                                                     bezierPolygon,
                                                     index - 1,

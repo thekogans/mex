@@ -41,6 +41,7 @@ namespace thekogans {
             };
 
             #define THEKOGANS_MEX_COMMAND_DECLARE_FINAL_OPERATION(type)\
+                THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (type)\
                 THEKOGANS_UTIL_DECLARE_HEAP (type)\
             public:\
                 virtual const char *GetName () const {\

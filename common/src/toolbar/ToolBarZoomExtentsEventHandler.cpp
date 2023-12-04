@@ -32,7 +32,7 @@ namespace thekogans {
 
             void ToolBarZoomExtentsEventHandler::OnClickLeft () {
                 core::GetCommandDispatcher ().BeginTransaction (
-                    TransactionFactory::UniquePtr (
+                    TransactionFactory::SharedPtr (
                         new core::command::TransactionFactory (
                             "ToolBarZoomExtentsViewEventHandler")));
                 _3ds::io::ViewLayout &viewLayout = module.GetIOModule ().viewLayout;
@@ -40,21 +40,21 @@ namespace thekogans {
                 _3ds::ext::View::UniquePtr extView (module.GetExtModule ().GetView (view));
                 assert (extView.get () != 0);
                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                    Command::UniquePtr (
+                    Command::SharedPtr (
                         new _3ds::io::command::ViewZoomBoundCommand (view,
                             module.GetExtModule ().GetViewBound (*extView))));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::DrawViewFinalOperation (module, view)));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 core::GetCommandDispatcher ().CommitTransaction ();
             }
 
             void ToolBarZoomExtentsEventHandler::OnClickRight () {
                 core::GetCommandDispatcher ().BeginTransaction (
-                    TransactionFactory::UniquePtr (
+                    TransactionFactory::SharedPtr (
                         new core::command::TransactionFactory (
                             "ToolBarZoomExtentsViewLayoutEventHandler")));
                 _3ds::io::ViewLayout &viewLayout = module.GetIOModule ().viewLayout;
@@ -63,15 +63,15 @@ namespace thekogans {
                     _3ds::ext::View::UniquePtr extView (module.GetExtModule ().GetView (view));
                     assert (extView.get () != 0);
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        Command::UniquePtr (
+                        Command::SharedPtr (
                             new _3ds::io::command::ViewZoomBoundCommand (
                                 view, module.GetExtModule ().GetViewBound (*extView))));
                 }
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::DrawViewLayoutFinalOperation (module)));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 core::GetCommandDispatcher ().CommitTransaction ();
             }

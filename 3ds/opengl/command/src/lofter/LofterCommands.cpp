@@ -28,7 +28,7 @@ namespace thekogans {
 
                     bool LofterValidateAfterOpenCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::Shared\Ptr (
+                            Command::SharedPtr (
                                 new openglLofterComplexTypeSwapCommand (lofter, newLofter)));
                         return true;
                     }

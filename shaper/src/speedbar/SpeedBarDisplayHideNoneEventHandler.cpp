@@ -41,7 +41,7 @@ namespace thekogans {
 
                 virtual void OnSetFocus () {
                     core::GetCommandDispatcher ().BeginTransaction (
-                        command::TransactionFactory::UniquePtr (
+                        command::TransactionFactory::SharedPtr (
                             new core::command::TransactionFactory ("SpeedBarDisplayHideNoneEventHandler")));
                     std::vector<_3ds::io::BezierPolygon2 *> bezierPolygons;
                     for (std::size_t i = 0, count = core::GetIOProject ().shaper.polygons2.size (); i < count; ++i) {
@@ -50,7 +50,7 @@ namespace thekogans {
                         if (_3ds::ext::BezierPolygon2 (*bezierPolygon).IsHidden ()) {
                             // FIXME: We need to check the return code.
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                         *bezierPolygon, _3ds::io::BezierPolygon2::Vertex::Hidden)));
                             bezierPolygons.push_back (bezierPolygon);

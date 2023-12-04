@@ -76,14 +76,14 @@ namespace thekogans {
                         _3ds::io::ViewLayout &viewLayout = module.GetIOModule ().viewLayout;
                         _3ds::io::View &ioView = viewLayout[viewLayout.layout.currViewIndex];
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new Point3SetCommand (ioView.worldOrigin,
                                     (ioView.worldOrigin * view.xform + from - to) * view.ixform)));
                         ExecuteAndAddFinalOperation (
-                            FinalOperation::UniquePtr (
+                            FinalOperation::SharedPtr (
                                 new core::command::DrawViewFinalOperation (module, ioView)));
                         ExecuteAndAddFinalOperation (
-                            FinalOperation::UniquePtr (
+                            FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         CommitTransaction ();
                     }

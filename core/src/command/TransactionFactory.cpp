@@ -47,46 +47,43 @@ namespace thekogans {
                             bool sawFlipFramebufferFinalOperation = false;
                             {
                                 for (std::size_t i = finalOperations.size (); i--;) {
-                                    if (dynamic_cast<SetCurrModuleFinalOperation *> (
+                                    if (util::dynamic_refcounted_sharedptr_cast<SetCurrModuleFinalOperation> (
                                             finalOperations[i]) != 0) {
                                         if (!sawSetCurrModuleFinalOperation) {
                                             sawSetCurrModuleFinalOperation = true;
                                         }
                                         else {
-                                            delete finalOperations[i];
                                             finalOperations.erase (finalOperations.begin () + i);
                                         }
                                     }
-                                    else if (dynamic_cast<DrawViewLayoutFinalOperation *> (
+                                    else if (util::dynamic_refcounted_sharedptr_cast<DrawViewLayoutFinalOperation> (
                                             finalOperations[i]) != 0) {
                                         if (!sawDrawViewLayoutFinalOperation) {
                                             sawDrawViewLayoutFinalOperation = true;
                                         }
                                         else {
-                                            delete finalOperations[i];
                                             finalOperations.erase (finalOperations.begin () + i);
                                         }
                                     }
-                                    else if (dynamic_cast<FlipFramebufferFinalOperation *> (
+                                    else if (util::dynamic_refcounted_sharedptr_cast<FlipFramebufferFinalOperation> (
                                             finalOperations[i]) != 0) {
                                         if (!sawFlipFramebufferFinalOperation) {
                                             sawFlipFramebufferFinalOperation = true;
                                         }
                                         else {
-                                            delete finalOperations[i];
                                             finalOperations.erase (finalOperations.begin () + i);
                                         }
                                     }
                                 }
                             }
                             {
-                                std::vector<thekogans::mex::command::FinalOperation *> drawViewFinalOperations;
+                                std::vector<thekogans::mex::command::FinalOperation::SharedPtr> drawViewFinalOperations;
                                 for (std::size_t i = finalOperations.size (); i--;) {
-                                    if (dynamic_cast<DrawViewFinalOperation *> (finalOperations[i]) != 0) {
+                                    if (util::dynamic_refcounted_sharedptr_cast<DrawViewFinalOperation> (
+                                            finalOperations[i]) != 0) {
                                         if (sawDrawViewLayoutFinalOperation ||
                                                 SawDrawViewFinalOperation (finalOperations[i],
                                                     drawViewFinalOperations)) {
-                                            delete finalOperations[i];
                                             finalOperations.erase (finalOperations.begin () + i);
                                         }
                                         else {
@@ -99,15 +96,16 @@ namespace thekogans {
 
                     private:
                         bool SawDrawViewFinalOperation (
-                                const thekogans::mex::command::FinalOperation *finalOperation,
-                                const std::vector<thekogans::mex::command::FinalOperation *> &drawViewFinalOperations) {
-                            const DrawViewFinalOperation *drawViewFinalOperation1 =
-                                static_cast<const DrawViewFinalOperation *> (finalOperation);
+                                thekogans::mex::command::FinalOperation::SharedPtr finalOperation,
+                                const std::vector<thekogans::mex::command::FinalOperation::SharedPtr> &drawViewFinalOperations) {
+                            DrawViewFinalOperation::SharedPtr drawViewFinalOperation1 =
+                                util::dynamic_refcounted_sharedptr_cast<DrawViewFinalOperation> (finalOperation);
                             assert (drawViewFinalOperation1 != 0);
                             if (drawViewFinalOperation1 != 0) {
                                 for (std::size_t i = 0, count = drawViewFinalOperations.size (); i < count; ++i) {
-                                    const DrawViewFinalOperation *drawViewFinalOperation2 =
-                                        static_cast<const DrawViewFinalOperation *> (drawViewFinalOperations[i]);
+                                    DrawViewFinalOperation::SharedPtr drawViewFinalOperation2 =
+                                        util::dynamic_refcounted_sharedptr_cast<DrawViewFinalOperation> (
+                                            drawViewFinalOperations[i]);
                                     assert (drawViewFinalOperation2 != 0);
                                     if (drawViewFinalOperation2 != 0 &&
                                             &drawViewFinalOperation1->view == &drawViewFinalOperation2->view) {
@@ -122,8 +120,8 @@ namespace thekogans {
                     THEKOGANS_UTIL_IMPLEMENT_HEAP (Transaction)
                 }
 
-                thekogans::mex::command::Transaction::UniquePtr TransactionFactory::CreateTransaction () {
-                    return thekogans::mex::command::Transaction::UniquePtr (
+                thekogans::mex::command::Transaction::SharedPtr TransactionFactory::CreateTransaction () {
+                    return thekogans::mex::command::Transaction::SharedPtr (
                         new Transaction (name, undoable, committing));
                 }
 

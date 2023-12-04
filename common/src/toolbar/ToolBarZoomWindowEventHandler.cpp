@@ -69,15 +69,15 @@ namespace thekogans {
                         _3ds::io::ViewLayout &viewLayout = module.GetIOModule ().viewLayout;
                         _3ds::io::View &view = viewLayout[viewLayout.layout.currViewIndex];
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new _3ds::io::command::ViewZoomBoundCommand (
                                     view, bound.Normalize ())));
                         ExecuteAndAddFinalOperation (
-                            FinalOperation::UniquePtr (
+                            FinalOperation::SharedPtr (
                                 new core::command::DrawViewFinalOperation (
                                     module, view)));
                         ExecuteAndAddFinalOperation (
-                            FinalOperation::UniquePtr (
+                            FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         CommitTransaction ();
                     }

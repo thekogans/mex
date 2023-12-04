@@ -39,11 +39,11 @@ namespace thekogans {
 
                 virtual void OnSetFocus () {
                     core::GetCommandDispatcher ().BeginTransaction (
-                        thekogans::mex::command::TransactionFactory::UniquePtr (
+                        thekogans::mex::command::TransactionFactory::SharedPtr (
                             new core::command::TransactionFactory (
                                 "AcceleratorsFileOpenEventHandler")));
                     if (core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                            thekogans::mex::command::Command::UniquePtr (
+                            thekogans::mex::command::Command::SharedPtr (
                                 new FileOpenCommand (module)))){
                         core::GetCommandDispatcher ().CommitTransaction ();
                     }

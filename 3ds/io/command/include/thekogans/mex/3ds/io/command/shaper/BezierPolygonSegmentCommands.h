@@ -53,11 +53,11 @@ namespace thekogans {
 
                         virtual bool Execute () {
                             ExecuteAndAddCommand (
-                                thekogans::mex::command::Command::UniquePtr (
+                                thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygonVertexSetYellowCommand<T> (
                                         bezierPolygon, vertexIndex1, T::Zero)));
                             ExecuteAndAddCommand (
-                                thekogans::mex::command::Command::UniquePtr (
+                                thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygonVertexSetRedCommand<T> (
                                         bezierPolygon, vertexIndex2, T::Zero)));
                             return true;

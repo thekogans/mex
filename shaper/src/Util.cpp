@@ -47,13 +47,13 @@ namespace thekogans {
                 for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                         i < count; ++i) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new DrawPolygonCommand (
                                 core::GetIOProject ().shaper.viewLayout[i], bezierPolygon)));
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -62,13 +62,13 @@ namespace thekogans {
                 for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                         i < count; ++i) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new ErasePolygonCommand (
                                 core::GetIOProject ().shaper.viewLayout[i], bezierPolygon)));
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -78,7 +78,7 @@ namespace thekogans {
                 if (bezierPolygon.get () != 0) {
                     const _3ds::io::BezierPolygon2 &bezierPolygon_ = *bezierPolygon.get ();
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new command::OwnerVectorBezierPolygon2push_backCommand (
                                 core::GetIOProject ().shaper.polygons2, std::move (bezierPolygon))));
                     DrawPolygon (bezierPolygon_, flip);
@@ -89,7 +89,7 @@ namespace thekogans {
                 assert (polygonIndex < core::GetIOProject ().shaper.polygons2.size ());
                 ErasePolygon (*core::GetIOProject ().shaper.polygons2[polygonIndex], flip);
                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                    command::Command::UniquePtr (
+                    command::Command::SharedPtr (
                         new command::OwnerVectorBezierPolygon2eraseCommand (
                             core::GetIOProject ().shaper.polygons2, polygonIndex)));
             }
@@ -128,13 +128,13 @@ namespace thekogans {
                     for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                             i < count; ++i) {
                         core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                            command::Command::UniquePtr (
+                            command::Command::SharedPtr (
                                 new DrawPolygonsCommand (
                                     core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                     }
                     if (flip) {
                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                     }
                 }
@@ -146,13 +146,13 @@ namespace thekogans {
                     for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                             i < count; ++i) {
                         core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                            command::Command::UniquePtr (
+                            command::Command::SharedPtr (
                                 new ErasePolygonsCommand (
                                     core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                     }
                     if (flip) {
                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                     }
                 }
@@ -163,7 +163,7 @@ namespace thekogans {
                 if (!bezierPolygons.empty ()) {
                     for (std::size_t i = 0, count = bezierPolygons.size (); i < count; ++i) {
                         core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                            command::Command::UniquePtr (
+                            command::Command::SharedPtr (
                                 new command::OwnerVectorBezierPolygon2push_backCommand (
                                     core::GetIOProject ().shaper.polygons2,
                                     _3ds::io::BezierPolygon2::UniquePtr (bezierPolygons[i]))));
@@ -187,7 +187,7 @@ namespace thekogans {
                 {
                     for (std::size_t i = sortedPolygonIndices.size (); i--;) {
                         core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                            command::Command::UniquePtr (
+                            command::Command::SharedPtr (
                                 new command::OwnerVectorBezierPolygon2eraseCommand (
                                     core::GetIOProject ().shaper.polygons2, sortedPolygonIndices[i])));
                     }
@@ -216,13 +216,13 @@ namespace thekogans {
                         if (_3ds::ext::BezierPolygon2 (*bezierPolygons[i]).IsSelected (
                                 core::GetIOProject ().shaper.selectMask)) {
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                         *bezierPolygons[i], core::GetIOProject ().shaper.selectMask)));
                         }
                         else {
                             core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                                command::Command::UniquePtr (
+                                command::Command::SharedPtr (
                                     new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                         *bezierPolygons[i], core::GetIOProject ().shaper.selectMask)));
                         }
@@ -230,12 +230,12 @@ namespace thekogans {
                     for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                             i < count; ++i) {
                         core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new DrawPolygonsFinalOperation (
                                     core::GetIOProject ().shaper.viewLayout[i], bezierPolygons)));
                     }
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -270,13 +270,13 @@ namespace thekogans {
                 for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                         i < count; ++i) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new DrawSegmentCommand (core::GetIOProject ().shaper.viewLayout[i],
                                 bezierPolygon, vertexIndex1, vertexIndex2)));
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -289,13 +289,13 @@ namespace thekogans {
                 for (util::ui32 i = 0, count = core::GetIOProject ().shaper.viewLayout.GetViewCount ();
                         i < count; ++i) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new EraseSegmentCommand (core::GetIOProject ().shaper.viewLayout[i],
                                 bezierPolygon, vertexIndex1, vertexIndex2)));
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -322,7 +322,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -349,7 +349,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -360,7 +360,7 @@ namespace thekogans {
                     std::size_t vertexIndex2) {
                 if (!bezierPolygon.vertices[vertexIndex1].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex1,
                                 bezierPolygon.vertices[vertexIndex1].flags |
@@ -368,7 +368,7 @@ namespace thekogans {
                 }
                 if (!bezierPolygon.vertices[vertexIndex2].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex2,
                                 bezierPolygon.vertices[vertexIndex2].flags |
@@ -382,7 +382,7 @@ namespace thekogans {
                     std::size_t vertexIndex2) {
                 if (bezierPolygon.vertices[vertexIndex1].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex1,
                                 bezierPolygon.vertices[vertexIndex1].flags &
@@ -390,7 +390,7 @@ namespace thekogans {
                 }
                 if (bezierPolygon.vertices[vertexIndex2].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex2,
                                 bezierPolygon.vertices[vertexIndex2].flags &
@@ -407,7 +407,7 @@ namespace thekogans {
                 if (previousVertexIndex != util::NIDX &&
                         !bezierPolygon.vertices[previousVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, previousVertexIndex,
                                 bezierPolygon.vertices[previousVertexIndex].flags |
@@ -415,7 +415,7 @@ namespace thekogans {
                 }
                 if (!bezierPolygon.vertices[vertexIndex1].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex1,
                                 bezierPolygon.vertices[vertexIndex1].flags |
@@ -423,7 +423,7 @@ namespace thekogans {
                 }
                 if (!bezierPolygon.vertices[vertexIndex2].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex2,
                                 bezierPolygon.vertices[vertexIndex2].flags |
@@ -434,7 +434,7 @@ namespace thekogans {
                 if (nextVertexIndex != util::NIDX &&
                         !bezierPolygon.vertices[nextVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, nextVertexIndex,
                                 bezierPolygon.vertices[nextVertexIndex].flags |
@@ -451,7 +451,7 @@ namespace thekogans {
                 if (previousVertexIndex != util::NIDX &&
                         bezierPolygon.vertices[previousVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, previousVertexIndex,
                                 bezierPolygon.vertices[previousVertexIndex].flags &
@@ -459,7 +459,7 @@ namespace thekogans {
                 }
                 if (bezierPolygon.vertices[vertexIndex1].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex1,
                                 bezierPolygon.vertices[vertexIndex1].flags &
@@ -467,7 +467,7 @@ namespace thekogans {
                 }
                 if (bezierPolygon.vertices[vertexIndex2].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex2,
                                 bezierPolygon.vertices[vertexIndex2].flags &
@@ -478,7 +478,7 @@ namespace thekogans {
                 if (nextVertexIndex != util::NIDX &&
                         bezierPolygon.vertices[nextVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, nextVertexIndex,
                                 bezierPolygon.vertices[nextVertexIndex].flags &
@@ -519,7 +519,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -531,12 +531,12 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
 
-            void HideSegments (const std::vector<BezierPolygonSegment *> &segments) { 
+            void HideSegments (const std::vector<BezierPolygonSegment *> &segments) {
                 for (std::size_t i = 0, count = segments.size (); i < count; ++i) {
                     HideSegment (segments[i]->bezierPolygon, segments[i]->vertexIndex1,
                         segments[i]->vertexIndex2);
@@ -572,7 +572,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -597,7 +597,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -608,7 +608,7 @@ namespace thekogans {
                 if (previousVertexIndex != util::NIDX &&
                         !bezierPolygon.vertices[previousVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, previousVertexIndex,
                                 bezierPolygon.vertices[previousVertexIndex].flags |
@@ -616,7 +616,7 @@ namespace thekogans {
                 }
                 if (!bezierPolygon.vertices[vertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex,
                                 bezierPolygon.vertices[vertexIndex].flags |
@@ -627,7 +627,7 @@ namespace thekogans {
                 if (nextVertexIndex != util::NIDX &&
                         !bezierPolygon.vertices[nextVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, nextVertexIndex,
                                 bezierPolygon.vertices[nextVertexIndex].flags |
@@ -641,7 +641,7 @@ namespace thekogans {
                 if (previousVertexIndex != util::NIDX &&
                         bezierPolygon.vertices[previousVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, previousVertexIndex,
                                 bezierPolygon.vertices[previousVertexIndex].flags &
@@ -649,7 +649,7 @@ namespace thekogans {
                 }
                 if (bezierPolygon.vertices[vertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, vertexIndex,
                                 bezierPolygon.vertices[vertexIndex].flags &
@@ -660,7 +660,7 @@ namespace thekogans {
                 if (nextVertexIndex != util::NIDX &&
                         bezierPolygon.vertices[nextVertexIndex].IsHidden ()) {
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetFlagsCommand (
                                 bezierPolygon, nextVertexIndex,
                                 bezierPolygon.vertices[nextVertexIndex].flags &
@@ -882,7 +882,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -895,7 +895,7 @@ namespace thekogans {
                 }
                 if (flip) {
                     core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                        command::FinalOperation::UniquePtr (
+                        command::FinalOperation::SharedPtr (
                             new core::command::FlipFramebufferFinalOperation));
                 }
             }
@@ -920,7 +920,7 @@ namespace thekogans {
                 for (std::size_t i = 0, count = bezierPolygonVertices.size (); i < count; ++i) {
                     std::size_t vertexIndex = bezierPolygonVertices[i]->vertexIndex;
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetPtCommand (
                                 bezierPolygonVertices[i]->bezierPolygon, vertexIndex,
                                 bezierPolygonVertices[i]->bezierPolygon.vertices[vertexIndex].pt * xform)));
@@ -934,12 +934,12 @@ namespace thekogans {
                 for (std::size_t i = 0, count = bezierPolygonVertices.size (); i < count; ++i) {
                     std::size_t vertexIndex = bezierPolygonVertices[i]->vertexIndex;
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetRedCommand (
                                 bezierPolygonVertices[i]->bezierPolygon, vertexIndex,
                                 bezierPolygonVertices[i]->bezierPolygon.vertices[vertexIndex].red * red)));
                     core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new _3ds::io::command::BezierPolygon2VertexSetYellowCommand (
                                 bezierPolygonVertices[i]->bezierPolygon, vertexIndex,
                                 bezierPolygonVertices[i]->bezierPolygon.vertices[vertexIndex].yellow * yellow)));

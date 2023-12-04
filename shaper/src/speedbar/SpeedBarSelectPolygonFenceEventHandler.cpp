@@ -121,12 +121,12 @@ namespace thekogans {
                                 core::WaitCursor waitCursor;
                                 if (IsCtrl () ?
                                     ExecuteAndAddCommand (
-                                        command::Command::UniquePtr (
+                                        command::Command::SharedPtr (
                                             new UnselectPolygonsInRegionCommand (
                                                 blas::Region2::UniquePtr (
                                                     new blas::PolygonRegion2 (polygon))))) :
                                     ExecuteAndAddCommand (
-                                        command::Command::UniquePtr (
+                                        command::Command::SharedPtr (
                                             new SelectPolygonsInRegionCommand (
                                                 blas::Region2::UniquePtr (
                                                     new blas::PolygonRegion2 (polygon)))))) {

@@ -34,7 +34,7 @@ namespace thekogans {
 
                     bool ViewLayoutSetSizeCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new SizeSetCommand (viewLayout.size, size)));
                         // Update view bounds based on layout currStyle.
                         switch (viewLayout.layout.currStyle) {
@@ -44,9 +44,9 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 1);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (0),
@@ -60,18 +60,18 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 1);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (0),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 y.GetViewStart (0),
@@ -85,18 +85,18 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 2);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (0),
@@ -108,36 +108,36 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension x (size.x, size.width, 2);
                                 const ext::ViewLayout::Dimension y (size.y, size.height, 2);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 y.GetViewStart (1),
                                                 x.GetViewSize (1),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (0),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[3].size, 
+                                            viewLayout[3].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 y.GetViewStart (0),
@@ -153,27 +153,27 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension yRight (
                                     size.y, size.height, 1);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (1),
                                                 x.GetViewSize (0),
                                                 yLeft.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (0),
                                                 x.GetViewSize (1),
                                                 yRight.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (0),
@@ -189,27 +189,27 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 2);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 xTop.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (0),
                                                 y.GetViewStart (0),
                                                 xBottom.GetViewSize (0),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (1),
                                                 y.GetViewStart (0),
@@ -225,27 +225,27 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension yRight (
                                     size.y, size.height, 2);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (0),
                                                 x.GetViewSize (0),
                                                 yLeft.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (1),
                                                 x.GetViewSize (1),
                                                 yRight.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (0),
@@ -261,27 +261,27 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 2);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 xTop.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 xTop.GetViewStart (1),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (1),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (0),
                                                 y.GetViewStart (0),
@@ -295,27 +295,27 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 1);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (0),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 y.GetViewStart (0),
                                                 x.GetViewSize (1),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (2),
                                                 y.GetViewStart (0),
@@ -329,27 +329,27 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 3);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (2),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (2)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 x.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 y.GetViewStart (0),
@@ -369,36 +369,36 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension yRight (
                                     size.y, size.height, 1);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (2),
                                                 x.GetViewSize (0),
                                                 yLeft.GetViewSize (2)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (1),
                                                 x.GetViewSize (0),
                                                 yLeft.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (0),
                                                 x.GetViewSize (0),
                                                 yLeft.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[3].size, 
+                                            viewLayout[3].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (0),
@@ -419,36 +419,36 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 2, coverage);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 xTop.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (0),
                                                 y.GetViewStart (0),
                                                 xBottom.GetViewSize (0),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (1),
                                                 y.GetViewStart (0),
                                                 xBottom.GetViewSize (1),
                                                 y.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[3].size, 
+                                            viewLayout[3].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (2),
                                                 y.GetViewStart (0),
@@ -469,36 +469,36 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension yRight (
                                     size.y, size.height, 3);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 x.GetViewStart (0),
                                                 yLeft.GetViewStart (0),
                                                 x.GetViewSize (0),
                                                 yLeft.GetViewSize (0)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (2),
                                                 x.GetViewSize (1),
                                                 yRight.GetViewSize (2)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (1),
                                                 x.GetViewSize (1),
                                                 yRight.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[3].size, 
+                                            viewLayout[3].size,
                                             blas::Size (
                                                 x.GetViewStart (1),
                                                 yRight.GetViewStart (0),
@@ -519,36 +519,36 @@ namespace thekogans {
                                 const ext::ViewLayout::Dimension y (
                                     size.y, size.height, 2, coverage);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[0].size, 
+                                            viewLayout[0].size,
                                             blas::Size (
                                                 xTop.GetViewStart (0),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (0),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[1].size, 
+                                            viewLayout[1].size,
                                             blas::Size (
                                                 xTop.GetViewStart (1),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (1),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[2].size, 
+                                            viewLayout[2].size,
                                             blas::Size (
                                                 xTop.GetViewStart (2),
                                                 y.GetViewStart (1),
                                                 xTop.GetViewSize (2),
                                                 y.GetViewSize (1)))));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SizeSetCommand (
-                                            viewLayout[3].size, 
+                                            viewLayout[3].size,
                                             blas::Size (
                                                 xBottom.GetViewStart (0),
                                                 y.GetViewStart (0),
@@ -571,7 +571,7 @@ namespace thekogans {
                         if (currViewIndex != viewLayout.layout.currViewIndex) {
                             assert (currViewIndex < 5);
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.currViewIndex,
                                         currViewIndex)));
@@ -587,74 +587,74 @@ namespace thekogans {
                             if (viewLayout.layout.currViewIndex > 0) {
                                 assert (viewLayout.views3.size () == 5);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SimpleTypeSetCommand<io::View> (
                                             viewLayout[4],
                                             viewLayout[0])));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SimpleTypeSetCommand<io::View> (
                                             viewLayout[0],
                                             viewLayout[viewLayout.layout.currViewIndex])));
                             }
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.lastStyle,
                                         viewLayout.layout.currStyle)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.currStyle,
                                         io::ViewLayout::Layout::Single)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.lastViewIndex,
                                         viewLayout.layout.currViewIndex)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.currViewIndex,
                                         0)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new boolSetCommand (
                                         viewLayout.layout.maximized,
                                         true)));
                         }
                         else {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new boolSetCommand (
                                         viewLayout.layout.maximized,
                                         false)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.currStyle,
                                         viewLayout.layout.lastStyle)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (
                                         viewLayout.layout.currViewIndex,
                                         viewLayout.layout.lastViewIndex)));
                             if (viewLayout.layout.currViewIndex > 0) {
                                 assert (viewLayout.views3.size () == 5);
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SimpleTypeSetCommand<io::View> (
                                             viewLayout[viewLayout.layout.currViewIndex],
                                             viewLayout[0])));
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new SimpleTypeSetCommand<io::View> (
                                             viewLayout[0],
                                             viewLayout[4])));
                             }
                         }
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new ViewLayoutSetSizeCommand (
                                     viewLayout,
                                     viewLayout.size)));
@@ -667,7 +667,7 @@ namespace thekogans {
                         for (std::size_t i = 0,
                                 count = viewLayout.GetViewCount (); i < count; ++i) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomInCommand (viewLayout[i])));
                         }
                         return true;
@@ -679,7 +679,7 @@ namespace thekogans {
                         for (std::size_t i = 0,
                                 count = viewLayout.GetViewCount (); i < count; ++i) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomOutCommand (viewLayout[i])));
                         }
                         return true;
@@ -691,7 +691,7 @@ namespace thekogans {
                         for (std::size_t i = 0,
                                 count = viewLayout.GetViewCount (); i < count; ++i) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (viewLayout[i], bound)));
                         }
                         return true;

@@ -157,7 +157,7 @@ namespace thekogans {
                                 ErasePolygons (bezierPolygons, false);
                                 for (std::size_t i = 0, count = bezierPolygons.size (); i < count; ++i) {
                                     ExecuteAndAddCommand (
-                                        command::Command::UniquePtr (
+                                        command::Command::SharedPtr (
                                             new _3ds::ext::command::BezierPolygon2XformCommand (
                                                 *bezierPolygons[i], xform)));
                                 }

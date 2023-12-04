@@ -94,7 +94,7 @@ namespace thekogans {
                         newKeyframer.ambientNode.colorTrack.keys.push_back (
                             io::Point3Track::Key (0, blas::Point3 (color.r, color.g, color.b)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new ComplexTypeSwapCommand<io::Keyframer> (keyframer, newKeyframer)));
                         return true;
                     }
@@ -199,7 +199,7 @@ namespace thekogans {
                                 // be parents, its safe to assign them a unique one.
                                 if ((*it)->id == util::NIDX16) {
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new ui16SetCommand ((*it)->id, uniqueId++)));
                                 }
                                 std::pair<NodesMap::iterator, bool> result = nodes.insert (
@@ -222,7 +222,7 @@ namespace thekogans {
                                 // See comment in ObjectNode above.
                                 if ((*it)->id == util::NIDX16) {
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new ui16SetCommand ((*it)->id, uniqueId++)));
                                 }
                                 std::pair<NodesMap::iterator, bool> result = nodes.insert (
@@ -246,7 +246,7 @@ namespace thekogans {
                                     // See comment in ObjectNode above.
                                     if ((*it)->id == util::NIDX16) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new ui16SetCommand ((*it)->id, uniqueId++)));
                                     }
                                     std::pair<NodesMap::iterator, bool> result = nodes.insert (
@@ -269,7 +269,7 @@ namespace thekogans {
                                     // See comment in ObjectNode above.
                                     if ((*it)->id == util::NIDX16) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new ui16SetCommand ((*it)->id, uniqueId++)));
                                     }
                                     std::pair<NodesMap::iterator, bool> result = nodes.insert (
@@ -294,7 +294,7 @@ namespace thekogans {
                                     // See comment in ObjectNode above.
                                     if ((*it)->id == util::NIDX16) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new ui16SetCommand ((*it)->id, uniqueId++)));
                                     }
                                     std::pair<NodesMap::iterator, bool> result = nodes.insert (
@@ -317,7 +317,7 @@ namespace thekogans {
                                     // See comment in ObjectNode above.
                                     if ((*it)->id == util::NIDX16) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new ui16SetCommand ((*it)->id, uniqueId++)));
                                     }
                                     std::pair<NodesMap::iterator, bool> result = nodes.insert (
@@ -350,7 +350,7 @@ namespace thekogans {
                                         new io::ObjectNode (uniqueId++, **it));
                                     assert (objectNode.get () != 0);
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new OwnerVectorObjectNodepush_backCommand (
                                                 keyframer.objectNodes, std::move (objectNode))));
                                 }
@@ -366,7 +366,7 @@ namespace thekogans {
                                             new io::TargetNode (uniqueId++, **it));
                                         assert (spotLightTargetNode.get () != 0);
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new OwnerVectorTargetNodepush_backCommand (
                                                     keyframer.spotLightTargetNodes, std::move (spotLightTargetNode))));
                                     }
@@ -375,7 +375,7 @@ namespace thekogans {
                                             new io::SpotLightNode (uniqueId++, **it));
                                         assert (spotLightNode.get () != 0);
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new OwnerVectorSpotLightNodepush_backCommand (
                                                     keyframer.spotLightNodes, std::move (spotLightNode))));
                                     }
@@ -386,7 +386,7 @@ namespace thekogans {
                                             new io::LightNode (uniqueId++, **it));
                                         assert (lightNode.get () != 0);
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new OwnerVectorLightNodepush_backCommand (
                                                     keyframer.lightNodes, std::move (lightNode))));
                                     }
@@ -402,7 +402,7 @@ namespace thekogans {
                                         new io::TargetNode (uniqueId++, **it));
                                     assert (cameraTargetNode.get () != 0);
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new OwnerVectorTargetNodepush_backCommand (
                                                 keyframer.cameraTargetNodes, std::move (cameraTargetNode))));
                                 }
@@ -411,7 +411,7 @@ namespace thekogans {
                                         new io::CameraNode (uniqueId++, **it));
                                     assert (cameraNode.get () != 0);
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new OwnerVectorCameraNodepush_backCommand (
                                                 keyframer.cameraNodes, std::move (cameraNode))));
                                 }
@@ -426,11 +426,11 @@ namespace thekogans {
                                 throw SpotLightHeadTargetMissmatch ("count");
                             }
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new OwnerVectorTargetNodesortCommand (
                                         keyframer.spotLightTargetNodes, CompareTargetNodes ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new OwnerVectorSpotLightNodesortCommand (
                                         keyframer.spotLightNodes, CompareSpotLightNodes ())));
                             for (std::size_t i = 0, count = keyframer.spotLightNodes.size (); i < count; ++i) {
@@ -445,11 +445,11 @@ namespace thekogans {
                                 throw CameraHeadTargetMissmatch ("count");
                             }
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new OwnerVectorTargetNodesortCommand (
                                         keyframer.cameraTargetNodes, CompareTargetNodes ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new OwnerVectorCameraNodesortCommand (
                                         keyframer.cameraNodes, CompareCameraNodes ())));
                             for (std::size_t i = 0, count = keyframer.cameraNodes.size (); i < count; ++i) {
@@ -464,64 +464,64 @@ namespace thekogans {
                         // Check layout sanity.
                         if (!keyframer.viewLayout.layout.IsValid () || keyframer.viewLayout.views3.size () != 5) {
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutlayoutSetCommand (
                                         keyframer.viewLayout.layout,
                                         io::ViewLayout::Layout (io::ViewLayout::Layout::Four))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewclearCommand (
                                         keyframer.viewLayout.views3)));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         keyframer.viewLayout.views3,
                                         io::TopView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         keyframer.viewLayout.views3,
                                         io::FrontView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         keyframer.viewLayout.views3,
                                         io::LeftView (blas::Size::Empty))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         keyframer.viewLayout.views3,
                                         io::UserView (blas::Size::Empty))));
                             // Place holder used in maximize/minimize logic.
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new stdVectorViewpush_backCommand (
                                         keyframer.viewLayout.views3,
                                         io::View ())));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewLayoutSetSizeCommand (
                                         keyframer.viewLayout,
                                         blas::Size (0, 0, 1024, 768))));
                             ext::Keyframer extKeyframer (keyframer);
                             extKeyframer.SetCurrentFrame ();
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         keyframer.viewLayout[0],
                                         extKeyframer.GetViewBound (ext::View (keyframer.viewLayout[0])))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         keyframer.viewLayout[1],
                                         extKeyframer.GetViewBound (ext::View (keyframer.viewLayout[1])))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         keyframer.viewLayout[2],
                                         extKeyframer.GetViewBound (ext::View (keyframer.viewLayout[2])))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ViewZoomBoundCommand (
                                         keyframer.viewLayout[3],
                                         extKeyframer.GetViewBound (ext::View (keyframer.viewLayout[3])))));
@@ -530,7 +530,7 @@ namespace thekogans {
                             bool maximized = keyframer.viewLayout.layout.maximized;
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             keyframer.viewLayout)));
                             }
@@ -538,14 +538,14 @@ namespace thekogans {
                             for (std::size_t i = 0; i < keyframer.viewLayout.GetViewCount (); ++i) {
                                 if (!keyframer.viewLayout[i].IsValid ()) {
                                     ExecuteAndAddCommand (
-                                        Command::UniquePtr (
+                                        Command::SharedPtr (
                                             new stdVectorViewassignCommand (
                                                 keyframer.viewLayout.views3, i, io::View ())));
                                 }
                                 if (keyframer.viewLayout[i].IsCamera ()) {
                                     if (keyframer.GetCameraNode (keyframer.viewLayout[i].name.value) == 0) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new stdVectorViewassignCommand (
                                                     keyframer.viewLayout.views3, i, io::View ())));
                                     }
@@ -553,7 +553,7 @@ namespace thekogans {
                                 else if (keyframer.viewLayout[i].IsSpotLight ()) {
                                     if (keyframer.GetSpotLightNode (keyframer.viewLayout[i].name.value) == 0) {
                                         ExecuteAndAddCommand (
-                                            Command::UniquePtr (
+                                            Command::SharedPtr (
                                                 new stdVectorViewassignCommand (
                                                     keyframer.viewLayout.views3, i, io::View ())));
                                     }
@@ -561,14 +561,14 @@ namespace thekogans {
                             }
                             if (maximized) {
                                 ExecuteAndAddCommand (
-                                    Command::UniquePtr (
+                                    Command::SharedPtr (
                                         new ViewLayoutToggleMaximizedCommand (
                                             keyframer.viewLayout)));
                             }
                         }
-                        // From here on out we will write only newer views3. 
+                        // From here on out we will write only newer views3.
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new stdVectorViewclearCommand (
                                     keyframer.viewLayout.views)));
                         return true;
@@ -636,7 +636,7 @@ namespace thekogans {
                             io::AmbientNode &node = const_cast<io::AmbientNode &> (
                                 extKeyframer.ambientNode->ambientNode);
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (node.id, id)));
                         }
                         return false;
@@ -644,11 +644,11 @@ namespace thekogans {
 
                     void KeyframerValidateBeforeSaveCommand::SetID (ext::Node &node, util::ui16 &id) {
                         io::Node &ioNode = const_cast<io::Node &> (node.node);
-                        ExecuteAndAddCommand (Command::UniquePtr (new ui16SetCommand (ioNode.id, id++)));
+                        ExecuteAndAddCommand (Command::SharedPtr (new ui16SetCommand (ioNode.id, id++)));
                         if (node.parent != 0) {
                             io::Node &ioNode = const_cast<io::Node &> (node.parent->node);
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new ui16SetCommand (ioNode.parent, node.parent->node.id)));
                         }
                         typedef std::vector<ext::Node *>::iterator iterator;

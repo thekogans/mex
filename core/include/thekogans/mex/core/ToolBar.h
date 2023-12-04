@@ -25,7 +25,7 @@
 #include <map>
 #include "thekogans/util/Types.h"
 #include "thekogans/util/Heap.h"
-#include "thekogans/util/AbstractOwnerVector.h"
+#include "thekogans/util/OwnerVector.h"
 #include "thekogans/mex/3ds/io/Color.h"
 #include "thekogans/mex/3ds/opengl/Image.h"
 #include "thekogans/mex/core/Config.h"
@@ -128,7 +128,7 @@ namespace thekogans {
 
                 util::ui32 width;
                 util::ui32 height;
-                util::AbstractOwnerVector<Item> items;
+                util::OwnerVector<Item> items;
 
                 ToolBar (const std::string &path, Module &module);
             };

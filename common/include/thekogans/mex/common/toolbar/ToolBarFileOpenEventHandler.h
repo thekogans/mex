@@ -41,11 +41,11 @@ namespace thekogans {
 
                 virtual void OnClickLeft () {
                     core::GetCommandDispatcher ().BeginTransaction (
-                        thekogans::mex::command::TransactionFactory::UniquePtr (
+                        thekogans::mex::command::TransactionFactory::SharedPtr (
                             new core::command::TransactionFactory (
                                 "ToolBarFileOpenEventHandler")));
                     if (core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                            thekogans::mex::command::Command::UniquePtr (
+                            thekogans::mex::command::Command::SharedPtr (
                                 new FileOpenCommand (module)))) {
                         core::GetCommandDispatcher ().CommitTransaction ();
                     }

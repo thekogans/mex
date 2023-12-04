@@ -49,7 +49,7 @@ namespace thekogans {
                             std::vector<THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> &vertices =
                                 bezierPolygon.vertices;
                             for (std::size_t i = 0, count = vertices.size (); i < count; ++i) {
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new thekogans::mex::command::stdVectorassignCommand<
                                         THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> (
                                             vertices, i, vertices[i] * xform)));

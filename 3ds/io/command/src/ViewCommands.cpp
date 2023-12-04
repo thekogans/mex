@@ -34,7 +34,7 @@ namespace thekogans {
                     bool ViewZoomInCommand::Execute () {
                         return view.zoom * 2.0f < 1000000.0f &&
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new f32SetCommand (view.zoom, view.zoom * 2.0f)));
                     }
 
@@ -43,7 +43,7 @@ namespace thekogans {
                     bool ViewZoomOutCommand::Execute () {
                         return view.zoom * 0.5f > 0.0000001f &&
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new f32SetCommand (view.zoom, view.zoom * 0.5f)));
                     }
 
@@ -57,13 +57,13 @@ namespace thekogans {
                             if (zoom > 1000000.0f) {
                                 zoom = 1000000.0f;
                             }
-                            ExecuteAndAddCommand (Command::UniquePtr (new f32SetCommand (view.zoom, zoom)));
+                            ExecuteAndAddCommand (Command::SharedPtr (new f32SetCommand (view.zoom, zoom)));
                             blas::Matrix3 xform (
                                 blas::Matrix3::RotateX (-util::RAD (90.0f)) *
                                 blas::Matrix3::RotateY (-util::RAD (ext::View::GetHorizontalAngle (view))) *
                                 blas::Matrix3::RotateX (util::RAD (ext::View::GetVerticalAngle (view))));
                             ExecuteAndAddCommand (
-                                Command::UniquePtr (
+                                Command::SharedPtr (
                                     new Point3SetCommand (
                                         view.worldOrigin,
                                         blas::Point3 (bound.Center (), (view.worldOrigin * xform).z) * xform.Invert ())));

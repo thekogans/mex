@@ -83,7 +83,7 @@ namespace thekogans {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             if (circle.radius != 0.0f &&
                                 ExecuteAndAddCommand (
-                                    command::Command::UniquePtr (
+                                    command::Command::SharedPtr (
                                         new HidePolygonsInRegionCommand (
                                             blas::Region2::UniquePtr (new blas::CircleRegion (circle)))))) {
                                 CommitTransaction ();

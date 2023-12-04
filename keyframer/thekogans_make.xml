@@ -38,22 +38,31 @@
                 name = "mex_common"/>
     <toolchain organization = "thekogans"
                name = "xerces"/>
-    <toolchain organization = "qt"
-               name = "core"/>
-    <toolchain organization = "qt"
-               name = "gui"/>
-    <toolchain organization = "qt"
-               name = "widgets"/>
     <choose>
       <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
+        <toolchain organization = "qt"
+                   name = "core"/>
+        <toolchain organization = "qt"
+                   name = "gui"/>
+        <toolchain organization = "qt"
+                   name = "widgets"/>
         <library>opengl32.lib</library>
         <library>glu32.lib</library>
       </when>
       <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
+        <toolchain organization = "qt"
+                   name = "core"/>
+        <toolchain organization = "qt"
+                   name = "gui"/>
+        <toolchain organization = "qt"
+                   name = "widgets"/>
         <library>GL</library>
         <library>GLU</library>
       </when>
       <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
+        <framework>QtCore</framework>
+        <framework>QtGui</framework>
+        <framework>QtWidgets</framework>
         <framework>OpenGL</framework>
         <framework>AGL</framework>
       </when>

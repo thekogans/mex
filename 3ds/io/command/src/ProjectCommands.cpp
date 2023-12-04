@@ -33,22 +33,22 @@ namespace thekogans {
 
                     bool ProjectValidateAfterOpenCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new ShaperValidateAfterOpenCommand (project.shaper)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new LofterValidateAfterOpenCommand (project.lofter)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new EditorValidateAfterOpenCommand (project.editor)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new KeyframerValidateAfterOpenCommand (project.keyframer)));
                         //ExecuteAndAddCommand (
-                        //    Command::UniquePtr (
+                        //    Command::SharedPtr (
                         //        new MaterialsEditorValidateAfterOpenCommand (project.materialsEditor)));
                         //ExecuteAndAddCommand (
-                        //    Command::UniquePtr (
+                        //    Command::SharedPtr (
                         //        new VideoPostValidateAfterOpenCommand (project.videoPost)));
                         return true;
                     }
@@ -57,22 +57,22 @@ namespace thekogans {
 
                     bool ProjectValidateBeforeSaveCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new ShaperValidateBeforeSaveCommand (project.shaper)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new LofterValidateBeforeSaveCommand (project.lofter)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new EditorValidateBeforeSaveCommand (project.editor)));
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new KeyframerValidateBeforeSaveCommand (project.keyframer)));
                         //ExecuteAndAddCommand (
-                        //    Command::UniquePtr (
+                        //    Command::SharedPtr (
                         //        new MaterialsEditorValidateBeforeSaveCommand (project.materialsEditor)));
                         //ExecuteAndAddCommand (
-                        //    Command::UniquePtr (
+                        //    Command::SharedPtr (
                         //        new VideoPostValidateBeforeSaveCommand (project.videoPost)));
                         return true;
                     }

@@ -62,7 +62,7 @@ namespace thekogans {
                                 core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                             assert (bezierPolygon != 0);
                             if (!_3ds::ext::BezierPolygon2 (*bezierPolygon).IsSelected (selectMask)) {
-                                _3ds::io::command::BezierPolygon2SetFlagsCommand::UniquePtr
+                                _3ds::io::command::BezierPolygon2SetFlagsCommand::SharedPtr
                                     bezierPolygonSetFlagsCommand (
                                         new _3ds::io::command::BezierPolygon2SetFlagsCommand (
                                             *bezierPolygon, selectMask));
@@ -77,10 +77,10 @@ namespace thekogans {
                         }
                         // FIXME: replace with DrawPolygonsFinalOperation.
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::DrawViewLayoutFinalOperation (module)));
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         return true;
                     }
@@ -115,7 +115,7 @@ namespace thekogans {
                             // NOTE: We don't check for selected here because the polygon may
                             // have only some of its vertices selected. In that case, those will
                             // need to be unselected.
-                            _3ds::io::command::BezierPolygon2ClearFlagsCommand::UniquePtr
+                            _3ds::io::command::BezierPolygon2ClearFlagsCommand::SharedPtr
                                 bezierPolygonClearFlagsCommand (
                                     new _3ds::io::command::BezierPolygon2ClearFlagsCommand (
                                         *bezierPolygon, selectMask));
@@ -129,10 +129,10 @@ namespace thekogans {
                         }
                         // FIXME: replace with DrawPolygonsFinalOperation.
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::DrawViewLayoutFinalOperation (module)));
                         ExecuteAndAddFinalOperation (
-                            command::FinalOperation::UniquePtr (
+                            command::FinalOperation::SharedPtr (
                                 new core::command::FlipFramebufferFinalOperation));
                         return true;
                     }
@@ -147,10 +147,10 @@ namespace thekogans {
                     bool unselect) {
                 return unselect ?
                     ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new UnselectPolygonsInBoundCommand (module, bound.Normalize ()))) :
                     ExecuteAndAddCommand (
-                        command::Command::UniquePtr (
+                        command::Command::SharedPtr (
                             new SelectPolygonsInBoundCommand (module, bound.Normalize ())));
             }
 

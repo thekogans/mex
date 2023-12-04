@@ -43,7 +43,7 @@ namespace thekogans {
                         undoable (undoable_),
                         committing (committing_) {}
 
-                    virtual thekogans::mex::command::Transaction::UniquePtr CreateTransaction ();
+                    virtual thekogans::mex::command::Transaction::SharedPtr CreateTransaction ();
                 };
 
             } // namespace command

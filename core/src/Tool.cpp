@@ -114,7 +114,7 @@ namespace thekogans {
             void Tool::BeginTransaction () {
                 if (!IsTransactionPending ()) {
                     GetCommandDispatcher ().BeginTransaction (
-                        thekogans::mex::command::TransactionFactory::UniquePtr (
+                        thekogans::mex::command::TransactionFactory::SharedPtr (
                             new command::TransactionFactory (GetName ())));
                 }
             }
@@ -144,15 +144,15 @@ namespace thekogans {
             }
 
             bool Tool::ExecuteAndAddCommand (
-                    thekogans::mex::command::Command::UniquePtr command) {
+                    thekogans::mex::command::Command::SharedPtr command) {
                 return IsTransactionPending () &&
-                    GetCommandDispatcher ().ExecuteAndAddCommand (std::move (command));
+                    GetCommandDispatcher ().ExecuteAndAddCommand (command);
             }
 
             bool Tool::ExecuteAndAddFinalOperation (
-                    thekogans::mex::command::FinalOperation::UniquePtr finalOperation) {
+                    thekogans::mex::command::FinalOperation::SharedPtr finalOperation) {
                 return IsTransactionPending () &&
-                    GetCommandDispatcher ().ExecuteAndAddFinalOperation (std::move (finalOperation));
+                    GetCommandDispatcher ().ExecuteAndAddFinalOperation (finalOperation);
             }
 
         } // namespace core

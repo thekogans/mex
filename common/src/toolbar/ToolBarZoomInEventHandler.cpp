@@ -31,37 +31,37 @@ namespace thekogans {
 
             void ToolBarZoomInEventHandler::OnClickLeft () {
                 core::GetCommandDispatcher ().BeginTransaction (
-                    TransactionFactory::UniquePtr (
+                    TransactionFactory::SharedPtr (
                         new core::command::TransactionFactory (
                             "ToolBarZoomInViewEventHandler")));
                 _3ds::io::ViewLayout &viewLayout = module.GetIOModule ().viewLayout;
                 _3ds::io::View &view = viewLayout[viewLayout.layout.currViewIndex];
                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                    Command::UniquePtr (
+                    Command::SharedPtr (
                         new _3ds::io::command::ViewZoomInCommand (view)));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::DrawViewFinalOperation (module, view)));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 core::GetCommandDispatcher ().CommitTransaction ();
             }
 
             void ToolBarZoomInEventHandler::OnClickRight () {
                 core::GetCommandDispatcher ().BeginTransaction (
-                    TransactionFactory::UniquePtr (
+                    TransactionFactory::SharedPtr (
                         new core::command::TransactionFactory (
                             "ToolBarZoomInViewLayoutEventHandler")));
                 core::GetCommandDispatcher ().ExecuteAndAddCommand (
-                    Command::UniquePtr (
+                    Command::SharedPtr (
                         new _3ds::io::command::ViewLayoutZoomInCommand (
                             module.GetIOModule ().viewLayout)));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::DrawViewLayoutFinalOperation (module)));
                 core::GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                    FinalOperation::UniquePtr (
+                    FinalOperation::SharedPtr (
                         new core::command::FlipFramebufferFinalOperation));
                 core::GetCommandDispatcher ().CommitTransaction ();
             }

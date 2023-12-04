@@ -320,9 +320,9 @@ namespace thekogans {
                 void AbortTransaction ();
 
                 bool ExecuteAndAddCommand (
-                    thekogans::mex::command::Command::UniquePtr command);
+                    thekogans::mex::command::Command::SharedPtr command);
                 bool ExecuteAndAddFinalOperation (
-                    thekogans::mex::command::FinalOperation::UniquePtr finalOperation);
+                    thekogans::mex::command::FinalOperation::SharedPtr finalOperation);
             };
 
             #define THEKOGANS_MEX_CORE_DECLARE_TOOL(name)\

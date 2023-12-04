@@ -28,7 +28,7 @@ namespace thekogans {
 
                     bool KeyframerValidateAfterOpenCommand::Execute () {
                         ExecuteAndAddCommand (
-                            Command::UniquePtr (
+                            Command::SharedPtr (
                                 new extKeyframerComplexTypeSwapCommand (keyframer, newKeyframer)));
                         return true;
                     }

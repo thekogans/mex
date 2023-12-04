@@ -68,10 +68,10 @@ namespace thekogans {
                                     spanAngle *= -1;
                                 }
                                 blas::BezierCubic2 bezierCubic = blas::Arc (center, radius, startAngle, spanAngle);
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2VertexSetYellowCommand (bezierPolygon, vertexIndex1,
                                         bezierCubic.p2 - bezierCubic.p1)));
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2VertexSetRedCommand (bezierPolygon, vertexIndex2,
                                         bezierCubic.p3 - bezierCubic.p4)));
                             }
@@ -143,7 +143,7 @@ namespace thekogans {
                                         da += aj[i - 1] * (bezierPolygon.vertices[nextVertexIndex].pt -
                                             bezierPolygon.vertices[previousVertexIndex].pt);
                                     }
-                                    ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                    ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                         new BezierPolygon2VertexSetYellowCommand (
                                             bezierPolygon, vertexIndex1, da)));
                                 }
@@ -157,7 +157,7 @@ namespace thekogans {
                                         da += aj[i - 1] * (bezierPolygon.vertices[nextVertexIndex].pt -
                                             bezierPolygon.vertices[previousVertexIndex].pt);
                                     }
-                                    ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                    ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                         new BezierPolygon2VertexSetRedCommand (
                                             bezierPolygon, vertexIndex2, da)));
                                 }
@@ -211,8 +211,8 @@ namespace thekogans {
                                         i - vertexIndex1 - 1 : vertexIndex1 - i;
                                     da += aj[i - 1] * (bezierPolygon.vertices[nextVertexIndex].pt -
                                         bezierPolygon.vertices[previousVertexIndex].pt);
-                                } 
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                }
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2VertexSetYellowCommand (
                                         bezierPolygon, vertexIndex1, da)));
                             }
@@ -229,7 +229,7 @@ namespace thekogans {
                                     da += aj[i - 1] * (bezierPolygon.vertices[nextVertexIndex].pt -
                                         bezierPolygon.vertices[previousVertexIndex].pt);
                                 }
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2VertexSetRedCommand (
                                         bezierPolygon, vertexIndex2, da)));
                             }
@@ -265,13 +265,13 @@ namespace thekogans {
                                 blas::BezierCubic2 left;
                                 blas::BezierCubic2 right;
                                 bezierCubic.Split (t + (t1 + t2) * 0.5f * delta, left, right, false);
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2VertexSetYellowCommand (bezierPolygon, vertexIndex1,
                                         left.p2 - left.p1)));
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2VertexSetRedCommand (bezierPolygon, vertexIndex2,
                                         right.p3 - right.p4)));
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::UniquePtr (
+                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
                                     new BezierPolygon2InsertVertexCommand (bezierPolygon, vertexIndex1 + 1,
                                         io::BezierPolygon2::Vertex (left.p4, left.p3 - left.p4,
                                             right.p2 - right.p1))));

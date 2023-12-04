@@ -248,17 +248,17 @@ namespace thekogans {
                                 // debug the broken tools.
                                 assert (GetCommandDispatcher ().IsTransactionPending (tool->GetName ()));
                                 GetCommandDispatcher ().ExecuteAndAddCommand (
-                                    thekogans::mex::command::Command::UniquePtr (
+                                    thekogans::mex::command::Command::SharedPtr (
                                         new thekogans::mex::command::Point3SetCommand (
                                             ioView.worldOrigin, worldOrigin * openglView->ixform)));
                                 GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                                    thekogans::mex::command::FinalOperation::UniquePtr (
+                                    thekogans::mex::command::FinalOperation::SharedPtr (
                                         new command::SetCurrModuleFinalOperation (Module::currModule)));
                                 GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                                    thekogans::mex::command::FinalOperation::UniquePtr (
+                                    thekogans::mex::command::FinalOperation::SharedPtr (
                                         new command::DrawViewFinalOperation (module, ioView)));
                                 GetCommandDispatcher ().ExecuteAndAddFinalOperation (
-                                    thekogans::mex::command::FinalOperation::UniquePtr (
+                                    thekogans::mex::command::FinalOperation::SharedPtr (
                                         new command::FlipFramebufferFinalOperation));
                             }
                         }

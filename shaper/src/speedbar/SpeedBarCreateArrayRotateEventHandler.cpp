@@ -63,7 +63,9 @@ namespace thekogans {
 
                 public:
                     Tool (core::Module &module) :
-                        core::Tool (module), objectsInArray (36), rotate (true) {}
+                        core::Tool (module),
+                        objectsInArray (36),
+                        rotate (true) {}
 
                     virtual void SetFocus () {
                         core::CursorMgr::Instance ().SetPickCursor (

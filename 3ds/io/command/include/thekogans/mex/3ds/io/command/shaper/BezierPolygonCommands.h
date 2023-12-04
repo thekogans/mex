@@ -51,7 +51,7 @@ namespace thekogans {
                             for (std::size_t i = 0, count = vertices.size (); i < count; ++i) {
                                 if (!util::Flags16 (vertices[i].flags).Test (flags)) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon, i, vertices[i].flags | flags)));
                                 }
@@ -82,7 +82,7 @@ namespace thekogans {
                             for (std::size_t i = 0, count = vertices.size (); i < count; ++i) {
                                 if (util::Flags16 (vertices[i].flags).TestAny (flags)) {
                                     ExecuteAndAddCommand (
-                                        thekogans::mex::command::Command::UniquePtr (
+                                        thekogans::mex::command::Command::SharedPtr (
                                             new BezierPolygonVertexSetFlagsCommand<T> (
                                                 bezierPolygon, i, vertices[i].flags & ~flags)));
                                 }
