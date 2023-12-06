@@ -1,6 +1,20 @@
 #ifndef __glext_h_
 #define __glext_h_
 
+#if defined(_WIN32) && !defined(APIENTRY) && !defined(__CYGWIN__) && !defined(__SCITECH_SNAP__)
+    #if !defined (_WINDOWS_)
+        #if !defined (WIN32_LEAN_AND_MEAN)
+            #define WIN32_LEAN_AND_MEAN
+        #endif // !defined (WIN32_LEAN_AND_MEAN)
+        #if !defined (NOMINMAX)
+            #define NOMINMAX
+        #endif // !defined (NOMINMAX)
+        #include <windows.h>
+    #endif // !defined (_WINDOWS_)
+#endif
+#include <cstddef>
+
+
 #if defined (__cplusplus)
 extern "C" {
 #endif
@@ -33,18 +47,6 @@ extern "C" {
 ** not been independently verified as being compliant with the OpenGL(R)
 ** version 1.2.1 Specification.
 */
-
-#if defined(_WIN32) && !defined(APIENTRY) && !defined(__CYGWIN__) && !defined(__SCITECH_SNAP__)
-    #if !defined (_WINDOWS_)
-        #if !defined (WIN32_LEAN_AND_MEAN)
-            #define WIN32_LEAN_AND_MEAN
-        #endif // !defined (WIN32_LEAN_AND_MEAN)
-        #if !defined (NOMINMAX)
-            #define NOMINMAX
-        #endif // !defined (NOMINMAX)
-        #include <windows.h>
-    #endif // !defined (_WINDOWS_)
-#endif
 
 #ifndef APIENTRY
 #define APIENTRY
@@ -2781,7 +2783,6 @@ extern "C" {
 
 /*************************************************************/
 
-#include <cstddef>
 #ifndef GL_VERSION_1_5
 /* GL types for handling large vertex buffer objects */
 typedef ptrdiff_t GLintptr;

@@ -19,7 +19,6 @@
 #define __thekogans_mex_opengl_Framebuffer_h
 
 #include <memory>
-#include <cassert>
 #include "thekogans/util/OwnerVector.h"
 #include "thekogans/mex/blas/Extents.h"
 #include "thekogans/mex/opengl/Config.h"

@@ -18,7 +18,6 @@
 #if !defined (__thekogans_mex_opengl_BindFramebuffer_h)
 #define __thekogans_mex_opengl_BindFramebuffer_h
 
-#include <cassert>
 #include "thekogans/mex/opengl/Config.h"
 
 namespace thekogans {

@@ -34,6 +34,16 @@
 #include "thekogans/mex/blas/Line.h"
 #include "thekogans/mex/blas/MathUtil.h"
 
+/*
+namespace std {
+    template <class Arg, class Result>
+    struct unary_function {
+        typedef Arg argument_type;
+        typedef Result result_type;
+    };
+}
+*/
+
 namespace thekogans {
     namespace mex {
         namespace blas {

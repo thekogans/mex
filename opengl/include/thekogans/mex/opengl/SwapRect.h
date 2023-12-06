@@ -18,17 +18,6 @@
 #if !defined (__thekogans_mex_opengl_SwapRect_h)
 #define __thekogans_mex_opengl_SwapRect_h
 
-#if defined (TOOLCHAIN_OS_Windows)
-    #if !defined (_WINDOWS_)
-        #if !defined (WIN32_LEAN_AND_MEAN)
-            #define WIN32_LEAN_AND_MEAN
-        #endif // !defined (WIN32_LEAN_AND_MEAN)
-        #if !defined (NOMINMAX)
-            #define NOMINMAX
-        #endif // !defined (NOMINMAX)
-        #include <windows.h>
-    #endif // !defined (_WINDOWS_)
-#endif // defined (TOOLCHAIN_OS_Windows)
 #include "thekogans/mex/blas/Size.h"
 #include "thekogans/mex/opengl/Config.h"
 
