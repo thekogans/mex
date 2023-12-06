@@ -18,10 +18,10 @@
 #if !defined (__thekogans_mex_blas_BezierCubic_h)
 #define __thekogans_mex_blas_BezierCubic_h
 
+#include <cassert>
+#include <cmath>
 #include <vector>
 #include <functional>
-#include <math.h>
-#include <cassert>
 #include "thekogans/util/Types.h"
 #include "thekogans/util/Constants.h"
 #include "thekogans/util/Serializer.h"
@@ -34,7 +34,6 @@
 #include "thekogans/mex/blas/Line.h"
 #include "thekogans/mex/blas/MathUtil.h"
 
-/*
 namespace std {
     template <class Arg, class Result>
     struct unary_function {
@@ -42,7 +41,6 @@ namespace std {
         typedef Result result_type;
     };
 }
-*/
 
 namespace thekogans {
     namespace mex {
