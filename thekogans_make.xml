@@ -186,7 +186,7 @@
       <outputs>
         <output>mex-rcc.cpp</output>
       </outputs>
-      <dependencies prefix = "resources">
+      <dependencies>
         <dependency>splash.jpg</dependency>
       </dependencies>
       <message>Running Qt rcc on $(name)</message>

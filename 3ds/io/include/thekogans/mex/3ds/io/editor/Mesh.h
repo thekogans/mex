@@ -23,7 +23,6 @@
 #include <vector>
 #include "thekogans/util/Types.h"
 #include "thekogans/util/Flags.h"
-#include "thekogans/util/OwnerVector.h"
 #include "thekogans/util/Heap.h"
 #include "thekogans/mex/blas/Point2.h"
 #include "thekogans/mex/blas/Point3.h"
@@ -155,8 +154,6 @@ namespace thekogans {
                     std::vector<Face> faces;
                     std::vector<util::ui32> faceSmoothGroups;
                     struct _LIB_THEKOGANS_MEX_3DS_IO_DECL Material {
-                        typedef std::unique_ptr<Material> UniquePtr;
-
                         std::string name;
                         std::vector<util::ui16> faces;
 
@@ -174,7 +171,7 @@ namespace thekogans {
                             return *this;
                         }
                     };
-                    util::OwnerVectorWithCopyCtor<Material> materials;
+                    std::vector<Material> materials;
                     blas::Matrix3 xform;
                     util::ui8 paletteIndex;
                     struct _LIB_THEKOGANS_MEX_3DS_IO_DECL Map {

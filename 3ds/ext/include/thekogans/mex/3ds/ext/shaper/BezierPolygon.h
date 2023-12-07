@@ -174,10 +174,18 @@ namespace thekogans {
 
                         public:
                             CubicPolynomial () {}
-                            CubicPolynomial (const T &C0_, const T &C1_, const T &C2_, const T &C3_) :
-                                C0 (C0_), C1 (C1_), C2 (C2_), C3 (C3_) {}
+                            CubicPolynomial (
+                                const T &C0_,
+                                const T &C1_,
+                                const T &C2_,
+                                const T &C3_) :
+                                C0 (C0_),
+                                C1 (C1_),
+                                C2 (C2_),
+                                C3 (C3_) {}
                             explicit CubicPolynomial (const blas::BezierCubic<T> &bezierCubic) :
-                                C0 (bezierCubic.p1), C1 (3.0f * (bezierCubic.p2 - bezierCubic.p1)),
+                                C0 (bezierCubic.p1),
+                                C1 (3.0f * (bezierCubic.p2 - bezierCubic.p1)),
                                 C2 (3.0f * (bezierCubic.p1 - 2.0f * bezierCubic.p2 + bezierCubic.p3)),
                                 C3 (3.0f * (bezierCubic.p2 - bezierCubic.p3) + bezierCubic.p4 - bezierCubic.p1) {}
 
@@ -233,9 +241,13 @@ namespace thekogans {
                                 bezierPolygon.vertices;
                             for (std::size_t i = 0, count = vertices.size () - !bezierPolygon.IsClosed (); i < count; ++i) {
                                 std::size_t next = (i + 1) % vertices.size ();
-                                polygons.push_back (CubicPolynomial (blas::BezierCubic<T> (
-                                    vertices[i].pt, vertices[i].pt + vertices[i].yellow,
-                                    vertices[next].pt + vertices[next].red, vertices[next].pt)));
+                                polygons.push_back (
+                                    CubicPolynomial (
+                                        blas::BezierCubic<T> (
+                                            vertices[i].pt,
+                                            vertices[i].pt + vertices[i].yellow,
+                                            vertices[next].pt + vertices[next].red,
+                                            vertices[next].pt)));
                             }
                             ComputeArcLength ();
                         }
@@ -285,7 +297,10 @@ namespace thekogans {
                                 lengths[i + 1] = lengths[i] + polygons[i].Length (1.0f);
                             }
                         }
-                        void InvertIntegral (util::f32 s, std::size_t &i, util::f32 &u) const {
+                        void InvertIntegral (
+                                util::f32 s,
+                                std::size_t &i,
+                                util::f32 &u) const {
                             // Clamp s to [0, L] so that t in [tmin, tmax].
                             if (s <= 0.0f) {
                                 i = 0;
@@ -783,8 +798,7 @@ namespace thekogans {
                         newBezierPolygon->vertices[0].flags &= ~io::BezierPolygon2::Vertex::First;
                         newBezierPolygon->vertices.back ().flags &= ~io::BezierPolygon2::Vertex::Last;
                         if (bezierPolygon.IsClosed ()) {
-                            std::vector<THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> vertices;
-                            vertices.resize (vertexIndex);
+                            std::vector<THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> vertices (vertexIndex);
                             memcpy (&vertices[0], &newBezierPolygon->vertices[0],
                                 vertexIndex * sizeof (THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex));
                             memcpy (&newBezierPolygon->vertices[0], &newBezierPolygon->vertices[vertexIndex],

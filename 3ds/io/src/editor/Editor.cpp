@@ -484,15 +484,14 @@ namespace thekogans {
                             case MSH_MAT_GROUP: {
                                 std::string name;
                                 chunk >> name;
-                                Mesh::Material::UniquePtr material (new Mesh::Material (name));
+                                Mesh::Material material (name);
                                 util::ui16 faceCount;
                                 chunk >> faceCount;
-                                material->faces.resize (faceCount);
+                                material.faces.resize (faceCount);
                                 for (util::ui16 i = 0; i < faceCount; ++i) {
-                                    chunk >> material->faces[i];
+                                    chunk >> material.faces[i];
                                 }
-                                mesh.materials.push_back (material.get ());
-                                material.release ();
+                                mesh.materials.push_back (material);
                                 break;
                             }
                             case MSH_BOXMAP: {
@@ -1050,7 +1049,7 @@ namespace thekogans {
                         WriteSMOOTH_GROUP (mesh.faceSmoothGroups, file);
                     }
                     for (i = 0, count = (util::ui16)mesh.materials.size (); i < count; ++i) {
-                        WriteMSH_MAT_GROUP (*mesh.materials[i], file);
+                        WriteMSH_MAT_GROUP (mesh.materials[i], file);
                     }
                     if (mesh.useBoxMap) {
                         WriteMSH_BOXMAP (mesh.boxMap, file);

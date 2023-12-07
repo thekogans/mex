@@ -87,15 +87,15 @@ namespace thekogans {
                         mesh.faces.size (),
                         0);
                     {
-                        const util::OwnerVector<io::Mesh::Material> &meshMaterials = mesh.materials;
+                        const std::vector<io::Mesh::Material> &meshMaterials = mesh.materials;
                         for (std::size_t i = 0, meshMaterialCount = meshMaterials.size ();
                                 i < meshMaterialCount; ++i) {
                             util::OwnerMap<std::string, Material>::const_iterator material =
-                                materials.find (meshMaterials[i]->name);
+                                materials.find (meshMaterials[i].name);
                             if (material != materials.end ()) {
                                 assert (material->second != 0);
                                 const std::vector<util::ui16> &meshMaterialFaces =
-                                    meshMaterials[i]->faces;
+                                    meshMaterials[i].faces;
                                 Element::UniquePtr element (
                                     new Element (mesh, meshMaterialFaces, *material->second));
                                 if (!element->faces.empty ()) {
