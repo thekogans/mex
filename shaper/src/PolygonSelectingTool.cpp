@@ -37,7 +37,7 @@ namespace thekogans {
         namespace shaper {
 
             namespace {
-                class _LIB_THEKOGANS_MEX_SHAPER_DECL SelectPolygonsInBoundCommand : public command::CompoundCommand {
+                class SelectPolygonsInBoundCommand : public command::CompoundCommand {
                     THEKOGANS_MEX_COMMAND_DECLARE_COMMAND (SelectPolygonsInBoundCommand)
 
                 private:
@@ -87,7 +87,7 @@ namespace thekogans {
 
                 THEKOGANS_MEX_COMMAND_IMPLEMENT_COMMAND (SelectPolygonsInBoundCommand)
 
-                class _LIB_THEKOGANS_MEX_SHAPER_DECL UnselectPolygonsInBoundCommand : public command::CompoundCommand {
+                class UnselectPolygonsInBoundCommand : public command::CompoundCommand {
                     THEKOGANS_MEX_COMMAND_DECLARE_COMMAND (UnselectPolygonsInBoundCommand)
 
                 private:

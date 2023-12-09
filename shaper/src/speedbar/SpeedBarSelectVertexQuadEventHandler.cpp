@@ -45,7 +45,7 @@ namespace thekogans {
                 const char *IDS_SELECTVERTEXQUAD_0 = "Select first corner of quad: use CTRL key to deselect\n";
                 const char *IDS_SELECTVERTEXQUAD_1 = "Select opposite corner of quad\n";
 
-                class _LIB_THEKOGANS_MEX_SHAPER_DECL SelectVerticesInBoundCommand : public command::CompoundCommand {
+                class SelectVerticesInBoundCommand : public command::CompoundCommand {
                     THEKOGANS_MEX_COMMAND_DECLARE_COMMAND (SelectVerticesInBoundCommand)
 
                 private:
@@ -104,7 +104,7 @@ namespace thekogans {
 
                 THEKOGANS_MEX_COMMAND_IMPLEMENT_COMMAND (SelectVerticesInBoundCommand)
 
-                class _LIB_THEKOGANS_MEX_SHAPER_DECL UnselectVerticesInBoundCommand : public command::CompoundCommand {
+                class UnselectVerticesInBoundCommand : public command::CompoundCommand {
                     THEKOGANS_MEX_COMMAND_DECLARE_COMMAND (UnselectVerticesInBoundCommand)
 
                 private:

@@ -153,7 +153,16 @@ namespace thekogans {
                     #if defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)
                         THEKOGANS_UTIL_TRY {
                     #endif // defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)
-                            file >> value;
+                            std::string temp;
+                            util::i8 ch;
+                            while (1) {
+                                file >> ch;
+                                if (ch == 0) {
+                                    break;
+                                }
+                                temp += ch;
+                            }
+                            value.swap (temp);
                             return *this;
                     #if defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)
                         }

@@ -1,38 +1,113 @@
 #!/bin/bash
 
-if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/shaper" ]; then
-    mkdir -p bin/OSX/x86_64/clang/Release/Shared/shaper
+# Copyright 2011 Boris Kogan (boris@thekogans.net)
+#
+# This file is part of thekogans_toolchain.
+#
+# thekogans_toolchain is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# thekogans_toolchain is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with thekogans_toolchain. If not, see <http://www.gnu.org/licenses/>.
+
+# This script will build a specified config/type variant of the given
+# organization/project[/branch-version/example] specified in thekogans_make.xml.
+
+function show_command_help () {
+    common_options=
+    echo "usage: $0 \
+$environment_options \
+[[-c | --config]:[Debug | Release]]"
+}
+
+# Create the environment.
+. setenvironment "$@"
+
+config=Release
+
+# Parse command line options.
+for i in "$@"; do
+    case $i in
+        -c:*|--config:*)
+            config="${i#*:}"
+            ;;
+    esac
+done
+
+# Validate input.
+if [ "$config" != "Debug" ] && [ "$config" != "Release" ]; then
+    echo "Unsupported config [-c | --config]: $config [Debug | Release]."
+    exit 1
 fi
-cp shaper/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
-cp shaper/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
-cp shaper/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
-cp shaper/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
-cp shaper/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
-cp shaper/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
-if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/lofter" ]; then
-    mkdir -p bin/OSX/x86_64/clang/Release/Shared/lofter
+
+if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared ]; then
+    mkdir -p bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared
 fi
-cp lofter/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
-cp lofter/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
-cp lofter/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
-cp lofter/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
-cp lofter/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
-cp lofter/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
-if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/editor" ]; then
-    mkdir -p bin/OSX/x86_64/clang/Release/Shared/editor
+cp resources/accelerators.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/filters.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/menubar.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/modules.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/modules.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/speedbar.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/statusbar.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+cp resources/toolbar.dtd bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+
+if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper ]; then
+    mkdir -p bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper
 fi
-cp editor/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
-cp editor/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
-cp editor/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
-cp editor/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
-cp editor/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/editor/
-cp editor/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/editor/
-if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/keyframer" ]; then
-    mkdir -p bin/OSX/x86_64/clang/Release/Shared/keyframer
+cp shaper/resources/menubar/menubar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+cp shaper/resources/toolbar/toolbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+cp shaper/resources/speedbar/speedbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+cp shaper/resources/statusbar/statusbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+cp shaper/resources/accelerators/accelerators.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+cp shaper/resources/filters/filters.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter ]; then
+    mkdir -p bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter
 fi
-cp keyframer/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
-cp keyframer/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
-cp keyframer/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
-cp keyframer/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
-cp keyframer/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
-cp keyframer/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
+cp lofter/resources/menubar/menubar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+cp lofter/resources/toolbar/toolbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+cp lofter/resources/speedbar/speedbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+cp lofter/resources/statusbar/statusbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+cp lofter/resources/accelerators/accelerators.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+cp lofter/resources/filters/filters.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor ]; then
+    mkdir -p bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor
+fi
+cp editor/resources/menubar/menubar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+cp editor/resources/toolbar/toolbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+cp editor/resources/speedbar/speedbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+cp editor/resources/statusbar/statusbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+cp editor/resources/accelerators/accelerators.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+cp editor/resources/filters/filters.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer ]; then
+    mkdir -p bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer
+fi
+cp keyframer/resources/menubar/menubar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+cp keyframer/resources/toolbar/toolbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+cp keyframer/resources/speedbar/speedbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+cp keyframer/resources/statusbar/statusbar.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+cp keyframer/resources/accelerators/accelerators.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+cp keyframer/resources/filters/filters.xml bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+
+if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms ]; then
+    mkdir -p bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms
+fi
+if [ "$TOOLCHAIN_OS" == "Windows" ]; then
+    if [ "$config" == "Debug" ]; then
+        cp /c/Qt/5.14.0/msvc2017_64/plugins/platforms/qwindowsd.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
+    else
+        cp /c/Qt/5.14.0/msvc2017_64/plugins/platforms/qwindows.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
+    fi
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_shaper.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/thekogans_mex_shaper
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_lofter.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/thekogans_mex_lofter
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_editor.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/thekogans_mex_editor
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_keyframer.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/thekogans_mex_keyframer
+#elif [ "$TOOLCHAIN_OS" == "OSX" ]; then
+fi

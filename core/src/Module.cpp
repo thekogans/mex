@@ -16,6 +16,8 @@
 // along with libthekogans_mex_core. If not, see <http://www.gnu.org/licenses/>.
 
 #include "thekogans/util/Constants.h"
+#include "thekogans/util/Path.h"
+#include "thekogans/util/SystemInfo.h"
 #include "thekogans/util/DynamicLibrary.h"
 #include "thekogans/util/Exception.h"
 #include "thekogans/util/XercesUtils.h"
@@ -65,7 +67,10 @@ namespace thekogans {
                     std::string path = util::GetAttributeValue ("path", attributes);
                     util::DynamicLibrary dynamicLibrary;
                     THEKOGANS_UTIL_TRY {
-                        dynamicLibrary.Load (path);
+                        dynamicLibrary.Load (
+                            util::MakePath (
+                                util::SystemInfo::Instance ().GetProcessStartDirectory (),
+                                path));
                         typedef Module::PluginInterface &
                             (_LIB_THEKOGANS_MEX_CORE_API *GetPluginInterfaceProc) ();
                         GetPluginInterfaceProc GetPluginInterface = (GetPluginInterfaceProc)
@@ -106,7 +111,10 @@ namespace thekogans {
                     std::string _default = util::GetAttributeValue ("default", attributes);
                     util::DynamicLibrary dynamicLibrary;
                     THEKOGANS_UTIL_TRY {
-                        dynamicLibrary.Load (path);
+                        dynamicLibrary.Load (
+                            util::MakePath (
+                                util::SystemInfo::Instance ().GetProcessStartDirectory (),
+                                path));
                         typedef const Module::ModuleInterface &
                             (_LIB_THEKOGANS_MEX_CORE_API *GetModuleInterfaceProc) (const char *name);
                         GetModuleInterfaceProc GetModuleInterface = (GetModuleInterfaceProc)
