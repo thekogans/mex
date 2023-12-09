@@ -87,7 +87,7 @@ namespace thekogans {
                     }
                     item = new SpeedBar::Item (text, eventHandler, item);
                     XERCES_CPP_NAMESPACE::DOMNodeList *children = node.getChildNodes ();
-                    for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {
+                    for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                         const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
                         if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
                             (util::XMLChTostring (child.getNodeName ()) == "popup" ||
@@ -108,7 +108,7 @@ namespace thekogans {
                     parser.parse (path.c_str ());
                     XERCES_CPP_NAMESPACE::DOMNodeList *children =
                         parser.getDocument ()->getDocumentElement ()->getChildNodes ();
-                    for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {
+                    for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                         const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
                         if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
                             (util::XMLChTostring (child.getNodeName ()) == "popup" ||
@@ -125,15 +125,15 @@ namespace thekogans {
                 }
             }
 
-            util::ui32 SpeedBar::GetItemCount () const {
-                util::ui32 nitems = 0;
+            std::size_t SpeedBar::GetItemCount () const {
+				std::size_t nitems = 0;
                 for (const Item *item = &root; item != 0; item = item->GetCurrChild ()) {
                     nitems += item->children.size ();
                 }
                 return nitems;
             }
 
-            void SpeedBar::SetCurrItem (util::ui32 itemIndex) {
+            void SpeedBar::SetCurrItem (std::size_t itemIndex) {
                 for (Item *item = &root; item != 0; item = item->GetCurrChild ()) {
                     const std::vector<Item *> &children = item->children;
                     if (itemIndex < children.size ()) {

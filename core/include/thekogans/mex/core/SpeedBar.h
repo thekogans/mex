@@ -164,8 +164,8 @@ namespace thekogans {
                     root.Reset ();
                 }
 
-                util::ui32 GetItemCount () const;
-                void SetCurrItem (util::ui32 itemIndex);
+                std::size_t GetItemCount () const;
+                void SetCurrItem (std::size_t itemIndex);
             };
 
             #define THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER(type)\

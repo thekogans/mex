@@ -83,7 +83,7 @@ namespace thekogans {
                     parser.parse (path.c_str ());
                     const XERCES_CPP_NAMESPACE::DOMNodeList *children =
                         parser.getDocument ()->getDocumentElement ()->getChildNodes ();
-                    for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {
+                    for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                         const XERCES_CPP_NAMESPACE::DOMNode &node = *children->item (i);
                         if (node.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE) {
                             if (util::XMLChTostring (node.getNodeName ()) == "item") {

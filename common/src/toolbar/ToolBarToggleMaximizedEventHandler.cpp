@@ -28,8 +28,7 @@ namespace thekogans {
         namespace common {
 
             namespace {
-                class _LIB_THEKOGANS_MEX_COMMON_DECL ToggleMaximizedCommand :
-                        public CompoundCommand {
+                class ToggleMaximizedCommand : public CompoundCommand {
                     THEKOGANS_MEX_COMMAND_DECLARE_COMMAND (ToggleMaximizedCommand)
 
                 private:

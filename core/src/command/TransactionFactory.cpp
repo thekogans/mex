@@ -35,7 +35,7 @@ namespace thekogans {
                 namespace {
                     // To minimize chatter, this transaction optimizes
                     // away redundant redraw final operations.
-                    struct _LIB_THEKOGANS_MEX_CORE_DECL Transaction : public thekogans::mex::command::Transaction {
+                    struct Transaction : public thekogans::mex::command::Transaction {
                         THEKOGANS_UTIL_DECLARE_HEAP (Transaction)
 
                         Transaction (const std::string &name, bool undoable, bool committing) :

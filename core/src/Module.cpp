@@ -60,26 +60,9 @@ namespace thekogans {
             }
 
             namespace {
-                const std::string GetConfig () {
-                    return std::string (TOOLCHAIN_TRIPLET) +
-                    #if defined (TOOLCHAIN_OS_Windows)
-                    #if defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
-                        "-Debug.";
-                    #else // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
-                        "-Release.";
-                    #endif // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
-                    #else // defined (TOOLCHAIN_OS_Windows)
-                    #if defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
-                        "-Debug";
-                    #else // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
-                        "-Release";
-                    #endif // defined (THEKOGANS_MEX_CORE_CONFIG_Debug)
-                    #endif // defined (TOOLCHAIN_OS_Windows)
-                }
-
                 void ParsePlugin (const XERCES_CPP_NAMESPACE::DOMNode &node, Module &module) {
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes = node.getAttributes ();
-                    std::string path = util::GetAttributeValue ("path", attributes) + "-" + GetConfig ();
+                    std::string path = util::GetAttributeValue ("path", attributes);
                     util::DynamicLibrary dynamicLibrary;
                     THEKOGANS_UTIL_TRY {
                         dynamicLibrary.Load (path);
@@ -113,7 +96,7 @@ namespace thekogans {
                 void ParseModule (const XERCES_CPP_NAMESPACE::DOMNode &node) {
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes = node.getAttributes ();
                     std::string name = util::GetAttributeValue ("name", attributes);
-                    std::string path = util::GetAttributeValue ("path", attributes) + "-" + GetConfig ();
+                    std::string path = util::GetAttributeValue ("path", attributes);
                     std::string menuBarPath = util::GetAttributeValue ("menuBarPath", attributes);
                     std::string toolBarPath = util::GetAttributeValue ("toolBarPath", attributes);
                     std::string speedBarPath = util::GetAttributeValue ("speedBarPath", attributes);
@@ -149,7 +132,7 @@ namespace thekogans {
                             }
                             Module::modules.push_back (Module::ModuleInfo (name, module));
                             const XERCES_CPP_NAMESPACE::DOMNodeList *children = node.getChildNodes ();
-                            for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {
+                            for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                                 const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
                                 if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
                                         util::XMLChTostring (child.getNodeName ()) == "plugin") {
@@ -181,7 +164,7 @@ namespace thekogans {
                     parser.parse (path.c_str ());
                     const XERCES_CPP_NAMESPACE::DOMNodeList *children =
                         parser.getDocument ()->getDocumentElement ()->getChildNodes ();
-                    for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {
+                    for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                         const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
                         if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
                             util::XMLChTostring (child.getNodeName ()) == "module") {

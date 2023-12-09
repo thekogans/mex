@@ -135,7 +135,7 @@ namespace thekogans {
                         rewind = true;
                     }
 
-                    inline util::i32 Read (void *buffer, util::ui32 count) {
+                    inline std::size_t Read (void *buffer, util::ui32 count) {
                     #if defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)
                         THEKOGANS_UTIL_TRY {
                     #endif // defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)

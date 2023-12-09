@@ -7,6 +7,17 @@
                 build_type = "Shared"
                 guid = "c9b6c4ffd72a2276548e99e7729ee19a"
                 schema_version = "2">
+  <constants>
+    <constant name = "qt_version"
+              value = "$(get_toolchain_latest_version -o:qt -p:lib)"/>
+    <constant name = "qt_major_version"
+              value = "$(get_major_version -v:$(qt_version))"/>
+    <if condition = "$(config) == 'Debug'">
+      <constant name = "qt_suffix"
+                value = "d"/>
+
+    </if>
+  </constants>
   <plugin_hosts>
     <project organization = "thekogans"
              name = "mex"/>
@@ -36,26 +47,20 @@
                 name = "mex_core"/>
     <dependency organization = "thekogans"
                 name = "mex_common"/>
+    <toolchain organization = "qt"
+               name = "lib"
+               version = "$(qt_version)"/>
     <toolchain organization = "thekogans"
                name = "xerces"/>
     <choose>
       <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
-        <toolchain organization = "qt"
-                   name = "core"/>
-        <toolchain organization = "qt"
-                   name = "gui"/>
-        <toolchain organization = "qt"
-                   name = "widgets"/>
+        <library>$(TOOLCHAIN_DIR)/lib/qt_lib-$(qt_version)/Qt$(qt_major_version)Core$(qt_suffix).lib</library>
+        <library>$(TOOLCHAIN_DIR)/lib/qt_lib-$(qt_version)/Qt$(qt_major_version)Gui$(qt_suffix).lib</library>
+        <library>$(TOOLCHAIN_DIR)/lib/qt_lib-$(qt_version)/Qt$(qt_major_version)Widgets$(qt_suffix).lib</library>
         <library>opengl32.lib</library>
         <library>glu32.lib</library>
       </when>
       <when condition = "$(TOOLCHAIN_OS) == 'Linux'">
-        <toolchain organization = "qt"
-                   name = "core"/>
-        <toolchain organization = "qt"
-                   name = "gui"/>
-        <toolchain organization = "qt"
-                   name = "widgets"/>
         <library>GL</library>
         <library>GLU</library>
       </when>

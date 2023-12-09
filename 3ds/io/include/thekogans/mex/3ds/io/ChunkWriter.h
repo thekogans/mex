@@ -82,7 +82,7 @@ namespace thekogans {
                         stream (stream_), id (id_) {Start (id);}
                     ~ChunkWriter () {End ();}
 
-                    inline util::ui32 Write (const void *buffer, util::ui32 count) {
+                    inline std::size_t Write (const void *buffer, util::ui32 count) {
                     #if defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)
                         THEKOGANS_UTIL_TRY {
                     #endif // defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)

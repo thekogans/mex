@@ -159,7 +159,7 @@ namespace thekogans {
                     height = util::stringToui32 (util::GetAttributeValue ("height", attributes).c_str ());
                     const XERCES_CPP_NAMESPACE::DOMNodeList *children =
                         parser.getDocument ()->getDocumentElement ()->getChildNodes ();
-                    for (util::ui32 i = 0, count = children->getLength (); i < count; ++i) {
+                    for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                         const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
                         if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
                             (util::XMLChTostring (child.getNodeName ()) == "item" ||
