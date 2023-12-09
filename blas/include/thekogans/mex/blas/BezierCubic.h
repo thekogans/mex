@@ -21,7 +21,6 @@
 #include <cassert>
 #include <cmath>
 #include <vector>
-#include <functional>
 #include "thekogans/util/Types.h"
 #include "thekogans/util/Constants.h"
 #include "thekogans/util/Serializer.h"
@@ -33,16 +32,6 @@
 #include "thekogans/mex/blas/Circle.h"
 #include "thekogans/mex/blas/Line.h"
 #include "thekogans/mex/blas/MathUtil.h"
-
-/*
-namespace std {
-    template <class Arg, class Result>
-    struct unary_function {
-        typedef Arg argument_type;
-        typedef Result result_type;
-    };
-}
-*/
 
 namespace thekogans {
     namespace mex {
@@ -116,8 +105,25 @@ namespace thekogans {
                     bool optimize = true,
                     util::f32 eps = EPSILON) const;
 
+                /// \struct BezierCubic::unary_function BezierCubic.h thekogans/mex/blas/BezierCubic.h
+                ///
+                /// \brief
+                /// Since this simple template has been deprecated (and now removed) from the standard library,
+                /// we recreate it here as a dependency of \see{DefaultFlatnessTest} below.
+                template<
+                    typename ArgumentType,
+                    typename ResultType>
+                struct unary_function {
+                    /// \brief
+                    /// Expose ArgumentType template argument for derivatives to use.
+                    typedef ArgumentType argument_type;
+                    /// \brief
+                    /// Expose ResultType template argument for derivatives to use.
+                    typedef ResultType result_type;
+                };
+
                 struct DefaultFlatnessTest :
-                        public std::unary_function<const BezierCubic<T> &, bool> {
+                        public unary_function<const BezierCubic<T> &, bool> {
                     util::f32 flatness;
                     DefaultFlatnessTest (util::f32 flatness_ = EPSILON) :
                         flatness (flatness_) {}
@@ -144,7 +150,7 @@ namespace thekogans {
 
                 void Rasterize (
                     std::vector<T> &points,
-                    const std::unary_function<const BezierCubic<T> &, bool> &testFlatness =
+                    const unary_function<const BezierCubic<T> &, bool> &testFlatness =
                         DefaultFlatnessTest ()) const;
 
                 bool InBound (const Bound<T> &bound, util::ui32 steps) const;
@@ -171,7 +177,7 @@ namespace thekogans {
             private:
                 void RasterizeHelper (
                     std::vector<T> &points,
-                    const std::unary_function<const BezierCubic<T> &, bool> &testFlatness) const;
+                    const unary_function<const BezierCubic<T> &, bool> &testFlatness) const;
             };
 
             typedef BezierCubic<Point2> BezierCubic2;
@@ -256,7 +262,7 @@ namespace thekogans {
             template<typename T>
             void BezierCubic<T>::Rasterize (
                     std::vector<T> &points,
-                    const std::unary_function<const BezierCubic<T> &, bool> &testFlatness) const {
+                    const unary_function<const BezierCubic<T> &, bool> &testFlatness) const {
                 points.push_back (p1);
                 RasterizeHelper (points, testFlatness);
             }
@@ -293,7 +299,7 @@ namespace thekogans {
             template<typename T>
             void BezierCubic<T>::RasterizeHelper (
                     std::vector<T> &points,
-                    const std::unary_function<const BezierCubic<T> &, bool> &testFlatness) const {
+                    const unary_function<const BezierCubic<T> &, bool> &testFlatness) const {
                 if (testFlatness (*this)) {
                     points.push_back (p4);
                 }
