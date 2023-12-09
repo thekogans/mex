@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/shaper" ]; then
+    mkdir -p bin/OSX/x86_64/clang/Release/Shared/shaper
+fi
+cp shaper/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
+cp shaper/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
+cp shaper/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
+cp shaper/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
+cp shaper/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
+cp shaper/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/shaper/
+if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/lofter" ]; then
+    mkdir -p bin/OSX/x86_64/clang/Release/Shared/lofter
+fi
+cp lofter/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
+cp lofter/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
+cp lofter/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
+cp lofter/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
+cp lofter/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
+cp lofter/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/lofter/
+if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/editor" ]; then
+    mkdir -p bin/OSX/x86_64/clang/Release/Shared/editor
+fi
+cp editor/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
+cp editor/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
+cp editor/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
+cp editor/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/editor/
+cp editor/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/editor/
+cp editor/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/editor/
+if [ ! -e "bin/OSX/x86_64/clang/Release/Shared/keyframer" ]; then
+    mkdir -p bin/OSX/x86_64/clang/Release/Shared/keyframer
+fi
+cp keyframer/resources/menubar/menubar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
+cp keyframer/resources/toolbar/toolbar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
+cp keyframer/resources/speedbar/speedbar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
+cp keyframer/resources/statusbar/statusbar.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
+cp keyframer/resources/accelerators/accelerators.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
+cp keyframer/resources/filters/filters.xml bin/OSX/x86_64/clang/Release/Shared/keyframer/
