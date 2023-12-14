@@ -88,7 +88,7 @@ namespace thekogans {
             public:\
                 static thekogans::mex::core::Accelerators::Item::EventHandler::MapInitializer mapInitializer;\
                 static thekogans::mex::core::Accelerators::Item::EventHandler *Create (\
-                    thekogans::mex::core::Module &module) {\
+                        thekogans::mex::core::Module &module) {\
                     static type eventHandler (module);\
                     return &eventHandler;\
                 }

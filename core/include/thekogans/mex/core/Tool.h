@@ -327,7 +327,9 @@ namespace thekogans {
 
             #define THEKOGANS_MEX_CORE_DECLARE_TOOL(name)\
             public:\
-                virtual const char *GetName () const {return #name;}
+                virtual const char *GetName () const {\
+                    return #name;\
+                }
 
         } // namespace core
     } // namespace mex

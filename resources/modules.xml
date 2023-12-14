@@ -2,7 +2,7 @@
 <!DOCTYPE modules SYSTEM "modules.dtd" []>
 <modules>
     <module name = "2D Shaper"
-            path = "thekogans_mex_shaper.0.1.0.dll"
+            path = "thekogans_mex_shaper"
             menuBarPath = "shaper/menubar.xml"
             toolBarPath = "shaper/toolbar.xml"
             speedBarPath = "shaper/speedbar.xml"
@@ -10,7 +10,7 @@
             acceleratorsPath = "shaper/accelerators.xml"
             filtersPath = "shaper/filters.xml"/>
     <module name = "3D Lofter"
-            path = "thekogans_mex_lofter.0.1.0.dll"
+            path = "thekogans_mex_lofter"
             menuBarPath = "lofter/menubar.xml"
             toolBarPath = "lofter/toolbar.xml"
             speedBarPath = "lofter/speedbar.xml"
@@ -18,7 +18,7 @@
             acceleratorsPath = "lofter/accelerators.xml"
             filtersPath = "lofter/filters.xml"/>
     <module name = "3D Editor"
-            path = "thekogans_mex_editor.0.1.0.dll"
+            path = "thekogans_mex_editor"
             menuBarPath = "editor/menubar.xml"
             toolBarPath = "editor/toolbar.xml"
             speedBarPath = "editor/speedbar.xml"
@@ -27,7 +27,7 @@
             filtersPath = "editor/filters.xml"
             default = "true"/>
     <module name = "Keyframer"
-            path = "thekogans_mex_keyframer.0.1.0.dll"
+            path = "thekogans_mex_keyframer"
             menuBarPath = "keyframer/menubar.xml"
             toolBarPath = "keyframer/toolbar.xml"
             speedBarPath = "keyframer/speedbar.xml"

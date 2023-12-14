@@ -18,15 +18,12 @@
 #if !defined (__thekogans_mex_core_UI_h)
 #define __thekogans_mex_core_UI_h
 
-#include <memory>
+#include "thekogans/util/Environment.h"
+
 #if defined (TOOLCHAIN_OS_Windows)
-    #if !defined (WIN32_LEAN_AND_MEAN)
-        #define WIN32_LEAN_AND_MEAN
-    #endif // defined (TOOLCHAIN_OS_Windows)
-    #if !defined (NOMINMAX)
-        #define NOMINMAX
-    #endif // !defined (NOMINMAX)
+    #include "thekogans/util/os/windows/WindowsHeader.h"
 #endif // defined (TOOLCHAIN_OS_Windows)
+#include <memory>
 #include <QtWidgets/QWidget>
 #include "thekogans/util/Singleton.h"
 #include "thekogans/util/Mutex.h"
@@ -108,7 +105,7 @@ namespace thekogans {
                     virtual void SetEventSink (EventSink *eventSink) = 0;
                     virtual void SetModal (bool modal) = 0;
                 } *frameBarWindow;
-				
+
                 UI () :
                     mainFrameWindow (0),
                     menuBarWindow (0),
@@ -118,7 +115,7 @@ namespace thekogans {
                     consoleWindow (0),
 					statusBarWindow (0),
                     frameBarWindow (0) {}
-				
+
                 void CreateFramebuffer (const blas::Size &size);
                 void DestroyFramebuffer ();
                 void FlipFramebuffer ();

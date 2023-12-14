@@ -18,6 +18,12 @@
 #if !defined (__thekogans_mex_core_SelectingTool_h)
 #define __thekogans_mex_core_SelectingTool_h
 
+#include "thekogans/util/Environment.h"
+
+#if defined (TOOLCHAIN_OS_Windows)
+    #include "thekogans/util/os/windows/WindowsHeader.h"
+#endif // defined (TOOLCHAIN_OS_Windows)
+#include <QtWidgets/QWidget>
 #include "thekogans/util/Types.h"
 #include "thekogans/mex/blas/Point2.h"
 #include "thekogans/mex/blas/Bound.h"
@@ -57,7 +63,8 @@ namespace thekogans {
                                         // LButtonDown processing. Do unselect.
 
             public:
-                explicit SelectingTool (Module &module) : Tool (module) {}
+                explicit SelectingTool (Module &module) :
+                    Tool (module) {}
 
                 void ToggleSelecting ();
 
@@ -94,7 +101,7 @@ namespace thekogans {
                     const _3ds::opengl::View &view,
                     util::ui32 flags,
                     const blas::Point2 &pt);
-    
+
                 // Description:
                 //      Called by the framework in response to WM_RBUTTONUP message.
                 // Parameters:
@@ -103,7 +110,7 @@ namespace thekogans {
                     const _3ds::opengl::View &view,
                     util::ui32 flags,
                     const blas::Point2 &pt);
-    
+
                 // Description:
                 //      Called by the framework in response to WM_MOUSEMOVED message.
                 // Parameters:
@@ -112,7 +119,7 @@ namespace thekogans {
                     const _3ds::opengl::View &view,
                     util::ui32 flags,
                     const blas::Point2 &pt);
-    
+
                 // Description:
                 //      Called by a view after it has scrolled and redrawn the scene.
                 virtual void UpdateUI (const _3ds::opengl::View &view);

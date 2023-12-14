@@ -39,9 +39,12 @@ namespace thekogans {
     namespace mex {
 
         MainWindow::MainWindow () :
-                menuBarWindow (this), toolBarWindow (this),
-                viewLayoutWindow (this), speedBarFrame (this),
-                consoleFrame (this), statusBarWindow (this) {
+                menuBarWindow (this),
+                toolBarWindow (this),
+                viewLayoutWindow (this),
+                speedBarFrame (this),
+                consoleFrame (this),
+                statusBarWindow (this) {
             setContextMenuPolicy (Qt::NoContextMenu);
             setMenuBar (&menuBarWindow);
             addToolBar (Qt::TopToolBarArea, &toolBarWindow);

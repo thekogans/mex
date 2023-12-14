@@ -18,15 +18,12 @@
 #if !defined (__thekogans_mex_core_CursorMgr_h)
 #define __thekogans_mex_core_CursorMgr_h
 
-#include <vector>
+#include "thekogans/util/Environment.h"
+
 #if defined (TOOLCHAIN_OS_Windows)
-    #if !defined (WIN32_LEAN_AND_MEAN)
-        #define WIN32_LEAN_AND_MEAN
-    #endif // !defined (WIN32_LEAN_AND_MEAN)
-    #if !defined (NOMINMAX)
-        #define NOMINMAX
-    #endif // !defined (NOMINMAX)
+    #include "thekogans/util/os/windows/WindowsHeader.h"
 #endif // defined (TOOLCHAIN_OS_Windows)
+#include <vector>
 #include <QtGui/QCursor>
 #include "thekogans/util/Types.h"
 #include "thekogans/util/Singleton.h"
@@ -73,9 +70,13 @@ namespace thekogans {
                 };
 
                 CursorMgr ();
-				
-                inline bool IsCursorVisible () const {return visible;}
-                inline const QCursor *GetCurrCursor () const {return cursor;}
+
+                inline bool IsCursorVisible () const {
+                    return visible;
+                }
+                inline const QCursor *GetCurrCursor () const {
+                    return cursor;
+                }
                 inline const QCursor *GetCursor (util::ui32 index) const {
                     return cursors[index];
                 }
