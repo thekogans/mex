@@ -30,7 +30,7 @@ namespace thekogans {
                         progress (progress_),
                         errorHandler (errorHandler_) {
                     if (progress) {
-                        progress->SetTotal (file.GetSize ());
+                        progress->SetTotal ((util::ui32)file.GetSize ());
                     }
                     Start ();
                 }
@@ -54,7 +54,7 @@ namespace thekogans {
                             Seek (end, SEEK_SET);
                         }
                         if (progress) {
-                            progress->SetPosition (Tell ());
+                            progress->SetPosition ((util::ui32)Tell ());
                         }
                     }
                 }

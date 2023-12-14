@@ -59,21 +59,30 @@ namespace thekogans {
                                 return false;
                             }
                             if (ext::BezierPolygon2 (bezierPolygon).IsCircular (CURVE_EPS)) {
-                                blas::Point2 center = ext::BezierPolygon2 (bezierPolygon).GetCenterMass ();
+                                blas::Point2 center =
+                                    ext::BezierPolygon2 (bezierPolygon).GetCenterMass ();
                                 blas::Point2 t = bezierPolygon.vertices[vertexIndex1].pt - center;
                                 util::f32 radius = t.Length ();
                                 util::f32 startAngle = atan2f (t.y, t.x);
-                                util::f32 spanAngle = util::RAD (360.0f) / bezierPolygon.vertices.size ();
+                                util::f32 spanAngle =
+                                    util::RAD (360.0f) / bezierPolygon.vertices.size ();
                                 if (ext::BezierPolygon2 (bezierPolygon).IsClockWise ()) {
                                     spanAngle *= -1;
                                 }
-                                blas::BezierCubic2 bezierCubic = blas::Arc (center, radius, startAngle, spanAngle);
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
-                                    new BezierPolygon2VertexSetYellowCommand (bezierPolygon, vertexIndex1,
-                                        bezierCubic.p2 - bezierCubic.p1)));
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
-                                    new BezierPolygon2VertexSetRedCommand (bezierPolygon, vertexIndex2,
-                                        bezierCubic.p3 - bezierCubic.p4)));
+                                blas::BezierCubic2 bezierCubic = blas::Arc (
+                                    center, radius, startAngle, spanAngle);
+                                ExecuteAndAddCommand (
+                                    thekogans::mex::command::Command::SharedPtr (
+                                        new BezierPolygon2VertexSetYellowCommand (
+                                            bezierPolygon,
+                                            vertexIndex1,
+                                            bezierCubic.p2 - bezierCubic.p1)));
+                                ExecuteAndAddCommand (
+                                    thekogans::mex::command::Command::SharedPtr (
+                                        new BezierPolygon2VertexSetRedCommand (
+                                            bezierPolygon,
+                                            vertexIndex2,
+                                            bezierCubic.p3 - bezierCubic.p4)));
                             }
                             else {
                                 const util::f32 *aj;
@@ -151,7 +160,8 @@ namespace thekogans {
                                     blas::Point2 da (blas::Point2::Zero);
                                     for (util::ui32 i = 1; i <= m; ++i) {
                                         std::size_t previousVertexIndex = vertexIndex2 < i ?
-                                            bezierPolygon.vertices.size () - i + vertexIndex2 : vertexIndex2 - i;
+                                            bezierPolygon.vertices.size () - i + vertexIndex2 :
+                                            vertexIndex2 - i;
                                         std::size_t nextVertexIndex =
                                             (vertexIndex2 + i) % bezierPolygon.vertices.size ();
                                         da += aj[i - 1] * (bezierPolygon.vertices[nextVertexIndex].pt -
@@ -265,16 +275,27 @@ namespace thekogans {
                                 blas::BezierCubic2 left;
                                 blas::BezierCubic2 right;
                                 bezierCubic.Split (t + (t1 + t2) * 0.5f * delta, left, right, false);
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
-                                    new BezierPolygon2VertexSetYellowCommand (bezierPolygon, vertexIndex1,
-                                        left.p2 - left.p1)));
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
-                                    new BezierPolygon2VertexSetRedCommand (bezierPolygon, vertexIndex2,
-                                        right.p3 - right.p4)));
-                                ExecuteAndAddCommand (thekogans::mex::command::Command::SharedPtr (
-                                    new BezierPolygon2InsertVertexCommand (bezierPolygon, vertexIndex1 + 1,
-                                        io::BezierPolygon2::Vertex (left.p4, left.p3 - left.p4,
-                                            right.p2 - right.p1))));
+                                ExecuteAndAddCommand (
+                                    thekogans::mex::command::Command::SharedPtr (
+                                        new BezierPolygon2VertexSetYellowCommand (
+                                            bezierPolygon,
+                                            vertexIndex1,
+                                            left.p2 - left.p1)));
+                                ExecuteAndAddCommand (
+                                    thekogans::mex::command::Command::SharedPtr (
+                                        new BezierPolygon2VertexSetRedCommand (
+                                            bezierPolygon,
+                                            vertexIndex2,
+                                            right.p3 - right.p4)));
+                                ExecuteAndAddCommand (
+                                    thekogans::mex::command::Command::SharedPtr (
+                                        new BezierPolygon2InsertVertexCommand (
+                                            bezierPolygon,
+                                            vertexIndex1 + 1,
+                                            io::BezierPolygon2::Vertex (
+                                                left.p4,
+                                                left.p3 - left.p4,
+                                                right.p2 - right.p1))));
                                 return true;
                             }
                         }

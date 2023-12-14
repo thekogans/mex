@@ -50,8 +50,10 @@ namespace thekogans {
                 struct UI : public core::MenuBar::Item::EventHandler::UI {
                     MenuItem *menuItem;
 
-                    UI (core::MenuBar::Item &item, MenuItem *menuItem_) :
-                        core::MenuBar::Item::EventHandler::UI (item), menuItem (menuItem_) {}
+                    UI (core::MenuBar::Item &item,
+                        MenuItem *menuItem_) :
+                        core::MenuBar::Item::EventHandler::UI (item),
+                        menuItem (menuItem_) {}
 
                     virtual void SetEnabled (bool enabled) {
                         menuItem->setEnabled (enabled);
@@ -106,9 +108,13 @@ namespace thekogans {
                     }
                 };
                 for (std::size_t i = 0, count = core::Module::modules.size (); i < count; ++i) {
-                    new core::MenuBar::Item (core::MenuBar::Item::TYPE_ITEM,
-                        core::Module::modules[i].second->GetName (), "", "",
-                        new ModuleEventHandler (i), &modules);
+                    new core::MenuBar::Item (
+                        core::MenuBar::Item::TYPE_ITEM,
+                        core::Module::modules[i].second->GetName (),
+                        "",
+                        "",
+                        new ModuleEventHandler (i),
+                        &modules);
                 }
             }
             // Reset internal state.
@@ -121,7 +127,9 @@ namespace thekogans {
             update ();
         }
 
-        void MenuBarWindow::AddMenuItem (QMenu *parent, core::MenuBar::Item *item) {
+        void MenuBarWindow::AddMenuItem (
+                QMenu *parent,
+                core::MenuBar::Item *item) {
             switch (item->type) {
                 case core::MenuBar::Item::TYPE_POPUP: {
                     if (parent == 0) {

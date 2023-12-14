@@ -45,7 +45,7 @@ namespace thekogans {
                     THEKOGANS_UTIL_TRY {
                 #endif // defined (_LIB_THEKOGANS_MEX_3DS_IO_HANDLE_STREAM_EXCEPTIONS)
                         end = stream.Tell ();
-                        length = end - start;
+                        length = (util::ui32)(end - start);
                         stream.Seek (start, SEEK_SET);
                         stream << id << length;
                         stream.Seek (end, SEEK_SET);

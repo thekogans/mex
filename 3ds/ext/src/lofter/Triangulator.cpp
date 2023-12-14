@@ -59,12 +59,19 @@ namespace thekogans {
                     TriangulateConvex ();
                 }
 
-                void Triangulator::GetFaces (std::size_t offset, bool flipNormal, std::vector<io::Mesh::Face> &newFaces) const {
+                void Triangulator::GetFaces (
+                        std::size_t offset,
+                        bool flipNormal,
+                        std::vector<io::Mesh::Face> &newFaces) const {
                     for (Face *face = faces; face; face = face->next) {
                         Vertex *vertex = face->outer->vertex;
                         if (flipNormal) {
-                            newFaces.push_back (io::Mesh::Face (offset + vertex->index,
-                                offset + vertex->prev->prev->index, offset + vertex->prev->index, 0));
+                            newFaces.push_back (
+                                io::Mesh::Face (
+                                    offset + vertex->index,
+                                    offset + vertex->prev->prev->index,
+                                    offset + vertex->prev->index,
+                                    0));
                             if (vertex->IsNeighbour (vertex->prev->prev)) {
                                 newFaces.back ().flags |= io::Mesh::Face::EdgeABVisible;
                             }
@@ -76,8 +83,12 @@ namespace thekogans {
                             }
                         }
                         else {
-                            newFaces.push_back (io::Mesh::Face (offset + vertex->index,
-                                offset + vertex->prev->index, offset + vertex->prev->prev->index, 0));
+                            newFaces.push_back (
+                                io::Mesh::Face (
+                                    offset + vertex->index,
+                                    offset + vertex->prev->index,
+                                    offset + vertex->prev->prev->index,
+                                    0));
                             if (vertex->IsNeighbour (vertex->prev)) {
                                 newFaces.back ().flags |= io::Mesh::Face::EdgeABVisible;
                             }
@@ -95,9 +106,15 @@ namespace thekogans {
                     const std::vector<blas::Point2> &points;
                     explicit CompareVertices (const std::vector<blas::Point2> &points_) :
                         points (points_) {}
-                    inline bool operator () (const Triangulator::Vertex *vertex1, const Triangulator::Vertex *vertex2) const {
-                        util::i32 dx = util::COMPARE (points[vertex1->index].x, points[vertex2->index].x);
-                        util::i32 dy = util::COMPARE (points[vertex1->index].y, points[vertex2->index].y);
+                    inline bool operator () (
+                            const Triangulator::Vertex *vertex1,
+                            const Triangulator::Vertex *vertex2) const {
+                        util::i32 dx = util::COMPARE (
+                            points[vertex1->index].x,
+                            points[vertex2->index].x);
+                        util::i32 dy = util::COMPARE (
+                            points[vertex1->index].y,
+                            points[vertex2->index].y);
                         return dx == 1 || (dx == 0 && dy == 1);
                     }
                 };

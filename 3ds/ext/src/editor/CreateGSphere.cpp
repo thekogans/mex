@@ -173,7 +173,7 @@ namespace thekogans {
                         if (smooth) {
                             std::vector<util::ui32> &faceSmoothGroups = mesh->faceSmoothGroups;
                             faceSmoothGroups.resize (faces.size ());
-                            for (util::ui32 i = 0, count = faceSmoothGroups.size (); i < count; ++i) {
+                            for (std::size_t i = 0, count = faceSmoothGroups.size (); i < count; ++i) {
                                 faceSmoothGroups[i] = 1;
                             }
                         }

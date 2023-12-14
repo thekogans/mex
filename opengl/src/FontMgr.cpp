@@ -17,6 +17,7 @@
 
 #include "thekogans/mex/opengl/FontMgr.h"
 #include "system10.h"
+#include "oldenglish18.h"
 
 namespace thekogans {
     namespace mex {
@@ -38,7 +39,7 @@ namespace thekogans {
             }
 
             FontMgr::FontMgr () :
-                systemFont (new system10) {}
+                systemFont (new oldenglish18) {}
 
         } // namespace opengl
     } // namespace mex

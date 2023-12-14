@@ -149,7 +149,8 @@ namespace thekogans {
                     core::Module *module = core::Module::GetCurrModule ();
                     if (module != 0) {
                         std::string path = util::MakePath (
-                            module->GetIOModule ().openFileDirectory, module->GetIOModule ().openFileName);
+                            module->GetIOModule ().openFileDirectory,
+                            module->GetIOModule ().openFileName);
                         if (path.empty ()) {
                             path = "Untitled";
                         }

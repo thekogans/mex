@@ -25,7 +25,8 @@ namespace thekogans {
             namespace io {
 
                 _LIB_THEKOGANS_MEX_3DS_IO_DECL util::Serializer & _LIB_THEKOGANS_MEX_3DS_IO_API operator << (
-                        util::Serializer &serializer, const FixedString &fixedString) {
+                        util::Serializer &serializer,
+                        const FixedString &fixedString) {
                     const char *ptr = fixedString.value.c_str ();
                     size_t count = std::min (fixedString.count, strlen (ptr));
                     serializer.Write (ptr, (util::ui32)count);
@@ -37,24 +38,20 @@ namespace thekogans {
                 }
 
                 _LIB_THEKOGANS_MEX_3DS_IO_DECL util::Serializer & _LIB_THEKOGANS_MEX_3DS_IO_API operator >> (
-                        util::Serializer &serializer, FixedString &fixedString) {
+                        util::Serializer &serializer,
+                        FixedString &fixedString) {
                     fixedString.value.clear ();
-                    {
-                        for (size_t i = 0, count = fixedString.count; i < count; ++i) {
-                            util::i8 ch;
-                            serializer >> ch;
-                            if (ch == 0) {
-                                break;
-                            }
-                            fixedString.value += ch;
+                    for (size_t i = 0; i < fixedString.count; ++i) {
+                        util::i8 ch;
+                        serializer >> ch;
+                        if (ch == 0) {
+                            break;
                         }
+                        fixedString.value += ch;
                     }
-                    {
-                        for (size_t i = fixedString.value.size () + 1,
-                                count = fixedString.count; i < count; ++i) {
-                            util::i8 ch;
-                            serializer >> ch;
-                        }
+                    for (size_t i = fixedString.value.size () + 1; i < fixedString.count; ++i) {
+                        util::i8 ch;
+                        serializer >> ch;
                     }
                     return serializer;
                 }

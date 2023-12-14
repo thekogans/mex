@@ -389,9 +389,12 @@ namespace thekogans {
                         blas::Point4 ( 1.0f,  0.0f,  0.0f,  0.0f)
                     );
 
-                    void SplitPatch (std::vector<blas::Point3> &vertices,
-                        std::vector<io::Mesh::Face> &faces, const util::ui32 *patch,
-                        util::ui32 usegs, util::ui32 vsegs) {
+                    void SplitPatch (
+                            std::vector<blas::Point3> &vertices,
+                            std::vector<io::Mesh::Face> &faces,
+                            const util::ui32 *patch,
+                            util::ui32 usegs,
+                            util::ui32 vsegs) {
                         blas::Matrix4 xm;
                         blas::Matrix4 ym;
                         blas::Matrix4 zm;

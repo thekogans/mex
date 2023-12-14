@@ -36,10 +36,10 @@ namespace thekogans {
                             util::ui16 c = face.c;
                             util::ui16 element = std::min (std::min (vertices[a], vertices[b]), vertices[c]);
                             if (element == util::NIDX16) {
-                                vertices[a] = eidx;
-                                vertices[b] = eidx;
-                                vertices[c] = eidx;
-                                elements[eidx] = eidx;
+                                vertices[a] = (util::ui16)eidx;
+                                vertices[b] = (util::ui16)eidx;
+                                vertices[c] = (util::ui16)eidx;
+                                elements[eidx] = (util::ui16)eidx;
                                 ++eidx;
                             }
                             else {
@@ -72,7 +72,7 @@ namespace thekogans {
                                     (elements[vertices[face.a]] == element ||
                                      elements[vertices[face.b]] == element ||
                                      elements[vertices[face.c]] == element)) {
-                                faces_.push_back (i);
+                                faces_.push_back ((util::ui16)i);
                             }
                         }
                     }
