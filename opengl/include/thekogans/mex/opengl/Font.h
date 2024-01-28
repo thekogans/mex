@@ -18,25 +18,40 @@
 #if !defined (__thekogans_mex_opengl_Font_h)
 #define __thekogans_mex_opengl_Font_h
 
+#include <memory>
+#include <string>
 #include "thekogans/util/Types.h"
+#include "thekogans/canvas/Font.h"
 #include "thekogans/mex/blas/Size.h"
 #include "thekogans/mex/opengl/Config.h"
-#include "thekogans/mex/opengl/FontMgr.h"
 
 namespace thekogans {
     namespace mex {
         namespace opengl {
 
             struct _LIB_THEKOGANS_MEX_OPENGL_DECL Font {
-                const FontMgr::Font *font;
+                std::unique_ptr<canvas::Font> font;
 
-                explicit Font (const FontMgr::Font *font_);
-                ~Font ();
+                Font (
+                    const std::string &path,
+                    util::ui32 width,
+                    util::ui32 height,
+                    util::ui32 horizontalResolution = 96,
+                    util::ui32 verticalResolution = 96,
+                    bool flipGliphRows = true) :
+                    font (
+                        new canvas::Font (
+                            path,
+                            width,
+                            height,
+                            horizontalResolution,
+                            verticalResolution,
+                            flipGliphRows)) {}
 
                 void DrawText (
                     util::i32 x,
                     util::i32 y,
-                    const char *text,
+                    const std::string &text,
                     const blas::Size &size = blas::Size::Empty);
             };
 

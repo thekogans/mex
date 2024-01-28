@@ -31,7 +31,7 @@
 #include "thekogans/util/Constants.h"
 #include "thekogans/mex/blas/Rect.h"
 #include "thekogans/mex/opengl/ui8Color.h"
-#include "thekogans/mex/opengl/FontMgr.h"
+#include "thekogans/mex/opengl/Font.h"
 #include "thekogans/mex/3ds/opengl/DefaultPalette.h"
 #include "thekogans/mex/core/UI.h"
 #include "thekogans/mex/core/SpeedBar.h"
@@ -55,7 +55,7 @@ namespace thekogans {
 
         protected:
             core::SpeedBar *speedBar;
-            const opengl::FontMgr::Font *font;
+            std::unique_ptr<opengl::Font> font;
             opengl::ui8Color colors[SB_COLOR_COUNT];
             struct HitTestInfo {
                 core::SpeedBar::Item *item;

@@ -15,43 +15,34 @@
 // You should have received a copy of the GNU General Public License
 // along with libthekogans_mex_opengl. If not, see <http://www.gnu.org/licenses/>.
 
-#include "thekogans/mex/opengl/FontMgr.h"
+#include <vector>
+#include "thekogans/util/Rectangle.h"
+#include "thekogans/mex/opengl/Enable.h"
+#include "thekogans/mex/opengl/BlendFunc.h"
+#include "thekogans/mex/opengl/UnpackAlignment.h"
 #include "thekogans/mex/opengl/Font.h"
 
 namespace thekogans {
     namespace mex {
         namespace opengl {
 
-            Font::Font (const FontMgr::Font *font_) :
-                    font (font_) {
-                // Save the current pixel state.
-                glPushClientAttrib (GL_CLIENT_PIXEL_STORE_BIT);
-                // Font glyphs are packed in bytes
-                // without any other alignment.
-                glPixelStorei (GL_UNPACK_SWAP_BYTES, GL_FALSE);
-                glPixelStorei (GL_UNPACK_LSB_FIRST, GL_FALSE);
-                glPixelStorei (GL_UNPACK_ROW_LENGTH, 0);
-                glPixelStorei (GL_UNPACK_SKIP_ROWS, 0);
-                glPixelStorei (GL_UNPACK_SKIP_PIXELS, 0);
-                glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
-            }
-
-            Font::~Font () {
-                glPopClientAttrib ();
-            }
-
             void Font::DrawText (
                     util::i32 x,
                     util::i32 y,
-                    const char *text,
+                    const std::string &text,
                     const blas::Size &) {
-                glRasterPos2i (x, y);
-                for (; *text != '\0'; ++text) {
-                    const FontMgr::Font::Glyph *glyph = font->GetGlyph (*text);
-                    if (glyph != 0) {
-                        glBitmap (glyph->GetWidth (), font->GetHeight (), 0.0f, 0.0f,
-                            (GLfloat)glyph->GetWidth (), 0.0f, glyph->GetBitmap ());
-                    }
+                std::vector<canvas::Font::Glyph *> glyphs;
+                std::vector<FT_Vector> positions;
+                font->GetGlyphs (text, glyphs, positions);
+                Enable blend (GL_BLEND, true);
+                BlendFunc blendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                UnpackAlignment unpackAlignment (1);
+                for (std::size_t i = 0, count = glyphs.size (); i < count; ++i) {
+                    glRasterPos2i (
+                        x + positions[i].x + glyphs[i]->GetLeftSideBearing (),
+                        y + positions[i].y + glyphs[i]->GetTopSideBearing () - glyphs[i]->size.height);
+                    glDrawPixels (glyphs[i]->size.width, glyphs[i]->size.height, GL_ALPHA,
+                        GL_UNSIGNED_BYTE, (const GLubyte *)glyphs[i]->GetData ());
                 }
             }
 

@@ -10,6 +10,8 @@
     <dependency organization = "thekogans"
                 name = "util"/>
     <dependency organization = "thekogans"
+                name = "canvas"/>
+    <dependency organization = "thekogans"
                 name = "mex_blas"/>
     <choose>
       <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
@@ -48,7 +50,6 @@
     <cpp_header>$(organization)/$(project_directory)/Enable.h</cpp_header>
     <cpp_header>$(organization)/$(project_directory)/Extensions.h</cpp_header>
     <cpp_header>$(organization)/$(project_directory)/Font.h</cpp_header>
-    <cpp_header>$(organization)/$(project_directory)/FontMgr.h</cpp_header>
     <cpp_header>$(organization)/$(project_directory)/Framebuffer.h</cpp_header>
     <cpp_header>$(organization)/$(project_directory)/LineStipple.h</cpp_header>
     <cpp_header>$(organization)/$(project_directory)/LineWidth.h</cpp_header>
@@ -77,7 +78,6 @@
     <cpp_source>ClientState.cpp</cpp_source>
     <cpp_source>Extensions.cpp</cpp_source>
     <cpp_source>Font.cpp</cpp_source>
-    <cpp_source>FontMgr.cpp</cpp_source>
     <cpp_source>Framebuffer.cpp</cpp_source>
     <cpp_source>Renderbuffer.cpp</cpp_source>
     <cpp_source>SwapRect.cpp</cpp_source>

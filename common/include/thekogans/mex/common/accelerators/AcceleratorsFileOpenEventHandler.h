@@ -41,7 +41,7 @@ namespace thekogans {
                                 "AcceleratorsFileOpenEventHandler")));
                     if (core::GetCommandDispatcher ().ExecuteAndAddCommand (
                             thekogans::mex::command::Command::SharedPtr (
-                                new FileOpenCommand (module)))){
+                                new FileOpenCommand (module)))) {
                         core::GetCommandDispatcher ().CommitTransaction ();
                     }
                     else {

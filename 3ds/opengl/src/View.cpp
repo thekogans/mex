@@ -60,10 +60,10 @@ namespace thekogans {
                         glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                         // Draw view name.
                         Color color (DefaultPalette[WHITE]);
-                        Font font (FontMgr::Instance ().GetSystemFont ());
-                        assert (font.font != 0);
-                        font.DrawText (view.size.x + 1, view.size.Top () - font.font->GetHeight () - 1,
-                            GetName (view), view.size);
+                        // Font font (FontMgr::Instance ().GetSystemFont ());
+                        // assert (font.font != 0);
+                        // font.DrawText (view.size.x + 1, view.size.Top () - font.font->GetHeight () - 1,
+                        //     GetName (view), view.size);
                     }
                     if (!view.IsNone () && view.IsEnabled ()) {
                         // Setup model-view, projection, and viewport.

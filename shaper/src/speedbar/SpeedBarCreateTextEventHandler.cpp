@@ -128,7 +128,10 @@ namespace thekogans {
 
                         struct FreeTypeFace {
                             FT_Face face;
-                            FreeTypeFace (FT_Library library, const std::string &fontPath) : face (0) {
+                            FreeTypeFace (
+                                    FT_Library library,
+                                    const std::string &fontPath) :
+                                    face (0) {
                                 FT_Error error = FT_New_Face (library, fontPath.c_str (), 0, &face);
                                 if (error != FT_Err_Ok) {
                                     throw FreeTypeError (error);
@@ -146,7 +149,10 @@ namespace thekogans {
 
                         struct FreeTypeGlyph {
                             FT_Glyph glyph;
-                            FreeTypeGlyph (FT_Face face, char letter) : glyph (0) {
+                            FreeTypeGlyph (
+                                    FT_Face face,
+                                    char letter) :
+                                    glyph (0) {
                                 FT_UInt charIndex = FT_Get_Char_Index (face, letter);
                                 if (charIndex == 0) {
                                     throw FreeTypeError ("Invalid letter (no index).");
@@ -305,8 +311,8 @@ namespace thekogans {
                                 core::GetIOProject ().shaper.create.fontFile.empty ()) {
                             core::SetCursor setCursor (core::CursorMgr::ARROW_CURSOR);
                             if (TextDialog ().exec () != QDialog::Accepted ||
-                                core::GetIOProject ().shaper.create.text.empty () ||
-                                core::GetIOProject ().shaper.create.fontFile.empty ()) {
+                                    core::GetIOProject ().shaper.create.text.empty () ||
+                                    core::GetIOProject ().shaper.create.fontFile.empty ()) {
                                 AbortTransaction ();
                                 return;
                             }
@@ -329,13 +335,10 @@ namespace thekogans {
                                 return;
                             }
                             util::f32 horizontalAdvance = 0;
-                            for (std::size_t i = 0,
-                                    count = core::GetIOProject ().shaper.create.text.size ();
-                                    i < count; ++i) {
+                            for (const char *text = core::GetIOProject ().shaper.create.text.c_str ();
+                                    *text != '\0'; ++text) {
                                 try {
-                                    std::unique_ptr<GlyphOutline> outline (
-                                        new GlyphOutline (*freeTypeFace,
-                                            core::GetIOProject ().shaper.create.text[i]));
+                                    std::unique_ptr<GlyphOutline> outline (new GlyphOutline (*freeTypeFace, *text));
                                     assert (outline.get () != 0);
                                     // This is here in case we are asked to render a space.
                                     util::f32 glyphHorizontalAdvance = outline->horizontalAdvance;
@@ -357,7 +360,8 @@ namespace thekogans {
                         {
                             blas::Matrix2 xform =
                                 blas::Matrix2::Translate (-bound.Center ()) *
-                                blas::Matrix2::Scale (blas::Point2 (
+                                blas::Matrix2::Scale (
+                                    blas::Point2 (
                                         rect.Extents ().x / bound.Extents ().x,
                                         rect.Extents ().y / bound.Extents ().y)) *
                                 blas::Matrix2::Translate (rect.Center ());

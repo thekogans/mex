@@ -59,7 +59,7 @@ namespace thekogans {
         SpeedBarWindow::SpeedBarWindow (QWidget *parent) :
                 QGLWidget (parent),
                 speedBar (0),
-                font (opengl::FontMgr::Instance ().GetSystemFont ()) {
+                font (new opengl::Font ("fonts/blowbrush.ttf", 0, 50, 144, 144, true)) {
             assert (font != 0);
             setObjectName ("SpeedBarWindow");
             setMouseTracking (true);
@@ -141,8 +141,8 @@ namespace thekogans {
         void SpeedBarWindow::paintEvent (QPaintEvent *event) {
             event->accept ();
             if (speedBar != 0) {
-                //speedBar->origin.x = scrollArea->horizontalScrollBar ()->value () / font->GetAveCharWidth ();
-                //speedBar->origin.y = scrollArea->verticalScrollBar ()->value () / font->GetHeight ();
+                //speedBar->origin.x = scrollArea->horizontalScrollBar ()->value () / font->font->GetAveCharWidth ();
+                //speedBar->origin.y = scrollArea->verticalScrollBar ()->value () / font->font->GetHeight ();
             }
             Draw ();
         }
@@ -224,36 +224,36 @@ namespace thekogans {
               setMinimumSize (width, height);
               setMaximumSize (width, height);
               scrollArea->horizontalScrollBar ()->setMaximum (width - scrollArea->width ());
-              scrollArea->horizontalScrollBar ()->setValue (speedBar->origin.x * font->GetAveCharWidth ());
+              scrollArea->horizontalScrollBar ()->setValue (speedBar->origin.x * font->font->GetAveCharWidth ());
               scrollArea->verticalScrollBar ()->setMaximum (height - scrollArea->height ());
-              scrollArea->verticalScrollBar ()->setValue (speedBar->origin.y * font->GetHeight ());
+              scrollArea->verticalScrollBar ()->setValue (speedBar->origin.y * font->font->GetHeight ());
             */
             update ();
         }
 
         bool SpeedBarWindow::HitTest (const QPoint &pt, HitTestInfo &hitTestInfo) {
             if (speedBar != 0) {
-                util::ui32 itemIndex = speedBar->origin.y + pt.y () / font->GetHeight ();
+                util::ui32 itemIndex = speedBar->origin.y + pt.y () / font->font->GetHeight ();
                 hitTestInfo.level = 0;
                 for (core::SpeedBar::Item *item = &speedBar->root; item; item = item->GetCurrChild ()) {
                     const std::vector<core::SpeedBar::Item *> &children = item->children;
                     if (itemIndex < children.size ()) {
                         item = children[itemIndex];
-                        util::i32 left = (hitTestInfo.level * 2 - speedBar->origin.x) * font->GetAveCharWidth ();
+                        util::i32 left = (hitTestInfo.level * 2 - speedBar->origin.x) * font->font->GetAveCharWidth ();
                         /*
                           if (item->IsChecked ()) {
-                          left -= font->GetStringWidth ("*");
+                          left -= font->font->GetStringWidth ("*");
                           }
                         */
                         if (pt.x () < left) {
                             return false;
                         }
-                        util::ui32 textWidth = font->GetStringWidth (item->text.c_str ());
+                        util::ui32 textWidth = font->font->GetTextExtents (item->text).width;
                         if (pt.x () > left + textWidth) {
                             return false;
                         }
                         hitTestInfo.item = item;
-                        hitTestInfo.itemIndex = speedBar->origin.y + pt.y () / font->GetHeight ();
+                        hitTestInfo.itemIndex = speedBar->origin.y + pt.y () / font->font->GetHeight ();
                         return true;
                     }
                     ++hitTestInfo.level;
@@ -282,9 +282,9 @@ namespace thekogans {
                         item != 0; item = item->GetCurrChild ()) {
                     const std::vector<core::SpeedBar::Item *> &children = item->children;
                     for (std::size_t i = 0, count = children.size (); i < count; ++i) {
-                        util::ui32 textWidth = font->GetStringWidth (children[i]->text.c_str ());
-                        if (width < level * font->GetAveCharWidth () * 2 + textWidth) {
-                            width = level * font->GetAveCharWidth () * 2 + textWidth;
+                        util::ui32 textWidth = font->font->GetTextExtents (children[i]->text).width;
+                        if (width < level * font->font->GetAveCharWidth () * 2 + textWidth) {
+                            width = level * font->font->GetAveCharWidth () * 2 + textWidth;
                         }
                     }
                     ++level;
@@ -298,14 +298,17 @@ namespace thekogans {
             if (speedBar) {
                 for (const core::SpeedBar::Item *item = &speedBar->root;
                         item != 0; item = item->GetCurrChild ()) {
-                    height += font->GetHeight () * item->children.size ();
+                    height += font->font->GetHeight () * item->children.size ();
                 }
             }
             return height;
         }
 
-        void SpeedBarWindow::DrawItem (core::SpeedBar::Item *item, util::i32 startLine,
-                util::i32 level, const opengl::ui8Color &color) {
+        void SpeedBarWindow::DrawItem (
+                core::SpeedBar::Item *item,
+                util::i32 startLine,
+                util::i32 level,
+                const opengl::ui8Color &color) {
             class UI : public core::SpeedBar::Item::EventHandler::UI {
             public:
                 bool sticky;
@@ -314,21 +317,30 @@ namespace thekogans {
 
                 UI (core::SpeedBar::Item &item) :
                     core::SpeedBar::Item::EventHandler::UI (item),
-                    sticky (false), enabled (false), checked (false) {}
+                    sticky (false),
+                    enabled (false),
+                    checked (false) {}
 
-                virtual void SetSticky (bool sticky_) {sticky = sticky_;}
-                virtual void SetEnabled (bool enabled_) {enabled = enabled_;}
-                virtual void SetChecked (bool checked_) {checked = checked_;}
+                virtual void SetSticky (bool sticky_) {
+                    sticky = sticky_;
+                }
+                virtual void SetEnabled (bool enabled_) {
+                    enabled = enabled_;
+                }
+                virtual void SetChecked (bool checked_) {
+                    checked = checked_;
+                }
             } ui (*item);
             item->eventHandler->OnUpdateUI (ui);
             opengl::Color color_ (ui.enabled ?
                 !item->children.empty () ? colors[SB_COLOR_POPUP] : colors[SB_COLOR_ITEM] : color);
-            util::i32 x = (level * 2 - speedBar->origin.x) * font->GetAveCharWidth ();
-            util::i32 y = HeightInPixels () - (startLine - speedBar->origin.y + 1) * font->GetHeight ();
+            //util::i32 x = (level * 2 - speedBar->origin.x) * font->font->GetAveCharWidth ();
+            util::i32 x = level * font->font->GetAveCharWidth ();
+            util::i32 y = HeightInPixels () - (startLine - speedBar->origin.y + 1) * font->font->GetHeight ();
             if (ui.checked) {
-                opengl::Font (font).DrawText (x - font->GetStringWidth ("*"), y, "*");
+                font->DrawText (x - font->font->GetTextExtents ("*").width, y, "*");
             }
-            opengl::Font (font).DrawText (x, y, item->text.c_str ());
+            font->DrawText (x, y, item->text);
         }
 
     } // namespace mex
