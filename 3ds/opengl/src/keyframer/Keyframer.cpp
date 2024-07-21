@@ -29,7 +29,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Keyframer)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Keyframer)
 
                 Keyframer::Keyframer (const ext::Keyframer &keyframer) : Module (keyframer) {
                     {

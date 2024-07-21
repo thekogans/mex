@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with libthekogans_mex_opengl. If not, see <http://www.gnu.org/licenses/>.
 
+#include <cassert>
 #include "thekogans/mex/opengl/BindFramebuffer.h"
 #include "thekogans/mex/opengl/Extensions.h"
 
@@ -27,7 +28,7 @@ namespace thekogans {
         #endif // defined (TOOLCHAIN_OS_Windows)
 
             bool BindFramebuffer::Init () {
-                if (Extensions::Instance ().IsExtensionSupported ("GL_EXT_framebuffer_object")) {
+                if (Extensions::Instance ()->IsExtensionSupported ("GL_EXT_framebuffer_object")) {
                 #if defined (TOOLCHAIN_OS_Windows)
                     glBindFramebufferEXT =
                         (PFNGLBINDFRAMEBUFFEREXTPROC)wglGetProcAddress ("glBindFramebufferEXT");

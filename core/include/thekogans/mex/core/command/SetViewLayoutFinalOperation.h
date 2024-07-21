@@ -42,7 +42,7 @@ namespace thekogans {
                         module (module_) {}
 
                     virtual bool Execute () {
-                        core::UI::Instance ().viewLayoutWindow->SetViewLayout (*module.viewLayout);
+                        core::UI::Instance ()->viewLayoutWindow->SetViewLayout (*module.viewLayout);
                         return true;
                     }
                 };

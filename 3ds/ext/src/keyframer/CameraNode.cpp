@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (CameraNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (CameraNode)
 
                 io::Camera::UniquePtr CameraNode::Snapshot () const {
                     io::Camera::UniquePtr newCamera (new io::Camera (cameraHeadNode.camera));

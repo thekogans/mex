@@ -35,10 +35,13 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (SolidMesh)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (SolidMesh)
 
-                SolidMesh::SolidMesh (const io::Mesh &mesh, const io::Project &project,
-                    const util::OwnerMap<std::string, Material> &materials) : Mesh (mesh, project) {
+                SolidMesh::SolidMesh (
+                        const io::Mesh &mesh,
+                        const io::Project &project,
+                        const util::OwnerMap<std::string, Material> &materials) :
+                        Mesh (mesh, project) {
                     BuildElements (materials);
                 }
 

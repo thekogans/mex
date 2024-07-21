@@ -25,7 +25,7 @@ namespace thekogans {
     namespace mex {
         namespace core {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (SpeedBar::Item)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (SpeedBar::Item)
 
             namespace {
                 // Believe it or not, but just declaring map static
@@ -74,8 +74,8 @@ namespace thekogans {
                             eventHandler = new SpeedBar::Item::PopupEventHandler (item);
                         }
                         else {
-                            assert (UI::Instance ().consoleWindow != 0);
-                            UI::Instance ().consoleWindow->Print (
+                            assert (UI::Instance ()->consoleWindow != 0);
+                            UI::Instance ()->consoleWindow->Print (
                                 "SpeedBar: Unable to locate handler for '%s'.\n",
                                 eventHandlerName.c_str ());
                             struct DummyCommandEventHandler :
@@ -118,8 +118,8 @@ namespace thekogans {
                     }
                 }
                 catch (const std::string &message) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "SpeedBar: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), message.c_str ());
                 }

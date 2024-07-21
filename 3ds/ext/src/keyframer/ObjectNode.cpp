@@ -24,7 +24,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (ObjectNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (ObjectNode)
 
                 ObjectNode::ObjectNode (
                         const io::Mesh &mesh_,
@@ -86,7 +86,10 @@ namespace thekogans {
                                 frame (frame_),
                                 xform (xform_) {}
 
-                            virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                            virtual void Execute (
+                                    std::size_t sidx,
+                                    std::size_t eidx,
+                                    std::size_t rank) throw () {
                                 for (; sidx < eidx; ++sidx) {
                                     vertices[sidx] = morphTracks[sidx]->GetTween (frame) * xform;
                                 }
@@ -95,7 +98,7 @@ namespace thekogans {
                                 return morphTracks.size ();
                             }
                         } job (vertices, morphTrack.morphTracks, frame, xform);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class XformVerticesJob : public util::Vectorizer::Job {
@@ -105,11 +108,18 @@ namespace thekogans {
                             blas::Matrix3 xform;
 
                         public:
-                            XformVerticesJob (std::vector<blas::Point3> &result_,
-                                const std::vector<blas::Point3> &vertices_, const blas::Matrix3 &xform_) :
-                                result (result_), vertices (vertices_), xform (xform_) {}
+                            XformVerticesJob (
+                                std::vector<blas::Point3> &result_,
+                                const std::vector<blas::Point3> &vertices_,
+                                const blas::Matrix3 &xform_) :
+                                result (result_),
+                                vertices (vertices_),
+                                xform (xform_) {}
 
-                            virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                            virtual void Execute (
+                                    std::size_t sidx,
+                                    std::size_t eidx,
+                                    std::size_t rank) throw () {
                                 for (; sidx < eidx; ++sidx) {
                                     result[sidx] = vertices[sidx] * xform;
                                 }
@@ -118,10 +128,11 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (vertices, mesh.vertices, ixform * xform);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     hidden = objectNode.IsHide () || !hideTrack.GetTween (frame);
-                    for (std::vector<Node *>::iterator it = children.begin (), end = children.end (); it != end; ++it) {
+                    for (std::vector<Node *>::iterator it = children.begin (),
+                            end = children.end (); it != end; ++it) {
                         (*it)->SetCurrentFrame (frame, frameXform);
                     }
                 }
@@ -148,25 +159,34 @@ namespace thekogans {
                             std::vector<blas::Bound2> bounds;
 
                         public:
-                            CalcBoundJob (blas::Bound2 &bound_, const std::vector<blas::Point3> &vertices_,
-                                const blas::Matrix3 &xform_) : bound (bound_), vertices (vertices_), xform (xform_) {}
+                            CalcBoundJob (
+                                blas::Bound2 &bound_,
+                                const std::vector<blas::Point3> &vertices_,
+                                const blas::Matrix3 &xform_) :
+                                bound (bound_),
+                                vertices (vertices_),
+                                xform (xform_) {}
 
                             virtual void Prolog (std::size_t chunks) throw () {
                                 bounds.insert (bounds.begin (), chunks, blas::Bound2::Empty);
                             }
-                            virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                            virtual void Execute (
+                                    std::size_t sidx,
+                                    std::size_t eidx,
+                                    std::size_t rank) throw () {
                                 for (; sidx < eidx; ++sidx) {
                                     bounds[rank] += blas::Point2 (vertices[sidx] * xform);
                                 }
                             }
                             virtual void Epilog () throw () {
-                                bound = std::accumulate (bounds.begin (), bounds.end (), blas::Bound2::Empty);
+                                bound = std::accumulate (
+                                    bounds.begin (), bounds.end (), blas::Bound2::Empty);
                             }
                             virtual std::size_t Size () const throw () {
                                 return vertices.size ();
                             }
                         } job (bound, vertices, xform);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }
@@ -184,25 +204,34 @@ namespace thekogans {
                         std::vector<blas::Bound3> bounds;
 
                     public:
-                        CalcBoundJob (blas::Bound3 &bound_, const std::vector<blas::Point3> &vertices_,
-                            const blas::Matrix3 &xform_) : bound (bound_), vertices (vertices_), xform (xform_) {}
+                        CalcBoundJob (
+                            blas::Bound3 &bound_,
+                            const std::vector<blas::Point3> &vertices_,
+                            const blas::Matrix3 &xform_) :
+                            bound (bound_),
+                            vertices (vertices_),
+                            xform (xform_) {}
 
                         virtual void Prolog (std::size_t chunks) throw () {
                             bounds.insert (bounds.begin (), chunks, blas::Bound3::Empty);
                         }
-                        virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                        virtual void Execute (
+                                std::size_t sidx,
+                                std::size_t eidx,
+                                std::size_t rank) throw () {
                             for (; sidx < eidx; ++sidx) {
                                 bounds[rank] += vertices[sidx] * xform;
                             }
                         }
                         virtual void Epilog () throw () {
-                            bound = std::accumulate (bounds.begin (), bounds.end (), blas::Bound3::Empty);
+                            bound = std::accumulate (
+                                bounds.begin (), bounds.end (), blas::Bound3::Empty);
                         }
                         virtual std::size_t Size () const throw () {
                             return vertices.size ();
                         }
                     } job (bound, vertices, xform.Invert ());
-                    util::GlobalVectorizer::Instance ().Execute (job);
+                    util::GlobalVectorizer::Instance ()->Execute (job);
                     return bound;
                 }
 

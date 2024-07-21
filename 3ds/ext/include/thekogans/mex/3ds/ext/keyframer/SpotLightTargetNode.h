@@ -39,7 +39,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL SpotLightTargetNode : public Node {
                     typedef std::unique_ptr<SpotLightTargetNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (SpotLightTargetNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const io::Light &light;
                     const io::TargetNode &targetNode;

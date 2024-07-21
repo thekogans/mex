@@ -28,7 +28,7 @@ namespace thekogans {
         #endif // defined (TOOLCHAIN_OS_Windows)
 
             bool BindRenderbuffer::Init () {
-                if (Extensions::Instance ().IsExtensionSupported ("GL_EXT_framebuffer_object")) {
+                if (Extensions::Instance ()->IsExtensionSupported ("GL_EXT_framebuffer_object")) {
                 #if defined (TOOLCHAIN_OS_Windows)
                     glBindRenderbufferEXT =
                         (PFNGLBINDRENDERBUFFEREXTPROC)wglGetProcAddress (

@@ -35,7 +35,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_IO_DECL LightNode : public Node {
                     typedef std::unique_ptr<LightNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (LightNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     Point3Track positionTrack;
                     Point3Track colorTrack;

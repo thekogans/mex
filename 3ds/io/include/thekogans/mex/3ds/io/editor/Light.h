@@ -37,7 +37,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_IO_DECL Light {
                     typedef std::unique_ptr<Light> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Light)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     std::string name;
                     blas::Point3 position;
@@ -71,7 +71,7 @@ namespace thekogans {
                     struct _LIB_THEKOGANS_MEX_3DS_IO_DECL Spot {
                         typedef std::unique_ptr<Spot> UniquePtr;
 
-                        THEKOGANS_UTIL_DECLARE_HEAP (Spot)
+                        THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                         blas::Point3 target;
                         util::f32 hotSpot;

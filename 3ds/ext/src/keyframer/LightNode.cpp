@@ -23,7 +23,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (LightNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (LightNode)
 
                 LightNode::LightNode (
                     const io::Light &light_,

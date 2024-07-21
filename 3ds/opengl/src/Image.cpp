@@ -28,7 +28,11 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_EX (Image, 32)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX (
+                    Image,
+                    util::SpinLock,
+                    32,
+                    util::DefaultAllocator::Instance ().Get ())
 
                 namespace {
                     // Believe it or not, but just declaring drivers static

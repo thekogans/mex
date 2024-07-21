@@ -29,7 +29,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Light)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Light)
 
                 namespace {
                     void DrawCone (const blas::Point3 &position, const blas::Point3 &target,

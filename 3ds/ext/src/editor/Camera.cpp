@@ -25,7 +25,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Camera)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Camera)
 
                 blas::Bound2 Camera::GetBound2 (const blas::Matrix3 &xform) const {
                     blas::Bound2 bound = blas::Bound2::Empty;

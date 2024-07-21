@@ -30,13 +30,13 @@ namespace thekogans {
             explicit MenuBarWindowSpeedBarEventHandler (core::Module &module_) : module (module_) {}
 
             virtual void OnSetFocus () {
-                core::UI::Instance ().mainFrameWindow->ShowSpeedBarWindow (
-                    !core::UI::Instance ().mainFrameWindow->IsSpeedBarWindowVisible ());
+                core::UI::Instance ()->mainFrameWindow->ShowSpeedBarWindow (
+                    !core::UI::Instance ()->mainFrameWindow->IsSpeedBarWindowVisible ());
             }
 
             virtual bool IsChecked () const {
-                assert (core::UI::Instance ().mainFrameWindow != 0);
-                return core::UI::Instance ().mainFrameWindow->IsSpeedBarWindowVisible ();
+                assert (core::UI::Instance ()->mainFrameWindow != 0);
+                return core::UI::Instance ()->mainFrameWindow->IsSpeedBarWindowVisible ();
             }
         };
 

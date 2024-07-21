@@ -33,7 +33,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (View)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (View)
 
                 void View::Draw (const Module &module, const std::vector<blas::Point2> &jitterTable) const {
                     Enable scissorTest (GL_SCISSOR_TEST, true);
@@ -60,7 +60,7 @@ namespace thekogans {
                         glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                         // Draw view name.
                         Color color (DefaultPalette[WHITE]);
-                        Font font (FontMgr::Instance ().GetSystemFont ());
+                        Font font (FontMgr::Instance ()->GetSystemFont ());
                         assert (font.font != 0);
                         font.DrawText (view.size.x + 1, view.size.Top () - font.font->GetHeight () - 1,
                             GetName (view), view.size);

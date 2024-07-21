@@ -35,10 +35,13 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (WireMesh)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (WireMesh)
 
-                WireMesh::WireMesh (const io::Mesh &mesh, const io::Project &project) :
-                        Mesh (mesh, project), selectionInfo (mesh) {
+                WireMesh::WireMesh (
+                        const io::Mesh &mesh,
+                        const io::Project &project) :
+                        Mesh (mesh, project),
+                        selectionInfo (mesh) {
                     selectionInfo.Build ();
                     if (project.display.detail) {
                         ext::Mesh (mesh).BuildEdges (edges);

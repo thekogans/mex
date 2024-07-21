@@ -41,7 +41,7 @@ namespace thekogans {
             struct Polygon {
                 typedef std::unique_ptr<Polygon<T> > UniquePtr;
 
-                THEKOGANS_UTIL_DECLARE_HEAP (Polygon<T>)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                 std::vector<T> points;
                 bool closed;

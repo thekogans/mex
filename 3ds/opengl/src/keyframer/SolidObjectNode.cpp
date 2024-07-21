@@ -38,7 +38,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (SolidObjectNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (SolidObjectNode)
 
                 SolidObjectNode::SolidObjectNode (
                         const ext::ObjectNode &objectNode,

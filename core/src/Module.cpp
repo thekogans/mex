@@ -69,7 +69,7 @@ namespace thekogans {
                     THEKOGANS_UTIL_TRY {
                         dynamicLibrary.Load (
                             util::MakePath (
-                                util::SystemInfo::Instance ().GetProcessStartDirectory (),
+                                util::SystemInfo::Instance ()->GetProcessStartDirectory (),
                                 path));
                         typedef Module::PluginInterface &
                             (_LIB_THEKOGANS_MEX_CORE_API *GetPluginInterfaceProc) ();
@@ -82,8 +82,8 @@ namespace thekogans {
                             THEKOGANS_UTIL_THROW_STRING_EXCEPTION ("%s", "Major version mismatch.");
                         }
                         if (pluginInterface.GetMinorVersion () != Module::PluginInterface::MINOR_VERSION) {
-                            assert (UI::Instance ().consoleWindow != 0);
-                            UI::Instance ().consoleWindow->Print (
+                            assert (UI::Instance ()->consoleWindow != 0);
+                            UI::Instance ()->consoleWindow->Print (
                                 "'%s': *** WARNING ***, plugin '%s' minor version mismatch (%u - %u).\n",
                                 module.GetName (), path.c_str (), pluginInterface.GetMinorVersion (),
                                 Module::PluginInterface::MINOR_VERSION);
@@ -91,8 +91,8 @@ namespace thekogans {
                         pluginInterface.LoadPlugins (module);
                     }
                     THEKOGANS_UTIL_CATCH (util::Exception) {
-                        assert (UI::Instance ().consoleWindow != 0);
-                        UI::Instance ().consoleWindow->Print (
+                        assert (UI::Instance ()->consoleWindow != 0);
+                        UI::Instance ()->consoleWindow->Print (
                             "'%s': Unable to load plugin '%s' (%s).\n",
                             module.GetName (), path.c_str (), exception.what ());
                     }
@@ -113,7 +113,7 @@ namespace thekogans {
                     THEKOGANS_UTIL_TRY {
                         dynamicLibrary.Load (
                             util::MakePath (
-                                util::SystemInfo::Instance ().GetProcessStartDirectory (),
+                                util::SystemInfo::Instance ()->GetProcessStartDirectory (),
                                 path));
                         typedef const Module::ModuleInterface &
                             (_LIB_THEKOGANS_MEX_CORE_API *GetModuleInterfaceProc) (const char *name);
@@ -126,8 +126,8 @@ namespace thekogans {
                             THEKOGANS_UTIL_THROW_STRING_EXCEPTION ("%s", "Major version mismatch.");
                         }
                         if (moduleInterface.GetMinorVersion () != Module::ModuleInterface::MINOR_VERSION) {
-                            assert (UI::Instance ().consoleWindow != 0);
-                            UI::Instance ().consoleWindow->Print (
+                            assert (UI::Instance ()->consoleWindow != 0);
+                            UI::Instance ()->consoleWindow->Print (
                                 "*** WARNING ***, module '%s' minor version mismatch (%u - %u).\n",
                                 path.c_str (), moduleInterface.GetMinorVersion (),
                                 Module::ModuleInterface::MINOR_VERSION);
@@ -155,8 +155,8 @@ namespace thekogans {
                         }
                     }
                     THEKOGANS_UTIL_CATCH (util::Exception) {
-                        assert (UI::Instance ().consoleWindow != 0);
-                        UI::Instance ().consoleWindow->Print (
+                        assert (UI::Instance ()->consoleWindow != 0);
+                        UI::Instance ()->consoleWindow->Print (
                             "Unable to load module '%s' (%s).\n",
                             path.c_str (), exception.what ());
                     }
@@ -181,8 +181,8 @@ namespace thekogans {
                     }
                 }
                 THEKOGANS_UTIL_CATCH (std::string) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "Module: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), exception.c_str ());
                 }
@@ -209,11 +209,11 @@ namespace thekogans {
             }
 
             void Module::SetFocus () {
-                UI::Instance ().menuBarWindow->SetMenuBar (*menuBar);
-                UI::Instance ().toolBarWindow->SetToolBar (*toolBar);
-                UI::Instance ().viewLayoutWindow->SetViewLayout (*viewLayout);
-                UI::Instance ().speedBarWindow->SetSpeedBar (*speedBar);
-                UI::Instance ().statusBarWindow->SetStatusBar (*statusBar);
+                UI::Instance ()->menuBarWindow->SetMenuBar (*menuBar);
+                UI::Instance ()->toolBarWindow->SetToolBar (*toolBar);
+                UI::Instance ()->viewLayoutWindow->SetViewLayout (*viewLayout);
+                UI::Instance ()->speedBarWindow->SetSpeedBar (*speedBar);
+                UI::Instance ()->statusBarWindow->SetStatusBar (*statusBar);
             }
 
             void Module::KillFocus () {

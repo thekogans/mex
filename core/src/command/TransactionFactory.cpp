@@ -36,9 +36,12 @@ namespace thekogans {
                     // To minimize chatter, this transaction optimizes
                     // away redundant redraw final operations.
                     struct Transaction : public thekogans::mex::command::Transaction {
-                        THEKOGANS_UTIL_DECLARE_HEAP (Transaction)
+                        THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
-                        Transaction (const std::string &name, bool undoable, bool committing) :
+                        Transaction (
+                            const std::string &name,
+                            bool undoable,
+                            bool committing) :
                             thekogans::mex::command::Transaction (name, undoable, committing) {}
 
                         virtual void Optimize () {
@@ -117,7 +120,7 @@ namespace thekogans {
                         }
                     };
 
-                    THEKOGANS_UTIL_IMPLEMENT_HEAP (Transaction)
+                    THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Transaction)
                 }
 
                 thekogans::mex::command::Transaction::SharedPtr TransactionFactory::CreateTransaction () {

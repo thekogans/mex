@@ -30,7 +30,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (SpotLightNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (SpotLightNode)
 
                 SpotLightNode::SpotLightNode (const ext::SpotLightHeadNode &spotLightHeadNode_,
                     const ext::SpotLightTargetNode &spotLightTargetNode_, const io::Project &project_) :

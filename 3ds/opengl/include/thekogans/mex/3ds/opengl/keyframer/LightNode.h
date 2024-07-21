@@ -37,7 +37,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL LightNode {
                     typedef std::unique_ptr<LightNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (LightNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const ext::LightNode &lightNode;
                     const io::Project &project;

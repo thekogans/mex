@@ -76,7 +76,7 @@ namespace thekogans {
                             }
                         };
                         CreateEdgesJob job (tempEdges1, mesh.faces);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     if (!tempEdges1.empty ()) {
                         std::vector<Edge> tempEdges2;

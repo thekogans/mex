@@ -26,9 +26,9 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Triangulator::Vertex)
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Triangulator::Loop)
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Triangulator::Face)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Triangulator::Vertex)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Triangulator::Loop)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Triangulator::Face)
 
                 Triangulator::Triangulator (const Lofter::Shape &shape) : faces (0) {
                     for (std::size_t i = 0, index = 0, polygonCount = shape.polygons.size (); i < polygonCount; ++i) {

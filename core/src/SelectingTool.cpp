@@ -33,13 +33,13 @@ namespace thekogans {
                 if (state == 0) {
                     if (selecting) {
                         selecting = false;
-                        core::CursorMgr::Instance ().SetCursor (cursor);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
                     }
                     else {
                         selecting = true;
-                        cursor = core::CursorMgr::Instance ().GetCurrCursor ();
-                        core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
-                        core::UI::Instance ().consoleWindow->Print (IDS_SELECTINGTOOL_0);
+                        cursor = core::CursorMgr::Instance ()->GetCurrCursor ();
+                        core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_SELECTINGTOOL_0);
                     }
                 }
             }
@@ -47,7 +47,7 @@ namespace thekogans {
             void SelectingTool::KillFocus () {
                 if (selecting) {
                     selecting = false;
-                    core::CursorMgr::Instance ().SetCursor (cursor);
+                    core::CursorMgr::Instance ()->SetCursor (cursor);
                 }
                 Tool::KillFocus ();
             }
@@ -74,14 +74,14 @@ namespace thekogans {
                 if (selecting) {
                     if (state == 1) {
                         UpdateState (2, flags | ScrollLockOff);
-                        core::UI::Instance ().consoleWindow->Print (IDS_SELECTINGTOOL_2);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_SELECTINGTOOL_2);
                     }
                     else if (state == 3) {
                         UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                         bound.Normalize ();
                         Select (view, bound, unselect);
                         CommitTransaction ();
-                        core::UI::Instance ().consoleWindow->Print (IDS_SELECTINGTOOL_0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_SELECTINGTOOL_0);
                     }
                 }
                 else {
@@ -93,7 +93,7 @@ namespace thekogans {
                 if (selecting) {
                     if (state == 0) {
                         UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
-                        core::CursorMgr::Instance ().SetCursor (cursor);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
                             selecting = false;
                     }
                     else if (state == 2) {
@@ -111,7 +111,7 @@ namespace thekogans {
                     if (IsOddState ()) {
                         UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                         AbortTransaction ();
-                        core::UI::Instance ().consoleWindow->Print (IDS_SELECTINGTOOL_0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_SELECTINGTOOL_0);
                     }
                 }
                 else {

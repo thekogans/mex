@@ -46,9 +46,9 @@ namespace thekogans {
                         view (view_) {}
 
                     virtual bool Execute () {
-                        UI::Instance ().viewLayoutWindow->MakeCurrent ();
+                        UI::Instance ()->viewLayoutWindow->MakeCurrent ();
                         thekogans::mex::opengl::BindFramebuffer bindFramebuffer (
-                            GL_FRAMEBUFFER_EXT, UI::Instance ().framebuffer->id);
+                            GL_FRAMEBUFFER_EXT, UI::Instance ()->framebuffer->id);
                         module.GetOpenGLModule ().GetView (view)->Draw (module.GetOpenGLModule ());
                         return true;
                     }

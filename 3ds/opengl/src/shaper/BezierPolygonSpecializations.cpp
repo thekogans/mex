@@ -22,8 +22,8 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_T (BezierPolygon2)
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_T (BezierPolygon3)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (BezierPolygon2)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (BezierPolygon3)
 
             } // namespace opengl
         } // namespace _3ds

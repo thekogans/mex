@@ -29,7 +29,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Shaper)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Shaper)
 
                 Shaper::Shaper (const ext::Shaper &shaper) : Module (shaper) {
                     // FIXME: implement

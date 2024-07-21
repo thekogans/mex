@@ -93,7 +93,7 @@ namespace thekogans {
         }
 
         void ToolButton::mouseReleaseEvent (QMouseEvent *event) {
-            core::ViewLayout *viewLayout = core::UI::Instance ().viewLayoutWindow->GetViewLayout ();
+            core::ViewLayout *viewLayout = core::UI::Instance ()->viewLayoutWindow->GetViewLayout ();
             if (viewLayout != 0 && viewLayout->tool != 0) {
                 viewLayout->tool->KillFocus ();
             }
@@ -112,8 +112,8 @@ namespace thekogans {
         ToolBarWindow::ToolBarWindow (QWidget *parent) : QToolBar (parent) {
             setObjectName ("ToolBarWindow");
             setFocusPolicy (Qt::NoFocus);
-            assert (core::UI::Instance ().toolBarWindow == 0);
-            core::UI::Instance ().toolBarWindow = this;
+            assert (core::UI::Instance ()->toolBarWindow == 0);
+            core::UI::Instance ()->toolBarWindow = this;
         }
 
         void ToolBarWindow::OnIdle () {

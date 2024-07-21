@@ -39,7 +39,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_IO_DECL Mesh {
                     typedef std::unique_ptr<Mesh> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Mesh)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     std::string name;
                     std::vector<blas::Point3> vertices;

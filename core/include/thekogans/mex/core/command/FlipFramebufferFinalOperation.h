@@ -31,8 +31,8 @@ namespace thekogans {
                     THEKOGANS_MEX_COMMAND_DECLARE_FINAL_OPERATION (FlipFramebufferFinalOperation)
 
                     virtual bool Execute () {
-                        if (UI::Instance ().framebuffer.get () != 0) {
-                            UI::Instance ().FlipFramebuffer ();
+                        if (UI::Instance ()->framebuffer.get () != 0) {
+                            UI::Instance ()->FlipFramebuffer ();
                             return true;
                         }
                         return false;

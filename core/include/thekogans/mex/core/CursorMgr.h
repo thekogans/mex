@@ -98,14 +98,14 @@ namespace thekogans {
 
             struct HideCursor {
                 bool visible;
-                HideCursor () : visible (CursorMgr::Instance ().IsCursorVisible ()) {
+                HideCursor () : visible (CursorMgr::Instance ()->IsCursorVisible ()) {
                     if (visible) {
-                        CursorMgr::Instance ().ShowCursor (false);
+                        CursorMgr::Instance ()->ShowCursor (false);
                     }
                 }
                 ~HideCursor () {
                     if (visible) {
-                        CursorMgr::Instance ().ShowCursor (true);
+                        CursorMgr::Instance ()->ShowCursor (true);
                     }
                 }
 
@@ -117,15 +117,15 @@ namespace thekogans {
             struct SetCursor {
                 const QCursor *oldCursor;
                 SetCursor (const QCursor *newCursor) :
-                        oldCursor (CursorMgr::Instance ().GetCurrCursor ()) {
-                    CursorMgr::Instance ().SetCursor (newCursor);
+                        oldCursor (CursorMgr::Instance ()->GetCurrCursor ()) {
+                    CursorMgr::Instance ()->SetCursor (newCursor);
                 }
                 SetCursor (util::ui32 index) :
-                oldCursor (CursorMgr::Instance ().GetCurrCursor ()) {
-                    CursorMgr::Instance ().SetCursor (index);
+                oldCursor (CursorMgr::Instance ()->GetCurrCursor ()) {
+                    CursorMgr::Instance ()->SetCursor (index);
                 }
                 virtual ~SetCursor () {
-                    CursorMgr::Instance ().SetCursor (oldCursor);
+                    CursorMgr::Instance ()->SetCursor (oldCursor);
                 }
 
             private:

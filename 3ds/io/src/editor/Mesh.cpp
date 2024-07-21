@@ -24,7 +24,11 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_EX (Mesh, 1024)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX (
+                    Mesh,
+                    util::SpinLock,
+                    1024,
+                    util::DefaultAllocator::Instance ().Get ())
 
                 void Mesh::Swap (Mesh &mesh) {
                     assert (&mesh != this);
@@ -95,7 +99,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, vertices, vertexFlags, xform.Invert ());
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class CalcBoundJob : public util::Vectorizer::Job {
@@ -132,7 +136,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, vertices, xform.Invert ());
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }

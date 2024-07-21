@@ -42,20 +42,28 @@ namespace thekogans {
 
             #define THEKOGANS_MEX_COMMAND_DECLARE_FINAL_OPERATION(type)\
                 THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (type)\
-                THEKOGANS_UTIL_DECLARE_HEAP (type)\
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS\
             public:\
                 virtual const char *GetName () const {\
                     return typeid (*this).name ();\
                 }
 
             #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION(type)\
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (type)
-            #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_EX(type, minItemsInPage, clearMemory)\
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_EX (type, minItemsInPage, clearMemory)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (type)
+            #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_EX(type, minItemsInPage)\
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX (\
+                    type,\
+                    util::SpinLock,\
+                    minItemsInPage,\
+                    util::DefaultAllocator::Instance ().Get ())
             #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_T(type)\
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_T (type)
-            #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_EX_T(type, minItemsInPage, clearMemory)\
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_EX_T (type, minItemsInPage, clearMemory)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (type)
+            #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_EX_T(type, minItemsInPage)\
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX_T (\
+                    type,\
+                    util::SpinLock,\
+                    minItemsInPage,\
+                    util::DefaultAllocator::Instance ().Get ())
 
         } // namespace command
     } // namespace mex

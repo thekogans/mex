@@ -29,7 +29,7 @@ namespace thekogans {
         #endif // defined (TOOLCHAIN_OS_Windows)
 
             bool BlitFramebuffer::Init () {
-                if (Extensions::Instance ().IsExtensionSupported ("GL_EXT_framebuffer_blit")) {
+                if (Extensions::Instance ()->IsExtensionSupported ("GL_EXT_framebuffer_blit")) {
                 #if defined (TOOLCHAIN_OS_Windows)
                     glBlitFramebufferEXT =
                         (PFNGLBLITFRAMEBUFFEREXTPROC)wglGetProcAddress (

@@ -23,7 +23,11 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_EX (Mesh::Normals::VertexNormal, 100000)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX (
+                    Mesh::Normals::VertexNormal,
+                    util::SpinLock,
+                    100000,
+                    util::DefaultAllocator::Instance ().Get ())
 
                 // Add a normal to the list if the smoothing group bits overlap,
                 // otherwise create a new vertex normal in the list
@@ -114,7 +118,7 @@ namespace thekogans {
                                 return faces.size ();
                             }
                         } job (faceNormals, vertices, mesh.faces);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     if (!mesh.faceSmoothGroups.empty ()) {
                         assert (mesh.faceSmoothGroups.size () == mesh.faces.size ());
@@ -180,7 +184,7 @@ namespace thekogans {
                                         return vertexNormals.size ();
                                     }
                                 } job (vertexNormals, oneNormalPerVertex);
-                                util::GlobalVectorizer::Instance ().Execute (job);
+                                util::GlobalVectorizer::Instance ()->Execute (job);
                             }
                             if (!vertexNormals.empty () && oneNormalPerVertex) {
                                 vertexNormals2.resize (vertexNormals.size ());
@@ -208,7 +212,7 @@ namespace thekogans {
                                         return vertexNormals.size ();
                                     }
                                 } job (vertexNormals2, vertexNormals);
-                                util::GlobalVectorizer::Instance ().Execute (job);
+                                util::GlobalVectorizer::Instance ()->Execute (job);
                                 vertexNormals.deleteAndClear ();
                             }
                         }

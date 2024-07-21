@@ -74,10 +74,10 @@ namespace thekogans {
                 state = state_;
                 flags = stateFlags & (FLAG_CTRL | FLAG_ALT | FLAG_SHIFT);
                 if (util::Flags32 (stateFlags).Test (CursorVisible)) {
-                    CursorMgr::Instance ().ShowCursor (true);
+                    CursorMgr::Instance ()->ShowCursor (true);
                 }
                 else if (util::Flags32 (stateFlags).Test (CursorHidden)) {
-                    CursorMgr::Instance ().ShowCursor (false);
+                    CursorMgr::Instance ()->ShowCursor (false);
                 }
                 if (util::Flags32 (stateFlags).Test (ScrollLockOn)) {
                     scrollLock = true;

@@ -38,8 +38,8 @@ namespace thekogans {
         FrameBarWindow::FrameBarWindow (StatusBarWindow *statusBarWindow_) :
             QWidget (statusBarWindow_), statusBarWindow (statusBarWindow_),
             boxMode (false), modal (false), eventSink (0) {
-            assert (core::UI::Instance ().frameBarWindow == 0);
-            core::UI::Instance ().frameBarWindow = this;
+            assert (core::UI::Instance ()->frameBarWindow == 0);
+            core::UI::Instance ()->frameBarWindow = this;
         }
 
         void FrameBarWindow::Show (bool show) {

@@ -25,7 +25,7 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (ObjectNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (ObjectNode)
 
                 const char * const ObjectNode::DUMMY_NAME = "$$$DUMMY";
 

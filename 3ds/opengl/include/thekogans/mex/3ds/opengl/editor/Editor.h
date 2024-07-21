@@ -46,7 +46,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL Editor : public Module {
                     typedef std::unique_ptr<Editor> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Editor)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     util::OwnerMap<std::string, Material> materials;
                     util::OwnerVector<WireMesh> wireMeshes;

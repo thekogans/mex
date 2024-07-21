@@ -27,7 +27,7 @@ namespace thekogans {
     namespace mex {
         namespace core {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (Filters::Item)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Filters::Item)
 
             namespace {
                 // Believe it or not, but just declaring map static
@@ -74,8 +74,8 @@ namespace thekogans {
                     Filters::Item::EventHandler *eventHandler =
                         Filters::Item::EventHandler::Get (eventHandlerName, module);
                     if (eventHandler == 0) {
-                        assert (UI::Instance ().consoleWindow != 0);
-                        UI::Instance ().consoleWindow->Print (
+                        assert (UI::Instance ()->consoleWindow != 0);
+                        UI::Instance ()->consoleWindow->Print (
                             "Filters: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
                         static Filters::Item::EventHandler dummyEventHandler;
                         eventHandler = &dummyEventHandler;
@@ -102,8 +102,8 @@ namespace thekogans {
                     }
                 }
                 catch (const std::string &message) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "Filters: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), message.c_str ());
                 }

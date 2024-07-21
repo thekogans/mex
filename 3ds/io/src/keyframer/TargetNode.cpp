@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (TargetNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (TargetNode)
 
                 TargetNode::TargetNode (
                         util::ui16 id,

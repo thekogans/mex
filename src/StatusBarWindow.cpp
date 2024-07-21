@@ -43,8 +43,8 @@ namespace thekogans {
             setMouseTracking (true);
             setFocusPolicy (Qt::NoFocus);
             frameBarWindow.setVisible (false);
-            assert (core::UI::Instance ().statusBarWindow == 0);
-            core::UI::Instance ().statusBarWindow = this;
+            assert (core::UI::Instance ()->statusBarWindow == 0);
+            core::UI::Instance ()->statusBarWindow = this;
         }
 
         void StatusBarWindow::OnIdle () {

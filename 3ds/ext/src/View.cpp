@@ -31,20 +31,25 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (View)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (View)
 
                 const util::f32 View::ShapeWidth = 512.0f;
                 const util::f32 View::OrthographicWidth = 256.0f;
                 const util::f32 View::PerspectiveWidth = 1.0f;
 
                 namespace {
-                    util::f32 CalcScale (const io::View &view, util::f32 viewWidth) {
+                    util::f32 CalcScale (
+                            const io::View &view,
+                            util::f32 viewWidth) {
                         return view.size.width > view.size.height ?
                             view.size.height * view.zoom / viewWidth :
                             view.size.width * view.zoom / viewWidth;
                     }
 
-                    blas::Point2 CalcOffset (const io::View &view, const blas::Point2 &viewOrigin, util::f32 scale) {
+                    blas::Point2 CalcOffset (
+                            const io::View &view,
+                            const blas::Point2 &viewOrigin,
+                            util::f32 scale) {
                         return blas::Point2 (
                             view.size.x + view.size.width * 0.5f - viewOrigin.x * scale + 0.5f,
                             view.size.y + view.size.height * 0.5f - viewOrigin.y * scale + 0.5f);

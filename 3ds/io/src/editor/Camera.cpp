@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Camera)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Camera)
 
                 namespace {
                     const util::f32 lensTable[] = {

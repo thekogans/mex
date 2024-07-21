@@ -46,7 +46,7 @@ namespace thekogans {
                 struct BezierPolygon {
                     typedef std::unique_ptr<BezierPolygon<T> > UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (BezierPolygon<T>)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     // Component color palette.
                     enum {

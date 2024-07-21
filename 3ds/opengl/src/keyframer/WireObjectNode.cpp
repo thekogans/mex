@@ -38,7 +38,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (WireObjectNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (WireObjectNode)
 
                 WireObjectNode::WireObjectNode (
                         const ext::ObjectNode &objectNode,

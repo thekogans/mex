@@ -30,7 +30,7 @@ namespace thekogans {
     namespace mex {
         namespace core {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (ToolBar::Item)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (ToolBar::Item)
 
             namespace {
                 // Believe it or not, but just declaring map static
@@ -119,8 +119,8 @@ namespace thekogans {
                         ToolBar::Item::EventHandler *eventHandler =
                             ToolBar::Item::EventHandler::Get (eventHandlerName, module);
                         if (eventHandler == 0) {
-                            assert (UI::Instance ().consoleWindow != 0);
-                            UI::Instance ().consoleWindow->Print (
+                            assert (UI::Instance ()->consoleWindow != 0);
+                            UI::Instance ()->consoleWindow->Print (
                                 "ToolBar: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
                             struct DummyEventHandler : public ToolBar::Item::EventHandler {
                                 virtual void OnClickLeft () {}
@@ -169,8 +169,8 @@ namespace thekogans {
                     }
                 }
                 catch (const std::string &message) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "ToolBar: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), message.c_str ());
                 }

@@ -34,7 +34,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_IO_DECL TargetNode : public Node {
                     typedef std::unique_ptr<TargetNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (TargetNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     Point3Track targetTrack;
 

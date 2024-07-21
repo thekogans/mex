@@ -70,13 +70,13 @@ namespace thekogans {
             setAutoBufferSwap (false);
             setMouseTracking (true);
             setFocusPolicy (Qt::StrongFocus);
-            assert (core::UI::Instance ().viewLayoutWindow == 0);
-            core::UI::Instance ().viewLayoutWindow = this;
+            assert (core::UI::Instance ()->viewLayoutWindow == 0);
+            core::UI::Instance ()->viewLayoutWindow = this;
         }
 
         ViewLayoutWindow::~ViewLayoutWindow () {
             makeCurrent ();
-            core::UI::Instance ().DestroyFramebuffer ();
+            core::UI::Instance ()->DestroyFramebuffer ();
         }
 
         void ViewLayoutWindow::OnIdle () {
@@ -84,15 +84,15 @@ namespace thekogans {
                     !GetMousePosition ().InSize (
                         blas::Size (0, 0, WidthInPixels (), HeightInPixels ()))) {
                 makeCurrent ();
-                core::CursorMgr::Instance ().OnMouseMove (blas::Point (-1, -1));
+                core::CursorMgr::Instance ()->OnMouseMove (blas::Point (-1, -1));
             }
-            else if (core::CursorMgr::Instance ().IsCursorVisible ()) {
+            else if (core::CursorMgr::Instance ()->IsCursorVisible ()) {
                 if (IsCursorInCurrView ()) {
-                    setCursor (*core::CursorMgr::Instance ().GetCurrCursor ());
+                    setCursor (*core::CursorMgr::Instance ()->GetCurrCursor ());
                 }
                 else {
                     setCursor (
-                        *core::CursorMgr::Instance ().GetCursor (
+                        *core::CursorMgr::Instance ()->GetCursor (
                             core::CursorMgr::ARROW_CURSOR));
                 }
             }
@@ -122,7 +122,7 @@ namespace thekogans {
                 int height) {
             if (width > 0 && height > 0) {
                 blas::Size size (0, 0, width, height);
-                core::UI::Instance ().CreateFramebuffer (size);
+                core::UI::Instance ()->CreateFramebuffer (size);
                 if (viewLayout != 0) {
                     viewLayout->SetSize (size);
                 }
@@ -130,7 +130,7 @@ namespace thekogans {
         }
 
         void ViewLayoutWindow::paintGL () {
-            core::UI::Instance ().FlipFramebuffer ();
+            core::UI::Instance ()->FlipFramebuffer ();
         }
 
         void ViewLayoutWindow::mousePressEvent (QMouseEvent *event) {
@@ -189,7 +189,7 @@ namespace thekogans {
                 InViewLayoutSetter inViewLayoutSetter (inViewLayout);
                 makeCurrent ();
                 blas::Point pt = Win2GL (event->pos ());
-                core::CursorMgr::Instance ().OnMouseMove (pt);
+                core::CursorMgr::Instance ()->OnMouseMove (pt);
                 if (viewLayout != 0) {
                     viewLayout->MouseMove (GetControlKeyState (event->modifiers ()), pt);
                 }

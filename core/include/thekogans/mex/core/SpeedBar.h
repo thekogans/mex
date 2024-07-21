@@ -40,7 +40,7 @@ namespace thekogans {
                 typedef std::unique_ptr<SpeedBar> UniquePtr;
 
                 struct _LIB_THEKOGANS_MEX_CORE_DECL Item {
-                    THEKOGANS_UTIL_DECLARE_HEAP (Item)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     struct _LIB_THEKOGANS_MEX_CORE_DECL EventHandler {
                         typedef EventHandler *(*Factory) (Module &);

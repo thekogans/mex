@@ -21,7 +21,11 @@ namespace thekogans {
     namespace mex {
         namespace command {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP_EX (Transaction, 512)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX (
+                Transaction,
+                util::SpinLock,
+                512,
+                util::DefaultAllocator::Instance ().Get ())
 
             bool Transaction::Execute () {
                 {

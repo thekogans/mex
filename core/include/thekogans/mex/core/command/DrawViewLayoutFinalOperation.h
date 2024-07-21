@@ -42,10 +42,10 @@ namespace thekogans {
                         module (module_) {}
 
                     virtual bool Execute () {
-                        if (UI::Instance ().framebuffer.get () != 0) {
-                            core::UI::Instance ().viewLayoutWindow->MakeCurrent ();
+                        if (UI::Instance ()->framebuffer.get () != 0) {
+                            core::UI::Instance ()->viewLayoutWindow->MakeCurrent ();
                             thekogans::mex::opengl::BindFramebuffer bindFramebuffer (
-                                GL_FRAMEBUFFER_EXT, UI::Instance ().framebuffer->id);
+                                GL_FRAMEBUFFER_EXT, UI::Instance ()->framebuffer->id);
                             _3ds::opengl::ViewLayout (module.GetIOModule ().viewLayout).Draw (
                                 module.GetOpenGLModule ());
                             return true;

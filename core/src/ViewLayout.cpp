@@ -40,7 +40,7 @@ namespace thekogans {
                 _3ds::io::command::ViewLayoutSetSizeCommand (
                     module.GetIOModule ().viewLayout, size).Execute ();
                 command::DrawViewLayoutFinalOperation (module).Execute ();
-                UI::Instance ().FlipFramebuffer ();
+                UI::Instance ()->FlipFramebuffer ();
             }
 
             void ViewLayout::SetFocus () {
@@ -48,7 +48,7 @@ namespace thekogans {
                     tool->SetFocus ();
                 }
                 else {
-                    CursorMgr::Instance ().SetCursor (CursorMgr::ARROW_CURSOR);
+                    CursorMgr::Instance ()->SetCursor (CursorMgr::ARROW_CURSOR);
                 }
             }
 
@@ -201,14 +201,14 @@ namespace thekogans {
 
             void ViewLayout::CaptureView () {
                 capturedViewIndex = module.GetIOModule ().viewLayout.layout.currViewIndex;
-                assert (UI::Instance ().viewLayoutWindow != 0);
-                UI::Instance ().viewLayoutWindow->CaptureMouse ();
+                assert (UI::Instance ()->viewLayoutWindow != 0);
+                UI::Instance ()->viewLayoutWindow->CaptureMouse ();
             }
 
             void ViewLayout::ReleaseView () {
                 capturedViewIndex = util::NIDX16;
-                assert (UI::Instance ().viewLayoutWindow != 0);
-                UI::Instance ().viewLayoutWindow->ReleaseMouse ();
+                assert (UI::Instance ()->viewLayoutWindow != 0);
+                UI::Instance ()->viewLayoutWindow->ReleaseMouse ();
             }
 
             void ViewLayout::ScrollView (blas::Point &dp) {
@@ -242,7 +242,7 @@ namespace thekogans {
                                     worldOrigin.y += 0.25f * openglView->viewBound.Extents ().y;
                                     dp.y = size.y + size.height * 3 / 4;
                                 }
-                                UI::Instance ().viewLayoutWindow->SetMousePosition (dp);
+                                UI::Instance ()->viewLayoutWindow->SetMousePosition (dp);
                                 // Since we're doing this on behalf of the active tool, it
                                 // had better started a transaction. This assert will help
                                 // debug the broken tools.

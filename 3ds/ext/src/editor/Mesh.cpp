@@ -29,7 +29,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Mesh)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Mesh)
 
                 blas::Bound2 Mesh::GetBound2 (
                         const blas::Matrix3 &xform,
@@ -75,7 +75,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, mesh.vertexFlags, xform);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class CalcBoundJob : public util::Vectorizer::Job {
@@ -112,7 +112,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, xform);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }
@@ -162,7 +162,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, mesh.vertexFlags, mesh.xform.Invert ());
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class CalcBoundJob : public util::Vectorizer::Job {
@@ -202,7 +202,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, mesh.xform.Invert ());
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }

@@ -29,7 +29,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (CameraNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (CameraNode)
 
                 CameraNode::CameraNode (
                         const ext::CameraHeadNode &cameraHeadNode_,

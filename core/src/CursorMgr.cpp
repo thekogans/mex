@@ -110,7 +110,7 @@ namespace thekogans {
                 if (show != visible) {
                     if (show) {
                         visible = true;
-                        ptLast = UI::Instance ().viewLayoutWindow->GetMousePosition ();
+                        ptLast = UI::Instance ()->viewLayoutWindow->GetMousePosition ();
                         Draw ();
                     }
                     else {
@@ -135,7 +135,7 @@ namespace thekogans {
                     if (module != 0) {
                         const blas::Size &size = module->GetIOModule ().viewLayout.GetCurrView ().size;
                         if (ptLast.InSize (size)) {
-                            UI::Instance ().viewLayoutWindow->MakeCurrent ();
+                            UI::Instance ()->viewLayoutWindow->MakeCurrent ();
                             Viewport2D viewport2D (size);
                             LogicOp logicOp (GL_XOR);
                             DrawBuffer drawBuffer (GL_FRONT);

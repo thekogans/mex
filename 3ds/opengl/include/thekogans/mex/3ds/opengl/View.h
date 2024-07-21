@@ -43,7 +43,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL View : public ext::View {
                     typedef std::unique_ptr<View> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (View)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const blas::Matrix4 modelViewXform;
                     const blas::Matrix4 projectionXform;

@@ -35,7 +35,7 @@ namespace thekogans {
 
             template<typename T>
             struct PolygonRegion : public Region<T> {
-                THEKOGANS_UTIL_DECLARE_HEAP (PolygonRegion<T>)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
             private:
                 Polygon<T> polygon;

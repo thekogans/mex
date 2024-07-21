@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Material)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Material)
 
             } // namespace io
         } // namespace _3ds

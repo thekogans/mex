@@ -30,13 +30,13 @@ namespace thekogans {
             explicit MenuBarWindowStatusBarEventHandler (core::Module &module_) : module (module_) {}
 
             virtual void OnSetFocus () {
-                core::UI::Instance ().mainFrameWindow->ShowStatusBarWindow (
-                    !core::UI::Instance ().mainFrameWindow->IsStatusBarWindowVisible ());
+                core::UI::Instance ()->mainFrameWindow->ShowStatusBarWindow (
+                    !core::UI::Instance ()->mainFrameWindow->IsStatusBarWindowVisible ());
             }
 
             virtual bool IsChecked () const {
-                assert (core::UI::Instance ().mainFrameWindow != 0);
-                return core::UI::Instance ().mainFrameWindow->IsStatusBarWindowVisible ();
+                assert (core::UI::Instance ()->mainFrameWindow != 0);
+                return core::UI::Instance ()->mainFrameWindow->IsStatusBarWindowVisible ();
             }
         };
 

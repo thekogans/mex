@@ -27,8 +27,8 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Light)
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Light::Spot)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Light)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Light::Spot)
 
                 // FIXME: move to ext?
                 bool Light::Spot::Cone::CalcPoints (

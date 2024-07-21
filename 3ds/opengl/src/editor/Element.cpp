@@ -26,10 +26,14 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Element)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Element)
 
-                Element::Element (const io::Mesh &mesh, const std::vector<util::ui16> &faces, const Material &material_) :
-                        ext::Mesh::Element (mesh, faces), material (material_) {
+                Element::Element (
+                        const io::Mesh &mesh,
+                        const std::vector<util::ui16> &faces,
+                        const Material &material_) :
+                        ext::Mesh::Element (mesh, faces),
+                        material (material_) {
                     if (!mesh.textureVertices.empty ()) {
                         textureVertices.resize (faces.size () * 3);
                         class CopyTextureVertices : public util::Vectorizer::Job {
@@ -37,10 +41,15 @@ namespace thekogans {
                             Element &element;
 
                         public:
-                            CopyTextureVertices (Element &element_) : element (element_) {}
+                            CopyTextureVertices (Element &element_) :
+                                element (element_) {}
 
-                            virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
-                                blas::Point2 *textureVerticesPtr = &element.textureVertices[sidx * 3];
+                            virtual void Execute (
+                                    std::size_t sidx,
+                                    std::size_t eidx,
+                                    std::size_t rank) throw () {
+                                blas::Point2 *textureVerticesPtr =
+                                    &element.textureVertices[sidx * 3];
                                 const io::Mesh &mesh = element.mesh;
                                 for (; sidx < eidx; ++sidx) {
                                     const io::Mesh::Face &face = mesh.faces[element.faces[sidx]];
@@ -53,12 +62,14 @@ namespace thekogans {
                                 return element.faces.size ();
                             }
                         } job (*this);
-                        util::GlobalVectorizer::Instance ().Execute (job);
+                        util::GlobalVectorizer::Instance ()->Execute (job);
                     }
                 }
 
-                void Element::UpdateVerticesAndNormals (const std::vector<blas::Point3> &vertices,
-                        const ext::Mesh::Normals &normals, bool flat) {
+                void Element::UpdateVerticesAndNormals (
+                        const std::vector<blas::Point3> &vertices,
+                        const ext::Mesh::Normals &normals,
+                        bool flat) {
                     class UpdateVerticesAndNormalsJob : public util::Vectorizer::Job {
                     private:
                         Element &element;
@@ -67,14 +78,23 @@ namespace thekogans {
                         bool flat;
 
                     public:
-                        UpdateVerticesAndNormalsJob (Element &element_, const std::vector<blas::Point3> &vertices_,
-                            const ext::Mesh::Normals &normals_, bool flat_) :
-                            element (element_), vertices (vertices_), normals (normals_), flat (flat_) {
+                        UpdateVerticesAndNormalsJob (
+                                Element &element_,
+                                const std::vector<blas::Point3> &vertices_,
+                                const ext::Mesh::Normals &normals_,
+                                bool flat_) :
+                                element (element_),
+                                vertices (vertices_),
+                                normals (normals_),
+                                flat (flat_) {
                             element.vertices.resize (element.faces.size () * 3);
                             element.normals.resize (element.faces.size () * 3);
                         }
 
-                        virtual void Execute (std::size_t sidx, std::size_t eidx, std::size_t rank) throw () {
+                        virtual void Execute (
+                                std::size_t sidx,
+                                std::size_t eidx,
+                                std::size_t rank) throw () {
                             blas::Point3 *elementVertices = &element.vertices[sidx * 3];
                             blas::Point3 *elementNormals = &element.normals[sidx * 3];
                             const std::vector<io::Mesh::Face> &faces = element.mesh.faces;
@@ -106,7 +126,7 @@ namespace thekogans {
                             return element.faces.size ();
                         }
                     } job (*this, vertices, normals, flat);
-                    util::GlobalVectorizer::Instance ().Execute (job);
+                    util::GlobalVectorizer::Instance ()->Execute (job);
                 }
 
                 void Element::Draw () const {

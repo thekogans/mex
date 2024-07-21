@@ -25,7 +25,7 @@ namespace thekogans {
     namespace mex {
         namespace core {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (MenuBar::Item)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (MenuBar::Item)
 
             namespace {
                 // Believe it or not, but just declaring map static
@@ -77,7 +77,7 @@ namespace thekogans {
                             MenuBar::Item::EventHandler::Get (eventHandlerName, module);
                         if (eventHandler == 0) {
                             assert (UI::Instance ().consoleWindow != 0);
-                            UI::Instance ().consoleWindow->Print (
+                            UI::Instance ()->consoleWindow->Print (
                                 "MenuBar: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
                             struct DummyCommandEventHandler : public MenuBar::Item::EventHandler {
                                 virtual void OnSetFocus () {}
@@ -132,8 +132,8 @@ namespace thekogans {
                     }
                 }
                 catch (const std::string &message) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "MenuBar: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), message.c_str ());
                 }

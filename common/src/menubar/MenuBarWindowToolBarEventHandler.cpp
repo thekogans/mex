@@ -30,13 +30,13 @@ namespace thekogans {
             explicit MenuBarWindowToolBarEventHandler (core::Module &module_) : module (module_) {}
 
             virtual void OnSetFocus () {
-                core::UI::Instance ().mainFrameWindow->ShowToolBarWindow (
-                    !core::UI::Instance ().mainFrameWindow->IsToolBarWindowVisible ());
+                core::UI::Instance ()->mainFrameWindow->ShowToolBarWindow (
+                    !core::UI::Instance ()->mainFrameWindow->IsToolBarWindowVisible ());
             }
 
             virtual bool IsChecked () const {
-                assert (core::UI::Instance ().mainFrameWindow != 0);
-                return core::UI::Instance ().mainFrameWindow->IsToolBarWindowVisible ();
+                assert (core::UI::Instance ()->mainFrameWindow != 0);
+                return core::UI::Instance ()->mainFrameWindow->IsToolBarWindowVisible ();
             }
         };
 

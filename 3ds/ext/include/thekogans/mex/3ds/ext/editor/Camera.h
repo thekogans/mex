@@ -34,7 +34,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL Camera {
                     typedef std::unique_ptr<Camera> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Camera)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const io::Camera &camera;
 

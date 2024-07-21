@@ -44,7 +44,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL ObjectNode : public Node {
                     typedef std::unique_ptr<ObjectNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (ObjectNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const io::Mesh &mesh;
                     const io::ObjectNode &objectNode;

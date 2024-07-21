@@ -28,7 +28,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (LightNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (LightNode)
 
                 LightNode::LightNode (const ext::LightNode &lightNode_,
                     const io::Project &project_) : lightNode (lightNode_), project (project_) {

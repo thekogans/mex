@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace io {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (LightNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (LightNode)
 
                 LightNode::LightNode (
                         util::ui16 id,

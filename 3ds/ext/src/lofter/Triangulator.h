@@ -41,7 +41,7 @@ namespace thekogans {
                     struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL Vertex {
                         typedef std::unique_ptr<Vertex> UniquePtr;
 
-                        THEKOGANS_UTIL_DECLARE_HEAP (Vertex)
+                        THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                         std::size_t index;
                         Loop *loop;
@@ -76,7 +76,7 @@ namespace thekogans {
                     struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL Loop {
                         typedef std::unique_ptr<Loop> UniquePtr;
 
-                        THEKOGANS_UTIL_DECLARE_HEAP (Loop)
+                        THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                         Face *face;
                         Loop *prev;
@@ -98,7 +98,7 @@ namespace thekogans {
                     struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL Face {
                         typedef std::unique_ptr<Face> UniquePtr;
 
-                        THEKOGANS_UTIL_DECLARE_HEAP (Face)
+                        THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                         Face *prev;
                         Face *next;

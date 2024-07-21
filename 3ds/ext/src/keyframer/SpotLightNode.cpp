@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (SpotLightNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (SpotLightNode)
 
                 io::Light::UniquePtr SpotLightNode::Snapshot () const {
                     io::Light::UniquePtr newLight (new io::Light (spotLightHeadNode.light));

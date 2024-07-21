@@ -25,7 +25,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Material)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Material)
 
                 namespace {
                     const util::f32 defaultglColor[] = {0.0f, 0.0f, 0.0f, 1.0f};

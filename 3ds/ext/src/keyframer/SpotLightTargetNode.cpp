@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (SpotLightTargetNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (SpotLightTargetNode)
 
                 SpotLightTargetNode::SpotLightTargetNode (
                     const io::Light &light_,

@@ -11,6 +11,8 @@
                 name = "util"/>
     <dependency organization = "thekogans"
                 name = "mex_blas"/>
+    <toolchain organization = "thekogans"
+               name = "freetype"/>
     <choose>
       <when condition = "$(TOOLCHAIN_OS) == 'Windows'">
         <library>opengl32.lib</library>

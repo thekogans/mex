@@ -34,11 +34,12 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL Light {
                     typedef std::unique_ptr<Light> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Light)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const io::Light &light;
 
-                    explicit Light (const io::Light &light_) : light (light_) {}
+                    explicit Light (const io::Light &light_) :
+                        light (light_) {}
 
                     blas::Bound2 GetBound2 (const blas::Matrix3 &xform) const;
 

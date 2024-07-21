@@ -36,7 +36,7 @@ namespace thekogans {
         namespace _3ds {
             namespace opengl {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (Editor)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Editor)
 
                 Editor::Editor (const ext::Editor &editor) :
                     Module (editor) {

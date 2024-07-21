@@ -40,9 +40,9 @@ namespace thekogans {
             }
 
             void ToolBarPanEventHandler::Tool::SetFocus () {
-                core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
-                assert (core::UI::Instance ().consoleWindow != 0);
-                core::UI::Instance ().consoleWindow->Print (CONSOLE_1);
+                core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
+                assert (core::UI::Instance ()->consoleWindow != 0);
+                core::UI::Instance ()->consoleWindow->Print (CONSOLE_1);
             }
 
             void ToolBarPanEventHandler::Tool::LButtonDown (
@@ -68,7 +68,7 @@ namespace thekogans {
                     const blas::Point2 &pt) {
                 if (state == 1) {
                     UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                    core::UI::Instance ().consoleWindow->Print (CONSOLE_2);
+                    core::UI::Instance ()->consoleWindow->Print (CONSOLE_2);
                 }
                 else if (state == 3) {
                     UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
@@ -90,7 +90,7 @@ namespace thekogans {
                     else {
                         AbortTransaction ();
                     }
-                    core::UI::Instance ().consoleWindow->Print (CONSOLE_1);
+                    core::UI::Instance ()->consoleWindow->Print (CONSOLE_1);
                 }
             }
 
@@ -115,7 +115,7 @@ namespace thekogans {
                 if (IsOddState ()) {
                     UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                     AbortTransaction ();
-                    core::UI::Instance ().consoleWindow->Print (CONSOLE_1);
+                    core::UI::Instance ()->consoleWindow->Print (CONSOLE_1);
                 }
             }
 

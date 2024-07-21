@@ -24,8 +24,8 @@ namespace thekogans {
     namespace mex {
         namespace blas {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP_T (Polygon2)
-            THEKOGANS_UTIL_IMPLEMENT_HEAP_T (Polygon3)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (Polygon2)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (Polygon3)
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool Polygon2::IsClockWise () const {

@@ -35,7 +35,7 @@ namespace thekogans {
 
             template<typename T>
             struct BoundRegion : public Region<T> {
-                THEKOGANS_UTIL_DECLARE_HEAP (BoundRegion<T>)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
             private:
                 Bound<T> bound;

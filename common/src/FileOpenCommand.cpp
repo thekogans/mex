@@ -124,7 +124,7 @@ namespace thekogans {
                         }
                     }
                     QString fileName = QFileDialog::getOpenFileName (
-                        core::UI::Instance ().mainFrameWindow->GetQWidget (),
+                        core::UI::Instance ()->mainFrameWindow->GetQWidget (),
                         "Open File",
                         module.GetIOModule ().openFileDirectory.c_str (),
                         filters.c_str ());
@@ -133,7 +133,7 @@ namespace thekogans {
                         for (std::size_t i = 0, count = items.size (); i < count; ++i) {
                             if (stricmp (items[i]->ext.c_str (), path.GetExtension ().c_str ()) == 0) {
                                 _3ds::io::Progress::UniquePtr progress (
-                                    core::UI::Instance ().statusBarWindow->CreateProgress ());
+                                    core::UI::Instance ()->statusBarWindow->CreateProgress ());
                                 _3ds::io::Project::FileType fileType = items[i]->eventHandler->OnRead (
                                     path.path.c_str (), core::GetIOProject (), progress.get ());
                                 switch (fileType) {

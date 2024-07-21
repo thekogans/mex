@@ -40,7 +40,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL WireMesh : public Mesh {
                     typedef std::unique_ptr<WireMesh> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (WireMesh)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     ext::Mesh::SelectionInfo selectionInfo;
                     std::vector<ext::Mesh::Edge> edges;

@@ -40,7 +40,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL Mesh {
                     typedef std::unique_ptr<Mesh> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Mesh)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const io::Mesh &mesh;
 
@@ -125,7 +125,8 @@ namespace thekogans {
                         util::ui32 vertexCount[3];
                         util::ui32 faceCount[3];
 
-                        explicit SelectionInfo (const io::Mesh &mesh_) : mesh (mesh_) {}
+                        explicit SelectionInfo (const io::Mesh &mesh_) :
+                            mesh (mesh_) {}
 
                         void Build ();
 
@@ -144,17 +145,23 @@ namespace thekogans {
                         const std::vector<blas::Point3> &vertices;
 
                         struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL VertexNormal {
-                            THEKOGANS_UTIL_DECLARE_HEAP (VertexNormal)
+                            THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                             blas::Point3 normal;
                             util::ui32 smooth;
                             VertexNormal *next;
 
-                            VertexNormal (const blas::Point3 &normal_, util::ui32 smooth_) :
-                                normal (normal_), smooth (smooth_), next (0) {}
+                            VertexNormal (
+                                const blas::Point3 &normal_,
+                                util::ui32 smooth_) :
+                                normal (normal_),
+                                smooth (smooth_),
+                                next (0) {}
                             ~VertexNormal () {delete next;}
 
-                            void AddNormal (const blas::Point3 &normal_, util::ui32 smooth_);
+                            void AddNormal (
+                                const blas::Point3 &normal_,
+                                util::ui32 smooth_);
                             const blas::Point3 &GetNormal (util::ui32 smooth_) const;
                             void Normalize ();
 

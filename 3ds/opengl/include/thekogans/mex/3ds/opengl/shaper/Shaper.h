@@ -36,9 +36,10 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL Shaper : public Module {
                     typedef std::unique_ptr<Shaper> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Shaper)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
-                    explicit Shaper (Project &project) : Module (project) {}
+                    explicit Shaper (Project &project) :
+                        Module (project) {}
                     explicit Shaper (const ext::Shaper &shaper);
 
                     virtual View::UniquePtr GetView (const io::View &view) const;

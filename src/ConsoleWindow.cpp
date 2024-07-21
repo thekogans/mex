@@ -29,8 +29,8 @@ namespace thekogans {
             setObjectName ("ConsoleWindow");
             setReadOnly (true);
             setFocusPolicy (Qt::NoFocus);
-            assert (core::UI::Instance ().consoleWindow == 0);
-            core::UI::Instance ().consoleWindow = this;
+            assert (core::UI::Instance ()->consoleWindow == 0);
+            core::UI::Instance ()->consoleWindow = this;
         }
 
         void ConsoleWindow::Print (const char *format, ...) {

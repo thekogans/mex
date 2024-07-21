@@ -33,7 +33,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL Material {
                     typedef std::unique_ptr<Material> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Material)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                 private:
                     const io::Material &material;

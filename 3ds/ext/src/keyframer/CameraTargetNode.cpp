@@ -22,7 +22,7 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP (CameraTargetNode)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (CameraTargetNode)
 
                 CameraTargetNode::CameraTargetNode (
                     const io::Camera &camera_,

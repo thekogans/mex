@@ -42,7 +42,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL WireObjectNode : public ObjectNode {
                     typedef std::unique_ptr<WireObjectNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (WireObjectNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     std::vector<blas::Point3> path;
                     std::vector<util::ui32> keys;
@@ -58,7 +58,8 @@ namespace thekogans {
                     virtual void Draw (const View &view) const;
                     void DrawWithColor (
                         const View &view,
-                        const thekogans::mex::opengl::ui8Color &color = DefaultPalette[MEDIUM_GRAY]) const;
+                        const thekogans::mex::opengl::ui8Color &color =
+                            DefaultPalette[MEDIUM_GRAY]) const;
 
                 private:
                     WireObjectNode (const WireObjectNode &);

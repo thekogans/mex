@@ -70,7 +70,7 @@ namespace thekogans {
         }
 
         void MenuItem::trigger () {
-            core::ViewLayout *viewLayout = core::UI::Instance ().viewLayoutWindow->GetViewLayout ();
+            core::ViewLayout *viewLayout = core::UI::Instance ()->viewLayoutWindow->GetViewLayout ();
             if (viewLayout != 0 && viewLayout->tool != 0) {
                 viewLayout->tool->KillFocus ();
             }
@@ -80,8 +80,8 @@ namespace thekogans {
 
         MenuBarWindow::MenuBarWindow (QWidget *parent) : QMenuBar (parent) {
             setObjectName ("MenuBarWindow");
-            assert (core::UI::Instance ().menuBarWindow == 0);
-            core::UI::Instance ().menuBarWindow = this;
+            assert (core::UI::Instance ()->menuBarWindow == 0);
+            core::UI::Instance ()->menuBarWindow = this;
         }
 
         void MenuBarWindow::OnIdle () {

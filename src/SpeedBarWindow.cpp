@@ -59,7 +59,7 @@ namespace thekogans {
         SpeedBarWindow::SpeedBarWindow (QWidget *parent) :
                 QGLWidget (parent),
                 speedBar (0),
-                font (opengl::FontMgr::Instance ().GetSystemFont ()) {
+                font (opengl::FontMgr::Instance ()->GetSystemFont ()) {
             assert (font != 0);
             setObjectName ("SpeedBarWindow");
             setMouseTracking (true);
@@ -67,8 +67,8 @@ namespace thekogans {
             for (util::ui32 i = 0; i < SB_COLOR_COUNT; ++i) {
                 colors[i] = _3ds::opengl::DefaultPalette[defaultPalette[i]];
             }
-            assert (core::UI::Instance ().speedBarWindow == 0);
-            core::UI::Instance ().speedBarWindow = this;
+            assert (core::UI::Instance ()->speedBarWindow == 0);
+            core::UI::Instance ()->speedBarWindow = this;
         }
 
         SpeedBarWindow::~SpeedBarWindow () {
@@ -176,7 +176,7 @@ namespace thekogans {
                     HitTestInfo hitTestInfo;
                     if (HitTest (event->pos () * devicePixelRatio (), hitTestInfo)) {
                         core::ViewLayout *viewLayout =
-                            core::UI::Instance ().viewLayoutWindow->GetViewLayout ();
+                            core::UI::Instance ()->viewLayoutWindow->GetViewLayout ();
                         if (viewLayout != 0 && viewLayout->tool != 0) {
                             viewLayout->tool->KillFocus ();
                         }
@@ -304,8 +304,11 @@ namespace thekogans {
             return height;
         }
 
-        void SpeedBarWindow::DrawItem (core::SpeedBar::Item *item, util::i32 startLine,
-                util::i32 level, const opengl::ui8Color &color) {
+        void SpeedBarWindow::DrawItem (
+                core::SpeedBar::Item *item,
+                util::i32 startLine,
+                util::i32 level,
+                const opengl::ui8Color &color) {
             class UI : public core::SpeedBar::Item::EventHandler::UI {
             public:
                 bool sticky;
@@ -314,17 +317,30 @@ namespace thekogans {
 
                 UI (core::SpeedBar::Item &item) :
                     core::SpeedBar::Item::EventHandler::UI (item),
-                    sticky (false), enabled (false), checked (false) {}
+                    sticky (false),
+                    enabled (false),
+                    checked (false) {}
 
-                virtual void SetSticky (bool sticky_) {sticky = sticky_;}
-                virtual void SetEnabled (bool enabled_) {enabled = enabled_;}
-                virtual void SetChecked (bool checked_) {checked = checked_;}
+                virtual void SetSticky (bool sticky_) {
+                    sticky = sticky_;
+                }
+                virtual void SetEnabled (bool enabled_) {
+                    enabled = enabled_;
+                }
+                virtual void SetChecked (bool checked_) {
+                    checked = checked_;
+                }
             } ui (*item);
             item->eventHandler->OnUpdateUI (ui);
-            opengl::Color color_ (ui.enabled ?
-                !item->children.empty () ? colors[SB_COLOR_POPUP] : colors[SB_COLOR_ITEM] : color);
+            opengl::Color color_ (
+                ui.enabled ?
+                    !item->children.empty () ?
+                        colors[SB_COLOR_POPUP] :
+                        colors[SB_COLOR_ITEM] :
+                    color);
             util::i32 x = (level * 2 - speedBar->origin.x) * font->GetAveCharWidth ();
-            util::i32 y = HeightInPixels () - (startLine - speedBar->origin.y + 1) * font->GetHeight ();
+            util::i32 y =
+                HeightInPixels () - (startLine - speedBar->origin.y + 1) * font->GetHeight ();
             if (ui.checked) {
                 opengl::Font (font).DrawText (x - font->GetStringWidth ("*"), y, "*");
             }

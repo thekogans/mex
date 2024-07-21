@@ -26,7 +26,7 @@ namespace thekogans {
     namespace mex {
         namespace core {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (StatusBar::Item)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (StatusBar::Item)
 
             namespace {
                 // Believe it or not, but just declaring map static
@@ -60,8 +60,8 @@ namespace thekogans {
                     StatusBar::Item::EventHandler *eventHandler =
                         StatusBar::Item::EventHandler::Get (eventHandlerName, module);
                     if (eventHandler == 0) {
-                        assert (UI::Instance ().consoleWindow != 0);
-                        UI::Instance ().consoleWindow->Print (
+                        assert (UI::Instance ()->consoleWindow != 0);
+                        UI::Instance ()->consoleWindow->Print (
                             "StatusBar: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
                         struct DummyEventHandler : public StatusBar::Item::EventHandler {
                             virtual void OnUpdateUI (UI &ui) {
@@ -93,8 +93,8 @@ namespace thekogans {
                     }
                 }
                 catch (const std::string &message) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "StatusBar: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), message.c_str ());
                 }

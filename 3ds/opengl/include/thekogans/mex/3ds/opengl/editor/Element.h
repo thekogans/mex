@@ -38,7 +38,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL Element : public ext::Mesh::Element {
                     typedef std::unique_ptr<Element> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Element)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     const Material &material;
                     std::vector<blas::Point3> vertices;

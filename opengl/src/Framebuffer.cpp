@@ -33,7 +33,7 @@ namespace thekogans {
         #endif // defined (TOOLCHAIN_OS_Windows)
 
             bool Framebuffer::Init () {
-                if (Extensions::Instance ().IsExtensionSupported ("GL_EXT_framebuffer_object")) {
+                if (Extensions::Instance ()->IsExtensionSupported ("GL_EXT_framebuffer_object")) {
                 #if defined (TOOLCHAIN_OS_Windows)
                     glGenFramebuffersEXT =
                         (PFNGLGENFRAMEBUFFERSEXTPROC)wglGetProcAddress (

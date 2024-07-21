@@ -24,8 +24,8 @@ namespace thekogans {
         namespace _3ds {
             namespace ext {
 
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_T (BezierPolygon2)
-                THEKOGANS_UTIL_IMPLEMENT_HEAP_T (BezierPolygon3)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (BezierPolygon2)
+                THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (BezierPolygon3)
 
                 template<>
                 _LIB_THEKOGANS_MEX_3DS_EXT_DECL bool BezierPolygon2::IsClockWise () const {

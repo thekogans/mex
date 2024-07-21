@@ -33,7 +33,7 @@ namespace thekogans {
                 /// Declare \see{util::RefCounted} pointers.
                 THEKOGANS_UTIL_DECLARE_REF_COUNTED_POINTERS (Transaction)
 
-                THEKOGANS_UTIL_DECLARE_HEAP (Transaction)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                 std::string name;
                 bool undoable;

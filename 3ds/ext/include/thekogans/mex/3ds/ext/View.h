@@ -41,7 +41,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_EXT_DECL View {
                     typedef std::unique_ptr<View> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (View)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     static const util::f32 ShapeWidth;
                     static const util::f32 OrthographicWidth;

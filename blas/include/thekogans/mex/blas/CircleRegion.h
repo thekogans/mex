@@ -34,7 +34,7 @@ namespace thekogans {
         namespace blas {
 
             struct _LIB_THEKOGANS_MEX_BLAS_DECL CircleRegion : public Region2 {
-                THEKOGANS_UTIL_DECLARE_HEAP (CircleRegion)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
             private:
                 Circle circle;

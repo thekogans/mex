@@ -42,7 +42,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL SolidObjectNode : public ObjectNode {
                     typedef std::unique_ptr<SolidObjectNode> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (SolidObjectNode)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     util::OwnerVector<Element> elements;
 

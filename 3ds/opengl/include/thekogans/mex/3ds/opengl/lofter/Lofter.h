@@ -39,7 +39,7 @@ namespace thekogans {
                 struct _LIB_THEKOGANS_MEX_3DS_OPENGL_DECL Lofter : public Module {
                     typedef std::unique_ptr<Lofter> UniquePtr;
 
-                    THEKOGANS_UTIL_DECLARE_HEAP (Lofter)
+                    THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
 
                     struct Path {
                         const io::Lofter::Path &path;

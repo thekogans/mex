@@ -26,7 +26,7 @@ namespace thekogans {
     namespace mex {
         namespace core {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (Accelerators::Item)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (Accelerators::Item)
 
             namespace {
                 // Believe it or not, but just declaring map static
@@ -83,7 +83,7 @@ namespace thekogans {
                         Accelerators::Item::EventHandler::Get (eventHandlerName, module);
                     if (eventHandler == 0) {
                         assert (UI::Instance ().consoleWindow != 0);
-                        UI::Instance ().consoleWindow->Print (
+                        UI::Instance ()->consoleWindow->Print (
                             "Accelerators: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
                         struct DummyEventHandler : public Accelerators::Item::EventHandler {
                             virtual void OnSetFocus () {}
@@ -112,8 +112,8 @@ namespace thekogans {
                     }
                 }
                 catch (const std::string &message) {
-                    assert (UI::Instance ().consoleWindow != 0);
-                    UI::Instance ().consoleWindow->Print (
+                    assert (UI::Instance ()->consoleWindow != 0);
+                    UI::Instance ()->consoleWindow->Print (
                         "Accelerators: Unable to load '%s'.\n\t%s\n",
                         path.c_str (), message.c_str ());
                 }
