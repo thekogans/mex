@@ -40,28 +40,41 @@ namespace thekogans {
                 Ellipse ellipse;
 
             public:
-                explicit EllipseRegion (const Ellipse &ellipse_) : ellipse (ellipse_) {}
+                explicit EllipseRegion (const Ellipse &ellipse_) :
+                    ellipse (ellipse_) {}
 
                 virtual bool PointInRegion (const Point2 &pt) const {
                     return pt.InEllipse (ellipse);
                 }
-                virtual bool LineInRegion (const Line2 &line, bool cross = true) const {
+                virtual bool LineInRegion (
+                        const Line2 &line,
+                        bool cross = true) const {
                     return cross ? line.CrossEllipse (ellipse) : line.InEllipse (ellipse);
                 }
-                virtual bool BoundInRegion (const Bound2 &bound, bool cross = true) const {
+                virtual bool BoundInRegion (
+                        const Bound2 &bound,
+                        bool cross = true) const {
                     return cross ? bound.CrossEllipse (ellipse) : bound.InEllipse (ellipse);
                 }
-                virtual bool CircleInRegion (const Circle &circle, bool cross = true) const {
+                virtual bool CircleInRegion (
+                        const Circle &circle,
+                        bool cross = true) const {
                     return cross ? circle.CrossEllipse (ellipse) : circle.InEllipse (ellipse);
                 }
-                virtual bool EllipseInRegion (const Ellipse &ellipse_, bool cross = true) const {
+                virtual bool EllipseInRegion (
+                        const Ellipse &ellipse_,
+                        bool cross = true) const {
                     return cross ? ellipse_.CrossEllipse (ellipse) : ellipse_.InEllipse (ellipse);
                 }
-                virtual bool PolygonInRegion (const Polygon2 &polygon, bool cross = true) const {
+                virtual bool PolygonInRegion (
+                        const Polygon2 &polygon,
+                        bool cross = true) const {
                     return cross ? polygon.CrossEllipse (ellipse) : polygon.InEllipse (ellipse);
                 }
-                virtual bool BezierCubicInRegion (const BezierCubic2 &bezierCubic,
-                        util::ui32 steps, bool cross = true) const {
+                virtual bool BezierCubicInRegion (
+                        const BezierCubic2 &bezierCubic,
+                        util::ui32 steps,
+                        bool cross = true) const {
                     return cross ? bezierCubic.CrossEllipse (ellipse, steps) :
                         bezierCubic.InEllipse (ellipse, steps);
                 }

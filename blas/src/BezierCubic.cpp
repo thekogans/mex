@@ -46,7 +46,10 @@ namespace thekogans {
             }
 
             _LIB_THEKOGANS_MEX_BLAS_DECL BezierCubic2 _LIB_THEKOGANS_MEX_BLAS_API Arc (
-                const Point2 &center, util::f32 radius, util::f32 startAngle, util::f32 spanAngle) {
+                    const Point2 &center,
+                    util::f32 radius,
+                    util::f32 startAngle,
+                    util::f32 spanAngle) {
                 BezierCubic2 bezierCubic = UnitArc (spanAngle);
                 Matrix3 matrix =
                     Matrix3::RotateZ (startAngle) *
@@ -62,7 +65,8 @@ namespace thekogans {
             }
 
             _LIB_THEKOGANS_MEX_BLAS_DECL BezierCubic2 _LIB_THEKOGANS_MEX_BLAS_API EllipticArc (
-                    util::f32 a, util::f32 b) {
+                    util::f32 a,
+                    util::f32 b) {
                 const util::f32 k = 0.5522847498308f;
                 return BezierCubic2 (
                     Point2 (a, 0.0f), Point2 (a, b * k),

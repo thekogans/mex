@@ -41,28 +41,41 @@ namespace thekogans {
                 Polygon<T> polygon;
 
             public:
-                explicit PolygonRegion (const Polygon<T> &polygon_) : polygon (polygon_) {}
+                explicit PolygonRegion (const Polygon<T> &polygon_) :
+                    polygon (polygon_) {}
 
                 virtual bool PointInRegion (const T &pt) const {
                     return pt.InPolygon (polygon);
                 }
-                virtual bool LineInRegion (const LineT<T> &line, bool cross = true) const {
+                virtual bool LineInRegion (
+                        const LineT<T> &line,
+                        bool cross = true) const {
                     return cross ? line.CrossPolygon (polygon) : line.InPolygon (polygon);
                 }
-                virtual bool BoundInRegion (const Bound<T> &bound, bool cross = true) const {
+                virtual bool BoundInRegion (
+                        const Bound<T> &bound,
+                        bool cross = true) const {
                     return cross ? bound.CrossPolygon (polygon) : bound.InPolygon (polygon);
                 }
-                virtual bool CircleInRegion (const Circle &circle, bool cross = true) const {
+                virtual bool CircleInRegion (
+                        const Circle &circle,
+                        bool cross = true) const {
                     return cross ? circle.CrossPolygon (polygon) : circle.InPolygon (polygon);
                 }
-                virtual bool EllipseInRegion (const Ellipse &ellipse, bool cross = true) const {
+                virtual bool EllipseInRegion (
+                        const Ellipse &ellipse,
+                        bool cross = true) const {
                     return cross ? ellipse.CrossPolygon (polygon) : ellipse.InPolygon (polygon);
                 }
-                virtual bool PolygonInRegion (const Polygon<T> &polygon_, bool cross = true) const {
+                virtual bool PolygonInRegion (
+                        const Polygon<T> &polygon_,
+                        bool cross = true) const {
                     return cross ? polygon_.CrossPolygon (polygon) : polygon_.InPolygon (polygon);
                 }
-                virtual bool BezierCubicInRegion (const BezierCubic<T> &bezierCubic,
-                        util::ui32 steps, bool cross = true) const {
+                virtual bool BezierCubicInRegion (
+                        const BezierCubic<T> &bezierCubic,
+                        util::ui32 steps,
+                        bool cross = true) const {
                     return cross ? bezierCubic.CrossPolygon (polygon, steps) :
                         bezierCubic.InPolygon (polygon, steps);
                 }

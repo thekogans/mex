@@ -59,13 +59,24 @@ namespace thekogans {
                 static const Point3 Z;
 
                 Point3 () {}
-                Point3 (util::f32 x_, util::f32 y_, util::f32 z_) :
-                    x (x_), y (y_), z (z_) {}
+                Point3 (
+                    util::f32 x_,
+                    util::f32 y_,
+                    util::f32 z_) :
+                    x (x_),
+                    y (y_),
+                    z (z_) {}
                 Point3 (const util::f32 xyz[]) :
-                    x (xyz[0]), y (xyz[1]), z (xyz[2]) {}
+                    x (xyz[0]),
+                    y (xyz[1]),
+                    z (xyz[2]) {}
                 Point3 (const Point3 &pt) :
-                    x (pt.x), y (pt.y), z (pt.z) {}
-                Point3 (const Point2 &pt, util::f32 z_ = 0.0f);
+                    x (pt.x),
+                    y (pt.y),
+                    z (pt.z) {}
+                Point3 (
+                    const Point2 &pt,
+                    util::f32 z_ = 0.0f);
 
                 inline const util::f32 &operator [] (std::size_t index) const {
                     assert (index < 3);
@@ -135,7 +146,10 @@ namespace thekogans {
                     return util::IS_ZERO (x, eps) && util::IS_ZERO (y, eps) && util::IS_ZERO (z, eps);
                 }
 
-                inline bool IsBetweenEq (const Point3 &p1, const Point3 &p2, util::f32 eps = EPSILON) const {
+                inline bool IsBetweenEq (
+                        const Point3 &p1,
+                        const Point3 &p2,
+                        util::f32 eps = EPSILON) const {
                     return
                         util::IS_BETWEEN_EQ (x, p1.x, p2.x, eps) &&
                         util::IS_BETWEEN_EQ (y, p1.y, p2.y, eps) &&
@@ -146,22 +160,32 @@ namespace thekogans {
                 bool InBound (const Bound<Point3> &bound) const;
                 bool InPolygon (const Polygon<Point3> &polygon) const;
 
-                Point2 Project (bool perspective, util::f32 eps = EPSILON) const;
+                Point2 Project (
+                    bool perspective,
+                    util::f32 eps = EPSILON) const;
             };
 
-            inline bool operator == (const Point3 &p1, const Point3 &p2) {
+            inline bool operator == (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return p1.x == p2.x && p1.y == p2.y && p1.z == p2.z;
             }
 
-            inline bool operator != (const Point3 &p1, const Point3 &p2) {
+            inline bool operator != (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return p1.x != p2.x || p1.y != p2.y || p1.z != p2.z;
             }
 
-            inline Point3 operator + (const Point3 &p1, const Point3 &p2) {
+            inline Point3 operator + (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return Point3 (p1.x + p2.x, p1.y + p2.y, p1.z + p2.z);
             }
 
-            inline Point3 operator - (const Point3 &p1, const Point3 &p2) {
+            inline Point3 operator - (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return Point3 (p1.x - p2.x, p1.y - p2.y, p1.z - p2.z);
             }
 
@@ -169,11 +193,15 @@ namespace thekogans {
                 return Point3 (-pt.x, -pt.y, -pt.z);
             }
 
-            inline Point3 operator * (util::f32 s, const Point3 &pt) {
+            inline Point3 operator * (
+                    util::f32 s,
+                    const Point3 &pt) {
                 return Point3 (s * pt.x, s * pt.y, s * pt.z);
             }
 
-            inline Point3 operator * (const Point3 &pt, util::f32 s) {
+            inline Point3 operator * (
+                    const Point3 &pt,
+                    util::f32 s) {
                 return Point3 (pt.x * s, pt.y * s, pt.z * s);
             }
 
@@ -181,23 +209,33 @@ namespace thekogans {
                 const Point3 &pt,
                 const Matrix3 &matrx);
 
-            inline Point3 operator / (const Point3 &pt, util::f32 s) {
+            inline Point3 operator / (
+                    const Point3 &pt,
+                    util::f32 s) {
                 return pt * (1.0f / s);
             }
 
-            inline Point3 operator / (const Point3 &p1, const Point3 &p2) {
+            inline Point3 operator / (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return Point3 (p1.x / p2.x, p1.y / p2.y, p1.z / p2.z);
             }
 
-            inline Point3 Mid (const Point3 &p1, const Point3 &p2) {
+            inline Point3 Mid (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return util::LERP (0.5f, p1, p2);
             }
 
-            inline util::f32 Distance (const Point3 &p1, const Point3 &p2) {
+            inline util::f32 Distance (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return (p1 - p2).Length ();
             }
 
-            inline Point3 Normalize (const Point3 &pt, util::f32 eps = EPSILON) {
+            inline Point3 Normalize (
+                    const Point3 &pt,
+                    util::f32 eps = EPSILON) {
                 util::f32 length = pt.Length ();
                 return util::IS_ZERO (length, eps) ? Point3::Zero : pt / length;
             }
@@ -206,7 +244,9 @@ namespace thekogans {
                 return p1.x * p2.x + p1.y * p2.y + p1.z * p2.z;
             }
 
-            inline Point3 Cross (const Point3 &p1, const Point3 &p2) {
+            inline Point3 Cross (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 return Point3 (
                     p1.y * p2.z - p1.z * p2.y,
                     p1.z * p2.x - p1.x * p2.z,
@@ -214,7 +254,9 @@ namespace thekogans {
             }
 
             // Reflect incident vector (i) using normal vector (n).
-            inline Point3 Reflect (const Point3 &i, const Point3 &n) {
+            inline Point3 Reflect (
+                    const Point3 &i,
+                    const Point3 &n) {
                 return i - 2.0f * Dot (i, n) * n;
             }
 
@@ -256,12 +298,16 @@ namespace thekogans {
                 Point3 &p1,
                 Point3 &p2);
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Point3 &pt) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Point3 &pt) {
                 serializer << pt.x << pt.y << pt.z;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Point3 &pt) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Point3 &pt) {
                 serializer >> pt.x >> pt.y >> pt.z;
                 return serializer;
             }

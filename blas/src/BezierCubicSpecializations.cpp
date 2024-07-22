@@ -30,7 +30,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool BezierCubic2::InPolygon (
-                    const Polygon2 &polygon, util::ui32 steps) const {
+                    const Polygon2 &polygon,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 pt1 = p1;
@@ -47,7 +48,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool BezierCubic2::CrossPolygon (
-                    const Polygon2 &polygon, util::ui32 steps) const {
+                    const Polygon2 &polygon,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 pt1 = p1;
@@ -63,7 +65,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool BezierCubic2::InCircle (
-                    const Circle &circle, util::ui32 steps) const {
+                    const Circle &circle,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = 0.0f;
                 for (util::ui32 i = 0; i <= steps + 1; ++i, t += delta) {
@@ -76,7 +79,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool BezierCubic2::CrossCircle (
-                    const Circle &circle, util::ui32 steps) const {
+                    const Circle &circle,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 pt1 = p1;
@@ -92,7 +96,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool BezierCubic2::InEllipse (
-                    const Ellipse &ellipse, util::ui32 steps) const {
+                    const Ellipse &ellipse,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = 0.0f;
                 for (util::ui32 i = 0; i <= steps + 1; ++i, t += delta) {
@@ -105,7 +110,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool BezierCubic2::CrossEllipse (
-                    const Ellipse &ellipse, util::ui32 steps) const {
+                    const Ellipse &ellipse,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 pt1 = p1;
@@ -121,7 +127,9 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL void BezierCubic2::CrossHorizontal (
-                    util::f32 y, util::ui32 steps, std::vector<util::f32> &intersections) const {
+                    util::f32 y,
+                    util::ui32 steps,
+                    std::vector<util::f32> &intersections) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 pt1 = p1;
@@ -142,7 +150,9 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL void BezierCubic2::CrossVertical (
-                    util::f32 x, util::ui32 steps, std::vector<util::f32> &intersections) const {
+                    util::f32 x,
+                    util::ui32 steps,
+                    std::vector<util::f32> &intersections) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 pt1 = p1;

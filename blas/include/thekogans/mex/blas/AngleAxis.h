@@ -33,8 +33,11 @@ namespace thekogans {
                 Point3 axis;
 
                 AngleAxis () {}
-                AngleAxis (util::f32 angle_, const Point3 &axis_) :
-                    angle (angle_), axis (axis_) {}
+                AngleAxis (
+                    util::f32 angle_,
+                    const Point3 &axis_) :
+                    angle (angle_),
+                    axis (axis_) {}
 
                 static AngleAxis FromQuaternion (const Quaternion &quat);
             };

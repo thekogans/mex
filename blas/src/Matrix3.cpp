@@ -77,7 +77,9 @@ namespace thekogans {
                 return matrix;
             }
 
-            Matrix3 Matrix3::Skew (util::f32 x, util::f32 y) {
+            Matrix3 Matrix3::Skew (
+                    util::f32 x,
+                    util::f32 y) {
                 Matrix3 matrix (Matrix3::Identity);
                 matrix.y.x = x;
                 matrix.x.y = y;
@@ -92,23 +94,22 @@ namespace thekogans {
                 return matrix;
             }
 
-            Matrix3 Matrix3::Aim2D (const Point3 &p1, const Point3 &p2) {
+            Matrix3 Matrix3::Aim2D (
+                    const Point3 &p1,
+                    const Point3 &p2) {
                 util::f32 scale = Point3 (p1.x, p1.y, 0.0f).Length ();
                 if (util::IS_ZERO (scale)) {
                     return Matrix3::Zero;
                 }
                 scale = Point3 (p2.x, p2.y, 0.0f).Length () / scale;
-
                 util::f32 angle1 = atan2f (p1.y, p1.x);
                 if (angle1 < 0.0f) {
                     angle1 += TWOPI;
                 }
-
                 util::f32 angle2 = atan2f (p2.y, p2.x);
                 if (angle2 < 0.0f) {
                     angle2 += TWOPI;
                 }
-
                 return RotateZ (angle2 - angle1) * Scale (Point3 (scale, scale, 1.0f));
             }
 
@@ -118,19 +119,16 @@ namespace thekogans {
                 if (util::IS_ZERO (r)) {
                     return Matrix3::Identity;
                 }
-
                 // vector already points in the z direction
                 if (util::IS_ZERO (pt.x) && util::IS_ZERO (pt.y)) {
                     return pt.z > 0.0f ? Matrix3::Identity : Matrix3::MirrorYZ;
                 }
-
                 util::f32 theta = atan2f (pt.y, pt.x);
                 util::f32 fee = acosf (pt.z / r);
                 util::f32 ct = cosf (theta);
                 util::f32 st = sinf (theta);
                 util::f32 cf = cosf (fee);
                 util::f32 sf = sinf (fee);
-
                 return Matrix3 (
                     Point3 (-st, -ct * cf, ct * sf),
                     Point3 (ct, -st * cf, st * sf),
@@ -139,7 +137,10 @@ namespace thekogans {
             }
 
             Matrix3 Matrix3::AimViewer (
-                const Point3 &position, const Point3 &target, util::f32 fov, util::f32 roll) {
+                    const Point3 &position,
+                    const Point3 &target,
+                    util::f32 fov,
+                    util::f32 roll) {
                 util::f32 scale = 1.0f / tanf (fov * 0.5f);
                 return
                     Translate (-position) *
@@ -150,7 +151,10 @@ namespace thekogans {
             }
 
             Matrix3 Matrix3::LookAt (
-                const Point3 &position, const Point3 &target, const Point3 &up, util::f32 roll) {
+                    const Point3 &position,
+                    const Point3 &target,
+                    const Point3 &up,
+                    util::f32 roll) {
                 Point3 f = Normalize (target - position);
                 Point3 s = Normalize (Cross (f, up));
                 Point3 u = Normalize (Cross (s, f));
@@ -167,41 +171,31 @@ namespace thekogans {
     #if 1
             Matrix3 Matrix3::FromQuaternion (const Quaternion &quat) {
                 util::f32 s = 2.0f / Dot (quat, quat);
-
                 util::f32 xs = quat.x * s;
                 util::f32 ys = quat.y * s;
                 util::f32 zs = quat.z * s;
-
                 util::f32 wx = quat.w * xs;
                 util::f32 wy = quat.w * ys;
                 util::f32 wz = quat.w * zs;
-
                 util::f32 xx = quat.x * xs;
                 util::f32 xy = quat.x * ys;
                 util::f32 xz = quat.x * zs;
-
                 util::f32 yy = quat.y * ys;
                 util::f32 yz = quat.y * zs;
                 util::f32 zz = quat.z * zs;
-
                 Matrix3 matrix;
-
                 matrix.x.x = 1.0f - (yy + zz);
                 matrix.x.y = xy - wz;
                 matrix.x.z = xz + wy;
-
                 matrix.y.x = xy + wz;
                 matrix.y.y = 1.0f - (xx + zz);
                 matrix.y.z = yz - wx;
-
                 matrix.z.x = xz - wy;
                 matrix.z.y = yz + wx;
                 matrix.z.z = 1.0f - (xx + yy);
-
                 matrix.t.x = 0.0f;
                 matrix.t.y = 0.0f;
                 matrix.t.z = 0.0f;
-
                 return matrix;
             }
     #else
@@ -279,7 +273,9 @@ namespace thekogans {
                 // alas.
                 //
                 // Returns true if the inverse was successful, false if it failed.
-                bool Invert3x3 (Matrix3 &matrix1, Matrix3 &matrix2) {
+                bool Invert3x3 (
+                        Matrix3 &matrix1,
+                        Matrix3 &matrix2) {
                     // attempt to find the largest entry in first column to use as pivot
                     util::f32 a = matrix1[0][0];
                     if (a < 0.0f) {
@@ -293,7 +289,6 @@ namespace thekogans {
                     if (c < 0.0f) {
                         c = -c;
                     }
-
                     util::i32 row0;
                     if (a > b) {
                         if (a > c) {
@@ -311,20 +306,16 @@ namespace thekogans {
                             row0 = 2;
                         }
                     }
-
                     // Scale row0 of matrix1
                     if (util::IS_ZERO (matrix1[row0][0])) {
                         return false;
                     }
-
                     util::f32 temp = 1.0f / matrix1[row0][0];
                     matrix1[row0][0] = 1.0f;
                     matrix1[row0][1] *= temp;
                     matrix1[row0][2] *= temp;
-
                     // Scale row0 of inverse
                     matrix2[row0][row0] = temp; // other entries are zero -- no effort
-
                     {
                         // Clear column zero of matrix1, and make corresponding changes in inverse
                         for (util::i32 i = 0; i < 3; ++i) {
@@ -337,7 +328,6 @@ namespace thekogans {
                             }
                         }
                     }
-
                     // We've now done Gaussian elimination so that the matrix1 and
                     // inverse look like this:
                     //
@@ -346,7 +336,6 @@ namespace thekogans {
                     //  0 * *       * 0 1
                     //
                     // We now proceed to do elimination on the second column.
-
                     // Find which row to use
                     util::i32 i1, i2;
                     if (row0 == 0) {
@@ -361,7 +350,6 @@ namespace thekogans {
                         i1 = 0;
                         i2 = 1;
                     }
-
                     // Find which is larger in abs. val.:the entry in [i1][1] or [i2][1]
                     // and use that value for pivoting.
                     a = matrix1[i1][1];
@@ -388,11 +376,9 @@ namespace thekogans {
                     temp = 1.0f / matrix1[row1][1];
                     matrix1[row1][1] = 1.0f;
                     matrix1[row1][2] *= temp;   // matrix1[row1][0] is zero already
-
                     // Scale row1 in matrix2
                     matrix2[row1][row1] = temp; // it used to be a 1.0
                     matrix2[row1][row0] *= temp;
-
                     {
                         // Clear column one, matrix1, and make corresponding changes in matrix2
                         for (util::i32 i = 0; i < 3; ++i) {
@@ -406,20 +392,16 @@ namespace thekogans {
                             }
                         }
                     }
-
                     // Scale row2 in matrix1
                     if (util::IS_ZERO (matrix1[row2][2])) {
                         return false;
                     }
-
                     temp = 1.0f / matrix1[row2][2];
                     matrix1[row2][2] = 1.0f;    // matrix1[row2][*] is zero already
-
                     // Scale row2 in matrix2
                     matrix2[row2][row2]  = temp;    // it used to be a 1.0
                     matrix2[row2][row0] *= temp;
                     matrix2[row2][row1] *= temp;
-
                     // Clear column one, matrix1, and make corresponding changes in matrix2
                     for (util::i32 i = 0; i < 3; ++i) {
                         if (i != row2) {    // for i = all rows but row2
@@ -430,12 +412,10 @@ namespace thekogans {
                             matrix2[i][row2] += temp * matrix2[row2][row2];
                         }
                     }
-
                     // Now all is done except that the inverse needs to have its rows shuffled.
                     // row0 needs to be moved to matrix2[0][*], row1 to matrix2[1][*], etc.
                     // We *didn't* do the swapping before the elimination so that we could more
                     // easily keep track of what ops are needed to be done in the inverse.
-
                     if (row0 != 0) {
                         if (row1 == 0) {
                             std::swap (matrix2[row0][0], matrix2[row1][0]);
@@ -450,13 +430,11 @@ namespace thekogans {
                             std::swap (row0, row2);
                         }
                     }
-
                     if (row1 != 1) {
                         std::swap (matrix2[row1][0], matrix2[row2][0]);
                         std::swap (matrix2[row1][1], matrix2[row2][1]);
                         std::swap (matrix2[row1][2], matrix2[row2][2]);
                     }
-
                     return true;
                 }
             }
@@ -480,7 +458,9 @@ namespace thekogans {
                 // Calculate the determinant of a 2x2 matrix.
                 //     |a, b|
                 //     |c, d|
-                inline util::f32 DET2X2 (util::f32 a, util::f32 b, util::f32 c, util::f32 d) {
+                inline util::f32 DET2X2 (
+                        util::f32 a, util::f32 b,
+                        util::f32 c, util::f32 d) {
                     return a * d - b * c;
                 }
 
@@ -489,9 +469,9 @@ namespace thekogans {
                 //     |a2, b2, c2|
                 //     |a3, b3, c3|
                 inline util::f32 DET3X3 (
-                    util::f32 a1, util::f32 a2, util::f32 a3,
-                    util::f32 b1, util::f32 b2, util::f32 b3,
-                    util::f32 c1, util::f32 c2, util::f32 c3) {
+                        util::f32 a1, util::f32 a2, util::f32 a3,
+                        util::f32 b1, util::f32 b2, util::f32 b3,
+                        util::f32 c1, util::f32 c2, util::f32 c3) {
                     return
                         a1 * DET2X2 (b2, b3, c2, c3) -
                         b1 * DET2X2 (a2, a3, c2, c3) +
@@ -504,22 +484,18 @@ namespace thekogans {
                 util::f32 b1 = x.y;
                 util::f32 c1 = x.z;
                 util::f32 d1 = 0.0f;
-
                 util::f32 a2 = y.x;
                 util::f32 b2 = y.y;
                 util::f32 c2 = y.z;
                 util::f32 d2 = 0.0f;
-
                 util::f32 a3 = z.x;
                 util::f32 b3 = z.y;
                 util::f32 c3 = z.z;
                 util::f32 d3 = 0.0f;
-
                 util::f32 a4 = t.x;
                 util::f32 b4 = t.y;
                 util::f32 c4 = t.z;
                 util::f32 d4 = 1.0f;
-
                 return
                     a1 * DET3X3 (b2, b3, b4, c2, c3, c4, d2, d3, d4) -
                     b1 * DET3X3 (a2, a3, a4, c2, c3, c4, d2, d3, d4) +
@@ -527,32 +503,27 @@ namespace thekogans {
                     d1 * DET3X3 (a2, a3, a4, b2, b3, b4, c2, c3, c4);
             }
 
-            bool Matrix3::Decompose (Point3 &translation, Quaternion &rotation, Point3 &scale) const {
+            bool Matrix3::Decompose (
+                    Point3 &translation,
+                    Quaternion &rotation,
+                    Point3 &scale) const {
                 if (util::IS_ZERO (Determinant ())) {
                     return false;
                 }
-
                 // Take care of translation.
                 translation = t;
-
                 Matrix3 matrix (x, y, z, Point3::Zero);
-
                 // Compute X scale factor and normalize first row.
                 scale.x = matrix.x.Normalize ();
-
                 // Make 2nd row orthogonal to 1st.
                 matrix.y -= matrix.x * Dot (matrix.x, matrix.y);
-
                 // Compute Y scale and normalize 2nd row.
                 scale.y = matrix.y.Normalize ();
-
                 // Make 3rd row orthogonal to 1st and 2nd.
                 matrix.z -= matrix.x * Dot (matrix.x, matrix.z);
                 matrix.z -= matrix.y * Dot (matrix.y, matrix.z);
-
                 // Compute Z scale and normalize 3rd row.
                 scale.z = matrix.z.Normalize ();
-
                 // At this point, matrix is orthonormal.
                 // Check for a coordinate system flip.  If the determinant
                 // is -1, then negate the matrix, and the scaling factors.
@@ -560,9 +531,7 @@ namespace thekogans {
                     scale *= -1.0f;
                     matrix *= -1.0f;
                 }
-
                 rotation = Quaternion::FromMatrix3 (matrix);
-
                 return true;
             }
 
@@ -573,7 +542,9 @@ namespace thekogans {
                     normal.x * x.z + normal.y * y.z + normal.z * z.z);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix3 _LIB_THEKOGANS_MEX_BLAS_API operator * (const Matrix3 &m1, const Matrix3 &m2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix3 _LIB_THEKOGANS_MEX_BLAS_API operator * (
+                    const Matrix3 &m1,
+                    const Matrix3 &m2) {
                 return Matrix3 (
                     Point3 (
                         m1.x.x * m2.x.x + m1.x.y * m2.y.x + m1.x.z * m2.z.x,

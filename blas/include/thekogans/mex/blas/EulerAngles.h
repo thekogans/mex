@@ -34,19 +34,25 @@ namespace thekogans {
                 Point3 angles;
 
                 EulerAngles () {}
-                EulerAngles (const Point3 &angles_) : angles (angles_) {}
-                EulerAngles (const EulerAngles &eulerAngles) : angles (eulerAngles.angles) {}
+                EulerAngles (const Point3 &angles_) :
+                    angles (angles_) {}
+                EulerAngles (const EulerAngles &eulerAngles) :
+                    angles (eulerAngles.angles) {}
 
                 static EulerAngles FromMatrix3 (const Matrix3 &matrix);
                 static EulerAngles FromQuaternion (const Quaternion &quat);
             };
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const EulerAngles &eulerAngles) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const EulerAngles &eulerAngles) {
                 serializer << eulerAngles.angles;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, EulerAngles &eulerAngles) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    EulerAngles &eulerAngles) {
                 serializer >> eulerAngles.angles;
                 return serializer;
             }

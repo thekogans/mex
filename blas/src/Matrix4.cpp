@@ -73,7 +73,9 @@ namespace thekogans {
                 return matrix;
             }
 
-            Matrix4 Matrix4::Skew (util::f32 x, util::f32 y) {
+            Matrix4 Matrix4::Skew (
+                    util::f32 x,
+                    util::f32 y) {
                 Matrix4 matrix (Matrix4::Identity);
                 matrix.y.x = x;
                 matrix.x.y = y;
@@ -88,8 +90,11 @@ namespace thekogans {
                 return matrix;
             }
 
-            Matrix4 Matrix4::LookAt (const Point3 &position, const Point3 &target,
-                    const Point3 &up, util::f32 roll) {
+            Matrix4 Matrix4::LookAt (
+                    const Point3 &position,
+                    const Point3 &target,
+                    const Point3 &up,
+                    util::f32 roll) {
                 Point3 f = Normalize (target - position);
                 Point3 s = Normalize (Cross (f, up));
                 Point3 u = Normalize (Cross (s, f));
@@ -115,7 +120,11 @@ namespace thekogans {
                         -(frustum.min.z + frustum.max.z) / extents.z, 1.0f));
             }
 
-            Matrix4 Matrix4::Perspective (util::f32 fovy, util::f32 aspect, util::f32 zNear, util::f32 zFar) {
+            Matrix4 Matrix4::Perspective (
+                    util::f32 fovy,
+                    util::f32 aspect,
+                    util::f32 zNear,
+                    util::f32 zFar) {
                 fovy *= 0.5f;
                 fovy = 1.0f / tanf (fovy);
                 return Matrix4 (
@@ -129,7 +138,9 @@ namespace thekogans {
                 return *this = *this * matrix;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix4 _LIB_THEKOGANS_MEX_BLAS_API operator * (const Matrix4 &m1, const Matrix4 &m2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix4 _LIB_THEKOGANS_MEX_BLAS_API operator * (
+                    const Matrix4 &m1,
+                    const Matrix4 &m2) {
                 return Matrix4 (
                     Point4 (
                         m1.x.x * m2.x.x + m1.x.y * m2.y.x + m1.x.z * m2.z.x + m1.x.w * m2.t.x,

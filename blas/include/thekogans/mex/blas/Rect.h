@@ -90,15 +90,23 @@ namespace thekogans {
                 }
             };
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Rect _LIB_THEKOGANS_MEX_BLAS_API operator & (const Rect &r1, const Rect &r2);
-            _LIB_THEKOGANS_MEX_BLAS_DECL Rect _LIB_THEKOGANS_MEX_BLAS_API operator | (const Rect &r1, const Rect &r2);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Rect _LIB_THEKOGANS_MEX_BLAS_API operator & (
+                const Rect &r1,
+                const Rect &r2);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Rect _LIB_THEKOGANS_MEX_BLAS_API operator | (
+                const Rect &r1,
+                const Rect &r2);
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Rect &rect) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Rect &rect) {
                 serializer << rect.left << rect.top << rect.right << rect.bottom;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Rect &rect) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Rect &rect) {
                 serializer >> rect.left >> rect.top >> rect.right >> rect.bottom;
                 return serializer;
             }

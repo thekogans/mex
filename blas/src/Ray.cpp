@@ -26,7 +26,9 @@ namespace thekogans {
     namespace mex {
         namespace blas {
 
-            bool Ray::IntersectTriangleCull (const Triangle &triangle, Point3 &coords) const {
+            bool Ray::IntersectTriangleCull (
+                    const Triangle &triangle,
+                    Point3 &coords) const {
                 // find vectors for two edges sharing triangle.v0
                 Point3 edge1 = triangle.v1 - triangle.v0;
                 Point3 edge2 = triangle.v2 - triangle.v0;
@@ -57,7 +59,9 @@ namespace thekogans {
                 return true;
             }
 
-            bool Ray::IntersectTriangle (const Triangle &triangle, Point3 &coords) const {
+            bool Ray::IntersectTriangle (
+                    const Triangle &triangle,
+                    Point3 &coords) const {
                 // find vectors for two edges sharing triangle.v0
                 Point3 edge1 = triangle.v1 - triangle.v0;
                 Point3 edge2 = triangle.v2 - triangle.v0;
@@ -88,7 +92,10 @@ namespace thekogans {
                 return true;
             }
 
-            bool Ray::Intersect (const Bound3 &bound, util::f32 &tmin, util::f32 &tmax) const {
+            bool Ray::Intersect (
+                    const Bound3 &bound,
+                    util::f32 &tmin,
+                    util::f32 &tmax) const {
                 tmin = (bound[oneOverDirectionSign.x].x - origin.x) * oneOverDirection.x;
                 tmax = (bound[1 - oneOverDirectionSign.x].x - origin.x) * oneOverDirection.x;
                 util::f32 tymin = (bound[oneOverDirectionSign.y].y - origin.y) * oneOverDirection.y;

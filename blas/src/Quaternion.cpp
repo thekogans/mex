@@ -62,7 +62,6 @@ namespace thekogans {
                     matrix3x3[2][0] = matrix.z.x;
                     matrix3x3[2][1] = matrix.z.y;
                     matrix3x3[2][2] = matrix.z.z;
-
                     util::i32 i = 0;
                     if (matrix3x3[1][1] > matrix3x3[0][0]) {
                         i = 1;
@@ -70,20 +69,16 @@ namespace thekogans {
                     if (matrix3x3[2][2] > matrix3x3[i][i]) {
                         i = 2;
                     }
-
                     static const util::i32 next[3] = {1, 2, 0};
                     util::i32 j = next[i];
                     util::i32 k = next[j];
-
                     util::f32 s = sqrtf (matrix3x3[i][i] - matrix3x3[j][j] - matrix3x3[k][k] + 1.0f);
                     util::f32 xyzw[4];
                     xyzw[i] = s * 0.5f;
                     s = 0.5f / s;
-
                     xyzw[3] = (matrix3x3[k][j] - matrix3x3[j][k]) * s;
                     xyzw[j] = (matrix3x3[j][i] + matrix3x3[i][j]) * s;
                     xyzw[k] = (matrix3x3[k][i] + matrix3x3[i][k]) * s;
-
                     quat.x = xyzw[0];
                     quat.y = xyzw[1];
                     quat.z = xyzw[2];
@@ -97,12 +92,10 @@ namespace thekogans {
                 util::f32 y_ = w * quat.y + y * quat.w + z * quat.x - x * quat.z;
                 util::f32 z_ = w * quat.z + z * quat.w + x * quat.y - y * quat.x;
                 util::f32 w_ = w * quat.w - x * quat.x - y * quat.y - z * quat.z;
-
                 x = x_;
                 y = y_;
                 z = z_;
                 w = w_;
-
                 return *this;
             }
 
@@ -123,9 +116,11 @@ namespace thekogans {
                 return Quaternion (scale * x, scale * y, scale * z, 0.0f);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Quaternion _LIB_THEKOGANS_MEX_BLAS_API Slerp (util::f32 t, const Quaternion &quat1, const Quaternion &quat2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Quaternion _LIB_THEKOGANS_MEX_BLAS_API Slerp (
+                    util::f32 t,
+                    const Quaternion &quat1,
+                    const Quaternion &quat2) {
                 util::f32 cosom = quat1.x * quat2.x + quat1.y * quat2.y + quat1.z * quat2.z + quat1.w * quat2.w;
-
                 if ((1.0f + cosom) > EPSILON) {
                     util::f32 sclp;
                     util::f32 sclq;
@@ -147,11 +142,9 @@ namespace thekogans {
                         sclp * quat1.z + sclq * quat2.z,
                         sclp * quat1.w + sclq * quat2.w);
                 }
-
                 // ends nearly opposite
                 util::f32 sclp = sinf ((1.0f - t) * HALFPI);
                 util::f32 sclq = sinf (t * HALFPI);
-
                 return Quaternion (
                     sclp * quat1.x + sclq * -quat1.y,
                     sclp * quat1.y + sclq * quat1.x,
@@ -160,13 +153,13 @@ namespace thekogans {
             }
 
             _LIB_THEKOGANS_MEX_BLAS_DECL Quaternion _LIB_THEKOGANS_MEX_BLAS_API SquadRev (
-                util::f32 t,                // parameter, in range [0.0, 1.0]
-                util::f32 angle,            // angle of rotation
-                const Point3 &axis,         // the axis of rotation
-                const Quaternion &quat1,    // start quaternion
-                const Quaternion &t1,       // start tangent quaternion
-                const Quaternion &t2,       // end tangent quaternion
-                const Quaternion &quat2) {  // end quaternion
+                    util::f32 t,                // parameter, in range [0.0, 1.0]
+                    util::f32 angle,            // angle of rotation
+                    const Point3 &axis,         // the axis of rotation
+                    const Quaternion &quat1,    // start quaternion
+                    const Quaternion &t1,       // start tangent quaternion
+                    const Quaternion &t2,       // end tangent quaternion
+                    const Quaternion &quat2) {  // end quaternion
                 util::f32 omega = angle * 0.5f;
                 if (omega < PI - EPSILON) {
                     return Squad (t, quat1, t1, t2, quat2);

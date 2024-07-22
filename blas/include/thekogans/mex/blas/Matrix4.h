@@ -83,7 +83,7 @@ namespace thekogans {
                     const Point3 &up = Point3::Z,
                     util::f32 roll = 0.0f);
                 static Matrix<Point4> Orthographic (const blas::Bound<Point3> &frustum);
-                static Matrix<Point4> Perspective(
+                static Matrix<Point4> Perspective (
                     util::f32 fovy,
                     util::f32 aspect,
                     util::f32 zNear,

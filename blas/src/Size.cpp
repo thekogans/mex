@@ -25,8 +25,11 @@ namespace thekogans {
 
             const Size Size::Empty (0, 0, 0, 0);
 
-            Size::Size (const Rect &rect) : x (rect.left), y (rect.bottom),
-                width (rect.Width ()), height (rect.Height ()) {}
+            Size::Size (const Rect &rect) :
+                x (rect.left),
+                y (rect.bottom),
+                width (rect.Width ()),
+                height (rect.Height ()) {}
 
             Size &Size::operator = (const Rect &rect) {
                 x = rect.left;
@@ -36,7 +39,9 @@ namespace thekogans {
                 return *this;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator & (const Size &s1, const Size &s2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator & (
+                    const Size &s1,
+                    const Size &s2) {
                 util::ui16 x = std::max (s1.x, s2.x);
                 util::ui16 y = std::max (s1.y, s2.y);
                 util::ui16 width = std::min (s1.Right (), s2.Right ()) - x;
@@ -44,7 +49,9 @@ namespace thekogans {
                 return Size (x, y, width, height);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator | (const Size &s1, const Size &s2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Size _LIB_THEKOGANS_MEX_BLAS_API operator | (
+                    const Size &s1,
+                    const Size &s2) {
                 util::ui16 x = std::min (s1.x, s2.x);
                 util::ui16 y = std::min (s1.y, s2.y);
                 util::ui16 width = std::max (s1.Right (), s2.Right ()) - x;

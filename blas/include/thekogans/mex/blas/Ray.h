@@ -50,10 +50,17 @@ namespace thekogans {
                     oneOverDirection (1.0f / direction.x, 1.0f / direction.y, 1.0f / direction.z),
                     oneOverDirectionSign (oneOverDirection) {}
 
-                bool IntersectTriangleCull (const Triangle &triangle, Point3 &coords) const;
-                bool IntersectTriangle (const Triangle &triangle, Point3 &coords) const;
+                bool IntersectTriangleCull (
+                    const Triangle &triangle,
+                    Point3 &coords) const;
+                bool IntersectTriangle (
+                    const Triangle &triangle,
+                    Point3 &coords) const;
 
-                bool Intersect (const Bound<Point3> &bound, util::f32 &tmin, util::f32 &tmax) const;
+                bool Intersect (
+                    const Bound<Point3> &bound,
+                    util::f32 &tmin,
+                    util::f32 &tmax) const;
             };
 
         } // namespace blas

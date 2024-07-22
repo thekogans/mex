@@ -70,14 +70,18 @@ namespace thekogans {
             }
 
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL Bound2 operator + (const Bound2 &bound, const Point2 &pt) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Bound2 operator + (
+                    const Bound2 &bound,
+                    const Point2 &pt) {
                 return Bound2 (
                     Point2 (std::min (bound.min.x, pt.x), std::min (bound.min.y, pt.y)),
                     Point2 (std::max (bound.max.x, pt.x), std::max (bound.max.y, pt.y)));
             }
 
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL Bound3 operator + (const Bound3 &bound, const Point3 &pt) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Bound3 operator + (
+                    const Bound3 &bound,
+                    const Point3 &pt) {
                 return Bound3 (
                     Point3 (std::min (bound.min.x, pt.x), std::min (bound.min.y, pt.y), std::min (bound.min.z, pt.z)),
                     Point3 (std::max (bound.max.x, pt.x), std::max (bound.max.y, pt.y), std::max (bound.max.z, pt.z)));

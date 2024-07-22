@@ -27,13 +27,27 @@ namespace thekogans {
     namespace mex {
         namespace blas {
 
-            inline util::f32 atoff (const char *value) {return (util::f32)atof (value);}
-            inline util::f32 fabsf (util::f32 value) {return (util::f32)fabs (value);}
-            inline util::f32 sqrtf (util::f32 value) {return (util::f32)sqrt (value);}
-            inline util::f32 cosf (util::f32 value) {return (util::f32)cos (value);}
-            inline util::f32 sinf (util::f32 value) {return (util::f32)sin (value);}
-            inline util::f32 tanf (util::f32 value) {return (util::f32)tan (value);}
-            inline util::f32 atanf (util::f32 value) {return (util::f32)atan (value);}
+            inline util::f32 atoff (const char *value) {
+                return (util::f32)atof (value);
+            }
+            inline util::f32 fabsf (util::f32 value) {
+                return (util::f32)fabs (value);
+            }
+            inline util::f32 sqrtf (util::f32 value) {
+                return (util::f32)sqrt (value);
+            }
+            inline util::f32 cosf (util::f32 value) {
+                return (util::f32)cos (value);
+            }
+            inline util::f32 sinf (util::f32 value) {
+                return (util::f32)sin (value);
+            }
+            inline util::f32 tanf (util::f32 value) {
+                return (util::f32)tan (value);
+            }
+            inline util::f32 atanf (util::f32 value) {
+                return (util::f32)atan (value);
+            }
             inline util::f32 acosf (util::f32 value) {
                 // acos that does not return NaN with rounding errors
                 if (value <= -1.0f) {
@@ -44,9 +58,21 @@ namespace thekogans {
                 }
                 return (util::f32)acos (value);
             }
-            inline util::f32 atan2f (util::f32 x, util::f32 y) {return (util::f32)atan2 (x, y);}
-            inline util::f32 fmodf (util::f32 x, util::f32 y) {return (util::f32)fmod (x, y);}
-            inline util::f32 powf (util::f32 x, util::f32 y) {return (util::f32)pow (x, y);}
+            inline util::f32 atan2f (
+                    util::f32 x,
+                    util::f32 y) {
+                return (util::f32)atan2 (x, y);
+            }
+            inline util::f32 fmodf (
+                    util::f32 x,
+                    util::f32 y) {
+                return (util::f32)fmod (x, y);
+            }
+            inline util::f32 powf (
+                    util::f32 x,
+                    util::f32 y) {
+                return (util::f32)pow (x, y);
+            }
 
         } // namespace blas
     } // namespace mex

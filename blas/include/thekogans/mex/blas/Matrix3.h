@@ -78,12 +78,16 @@ namespace thekogans {
                 static Matrix<Point3> RotateY (util::f32 angle);
                 static Matrix<Point3> RotateZ (util::f32 angle);
                 static Matrix<Point3> Scale (const Point3 &pt);
-                static Matrix<Point3> Skew (util::f32 x, util::f32 y);
+                static Matrix<Point3> Skew (
+                    util::f32 x,
+                    util::f32 y);
                 static Matrix<Point3> Shear (const Point3 &pt);
 
                 // Takes two points in the XY plane and computes a matrix
                 // which when applied to p1 rotates and scales it in to p2.
-                static Matrix<Point3> Aim2D (const Point3 &p1, const Point3 &p2);
+                static Matrix<Point3> Aim2D (
+                    const Point3 &p1,
+                    const Point3 &p2);
 
                 // Takes a point and computes a matrix which when applied
                 // to point rotates it in to the Z axis.

@@ -48,14 +48,18 @@ namespace thekogans {
                 return matrix;
             }
 
-            Matrix2 Matrix2::Skew (util::f32 x, util::f32 y) {
+            Matrix2 Matrix2::Skew (
+                    util::f32 x,
+                    util::f32 y) {
                 Matrix2 matrix (Matrix2::Identity);
                 matrix.y.x = x;
                 matrix.x.y = y;
                 return matrix;
             }
 
-            Matrix2 Matrix2::Aim2D (const Point2 &p1, const Point2 &p2) {
+            Matrix2 Matrix2::Aim2D (
+                    const Point2 &p1,
+                    const Point2 &p2) {
                 util::f32 scale = p1.Length ();
                 if (util::IS_ZERO (scale)) {
                     return Matrix2::Zero;
@@ -96,7 +100,9 @@ namespace thekogans {
                 // Calculate the determinant of a 2x2 matrix.
                 //     |a, b|
                 //     |c, d|
-                inline util::f32 DET2X2 (util::f32 a, util::f32 b, util::f32 c, util::f32 d) {
+                inline util::f32 DET2X2 (
+                        util::f32 a, util::f32 b,
+                        util::f32 c, util::f32 d) {
                     return a * d - b * c;
                 }
 
@@ -105,9 +111,9 @@ namespace thekogans {
                 //     |a2, b2, c2|
                 //     |a3, b3, c3|
                 inline util::f32 DET3X3 (
-                    util::f32 a1, util::f32 a2, util::f32 a3,
-                    util::f32 b1, util::f32 b2, util::f32 b3,
-                    util::f32 c1, util::f32 c2, util::f32 c3) {
+                        util::f32 a1, util::f32 a2, util::f32 a3,
+                        util::f32 b1, util::f32 b2, util::f32 b3,
+                        util::f32 c1, util::f32 c2, util::f32 c3) {
                     return
                         a1 * DET2X2 (b2, b3, c2, c3) -
                         b1 * DET2X2 (a2, a3, c2, c3) +
@@ -132,7 +138,10 @@ namespace thekogans {
                 return DET3X3 (a1, a2, a3, b1, b2, b3, c1, c2, c3);
             }
 
-            bool Matrix2::Decompose (Point2 &translation, util::f32 &rotation, Point2 &scale) const {
+            bool Matrix2::Decompose (
+                    Point2 &translation,
+                    util::f32 &rotation,
+                    Point2 &scale) const {
                 // FIXME: implement
                 assert (0);
                 return false;
@@ -144,7 +153,9 @@ namespace thekogans {
                     normal.x * x.y + normal.y * y.y);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix2 _LIB_THEKOGANS_MEX_BLAS_API operator * (const Matrix2 &m1, const Matrix2 &m2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Matrix2 _LIB_THEKOGANS_MEX_BLAS_API operator * (
+                    const Matrix2 &m1,
+                    const Matrix2 &m2) {
                 return Matrix2 (
                     Point2 (
                         m1.x.x * m2.x.x + m1.x.y * m2.y.x,

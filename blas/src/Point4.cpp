@@ -35,7 +35,8 @@ namespace thekogans {
             }
 
             _LIB_THEKOGANS_MEX_BLAS_DECL Point4 _LIB_THEKOGANS_MEX_BLAS_API operator * (
-                    const Point4 &pt, const Matrix4 &matrix) {
+                    const Point4 &pt,
+                    const Matrix4 &matrix) {
                 return Point4 (
                     pt.x * matrix.x.x + pt.y * matrix.y.x + pt.z * matrix.z.x + pt.w * matrix.t.x,
                     pt.x * matrix.x.y + pt.y * matrix.y.y + pt.z * matrix.z.y + pt.w * matrix.t.y,

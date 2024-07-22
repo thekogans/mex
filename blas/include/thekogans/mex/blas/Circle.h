@@ -36,10 +36,14 @@ namespace thekogans {
                 util::f32 radius;
 
                 Circle () {}
-                Circle (const Point2 &center_, util::f32 radius_) :
-                    center (center_), radius (radius_) {}
+                Circle (
+                    const Point2 &center_,
+                    util::f32 radius_) :
+                    center (center_),
+                    radius (radius_) {}
                 Circle (const Circle &circle) :
-                    center (circle.center), radius (circle.radius) {}
+                    center (circle.center),
+                    radius (circle.radius) {}
 
                 inline Circle &operator = (const Circle &circle) {
                     if (&circle != this) {
@@ -68,12 +72,16 @@ namespace thekogans {
                 bool CrossPolygon (const Polygon3 &polygon) const;
             };
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Circle &circle) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Circle &circle) {
                 serializer << circle.center << circle.radius;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Circle &circle) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Circle &circle) {
                 serializer >> circle.center >> circle.radius;
                 return serializer;
             }

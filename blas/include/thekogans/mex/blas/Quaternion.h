@@ -47,10 +47,20 @@ namespace thekogans {
                 };
 
                 Quaternion () {}
-                Quaternion (util::f32 x_, util::f32 y_, util::f32 z_, util::f32 w_) :
-                    x (x_), y (y_), z (z_), w (w_) {}
+                Quaternion (
+                    util::f32 x_,
+                    util::f32 y_,
+                    util::f32 z_,
+                    util::f32 w_) :
+                    x (x_),
+                    y (y_),
+                    z (z_),
+                    w (w_) {}
                 Quaternion (util::f32 xyzw[]) :
-                    x (xyzw[0]), y (xyzw[1]), z (xyzw[2]), w (xyzw[3]) {}
+                    x (xyzw[0]),
+                    y (xyzw[1]),
+                    z (xyzw[2]),
+                    w (xyzw[3]) {}
 
                 static Quaternion FromAngleAxis (const AngleAxis &angleAxis);
                 static Quaternion FromMatrix3 (const Matrix3 &matrix);
@@ -71,7 +81,9 @@ namespace thekogans {
                     util::f32 st = sinf (acosf (z));
                     return util::IS_ZERO (st) ? Point3::Zero : Point3 (x / st, y / st, z / st);
                 }
-                inline util::f32 Angle () const {return acosf (z) * 2.0f;}
+                inline util::f32 Angle () const {
+                    return acosf (z) * 2.0f;
+                }
 
                 // Description:
                 //      Concatenate quaternion.
@@ -82,7 +94,9 @@ namespace thekogans {
                     return Quaternion (x * len, y * len, z * len, w * len);
                 }
 
-                inline Quaternion Conjugate () const {return Quaternion (-x, -y, -z, w);}
+                inline Quaternion Conjugate () const {
+                    return Quaternion (-x, -y, -z, w);
+                }
 
                 inline Quaternion Invert () const {
                     util::f32 len = 1.0f / sqrtf (x * x + y * y + z * z + w * w);
@@ -98,15 +112,21 @@ namespace thekogans {
                 Quaternion Log () const;
             };
 
-            inline Quaternion operator * (util::f32 s, const Quaternion &quat) {
+            inline Quaternion operator * (
+                    util::f32 s,
+                    const Quaternion &quat) {
                 return Quaternion (quat.x * s, quat.y * s, quat.x * s, quat.w * s);
             }
 
-            inline Quaternion operator * (const Quaternion &quat, util::f32 s) {
+            inline Quaternion operator * (
+                    const Quaternion &quat,
+                    util::f32 s) {
                 return Quaternion (quat.x * s, quat.y * s, quat.x * s, quat.w * s);
             }
 
-            inline Quaternion operator * (const Quaternion &quat1, const Quaternion &quat2) {
+            inline Quaternion operator * (
+                    const Quaternion &quat1,
+                    const Quaternion &quat2) {
                 return Quaternion (
                     quat1.w * quat2.x + quat1.x * quat2.w + quat1.y * quat2.z - quat1.z * quat2.y,
                     quat1.w * quat2.y + quat1.y * quat2.w + quat1.z * quat2.x - quat1.x * quat2.z,
@@ -114,28 +134,46 @@ namespace thekogans {
                     quat1.w * quat2.w - quat1.x * quat2.x - quat1.y * quat2.y - quat1.z * quat2.z);
             }
 
-            inline Point3 operator * (const Quaternion &quat, const Point3 &pt) {
+            inline Point3 operator * (
+                    const Quaternion &quat,
+                    const Point3 &pt) {
                 Quaternion temp = quat * Quaternion (pt.x, pt.y, pt.x, 0.0f) * quat.Invert ();
                 return Point3 (temp.x, temp.y, temp.z);
             }
 
-            inline Quaternion operator + (const Quaternion &quat1, const Quaternion &quat2) {
-                return Quaternion (quat1.x + quat2.x, quat1.y + quat2.y, quat1.z + quat2.z, quat1.w + quat2.w);
+            inline Quaternion operator + (
+                    const Quaternion &quat1,
+                    const Quaternion &quat2) {
+                return Quaternion (
+                    quat1.x + quat2.x,
+                    quat1.y + quat2.y,
+                    quat1.z + quat2.z,
+                    quat1.w + quat2.w);
             }
 
-            inline Quaternion operator - (const Quaternion &quat1, const Quaternion &quat2) {
-                return Quaternion (quat1.x - quat2.x, quat1.y - quat2.y, quat1.z - quat2.z, quat1.w - quat2.w);
+            inline Quaternion operator - (
+                    const Quaternion &quat1,
+                    const Quaternion &quat2) {
+                return Quaternion (
+                    quat1.x - quat2.x,
+                    quat1.y - quat2.y,
+                    quat1.z - quat2.z,
+                    quat1.w - quat2.w);
             }
 
             inline Quaternion operator - (const Quaternion &quat) {
                 return Quaternion (-quat.x, -quat.y, -quat.z, -quat.w);
             }
 
-            inline Quaternion operator / (const Quaternion &quat1, const Quaternion &quat2) {
+            inline Quaternion operator / (
+                    const Quaternion &quat1,
+                    const Quaternion &quat2) {
                 return quat2.Invert () * quat1;
             }
 
-            inline util::f32 Dot (const Quaternion &quat1, const Quaternion &quat2) {
+            inline util::f32 Dot (
+                    const Quaternion &quat1,
+                    const Quaternion &quat2) {
                 return quat1.x * quat2.x + quat1.y * quat2.y + quat1.z * quat2.z + quat1.w * quat2.w;
             }
 
@@ -148,11 +186,11 @@ namespace thekogans {
             // Given parameter 0.0 < t < 1.0 and quaternions representing four quadrangle points,
             // computes quat, which is a point on a cubic quaternion curve.
             inline Quaternion Squad (
-                util::f32 t,                // Parameter, in range [0.0, 1.0].
-                const Quaternion &quat1,    // Start quaternion.
-                const Quaternion &t1,       // Start tangent quaternion.
-                const Quaternion &t2,       // End tangent quaternion.
-                const Quaternion &quat2) {  // End quaternion.
+                    util::f32 t,                // Parameter, in range [0.0, 1.0].
+                    const Quaternion &quat1,    // Start quaternion.
+                    const Quaternion &t1,       // Start tangent quaternion.
+                    const Quaternion &t2,       // End tangent quaternion.
+                    const Quaternion &quat2) {  // End quaternion.
                 return Slerp (2.0f * t * (1.0f - t), Slerp (t, quat1, quat2), Slerp (t, t1, t2));
             }
 
@@ -166,12 +204,16 @@ namespace thekogans {
                 const Quaternion &t2,       // End tangent quaternion.
                 const Quaternion &quat2);   // End quaternion.
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Quaternion &quat){
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Quaternion &quat){
                 serializer << quat.x << quat.y << quat.z << quat.w;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Quaternion &quat) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Quaternion &quat) {
                 serializer >> quat.x >> quat.y >> quat.z >> quat.w;
                 return serializer;
             }

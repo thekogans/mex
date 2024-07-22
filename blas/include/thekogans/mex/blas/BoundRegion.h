@@ -47,19 +47,29 @@ namespace thekogans {
                 virtual bool PointInRegion (const T &pt) const {
                     return pt.InBound (bound);
                 }
-                virtual bool LineInRegion (const LineT<T> &line, bool cross = true) const {
+                virtual bool LineInRegion (
+                        const LineT<T> &line,
+                        bool cross = true) const {
                     return cross ? line.CrossBound (bound) : line.InBound (bound);
                 }
-                virtual bool BoundInRegion (const Bound<T> &bound_, bool cross = true) const {
+                virtual bool BoundInRegion (
+                        const Bound<T> &bound_,
+                        bool cross = true) const {
                     return cross ? bound_.CrossBound (bound) : bound_.InBound (bound);
                 }
-                virtual bool CircleInRegion (const Circle &circle, bool cross = true) const {
+                virtual bool CircleInRegion (
+                        const Circle &circle,
+                        bool cross = true) const {
                     return cross ? circle.CrossBound (bound) : circle.InBound (bound);
                 }
-                virtual bool EllipseInRegion (const Ellipse &ellipse, bool cross = true) const {
+                virtual bool EllipseInRegion (
+                        const Ellipse &ellipse,
+                        bool cross = true) const {
                     return cross ? ellipse.CrossBound (bound) : ellipse.InBound (bound);
                 }
-                virtual bool PolygonInRegion (const Polygon<T> &polygon, bool cross = true) const {
+                virtual bool PolygonInRegion (
+                        const Polygon<T> &polygon,
+                        bool cross = true) const {
                     return cross ? polygon.CrossBound (bound) : polygon.InBound (bound);
                 }
                 virtual bool BezierCubicInRegion (

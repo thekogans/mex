@@ -140,29 +140,39 @@ namespace thekogans {
             Bound<T> operator + (const Bound<T> &bound, const T &pt);
 
             template<typename T>
-            inline Bound<T> operator == (const Bound<T> &bound1, const Bound<T> &bound2) {
+            inline Bound<T> operator == (
+                    const Bound<T> &bound1,
+                    const Bound<T> &bound2) {
                 return bound1.min == bound2.min && bound1.max == bound2.max;
             }
 
             template<typename T>
-            inline Bound<T> operator != (const Bound<T> &bound1, const Bound<T> &bound2) {
+            inline Bound<T> operator != (
+                    const Bound<T> &bound1,
+                    const Bound<T> &bound2) {
                 return bound1.min != bound2.min || bound1.max != bound2.max;
             }
 
             template<typename T>
-            inline Bound<T> operator + (const Bound<T> &bound1, const Bound<T> &bound2) {
+            inline Bound<T> operator + (
+                    const Bound<T> &bound1,
+                    const Bound<T> &bound2) {
                 Bound<T> result (bound1);
                 result += bound2;
                 return result;
             }
 
             template<typename T>
-            inline Bound<T> operator * (const Bound<T> &bound, const Matrix<T> &xform) {
+            inline Bound<T> operator * (
+                    const Bound<T> &bound,
+                    const Matrix<T> &xform) {
                 return Bound<T> (bound.min * xform, bound.max * xform);
             }
 
             template<typename T>
-            inline util::Serializer &operator << (util::Serializer &serializer, const Bound<T> &bound) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Bound<T> &bound) {
                 serializer << bound.min << bound.max;
                 return serializer;
             }
@@ -178,9 +188,13 @@ namespace thekogans {
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL Bound3 &Bound3::operator += (const Point3 &pt);
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL Bound2 operator + (const Bound2 &bound, const Point2 &pt);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Bound2 operator + (
+                const Bound2 &bound,
+                const Point2 &pt);
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL Bound3 operator + (const Bound3 &bound, const Point3 &pt);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Bound3 operator + (
+                const Bound3 &bound,
+                const Point3 &pt);
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL Bound2 Bound2::Normalize () const;
             template<>

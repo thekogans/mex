@@ -47,10 +47,14 @@ namespace thekogans {
                 bool closed;
 
                 Polygon () : closed (false) {}
-                Polygon (const std::vector<T> &points_, bool closed_) :
-                    points (points_), closed (closed_) {}
+                Polygon (
+                    const std::vector<T> &points_,
+                    bool closed_) :
+                    points (points_),
+                    closed (closed_) {}
                 Polygon (const Polygon &polygon) :
-                    points (polygon.points), closed (polygon.closed) {}
+                    points (polygon.points),
+                    closed (polygon.closed) {}
 
                 inline T &operator [] (std::size_t index) {
                     assert (index < points.size ());
@@ -139,8 +143,10 @@ namespace thekogans {
             typedef Polygon<Point2> Polygon2;
             typedef Polygon<Point3> Polygon3;
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Polygon3 _LIB_THEKOGANS_MEX_BLAS_API Polygon2To3 (const Polygon2 &polygon);
-            _LIB_THEKOGANS_MEX_BLAS_DECL Polygon2 _LIB_THEKOGANS_MEX_BLAS_API Polygon3To2 (const Polygon3 &polygon);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Polygon3 _LIB_THEKOGANS_MEX_BLAS_API Polygon2To3 (
+                const Polygon2 &polygon);
+            _LIB_THEKOGANS_MEX_BLAS_DECL Polygon2 _LIB_THEKOGANS_MEX_BLAS_API Polygon3To2 (
+                const Polygon3 &polygon);
 
             template<typename T>
             T Polygon<T>::PointNormal (std::size_t pointIndex) const {
@@ -221,7 +227,9 @@ namespace thekogans {
             }
 
             template<typename T>
-            void Polygon<T>::GetFrames (std::vector<Matrix<T> > &frames, bool contour) const {
+            void Polygon<T>::GetFrames (
+                    std::vector<Matrix<T>> &frames,
+                    bool contour) const {
                 if (points.empty ()) {
                     return;
                 }
@@ -282,7 +290,9 @@ namespace thekogans {
             }
 
             template<typename T>
-            util::Serializer &operator << (util::Serializer &serializer, const Polygon<T> &polygon) {
+            util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Polygon<T> &polygon) {
                 util::ui32 count = polygon.points.size ();
                 serializer << count;
                 for (util::ui32 i = 0; i < count; ++i) {
@@ -293,7 +303,9 @@ namespace thekogans {
             }
 
             template<typename T>
-            util::Serializer &operator >> (util::Serializer &serializer, Polygon<T> &polygon) {
+            util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Polygon<T> &polygon) {
                 util::ui32 count;
                 serializer >> count;
                 polygon.points.resize (count);

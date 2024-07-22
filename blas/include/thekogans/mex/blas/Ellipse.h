@@ -33,8 +33,10 @@ namespace thekogans {
                 Bound2 bound;
 
                 Ellipse () {}
-                explicit Ellipse (const Bound2 &bound_) : bound (bound_) {}
-                Ellipse (const Ellipse &ellipse) : bound (ellipse.bound) {}
+                explicit Ellipse (const Bound2 &bound_) :
+                    bound (bound_) {}
+                Ellipse (const Ellipse &ellipse) :
+                    bound (ellipse.bound) {}
 
                 inline Ellipse &operator = (const Ellipse &ellipse) {
                     if (&ellipse != this) {
@@ -62,12 +64,16 @@ namespace thekogans {
                 bool CrossPolygon (const Polygon3 &polygon) const;
             };
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Ellipse &ellipse) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Ellipse &ellipse) {
                 serializer << ellipse.bound;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Ellipse &ellipse) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Ellipse &ellipse) {
                 serializer >> ellipse.bound;
                 return serializer;
             }

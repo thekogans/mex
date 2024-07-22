@@ -64,10 +64,20 @@ namespace thekogans {
                 T p4;
 
                 BezierCubic () {}
-                BezierCubic (const T &p1_, const T &p2_, const T &p3_, const T &p4_) :
-                    p1 (p1_), p2 (p2_), p3 (p3_), p4 (p4_) {}
-                BezierCubic (const BezierCubic &bezierCubic) : p1 (bezierCubic.p1),
-                    p2 (bezierCubic.p2), p3 (bezierCubic.p3), p4 (bezierCubic.p4) {}
+                BezierCubic (
+                    const T &p1_,
+                    const T &p2_,
+                    const T &p3_,
+                    const T &p4_) :
+                    p1 (p1_),
+                    p2 (p2_),
+                    p3 (p3_),
+                    p4 (p4_) {}
+                BezierCubic (const BezierCubic &bezierCubic) :
+                    p1 (bezierCubic.p1),
+                    p2 (bezierCubic.p2),
+                    p3 (bezierCubic.p3),
+                    p4 (bezierCubic.p4) {}
 
                 inline BezierCubic &operator = (const BezierCubic &bezierCubic) {
                     if (&bezierCubic != this) {
@@ -153,17 +163,33 @@ namespace thekogans {
                     const unary_function<const BezierCubic<T> &, bool> &testFlatness =
                         DefaultFlatnessTest ()) const;
 
-                bool InBound (const Bound<T> &bound, util::ui32 steps) const;
-                bool CrossBound (const Bound<T> &bound, util::ui32 steps) const;
+                bool InBound (
+                    const Bound<T> &bound,
+                    util::ui32 steps) const;
+                bool CrossBound (
+                    const Bound<T> &bound,
+                    util::ui32 steps) const;
 
-                bool InPolygon (const Polygon<T> &polygon, util::ui32 steps) const;
-                bool CrossPolygon (const Polygon<T> &polygon, util::ui32 steps) const;
+                bool InPolygon (
+                    const Polygon<T> &polygon,
+                    util::ui32 steps) const;
+                bool CrossPolygon (
+                    const Polygon<T> &polygon,
+                    util::ui32 steps) const;
 
-                bool InCircle (const Circle &circle, util::ui32 steps) const;
-                bool CrossCircle (const Circle &circle, util::ui32 steps) const;
+                bool InCircle (
+                    const Circle &circle,
+                    util::ui32 steps) const;
+                bool CrossCircle (
+                    const Circle &circle,
+                    util::ui32 steps) const;
 
-                bool InEllipse (const Ellipse &ellipse, util::ui32 steps) const;
-                bool CrossEllipse (const Ellipse &ellipse, util::ui32 steps) const;
+                bool InEllipse (
+                    const Ellipse &ellipse,
+                    util::ui32 steps) const;
+                bool CrossEllipse (
+                    const Ellipse &ellipse,
+                    util::ui32 steps) const;
 
                 void CrossHorizontal (
                     util::f32 y,
@@ -282,7 +308,9 @@ namespace thekogans {
             }
 
             template<typename T>
-            bool BezierCubic<T>::CrossBound (const Bound<T> &bound, util::ui32 steps) const {
+            bool BezierCubic<T>::CrossBound (
+                    const Bound<T> &bound,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 T pt1 = p1;

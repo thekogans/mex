@@ -40,11 +40,21 @@ namespace thekogans {
                 virtual ~Region () {}
 
                 virtual bool PointInRegion (const T &pt) const = 0;
-                virtual bool LineInRegion (const LineT<T> &line, bool cross = true) const = 0;
-                virtual bool BoundInRegion (const Bound<T> &bound, bool cross = true) const = 0;
-                virtual bool CircleInRegion (const Circle &circle, bool cross = true) const = 0;
-                virtual bool EllipseInRegion (const Ellipse &ellipse, bool cross = true) const = 0;
-                virtual bool PolygonInRegion (const Polygon<T> &polygon, bool cross = true) const = 0;
+                virtual bool LineInRegion (
+                    const LineT<T> &line,
+                    bool cross = true) const = 0;
+                virtual bool BoundInRegion (
+                    const Bound<T> &bound,
+                    bool cross = true) const = 0;
+                virtual bool CircleInRegion (
+                    const Circle &circle,
+                    bool cross = true) const = 0;
+                virtual bool EllipseInRegion (
+                    const Ellipse &ellipse,
+                    bool cross = true) const = 0;
+                virtual bool PolygonInRegion (
+                    const Polygon<T> &polygon,
+                    bool cross = true) const = 0;
                 virtual bool BezierCubicInRegion (
                     const BezierCubic<T> &bezierCubic,
                     util::ui32 steps,

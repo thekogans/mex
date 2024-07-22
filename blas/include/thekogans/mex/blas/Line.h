@@ -41,8 +41,14 @@ namespace thekogans {
                 T end;
 
                 LineT () {}
-                LineT (const T &start_, const T &end_) : start (start_), end (end_) {}
-                LineT (const LineT<T> &line) : start (line.start), end (line.end) {}
+                LineT (
+                    const T &start_,
+                    const T &end_) :
+                    start (start_),
+                    end (end_) {}
+                LineT (const LineT<T> &line) :
+                    start (line.start),
+                    end (line.end) {}
 
                 LineT<T> &operator = (const LineT<T> &line) {
                     if (&line != this) {
@@ -54,7 +60,9 @@ namespace thekogans {
 
                 // Description:
                 //      Return true if intersects with line.
-                bool CrossLine (const LineT<T> &line, T &pt) const;
+                bool CrossLine (
+                    const LineT<T> &line,
+                    T &pt) const;
                 inline bool CrossLine (const LineT<T> &line) const {
                     T pt;
                     return CrossLine (line, pt);
@@ -84,7 +92,9 @@ namespace thekogans {
 
                 // Description:
                 //      Return true if intersects with BezierCubic.
-                bool CrossBezierCubic (const BezierCubic<T> &bezierCubic, util::ui32 steps) const;
+                bool CrossBezierCubic (
+                    const BezierCubic<T> &bezierCubic,
+                    util::ui32 steps) const;
             };
 
             typedef LineT<Point> Line;
@@ -92,13 +102,17 @@ namespace thekogans {
             typedef LineT<Point3> Line3;
 
             template<typename T>
-            inline util::Serializer &operator << (util::Serializer &serializer, const LineT<T> &line) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const LineT<T> &line) {
                 serializer << line.start << line.end;
                 return serializer;
             }
 
             template<typename T>
-            inline util::Serializer &operator >> (util::Serializer &serializer, LineT<T> &line) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    LineT<T> &line) {
                 serializer >> line.start >> line.end;
                 return serializer;
             }
@@ -122,9 +136,13 @@ namespace thekogans {
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool Line3::CrossBound (const Bound3 &bound) const;
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossLine (const Line2 &line, Point2 &pt) const;
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossLine (
+                const Line2 &line,
+                Point2 &pt) const;
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossBezierCubic (const BezierCubic<Point2> &bezierCubic, util::ui32 steps) const;
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossBezierCubic (
+                const BezierCubic<Point2> &bezierCubic,
+                util::ui32 steps) const;
 
         } // namespace blas
     } // namespace mex

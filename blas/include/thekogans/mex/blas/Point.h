@@ -44,8 +44,14 @@ namespace thekogans {
                 static const Point Zero;
 
                 inline Point () {}
-                inline Point (util::i32 x_, util::i32 y_) : x (x_), y (y_) {}
-                inline Point (util::i32 xy[]) : x (xy[0]), y (xy[1]) {}
+                inline Point (
+                    util::i32 x_,
+                    util::i32 y_) :
+                    x (x_),
+                    y (y_) {}
+                inline Point (util::i32 xy[]) :
+                    x (xy[0]),
+                    y (xy[1]) {}
 
                 inline util::i32 operator [] (util::ui32 index) const {
                     assert (index < 2);
@@ -66,32 +72,46 @@ namespace thekogans {
                 bool InSize (const Size &size) const;
             };
 
-            inline Point operator * (const Point &pt, util::f32 scale) {
+            inline Point operator * (
+                    const Point &pt,
+                    util::f32 scale) {
                 return Point (util::ROUND (pt.x * scale), util::ROUND (pt.y * scale));
             }
 
-            inline Point operator * (util::f32 scale, const Point &pt) {
+            inline Point operator * (
+                    util::f32 scale,
+                    const Point &pt) {
                 return Point (util::ROUND (pt.x * scale), util::ROUND (pt.y * scale));
             }
 
-            inline Point operator / (const Point &pt, util::f32 scale) {
+            inline Point operator / (
+                    const Point &pt,
+                    util::f32 scale) {
                 return Point (util::ROUND (pt.x / scale), util::ROUND (pt.y / scale));
             }
 
-            inline bool operator == (const Point &p1, const Point &p2) {
+            inline bool operator == (
+                    const Point &p1,
+                    const Point &p2) {
                 return p1.x == p2.x && p1.y == p2.y;
             }
 
-            inline bool operator != (const Point &p1, const Point &p2) {
+            inline bool operator != (
+                    const Point &p1,
+                    const Point &p2) {
                 return p1.x != p2.x || p1.y != p2.y;
             }
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Point &pt) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Point &pt) {
                 serializer << pt.x << pt.y;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Point &pt) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Point &pt) {
                 serializer >> pt.x >> pt.y;
                 return serializer;
             }

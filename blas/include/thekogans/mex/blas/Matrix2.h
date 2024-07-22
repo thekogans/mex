@@ -34,10 +34,17 @@ namespace thekogans {
                 Point2 t;
 
                 Matrix<Point2> () {}
-                Matrix<Point2> (const Point2 &x_, const Point2 &y_, const Point2 &t_) :
-                    x (x_), y (y_), t (t_) {}
+                Matrix<Point2> (
+                    const Point2 &x_,
+                    const Point2 &y_,
+                    const Point2 &t_) :
+                    x (x_),
+                    y (y_),
+                    t (t_) {}
                 Matrix<Point2> (const Matrix<Point2> &matrix) :
-                    x (matrix.x), y (matrix.y), t (matrix.t) {}
+                    x (matrix.x),
+                    y (matrix.y),
+                    t (matrix.t) {}
 
                 static const Matrix<Point2> Zero;
                 static const Matrix<Point2> Identity;
@@ -49,10 +56,14 @@ namespace thekogans {
                 static Matrix<Point2> Translate (const Point2 &pt);
                 static Matrix<Point2> RotateZ (util::f32 angle);
                 static Matrix<Point2> Scale (const Point2 &pt);
-                static Matrix<Point2> Skew (util::f32 x, util::f32 y);
+                static Matrix<Point2> Skew (
+                    util::f32 x,
+                    util::f32 y);
                 // Takes two points in the XY plane and computes a matrix
                 // which when applied to p1 rotates and scales it in to p2.
-                static Matrix<Point2> Aim2D (const Point2 &p1, const Point2 &p2);
+                static Matrix<Point2> Aim2D (
+                    const Point2 &p1,
+                    const Point2 &p2);
 
                 inline const Point2 &operator [] (util::ui32 index) const {
                     assert (index < 3);
@@ -77,7 +88,10 @@ namespace thekogans {
 
                 Matrix<Point2> Invert () const;
                 util::f32 Determinant () const;
-                bool Decompose (Point2 &translation, util::f32 &rotation, Point2 &scale) const;
+                bool Decompose (
+                    Point2 &translation,
+                    util::f32 &rotation,
+                    Point2 &scale) const;
 
                 inline Matrix<Point2> Transpose () const {
                     return Matrix<Point2> (Point2 (x.x, y.x), Point2 (x.y, y.y), t);
@@ -90,12 +104,16 @@ namespace thekogans {
                 const Matrix2 &m1,
                 const Matrix2 &m2);
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Matrix2 &matrix) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Matrix2 &matrix) {
                 serializer << matrix.x << matrix.y << matrix.t;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Matrix2 &matrix) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Matrix2 &matrix) {
                 serializer >> matrix.x >> matrix.y >> matrix.t;
                 return serializer;
             }

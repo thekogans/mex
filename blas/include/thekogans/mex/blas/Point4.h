@@ -57,16 +57,40 @@ namespace thekogans {
                 static const Point4 Z;
 
                 Point4 () {}
-                Point4 (util::f32 x_, util::f32 y_, util::f32 z_, util::f32 w_) :
-                    x (x_), y (y_), z (z_), w (w_) {}
+                Point4 (
+                    util::f32 x_,
+                    util::f32 y_,
+                    util::f32 z_,
+                    util::f32 w_) :
+                    x (x_),
+                    y (y_),
+                    z (z_),
+                    w (w_) {}
                 Point4 (util::f32 xyzw[]) :
-                    x (xyzw[0]), y (xyzw[1]), z (xyzw[2]), w (xyzw[3]) {}
+                    x (xyzw[0]),
+                    y (xyzw[1]),
+                    z (xyzw[2]),
+                    w (xyzw[3]) {}
                 Point4 (const Point4 &pt) :
-                    x (pt.x), y (pt.y), z (pt.z), w (pt.w) {}
-                Point4 (const Point2 &pt, util::f32 z_ = 0, util::f32 w_ = 0) :
-                    x (pt.x), y (pt.y), z (z_), w (w_) {}
-                Point4 (const Point3 &pt, util::f32 w_ = 0) :
-                    x (pt.x), y (pt.y), z (pt.z), w (w_) {}
+                    x (pt.x),
+                    y (pt.y),
+                    z (pt.z),
+                    w (pt.w) {}
+                Point4 (
+                    const Point2 &pt,
+                    util::f32 z_ = 0,
+                    util::f32 w_ = 0) :
+                    x (pt.x),
+                    y (pt.y),
+                    z (z_),
+                    w (w_) {}
+                Point4 (
+                    const Point3 &pt,
+                    util::f32 w_ = 0) :
+                    x (pt.x),
+                    y (pt.y),
+                    z (pt.z),
+                    w (w_) {}
 
                 inline const util::f32 &operator [] (util::ui32 index) const {
                     assert (index < 4);
@@ -129,7 +153,9 @@ namespace thekogans {
                 Point4 &operator *= (const Matrix4 &matrix);
             };
 
-            inline util::f32 Dot (const Point4 &p1, const Point4 &p2) {
+            inline util::f32 Dot (
+                    const Point4 &p1,
+                    const Point4 &p2) {
                 return p1.x * p2.x + p1.y * p2.y + p1.z * p2.z + p1.w * p2.w;
             }
 
@@ -137,12 +163,16 @@ namespace thekogans {
                 const Point4 &pt,
                 const Matrix4 &matrx);
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Point4 &pt) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Point4 &pt) {
                 serializer << pt.x << pt.y << pt.z << pt.w;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Point4 &pt) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Point4 &pt) {
                 serializer >> pt.x >> pt.y >> pt.z >> pt.w;
                 return serializer;
             }

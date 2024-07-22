@@ -131,7 +131,9 @@ namespace thekogans {
             }
 
             template<>
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossLine (const Line2 &line, Point2 &pt) const {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossLine (
+                    const Line2 &line,
+                    Point2 &pt) const {
                 util::f32 Ax = end.x - start.x;
                 util::f32 Ay = end.y - start.y;
                 util::f32 Bx = line.start.x - line.end.x;
@@ -156,7 +158,8 @@ namespace thekogans {
 
             template<>
             _LIB_THEKOGANS_MEX_BLAS_DECL bool Line2::CrossBezierCubic (
-                    const BezierCubic2 &bezierCubic, util::ui32 steps) const {
+                    const BezierCubic2 &bezierCubic,
+                    util::ui32 steps) const {
                 util::f32 delta = 1.0f / (steps + 1);
                 util::f32 t = delta;
                 Point2 p1 = bezierCubic.p1;

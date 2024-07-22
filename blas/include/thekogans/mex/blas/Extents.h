@@ -36,7 +36,11 @@ namespace thekogans {
                 static const Extents Empty;
 
                 inline Extents () {}
-                inline Extents (util::ui32 width_, util::ui32 height_) : width (width_), height (height_) {}
+                inline Extents (
+                    util::ui32 width_,
+                    util::ui32 height_) :
+                    width (width_),
+                    height (height_) {}
 
                 inline Extents &operator = (const Extents &extents) {
                     width = extents.width;
@@ -45,20 +49,28 @@ namespace thekogans {
                 }
             };
 
-            inline bool operator == (const Extents &extents1, const Extents &extents2) {
+            inline bool operator == (
+                    const Extents &extents1,
+                    const Extents &extents2) {
                 return extents1.width == extents2.width && extents1.height == extents2.height;
             }
 
-            inline bool operator != (const Extents &extents1, const Extents &extents2) {
+            inline bool operator != (
+                    const Extents &extents1,
+                    const Extents &extents2) {
                 return extents1.width != extents2.width || extents1.height != extents2.height;
             }
 
-            inline util::Serializer &operator << (util::Serializer &serializer, const Extents &extentst) {
+            inline util::Serializer &operator << (
+                    util::Serializer &serializer,
+                    const Extents &extentst) {
                 serializer << extentst.width << extentst.height;
                 return serializer;
             }
 
-            inline util::Serializer &operator >> (util::Serializer &serializer, Extents &extentst) {
+            inline util::Serializer &operator >> (
+                    util::Serializer &serializer,
+                    Extents &extentst) {
                 serializer >> extentst.width >> extentst.height;
                 return serializer;
             }

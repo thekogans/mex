@@ -26,8 +26,12 @@ namespace thekogans {
     namespace mex {
         namespace blas {
 
-            Point3::Point3 (const Point2 &pt, util::f32 z_) :
-                x (pt.x), y (pt.y), z (z_) {}
+            Point3::Point3 (
+                const Point2 &pt,
+                util::f32 z_) :
+                x (pt.x),
+                y (pt.y),
+                z (z_) {}
 
             Point3 &Point3::operator = (const Point2 &pt) {
                 x = pt.x;
@@ -91,7 +95,9 @@ namespace thekogans {
                 return (nc & 1) == 1;
             }
 
-            Point2 Point3::Project (bool perspective, util::f32 eps) const {
+            Point2 Point3::Project (
+                    bool perspective,
+                    util::f32 eps) const {
                 if (!perspective) {
                     return Point2 (x, y);
                 }
@@ -102,14 +108,19 @@ namespace thekogans {
                 return Point2::Zero;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Point3 _LIB_THEKOGANS_MEX_BLAS_API operator * (const Point3 &pt, const Matrix3 &matrix) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Point3 _LIB_THEKOGANS_MEX_BLAS_API operator * (
+                    const Point3 &pt,
+                    const Matrix3 &matrix) {
                 return Point3 (
                     pt.x * matrix.x.x + pt.y * matrix.y.x + pt.z * matrix.z.x + matrix.t.x,
                     pt.x * matrix.x.y + pt.y * matrix.y.y + pt.z * matrix.z.y + matrix.t.y,
                     pt.x * matrix.x.z + pt.y * matrix.y.z + pt.z * matrix.z.z + matrix.t.z);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (const Point3 &p1, const Point3 &p2, util::f32 eps) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (
+                    const Point3 &p1,
+                    const Point3 &p2,
+                    util::f32 eps) {
                 util::f32 m = p1.Length () * p2.Length ();
                 if (util::IS_ZERO (m, eps)) {
                     return 0.0f;
@@ -119,13 +130,20 @@ namespace thekogans {
                 return acosf (m);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Point3 _LIB_THEKOGANS_MEX_BLAS_API Bisect (const Point3 &p1, const Point3 &p2, util::f32 eps) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Point3 _LIB_THEKOGANS_MEX_BLAS_API Bisect (
+                    const Point3 &p1,
+                    const Point3 &p2,
+                    util::f32 eps) {
                 // FIXME: implement
                 assert (0);
                 return Point3::Zero;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API CLIPt (util::f32 denom, util::f32 num, util::f32 &t1, util::f32 &t2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API CLIPt (
+                    util::f32 denom,
+                    util::f32 num,
+                    util::f32 &t1,
+                    util::f32 &t2) {
                 if (denom > 0.0f) {
                     util::f32 t = num / denom;
                     if (t > t2) {
@@ -150,7 +168,11 @@ namespace thekogans {
                 return true;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API ClipNearFar (Point3 &p1, Point3 &p2, util::f32 nearPlane, util::f32 farPlane) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API ClipNearFar (
+                    Point3 &p1,
+                    Point3 &p2,
+                    util::f32 nearPlane,
+                    util::f32 farPlane) {
                 util::f32 dz = p2.z - p1.z;
                 util::f32 t1 = 0.0f;
                 util::f32 t2 = 1.0f;
@@ -172,7 +194,10 @@ namespace thekogans {
                 return false;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip3W (Point3 &p1, Point3 &p2, util::f32 aspect) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip3W (
+                    Point3 &p1,
+                    Point3 &p2,
+                    util::f32 aspect) {
                 util::f32 t1 = 0.0f;
                 util::f32 t2 = 1.0f;
                 util::f32 dx = p2.x - p1.x;
@@ -198,7 +223,10 @@ namespace thekogans {
                 return false;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip3DH (Point3 &p1, Point3 &p2, util::f32 aspect) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip3DH (
+                    Point3 &p1,
+                    Point3 &p2,
+                    util::f32 aspect) {
                 util::f32 t1 = 0.0f;
                 util::f32 t2 = 1.0f;
                 util::f32 dx = p2.x - p1.x;
@@ -224,7 +252,9 @@ namespace thekogans {
                 return false;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip3D (Point3 &p1, Point3 &p2) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip3D (
+                    Point3 &p1,
+                    Point3 &p2) {
                 util::f32 t1 = 0.0f;
                 util::f32 t2 = 1.0f;
                 util::f32 dx = p2.x - p1.x;

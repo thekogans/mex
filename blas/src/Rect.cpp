@@ -23,8 +23,11 @@ namespace thekogans {
     namespace mex {
         namespace blas {
 
-            Rect::Rect (const Size &size) : left (size.x), top (size.y),
-                right (size.Right ()), bottom (size.Top ()) {}
+            Rect::Rect (const Size &size) :
+                left (size.x),
+                top (size.y),
+                right (size.Right ()),
+                bottom (size.Top ()) {}
 
             Rect &Rect::operator = (const Size &size) {
                 left = size.x;
@@ -35,13 +38,15 @@ namespace thekogans {
             }
 
             _LIB_THEKOGANS_MEX_BLAS_DECL Rect _LIB_THEKOGANS_MEX_BLAS_API operator & (
-                    const Rect &r1, const Rect &r2) {
+                    const Rect &r1,
+                    const Rect &r2) {
                 return Rect (std::max (r1.left, r2.left), std::max (r1.top, r2.top),
                     std::min (r1.right, r2.right), std::min (r1.bottom, r2.bottom));
             }
 
             _LIB_THEKOGANS_MEX_BLAS_DECL Rect _LIB_THEKOGANS_MEX_BLAS_API operator | (
-                    const Rect &r1, const Rect &r2) {
+                    const Rect &r1,
+                    const Rect &r2) {
                 return Rect (std::min (r1.left, r2.left), std::min (r1.top, r2.top),
                     std::max (r1.right, r2.right), std::max (r1.bottom, r2.bottom));
             }

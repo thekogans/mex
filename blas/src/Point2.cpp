@@ -113,13 +113,18 @@ namespace thekogans {
                 return (nc & 1) == 1;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Point2 _LIB_THEKOGANS_MEX_BLAS_API operator * (const Point2 &pt, const Matrix2 &matrix) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Point2 _LIB_THEKOGANS_MEX_BLAS_API operator * (
+                    const Point2 &pt,
+                    const Matrix2 &matrix) {
                 return Point2 (
                     pt.x * matrix.x.x + pt.y * matrix.y.x + matrix.t.x,
                     pt.x * matrix.x.y + pt.y * matrix.y.y + matrix.t.y);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (const Point2 &p1, const Point2 &p2, util::f32 eps) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL util::f32 _LIB_THEKOGANS_MEX_BLAS_API Angle (
+                    const Point2 &p1,
+                    const Point2 &p2,
+                    util::f32 eps) {
                 util::f32 angle = p1.AngleWithXAxis (eps) - p2.AngleWithXAxis (eps);
                 while (angle < 0.0f) {
                     angle += TWOPI;
@@ -127,7 +132,10 @@ namespace thekogans {
                 return angle;
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL Point2 _LIB_THEKOGANS_MEX_BLAS_API Bisect (const Point2 &p1, const Point2 &p2, util::f32 eps) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL Point2 _LIB_THEKOGANS_MEX_BLAS_API Bisect (
+                    const Point2 &p1,
+                    const Point2 &p2,
+                    util::f32 eps) {
                 // Compute bisecting angle.
                 util::f32 angle = Angle (p1, p2, eps) * 0.5f;
                 // Rotate p2 angle / 2 in to p1 around z axis.
@@ -136,7 +144,10 @@ namespace thekogans {
                 return Point2 (p2.x * c - p2.y * s, p2.x * s + p2.y * c);
             }
 
-            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip2 (Point2 &p1, Point2 &p2, const Bound2 &bound) {
+            _LIB_THEKOGANS_MEX_BLAS_DECL bool _LIB_THEKOGANS_MEX_BLAS_API Clip2 (
+                    Point2 &p1,
+                    Point2 &p2,
+                    const Bound2 &bound) {
                 util::f32 dx = p2.x - p1.x;
                 util::f32 dy = p2.y - p1.y;
                 if (dx == 0.0f && dy == 0.0f) {
