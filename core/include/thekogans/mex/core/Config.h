@@ -40,4 +40,8 @@
     #define _LIB_THEKOGANS_MEX_CORE_API
 #endif // defined (TOOLCHAIN_OS_Windows)
 
+/// \def THEKOGANS_MEX_CORE
+/// Logging subsystem name.
+#define THEKOGANS_MEX_CORE "thekogans_mex_core"
+
 #endif // !defined (__thekogans_mex_core_Config_h)

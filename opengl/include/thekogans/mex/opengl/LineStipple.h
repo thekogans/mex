@@ -44,7 +44,7 @@ namespace thekogans {
                     }
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (LineStipple)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (LineStipple)
             };
 
         } // namespace opengl

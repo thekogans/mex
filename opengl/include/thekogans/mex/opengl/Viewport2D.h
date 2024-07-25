@@ -67,7 +67,7 @@ namespace thekogans {
                                 blas::Point3 (size.Right (), size.Top (), 1)))),
                     viewport (size) {}
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Viewport2D)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Viewport2D)
             };
 
         } // namespace opengl

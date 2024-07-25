@@ -43,7 +43,7 @@ namespace thekogans {
                         oldClearColor[2], oldClearColor[3]);
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (ClearColor)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (ClearColor)
             };
 
         } // namespace opengl

@@ -74,7 +74,7 @@ namespace thekogans {
                     return value;
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Texture)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Texture)
             };
 
         } // namespace opengl

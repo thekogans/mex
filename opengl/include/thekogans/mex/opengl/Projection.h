@@ -40,7 +40,7 @@ namespace thekogans {
                     glPopMatrix ();
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Projection)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Projection)
             };
 
         } // namespace opengl

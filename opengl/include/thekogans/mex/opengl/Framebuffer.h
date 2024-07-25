@@ -64,7 +64,7 @@ namespace thekogans {
 
                 static bool IsSupported ();
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Framebuffer)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Framebuffer)
             };
 
         } // namespace opengl

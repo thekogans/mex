@@ -38,7 +38,7 @@ namespace thekogans {
                     glViewport (viewport[0], viewport[1], viewport[2], viewport[3]);
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Viewport)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Viewport)
             };
 
         } // namespace opengl

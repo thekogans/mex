@@ -44,7 +44,7 @@ namespace thekogans {
                 explicit ClientState (util::ui32 state_);
                 ~ClientState ();
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (ClientState)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (ClientState)
             };
 
         } // namespace opengl

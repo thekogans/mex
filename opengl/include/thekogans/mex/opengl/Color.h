@@ -38,7 +38,7 @@ namespace thekogans {
                     glColor4f (oldColor[0], oldColor[1], oldColor[2], oldColor[3]);
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Color)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Color)
             };
 
         } // namespace opengl

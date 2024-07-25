@@ -49,7 +49,7 @@ namespace thekogans {
                     }
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (BlendFunc)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (BlendFunc)
             };
 
         } // namespace opengl

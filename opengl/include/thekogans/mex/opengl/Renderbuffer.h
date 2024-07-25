@@ -51,7 +51,7 @@ namespace thekogans {
 
                 static bool IsSupported ();
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Renderbuffer)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Renderbuffer)
             };
 
         } // namespace opengl

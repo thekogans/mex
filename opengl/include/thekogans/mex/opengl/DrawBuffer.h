@@ -38,7 +38,7 @@ namespace thekogans {
                     glDrawBuffer (oldDrawBuffer);
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (DrawBuffer)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (DrawBuffer)
             };
 
         } // namespace opengl

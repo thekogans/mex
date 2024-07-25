@@ -38,7 +38,7 @@ namespace thekogans {
                     glLineWidth (oldLineWidth);
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (LineWidth)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (LineWidth)
             };
 
         } // namespace opengl

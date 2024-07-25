@@ -38,7 +38,7 @@ namespace thekogans {
                     glScissor (scissor[0], scissor[1], scissor[2], scissor[3]);
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (Scissor)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (Scissor)
             };
 
         } // namespace opengl

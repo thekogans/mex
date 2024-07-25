@@ -46,7 +46,7 @@ namespace thekogans {
             private:
                 static GLenum BindingFromTarget (GLenum target);
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (BindFramebuffer)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (BindFramebuffer)
             };
 
         } // namespace opengl

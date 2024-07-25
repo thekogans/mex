@@ -50,7 +50,7 @@ namespace thekogans {
 
                 static bool IsSupported ();
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (BlitFramebuffer)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (BlitFramebuffer)
             };
 
         } // namespace opengl

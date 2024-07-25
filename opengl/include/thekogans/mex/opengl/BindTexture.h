@@ -62,7 +62,7 @@ namespace thekogans {
                     return 0;
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (BindTexture)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (BindTexture)
             };
 
         } // namespace opengl

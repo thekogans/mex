@@ -101,9 +101,8 @@
     #define _LIB_THEKOGANS_MEX_OPENGL_DECL
 #endif // defined (TOOLCHAIN_OS_Windows)
 
-#define THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN(type)\
-private:\
-    type (const type &);\
-    type &operator = (const type &);
+/// \def THEKOGANS_MEX_OPENGL
+/// Logging subsystem name.
+#define THEKOGANS_MEX_OPENGL "thekogans_mex_opengl"
 
 #endif // !defined (__thekogans_mex_opengl_Config_h)

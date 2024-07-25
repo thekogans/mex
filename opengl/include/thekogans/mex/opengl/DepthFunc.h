@@ -43,7 +43,7 @@ namespace thekogans {
                     }
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (DepthFunc)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (DepthFunc)
             };
 
         } // namespace opengl

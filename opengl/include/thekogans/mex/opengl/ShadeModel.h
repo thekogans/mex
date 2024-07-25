@@ -43,7 +43,7 @@ namespace thekogans {
                     }
                 }
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (ShadeModel)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (ShadeModel)
             };
 
         } // namespace opengl

@@ -39,7 +39,7 @@ namespace thekogans {
                 explicit SwapRect (const blas::Size &size);
                 ~SwapRect ();
 
-                THEKOGANS_MEX_OPENGL_DISALLOW_COPY_AND_ASSIGN (SwapRect)
+                THEKOGANS_UTIL_DISALLOW_COPY_AND_ASSIGN (SwapRect)
             };
 
         } // namespace opengl
