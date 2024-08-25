@@ -33,7 +33,7 @@ namespace thekogans {
                     size (size_) {}
 
                 virtual bool Execute () {
-                    core::CursorMgr::Instance ().SetClipSize (size);
+                    core::CursorMgr::Instance ()->SetClipSize (size);
                     return true;
                 }
             };

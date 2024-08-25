@@ -16,6 +16,7 @@
 // along with thekogans_mex. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdarg>
+#include "thekogans/util/Environment.h"
 #include "thekogans/mex/ConsoleWindow.h"
 
 #if defined (TOOLCHAIN_OS_Windows) && (_MSC_VER <= 1200)

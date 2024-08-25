@@ -32,7 +32,7 @@ namespace thekogans {
                     Image,
                     util::SpinLock,
                     32,
-                    util::DefaultAllocator::Instance ().Get ())
+                    util::DefaultAllocator::Instance ())
 
                 namespace {
                     // Believe it or not, but just declaring drivers static

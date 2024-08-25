@@ -16,6 +16,7 @@
 // along with libthekogans_mex_opengl. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
+#include "thekogans/util/Environment.h"
 #include "thekogans/mex/opengl/Renderbuffer.h"
 #include "thekogans/mex/opengl/Extensions.h"
 

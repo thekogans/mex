@@ -16,6 +16,7 @@
 // along with libthekogans_mex_3ds_ext. If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
+#include "thekogans/util/Environment.h"
 #include "thekogans/util/Vectorizer.h"
 #include "thekogans/mex/3ds/ext/keyframer/MorphTrack.h"
 

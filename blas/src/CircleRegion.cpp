@@ -26,7 +26,7 @@ namespace thekogans {
                 CircleRegion,
                 util::SpinLock,
                 32,
-                util::DefaultAllocator::Instance ().Get ())
+                util::DefaultAllocator::Instance ())
 
         } // namespace blas
     } // namespace mex

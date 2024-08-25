@@ -25,7 +25,7 @@ namespace thekogans {
                 Transaction,
                 util::SpinLock,
                 512,
-                util::DefaultAllocator::Instance ().Get ())
+                util::DefaultAllocator::Instance ())
 
             bool Transaction::Execute () {
                 {

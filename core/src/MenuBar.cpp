@@ -59,7 +59,10 @@ namespace thekogans {
             }
 
             namespace {
-                void ParseItem (const XERCES_CPP_NAMESPACE::DOMNode &node, MenuBar::Item *item, Module &module) {
+                void ParseItem (
+                        const XERCES_CPP_NAMESPACE::DOMNode &node,
+                        MenuBar::Item *item,
+                        Module &module) {
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes = node.getAttributes ();
                     if (util::XMLChTostring (node.getNodeName ()) == "popup") {
                         std::string text = util::GetAttributeValue ("text", attributes);
@@ -76,7 +79,7 @@ namespace thekogans {
                         MenuBar::Item::EventHandler *eventHandler =
                             MenuBar::Item::EventHandler::Get (eventHandlerName, module);
                         if (eventHandler == 0) {
-                            assert (UI::Instance ().consoleWindow != 0);
+                            assert (UI::Instance ()->consoleWindow != 0);
                             UI::Instance ()->consoleWindow->Print (
                                 "MenuBar: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
                             struct DummyCommandEventHandler : public MenuBar::Item::EventHandler {

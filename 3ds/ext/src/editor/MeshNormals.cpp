@@ -27,7 +27,7 @@ namespace thekogans {
                     Mesh::Normals::VertexNormal,
                     util::SpinLock,
                     100000,
-                    util::DefaultAllocator::Instance ().Get ())
+                    util::DefaultAllocator::Instance ())
 
                 // Add a normal to the list if the smoothing group bits overlap,
                 // otherwise create a new vertex normal in the list

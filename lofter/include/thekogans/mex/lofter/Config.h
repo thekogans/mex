@@ -22,6 +22,8 @@
     #error libthekogans_mex_lofter requires C++ compilation (use a .cpp suffix)
 #endif // !defined (__cplusplus)
 
+#include "thekogans/util/Environment.h"
+
 #if defined (TOOLCHAIN_OS_Windows)
     #define _LIB_THEKOGANS_MEX_LOFTER_API __stdcall
     #if defined (THEKOGANS_MEX_LOFTER_TYPE_Shared)

@@ -36,8 +36,10 @@ namespace thekogans {
                 const char *CONSOLE_2 = "Cameras Create: Now place camera's target\n";
             }
 
-            class SpeedBarCamerasCreateEventHandler : public core::SpeedBar::Item::ToolEventHandler {
-                THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarCamerasCreateEventHandler)
+            class SpeedBarCamerasCreateEventHandler :
+                    public core::SpeedBar::Item::ToolEventHandler {
+                THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER (
+                    SpeedBarCamerasCreateEventHandler)
 
             private:
 
@@ -53,17 +55,24 @@ namespace thekogans {
                     bool showCone;
 
                 public:
-                    explicit Tool (core::Module &module) : core::Tool (module),
-                        name ("Camera"), roll (0.0f), fov (48.0f), showCone (false) {}
+                    explicit Tool (core::Module &module) :
+                        core::Tool (module),
+                        name ("Camera"),
+                        roll (0.0f),
+                        fov (48.0f),
+                        showCone (false) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
+                        core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
                         //GetEditor ()->HideCameras (false);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (CONSOLE_1);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (CONSOLE_1);
                     }
 
-                    virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             position = pt;
@@ -76,10 +85,13 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void LButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 1) {
                             UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                            core::UI::Instance ().consoleWindow->Print (CONSOLE_2);
+                            core::UI::Instance ()->consoleWindow->Print (CONSOLE_2);
                         }
                         else if (state == 3) {
                             core::SetCursor setCursor (core::CursorMgr::ARROW_CURSOR);
@@ -90,11 +102,14 @@ namespace thekogans {
                                 // FIXME: implement
                                 assert (0);
                             }
-                            core::UI::Instance ().consoleWindow->Print (CONSOLE_1);
+                            core::UI::Instance ()->consoleWindow->Print (CONSOLE_1);
                         }
                     }
 
-                    virtual void RButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void RButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                         }
@@ -105,14 +120,20 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void RButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void RButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
-                            core::UI::Instance ().consoleWindow->Print (CONSOLE_1);
+                            core::UI::Instance ()->consoleWindow->Print (CONSOLE_1);
                         }
                     }
 
-                    virtual void MouseMove (const _3ds::opengl::View &view, util::ui32, const blas::Point2 &pt) {
+                    virtual void MouseMove (
+                            const _3ds::opengl::View &view,
+                            util::ui32,
+                            const blas::Point2 &pt) {
                         if (state == 2) {
                             core::DrawArrow2 (view, position, target);
                             target = pt;
@@ -129,10 +150,13 @@ namespace thekogans {
 
             public:
                 explicit SpeedBarCamerasCreateEventHandler (core::Module &module) :
-                    ToolEventHandler (module, tool), tool (module) {}
+                    ToolEventHandler (module, tool),
+                    tool (module) {}
             };
 
-            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarCamerasCreateEventHandler, Editor)
+            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (
+                SpeedBarCamerasCreateEventHandler,
+                Editor)
 
         } // namespace editor
     } // namespace mex

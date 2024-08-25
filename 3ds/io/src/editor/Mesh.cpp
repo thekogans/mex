@@ -28,7 +28,7 @@ namespace thekogans {
                     Mesh,
                     util::SpinLock,
                     1024,
-                    util::DefaultAllocator::Instance ().Get ())
+                    util::DefaultAllocator::Instance ())
 
                 void Mesh::Swap (Mesh &mesh) {
                     assert (&mesh != this);

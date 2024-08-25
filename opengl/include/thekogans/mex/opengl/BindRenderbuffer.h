@@ -18,6 +18,7 @@
 #if !defined (__thekogans_mex_opengl_BindRenderbuffer_h)
 #define __thekogans_mex_opengl_BindRenderbuffer_h
 
+#include "thekogans/util/Environment.h"
 #include "thekogans/util/Config.h"
 #include "thekogans/mex/opengl/Config.h"
 

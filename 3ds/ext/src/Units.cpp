@@ -16,6 +16,7 @@
 // along with libthekogans_mex_3ds_ext. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdio>
+#include "thekogans/util/Environment.h"
 #include "thekogans/util/Constants.h"
 #include "thekogans/mex/blas/Point2.h"
 #include "thekogans/mex/3ds/ext/Units.h"

@@ -19,6 +19,7 @@
 #define __thekogans_mex_opengl_Renderbuffer_h
 
 #include <memory>
+#include "thekogans/util/Environment.h"
 #include "thekogans/mex/blas/Size.h"
 #include "thekogans/mex/opengl/Config.h"
 #include "thekogans/mex/opengl/BindRenderbuffer.h"

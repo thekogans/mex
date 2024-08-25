@@ -16,6 +16,7 @@
 // along with thekogans_mex. If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
+#include "thekogans/util/Environment.h"
 #if defined (TOOLCHAIN_OS_Windows)
     #if !defined (WIN32_LEAN_AND_MEAN)
         #define WIN32_LEAN_AND_MEAN

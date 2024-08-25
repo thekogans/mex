@@ -19,7 +19,6 @@
 #define __thekogans_mex_core_CursorMgr_h
 
 #include "thekogans/util/Environment.h"
-
 #if defined (TOOLCHAIN_OS_Windows)
     #include "thekogans/util/os/windows/WindowsHeader.h"
 #endif // defined (TOOLCHAIN_OS_Windows)

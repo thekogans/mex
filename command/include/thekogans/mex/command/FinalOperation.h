@@ -55,7 +55,7 @@ namespace thekogans {
                     type,\
                     util::SpinLock,\
                     minItemsInPage,\
-                    util::DefaultAllocator::Instance ().Get ())
+                    util::DefaultAllocator::Instance ())
             #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_T(type)\
                 THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_T (type)
             #define THEKOGANS_MEX_COMMAND_IMPLEMENT_FINAL_OPERATION_EX_T(type, minItemsInPage)\
@@ -63,7 +63,7 @@ namespace thekogans {
                     type,\
                     util::SpinLock,\
                     minItemsInPage,\
-                    util::DefaultAllocator::Instance ().Get ())
+                    util::DefaultAllocator::Instance ())
 
         } // namespace command
     } // namespace mex

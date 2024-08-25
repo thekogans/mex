@@ -22,6 +22,8 @@
     #error libthekogans_mex_opengl requires C++ compilation (use a .cpp suffix)
 #endif // !defined (__cplusplus)
 
+#include "thekogans/util/Environment.h"
+
 #if defined (TOOLCHAIN_OS_Windows)
     #if !defined (_WINDOWS_)
         #if !defined (WIN32_LEAN_AND_MEAN)

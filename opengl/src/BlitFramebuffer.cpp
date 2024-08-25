@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with libthekogans_mex_opengl. If not, see <http://www.gnu.org/licenses/>.
 
+#include "thekogans/util/Environment.h"
 #include "thekogans/mex/opengl/BlitFramebuffer.h"
 #include "thekogans/mex/opengl/Extensions.h"
 

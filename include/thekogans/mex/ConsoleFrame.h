@@ -18,6 +18,7 @@
 #if !defined (__thekogans_mex_ConsoleFrame_h)
 #define __thekogans_mex_ConsoleFrame_h
 
+#include "thekogans/util/Environment.h"
 #if defined (TOOLCHAIN_OS_Windows)
     #if !defined (WIN32_LEAN_AND_MEAN)
         #define WIN32_LEAN_AND_MEAN

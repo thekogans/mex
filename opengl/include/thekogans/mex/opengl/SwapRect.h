@@ -18,6 +18,7 @@
 #if !defined (__thekogans_mex_opengl_SwapRect_h)
 #define __thekogans_mex_opengl_SwapRect_h
 
+#include "thekogans/util/Environment.h"
 #include "thekogans/mex/blas/Size.h"
 #include "thekogans/mex/opengl/Config.h"
 

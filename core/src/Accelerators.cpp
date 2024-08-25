@@ -73,7 +73,10 @@ namespace thekogans {
                     return flags;
                 }
 
-                void ParseItem (const XERCES_CPP_NAMESPACE::DOMNode &node, Module &module, std::vector<Accelerators::Item *> &items) {
+                void ParseItem (
+                        const XERCES_CPP_NAMESPACE::DOMNode &node,
+                        Module &module,
+                        std::vector<Accelerators::Item *> &items) {
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes = node.getAttributes ();
                     util::ui32 ch = ParseCh (util::GetAttributeValue ("ch", attributes));
                     util::ui32 flags = ParseFlags (util::GetAttributeValue ("flags", attributes));
@@ -82,9 +85,10 @@ namespace thekogans {
                     Accelerators::Item::EventHandler *eventHandler =
                         Accelerators::Item::EventHandler::Get (eventHandlerName, module);
                     if (eventHandler == 0) {
-                        assert (UI::Instance ().consoleWindow != 0);
+                        assert (UI::Instance ()->consoleWindow != 0);
                         UI::Instance ()->consoleWindow->Print (
-                            "Accelerators: Unable to locate handler for '%s'.\n", eventHandlerName.c_str ());
+                            "Accelerators: Unable to locate handler for '%s'.\n",
+                            eventHandlerName.c_str ());
                         struct DummyEventHandler : public Accelerators::Item::EventHandler {
                             virtual void OnSetFocus () {}
                         } static dummyEventHandler;

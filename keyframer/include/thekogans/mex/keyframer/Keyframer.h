@@ -31,24 +31,32 @@ namespace thekogans {
     namespace mex {
         namespace keyframer {
 
-            struct _LIB_THEKOGANS_MEX_KEYFRAMER_DECL Keyframer : public core::Module, public core::UI::FrameBarWindow::EventSink {
+            struct _LIB_THEKOGANS_MEX_KEYFRAMER_DECL Keyframer :
+                    public core::Module,
+                    public core::UI::FrameBarWindow::EventSink {
                 THEKOGANS_MEX_CORE_DECLARE_MODULE
 
                 virtual void SetFocus () {
                     Module::SetFocus ();
-                    assert (core::UI::Instance ().frameBarWindow != 0);
-                    core::UI::Instance ().frameBarWindow->SetEventSink (this);
+                    assert (core::UI::Instance ()->frameBarWindow != 0);
+                    core::UI::Instance ()->frameBarWindow->SetEventSink (this);
                 }
 
                 virtual void KillFocus () {
                     Module::KillFocus ();
-                    assert (core::UI::Instance ().frameBarWindow != 0);
-                    core::UI::Instance ().frameBarWindow->SetEventSink (0);
+                    assert (core::UI::Instance ()->frameBarWindow != 0);
+                    core::UI::Instance ()->frameBarWindow->SetEventSink (0);
                 }
 
-                virtual _3ds::io::Module &GetIOModule () const {return core::GetIOProject ().keyframer;}
-                virtual _3ds::ext::Module &GetExtModule () const {return core::GetExtProject ().keyframer;}
-                virtual _3ds::opengl::Module &GetOpenGLModule () const {return core::GetOpenGLProject ().keyframer;}
+                virtual _3ds::io::Module &GetIOModule () const {
+                    return core::GetIOProject ().keyframer;
+                }
+                virtual _3ds::ext::Module &GetExtModule () const {
+                    return core::GetExtProject ().keyframer;
+                }
+                virtual _3ds::opengl::Module &GetOpenGLModule () const {
+                    return core::GetOpenGLProject ().keyframer;
+                }
 
                 virtual bool IsVisible () const {
                     core::Module *module = GetCurrModule ();

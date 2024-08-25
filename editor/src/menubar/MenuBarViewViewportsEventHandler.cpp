@@ -46,8 +46,11 @@ namespace thekogans {
                     CString name;
 
                 public:
-                    SelectCameraDialog (const std::vector<_3ds::io::Camera *> &cameras_, CWnd *parent = 0) :
-                        CDialog ("SelectCameraDialog", parent), cameras (cameras_) {}
+                    SelectCameraDialog (
+                        const std::vector<_3ds::io::Camera *> &cameras_,
+                        CWnd *parent = 0) :
+                        CDialog ("SelectCameraDialog", parent),
+                        cameras (cameras_) {}
 
                 protected:
                     virtual BOOL OnInitDialog () {
@@ -75,8 +78,11 @@ namespace thekogans {
                     CString name;
 
                 public:
-                    SelectSpotLightDialog (const std::vector<_3ds::io::Light *> &lights_, CWnd *parent = 0):
-                        CDialog ("SelectSpotLightDialog", parent), lights (lights_) {}
+                    SelectSpotLightDialog (
+                        const std::vector<_3ds::io::Light *> &lights_,
+                        CWnd *parent = 0):
+                        CDialog ("SelectSpotLightDialog", parent),
+                        lights (lights_) {}
 
                 protected:
                     virtual BOOL OnInitDialog () {
@@ -299,14 +305,18 @@ namespace thekogans {
                 #endif // EXTENDED_VIEW_LAYOUT
 
                 public:
-                    ViewportsDialog (core::Module &module_, CWnd *parent = 0) :
-                        CDialog (
-#if EXTENDED_VIEW_LAYOUT
-                            "ExtendedViewportsDialog",
-#else // EXTENDED_VIEW_LAYOUT
-                            "ViewportsDialog",
-#endif // EXTENDED_VIEW_LAYOUT
-                            parent), module (module_), editor (static_cast<_3ds::io::Editor &> (module.GetIOModule ())),
+                    ViewportsDialog (
+                            core::Module &module_,
+                            CWnd *parent = 0) :
+                            CDialog (
+                            #if EXTENDED_VIEW_LAYOUT
+                                "ExtendedViewportsDialog",
+                            #else // EXTENDED_VIEW_LAYOUT
+                                "ViewportsDialog",
+                            #endif // EXTENDED_VIEW_LAYOUT
+                                parent),
+                            module (module_),
+                            editor (static_cast<_3ds::io::Editor &> (module.GetIOModule ())),
                         currStyle (editor.viewLayout.layout.currStyle),
                         currView ('N'), spotLight (0), camera (0) {
                         _3ds::io::ViewLayout &viewLayout = editor.viewLayout;
@@ -395,13 +405,13 @@ namespace thekogans {
                         VERIFY (threevert.AutoLoad (109, this));
                         VERIFY (threehorz.AutoLoad (110, this));
                         VERIFY (fourleft.AutoLoad (111, this));
-#if EXTENDED_VIEW_LAYOUT
+                    #if EXTENDED_VIEW_LAYOUT
                         VERIFY (fourbottom.AutoLoad (112, this));
-#endif // EXTENDED_VIEW_LAYOUT
+                    #endif // EXTENDED_VIEW_LAYOUT
                         VERIFY (fourright.AutoLoad (113, this));
-#if EXTENDED_VIEW_LAYOUT
+                    #if EXTENDED_VIEW_LAYOUT
                         VERIFY (fourtop.AutoLoad (114, this));
-#endif // EXTENDED_VIEW_LAYOUT
+                    #endif // EXTENDED_VIEW_LAYOUT
                         if (editor.cameras.empty ()) {
                             GetDlgItem (121)->EnableWindow (FALSE);
                         }
@@ -422,101 +432,168 @@ namespace thekogans {
                         const _3ds::io::Light **spotLights;
                         const _3ds::io::Camera **cameras;
 
-                        ViewLayoutSetStyleCommand (_3ds::io::Editor &editor_,
-                            util::ui16 currStyle_, const char *oldViews_,
-                            const char *newViews_, const _3ds::io::Light **spotLights_,
-                            const _3ds::io::Camera **cameras_) : editor (editor_),
-                                                           currStyle (currStyle_), oldViews (oldViews_),
-                                                           newViews (newViews_), spotLights (spotLights_),
-                                                           cameras (cameras_) {}
+                        ViewLayoutSetStyleCommand (
+                            _3ds::io::Editor &editor_,
+                            util::ui16 currStyle_,
+                            const char *oldViews_,
+                            const char *newViews_,
+                            const _3ds::io::Light **spotLights_,
+                            const _3ds::io::Camera **cameras_) :
+                            editor (editor_),
+                            currStyle (currStyle_),
+                            oldViews (oldViews_),
+                            newViews (newViews_),
+                            spotLights (spotLights_),
+                            cameras (cameras_) {}
 
                         virtual bool Execute () {
                             _3ds::io::ViewLayout &viewLayout = editor.viewLayout;
                             if (viewLayout.layout.maximized) {
-                                ExecuteAndAddCommand (new command::ViewLayoutToggleMaximizedCommand (viewLayout));
+                                ExecuteAndAddCommand (
+                                    new command::ViewLayoutToggleMaximizedCommand (viewLayout));
                             }
-                            ExecuteAndAddCommand (new ui16SetCommand (viewLayout.layout.currStyle, currStyle));
-                            ExecuteAndAddCommand (new ui16SetCommand (viewLayout.layout.currViewIndex, 0));
-                            ExecuteAndAddCommand (new command::ViewLayoutSetSizeCommand (viewLayout, viewLayout.size));
+                            ExecuteAndAddCommand (
+                                new ui16SetCommand (viewLayout.layout.currStyle, currStyle));
+                            ExecuteAndAddCommand (
+                                new ui16SetCommand (viewLayout.layout.currViewIndex, 0));
+                            ExecuteAndAddCommand (
+                                new command::ViewLayoutSetSizeCommand (viewLayout, viewLayout.size));
                             for (util::ui32 i = 0; i < 4; ++i) {
                                 switch (newViews[i]) {
                                     case 'T':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::TopView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::TopView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'F':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::FrontView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::FrontView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'L':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::LeftView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::LeftView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'B':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::BottomView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::BottomView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'R':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::RightView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::RightView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'A':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::BackView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::BackView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'U':
                                         if (oldViews[i] != newViews[i]) {
-                                            ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                    viewLayout.views3, i, _3ds::io::UserView (viewLayout[i].size)));
-                                            ExecuteAndAddCommand (new command::ViewZoomBoundCommand (viewLayout[i],
-                                                    _3ds::ext::Editor (editor).GetViewBound (_3ds::ext::View (viewLayout[i]))));
+                                            ExecuteAndAddCommand (
+                                                new stdVectorViewassignCommand (
+                                                    viewLayout.views3,
+                                                    i,
+                                                    _3ds::io::UserView (viewLayout[i].size)));
+                                            ExecuteAndAddCommand (
+                                                new command::ViewZoomBoundCommand (
+                                                    viewLayout[i],
+                                                    _3ds::ext::Editor (editor).GetViewBound (
+                                                        _3ds::ext::View (viewLayout[i]))));
                                         }
                                         break;
                                     case 'N':
-                                        ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                viewLayout.views3, i, _3ds::io::NoneView (viewLayout[i].size)));
+                                        ExecuteAndAddCommand (
+                                            new stdVectorViewassignCommand (
+                                                viewLayout.views3,
+                                                i,
+                                                _3ds::io::NoneView (viewLayout[i].size)));
                                         break;
                                     case '$':
-                                        ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                viewLayout.views3, i, _3ds::io::SpotLightView (viewLayout[i].size, spotLights[i]->name.c_str ())));
+                                        ExecuteAndAddCommand (
+                                            new stdVectorViewassignCommand (
+                                                viewLayout.views3,
+                                                i,
+                                                _3ds::io::SpotLightView (
+                                                    viewLayout[i].size,
+                                                    spotLights[i]->name.c_str ())));
                                         break;
                                     case 'C':
-                                        ExecuteAndAddCommand (new stdVectorViewassignCommand (
-                                                viewLayout.views3, i, _3ds::io::CameraView (viewLayout[i].size, cameras[i]->name.c_str ())));
+                                        ExecuteAndAddCommand (
+                                            new stdVectorViewassignCommand (
+                                                viewLayout.views3,
+                                                i,
+                                                _3ds::io::CameraView (
+                                                    viewLayout[i].size,
+                                                    cameras[i]->name.c_str ())));
                                         break;
                                 }
                             }
                             struct FinalOperation : public thekogans::mex::command::FinalOperation {
                                 _3ds::io::ViewLayout &viewLayout;
-                                FinalOperation (_3ds::io::ViewLayout &viewLayout_) : viewLayout (viewLayout_) {}
+                                FinalOperation (_3ds::io::ViewLayout &viewLayout_) :
+                                    viewLayout (viewLayout_) {}
                                 virtual bool Execute () {
-                                    core::CursorMgr::Instance ().SetClipSize (viewLayout.GetCurrView ().size);
-                                    assert (core::UI::Instance ().viewLayoutWindow != 0);
-                                    core::UI::Instance ().viewLayoutWindow->Draw ();
+                                    core::CursorMgr::Instance ()->SetClipSize (
+                                        viewLayout.GetCurrView ().size);
+                                    assert (core::UI::Instance ()->viewLayoutWindow != 0);
+                                    core::UI::Instance ()->viewLayoutWindow->Draw ();
                                     return true;
                                 }
                             };
@@ -583,21 +660,21 @@ namespace thekogans {
                         SetLayout (_3ds::io::ViewLayout::Layout::FourLeft);
                     }
 
-#if EXTENDED_VIEW_LAYOUT
+                #if EXTENDED_VIEW_LAYOUT
                     afx_msg void IDFourBottom () {
                         SetLayout (_3ds::io::ViewLayout::Layout::FourBottom);
                     }
-#endif // EXTENDED_VIEW_LAYOUT
+                #endif // EXTENDED_VIEW_LAYOUT
 
                     afx_msg void IDFourRight () {
                         SetLayout (_3ds::io::ViewLayout::Layout::FourRight);
                     }
 
-#if EXTENDED_VIEW_LAYOUT
+                #if EXTENDED_VIEW_LAYOUT
                     afx_msg void IDFourTop () {
                         SetLayout (_3ds::io::ViewLayout::Layout::FourTop);
                     }
-#endif // EXTENDED_VIEW_LAYOUT
+                #endif // EXTENDED_VIEW_LAYOUT
 
                     afx_msg void IDLayout () {
                         CWnd *wnd = GetDlgItem (115);
@@ -792,7 +869,7 @@ namespace thekogans {
                                     cameras[3] = camera;
                                 }
                                 break;
-#if EXTENDED_VIEW_LAYOUT
+                        #if EXTENDED_VIEW_LAYOUT
                             case _3ds::io::ViewLayout::Layout::FourBottom:
                                 if (pt.y > 2 * rect.bottom / 3) {
                                     if (pt.x < rect.right / 3) {
@@ -817,7 +894,7 @@ namespace thekogans {
                                     cameras[0] = camera;
                                 }
                                 break;
-#endif // EXTENDED_VIEW_LAYOUT
+                        #endif // EXTENDED_VIEW_LAYOUT
                             case _3ds::io::ViewLayout::Layout::FourRight:
                                 if (pt.x > 2 * rect.right / 3) {
                                     if (pt.y < rect.bottom / 3) {
@@ -842,7 +919,7 @@ namespace thekogans {
                                     cameras[0] = camera;
                                 }
                                 break;
-#if EXTENDED_VIEW_LAYOUT
+                        #if EXTENDED_VIEW_LAYOUT
                             case _3ds::io::ViewLayout::Layout::FourTop:
                                 if (pt.y < rect.bottom / 3) {
                                     if (pt.x < rect.right / 3) {
@@ -867,7 +944,7 @@ namespace thekogans {
                                     cameras[3] = camera;
                                 }
                                 break;
-#endif // EXTENDED_VIEW_LAYOUT
+                        #endif // EXTENDED_VIEW_LAYOUT
                         }
                         DrawLayout ();
                     }
@@ -954,13 +1031,13 @@ namespace thekogans {
                 ON_BN_CLICKED (109, IDThreeVert)
                 ON_BN_CLICKED (110, IDThreeHorz)
                 ON_BN_CLICKED (111, IDFourLeft)
-#if EXTENDED_VIEW_LAYOUT
+            #if EXTENDED_VIEW_LAYOUT
                 ON_BN_CLICKED (112, IDFourBottom)
-#endif // EXTENDED_VIEW_LAYOUT
+            #endif // EXTENDED_VIEW_LAYOUT
                 ON_BN_CLICKED (113, IDFourRight)
-#if EXTENDED_VIEW_LAYOUT
+            #if EXTENDED_VIEW_LAYOUT
                 ON_BN_CLICKED (114, IDFourTop)
-#endif // EXTENDED_VIEW_LAYOUT
+            #endif // EXTENDED_VIEW_LAYOUT
                 ON_BN_CLICKED (115, IDLayout)
                 ON_BN_CLICKED (116, IDTopView)
                 ON_BN_CLICKED (117, IDBottomView)
@@ -975,12 +1052,14 @@ namespace thekogans {
                 END_MESSAGE_MAP ()
             }
 
-            struct MenuBarViewViewportsEventHandler : public core::MenuBar::Item::CommandEventHandler {
+            struct MenuBarViewViewportsEventHandler :
+                    public core::MenuBar::Item::CommandEventHandler {
                 DECLARE_MENUBAR_ITEM_EVENT_HANDLER (MenuBarViewViewportsEventHandler)
 
                 core::Module &module;
 
-                explicit MenuBarViewViewportsEventHandler (core::Module &module_) : module (module_) {}
+                explicit MenuBarViewViewportsEventHandler (core::Module &module_) :
+                    module (module_) {}
 
                 virtual void OnSetFocus () {
                     AFX_MANAGE_STATE (AfxGetStaticModuleState ());
@@ -994,4 +1073,5 @@ namespace thekogans {
         } // namespace editor
     } // namespace mex
 } // namespace thekogans
+
 #endif

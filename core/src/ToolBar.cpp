@@ -89,7 +89,7 @@ namespace thekogans {
                                 }
                             }
                             if (!bits.empty ()) {
-                                util::TenantReadBuffer buffer (util::LittleEndian, &bits[0], bits.size ());
+                                util::TenantBuffer buffer (util::LittleEndian, &bits[0], bits.size ());
                                 _3ds::opengl::Image::UniquePtr image (new _3ds::opengl::Image ());
                                 if (image->Load (buffer)) {
                                     return image;

@@ -25,12 +25,12 @@ namespace thekogans {
                 PolygonRegion2,
                 util::SpinLock,
                 32,
-                util::DefaultAllocator::Instance ().Get ())
+                util::DefaultAllocator::Instance ())
             THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS_EX_T (
                 PolygonRegion3,
                 util::SpinLock,
                 32,
-                util::DefaultAllocator::Instance ().Get ())
+                util::DefaultAllocator::Instance ())
 
         } // namespace blas
     } // namespace mex
