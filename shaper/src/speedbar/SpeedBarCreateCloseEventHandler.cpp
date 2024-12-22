@@ -54,10 +54,10 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATECLOSE_0);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATECLOSE_0);
                     }
 
                     virtual void LButtonDown (
@@ -67,7 +67,7 @@ namespace thekogans {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,

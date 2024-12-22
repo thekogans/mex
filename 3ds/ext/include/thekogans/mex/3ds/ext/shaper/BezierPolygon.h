@@ -94,9 +94,10 @@ namespace thekogans {
                             const std::vector<THEKOGANS_UTIL_TYPENAME io::BezierPolygon<T>::Vertex> &vertices =
                                 bezierPolygon.vertices;
                             for (std::size_t i = 0, count = vertices.size (); i < count; ++i) {
-                                switch (vertices[i].flags & (io::BezierPolygon<T>::Vertex::SelectionSetA |
-                                    io::BezierPolygon<T>::Vertex::SelectionSetB |
-                                    io::BezierPolygon<T>::Vertex::SelectionSetC)) {
+                                switch (vertices[i].flags &
+                                        (io::BezierPolygon<T>::Vertex::SelectionSetA |
+                                            io::BezierPolygon<T>::Vertex::SelectionSetB |
+                                            io::BezierPolygon<T>::Vertex::SelectionSetC)) {
                                     case io::BezierPolygon<T>::Vertex::SelectionSetA |
                                         io::BezierPolygon<T>::Vertex::SelectionSetB |
                                         io::BezierPolygon<T>::Vertex::SelectionSetC:

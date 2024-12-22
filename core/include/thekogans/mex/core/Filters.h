@@ -47,10 +47,14 @@ namespace thekogans {
                         typedef EventHandler *(*Factory) (Module &);
                         typedef std::map<std::string, Factory> Map;
 
-                        static EventHandler *Get (const std::string &name, Module &module);
+                        static EventHandler *Get (
+                            const std::string &name,
+                            Module &module);
 
                         struct _LIB_THEKOGANS_MEX_CORE_DECL MapInitializer {
-                            MapInitializer (const std::string &eventHandler, Factory factory);
+                            MapInitializer (
+                                const std::string &eventHandler,
+                                Factory factory);
                         };
 
                         virtual ~EventHandler () {}

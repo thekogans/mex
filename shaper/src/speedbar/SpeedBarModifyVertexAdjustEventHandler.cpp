@@ -63,10 +63,10 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_MODIFYVERTEXADJUST_0);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_MODIFYVERTEXADJUST_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -136,7 +136,7 @@ namespace thekogans {
                                     CommitTransaction ();
                                 }
                                 else {
-                                    if (Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                                    if (Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                         GetSelectedVertices (
                                             bezierPolygonVertices, core::GetIOProject ().shaper.selectMask);
                                         referenceVertexIndex = FindReferenceVertex (
@@ -198,7 +198,7 @@ namespace thekogans {
                     virtual void MouseMove (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
                         if (state == 2) {
                             DrawVertexSegments2 (view, bezierPolygonVertices, red, yellow);
-                            core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                            core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                             if (bezierPolygonVertices[referenceVertexIndex]->bezierPolygon.vertices[
                                     bezierPolygonVertices[referenceVertexIndex]->vertexIndex].yellow.IsZero ()) {
                                 yellow *= blas::Matrix2::Translate (pt - start);

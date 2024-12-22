@@ -63,10 +63,10 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_0);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -125,18 +125,18 @@ namespace thekogans {
                             else if (bezierPolygon1->IsClosed ()) {
                                 UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                                 AbortTransaction ();
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_10);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_0);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_10);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_0);
                             }
                             else if (vertexIndex1 > 0 && vertexIndex1 < bezierPolygon1->vertices.size () - 1) {
                                 UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                                 AbortTransaction ();
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_11);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_0);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_11);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_0);
                             }
                             else {
                                 UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_12);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_12);
                             }
                         }
                         else if (state == 3) {
@@ -179,7 +179,7 @@ namespace thekogans {
                                     command::FinalOperation::SharedPtr (
                                         new core::command::FlipFramebufferFinalOperation));
                                 CommitTransaction ();
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_0);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_0);
                             }
                         }
                     }
@@ -198,7 +198,7 @@ namespace thekogans {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATECONNECT_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATECONNECT_0);
                         }
                     }
 

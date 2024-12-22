@@ -99,7 +99,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, vertices, vertexFlags, xform.Invert ());
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class CalcBoundJob : public util::Vectorizer::Job {
@@ -136,7 +136,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, vertices, xform.Invert ());
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }

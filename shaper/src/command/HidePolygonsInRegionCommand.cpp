@@ -33,7 +33,7 @@ namespace thekogans {
 
             bool HidePolygonsInRegionCommand::Execute () {
                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
-                    Shaper::Instance ().flags.Test (Shaper::DisplayHidePolygonWindow) ?
+                    Shaper::Instance ()->flags.Test (Shaper::DisplayHidePolygonWindow) ?
                         _3ds::ext::BezierPolygon2::PickInfo::PolygonWindow :
                         _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                     core::GetIOProject ().shaper.polygons2, std::move (region),

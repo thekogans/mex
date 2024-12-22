@@ -65,15 +65,15 @@ namespace thekogans {
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        core::UI::Instance ().consoleWindow->Print (IDC_CREATEARRAYRADIAL_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        core::UI::Instance ()->consoleWindow->Print (IDC_CREATEARRAYRADIAL_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,
@@ -114,7 +114,7 @@ namespace thekogans {
                                 else {
                                     core::SetCursor setCursor (core::CursorMgr::ARROW_CURSOR);
                                     UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
-                                    if (ArrayRadialDialog (Shaper::Instance ().flags.Test (Shaper::Selected),
+                                    if (ArrayRadialDialog (Shaper::Instance ()->flags.Test (Shaper::Selected),
                                             objectsInArray, degrees, useDegrees, rotate).exec () == QDialog::Accepted) {
                                         util::OwnerVector<_3ds::io::BezierPolygon2> newBezierPolygons;
                                         blas::Point2 center = bound.Center ();
@@ -122,7 +122,7 @@ namespace thekogans {
                                         blas::Matrix2 xform;
                                         for (util::ui32 i = 0; i < objectsInArray - 1; ++i) {
                                             if (rotate) {
-                                                if (Shaper::Instance ().flags.Test (Shaper::UseLocalAxis)) {
+                                                if (Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis)) {
                                                     xform = blas::Matrix2::Translate (-center) *
                                                         blas::Matrix2::RotateZ (util::RAD (degrees * (i + 1)) * sign) *
                                                         blas::Matrix2::Translate (center);
@@ -133,7 +133,7 @@ namespace thekogans {
                                                 }
                                             }
                                             else {
-                                                if (Shaper::Instance ().flags.Test (Shaper::UseLocalAxis)) {
+                                                if (Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis)) {
                                                     xform = blas::Matrix2::Identity;
                                                 }
                                                 else {
@@ -175,7 +175,7 @@ namespace thekogans {
                                     cursor = core::CursorMgr::CW_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
                 } tool;

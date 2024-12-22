@@ -79,7 +79,7 @@ namespace thekogans {
                                     return morphTargets.size ();
                                 }
                             } job (morphTargets, track, meshes);
-                            util::GlobalVectorizer::Instance ()->Execute (job);
+                            util::Vectorizer::Instance ()->Execute (job);
                         }
                         {
                             class CreateMorphTracksJob : public util::Vectorizer::Job {
@@ -149,7 +149,7 @@ namespace thekogans {
                                     return ioMorphTracks.size ();
                                 }
                             } job (ioMorphTracks, morphTracks, morphTargets, track, segment);
-                            util::GlobalVectorizer::Instance ()->Execute (job);
+                            util::Vectorizer::Instance ()->Execute (job);
                         }
                     }
                 }

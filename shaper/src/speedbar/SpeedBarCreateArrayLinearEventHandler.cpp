@@ -42,8 +42,10 @@ namespace thekogans {
                 const char *IDC_CREATEARRAYLINEAR_0 = "Click on polygon to array linearly\n";
             }
 
-            class SpeedBarCreateArrayLinearEventHandler : public core::SpeedBar::Item::ToolEventHandler {
-                THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarCreateArrayLinearEventHandler)
+            class SpeedBarCreateArrayLinearEventHandler :
+                    public core::SpeedBar::Item::ToolEventHandler {
+                THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER (
+                    SpeedBarCreateArrayLinearEventHandler)
 
             private:
                 class Tool : public core::Tool {
@@ -59,25 +61,32 @@ namespace thekogans {
 
                 public:
                     Tool (core::Module &module) :
-                            core::Tool (module), objectsInArray (10),
-                            spacing (10.0f), objectSpacing (true), centerToCenter (false) {
+                            core::Tool (module),
+                            objectsInArray (10),
+                            spacing (10.0f),
+                            objectSpacing (true),
+                            centerToCenter (false) {
                         cursor = core::CursorMgr::UP_CURSOR;
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        core::UI::Instance ().consoleWindow->Print (IDC_CREATEARRAYLINEAR_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        core::UI::Instance ()->consoleWindow->Print (IDC_CREATEARRAYLINEAR_0);
                     }
 
-                    virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,
-                                    blas::Region2::UniquePtr (new blas::BoundRegion2 (GetPickBound (view, pt))),
+                                    blas::Region2::UniquePtr (
+                                        new blas::BoundRegion2 (GetPickBound (view, pt))),
                                     core::GetIOProject ().shaper.steps);
                                 if (pickInfo.FindFirst ()) {
                                     _3ds::io::BezierPolygon2 *bezierPolygon =
@@ -89,7 +98,9 @@ namespace thekogans {
                                 }
                             }
                             else {
-                                GetSelectedPolygons (bezierPolygons, core::GetIOProject ().shaper.selectMask);
+                                GetSelectedPolygons (
+                                    bezierPolygons,
+                                    core::GetIOProject ().shaper.selectMask);
                                 if (!bezierPolygons.empty ()) {
                                     bound = GetPolygonsBound (bezierPolygons);
                                     core::DrawBound2 (view, bound);
@@ -98,7 +109,10 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void LButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 1) {
                             if (bezierPolygons.empty ()) {
                                 UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
@@ -106,14 +120,18 @@ namespace thekogans {
                             else {
                                 core::DrawBound2 (view, bound);
                                 if (IsSelect ()) {
-                                    UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
+                                    UpdateState (
+                                        0,
+                                        flags | ScrollLockOff | CursorVisible | ViewReleased);
                                     BeginTransaction ();
                                     ToggleSelectedPolygons (bezierPolygons);
                                     CommitTransaction ();
                                 }
                                 else {
                                     core::SetCursor setCursor (core::CursorMgr::ARROW_CURSOR);
-                                    UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
+                                    UpdateState (
+                                        0,
+                                        flags | ScrollLockOff | CursorVisible | ViewReleased);
                                     util::f32 size;
                                     if (cursor == core::CursorMgr::UP_CURSOR ||
                                         cursor == core::CursorMgr::DOWN_CURSOR) {
@@ -122,8 +140,13 @@ namespace thekogans {
                                     else {
                                         size = bound.max.x - bound.min.x;
                                     }
-                                    if (ArrayLinearDialog (Shaper::Instance ().flags.Test (Shaper::Selected),
-                                            objectsInArray, spacing, objectSpacing, centerToCenter, size).exec () == QDialog::Accepted) {
+                                    if (ArrayLinearDialog (
+                                            Shaper::Instance ()->flags.Test (Shaper::Selected),
+                                            objectsInArray,
+                                            spacing,
+                                            objectSpacing,
+                                            centerToCenter,
+                                            size).exec () == QDialog::Accepted) {
                                         util::f32 length = spacing;
                                         if (!centerToCenter) {
                                             length += size;
@@ -151,7 +174,7 @@ namespace thekogans {
                                                     bezierPolygon = *bezierPolygons[j] * xform;
                                                 }
                                                 else {
-                                                    bezierPolygon = 
+                                                    bezierPolygon =
                                                         *newBezierPolygons[(i - 1) * bezierPolygons.size () + j] * xform;
                                                 }
                                                 assert (bezierPolygon.get () != 0);
@@ -173,8 +196,11 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void KeyDown (const _3ds::opengl::View &view, util::ui32 key,
-                            util::ui32 repeatCount, util::ui32 flags) {
+                    virtual void KeyDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 key,
+                            util::ui32 repeatCount,
+                            util::ui32 flags) {
                         if (key == Qt::Key_Tab) {
                             switch (cursor) {
                                 case core::CursorMgr::UP_CURSOR:
@@ -190,17 +216,20 @@ namespace thekogans {
                                     cursor = core::CursorMgr::DOWN_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
                 } tool;
 
             public:
                 explicit SpeedBarCreateArrayLinearEventHandler (core::Module &module) :
-                    ToolEventHandler (module, tool), tool (module) {}
+                    ToolEventHandler (module, tool),
+                    tool (module) {}
             };
 
-            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarCreateArrayLinearEventHandler, Shaper)
+            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (
+                SpeedBarCreateArrayLinearEventHandler,
+                Shaper)
 
         } // namespace shaper
     } // namespace mex

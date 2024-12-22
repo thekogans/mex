@@ -36,10 +36,10 @@ namespace thekogans {
                     module (module_) {}
 
                 virtual void OnClickLeft () {
-                    Shaper::Instance ().flags.Flip (Shaper::Selected);
+                    Shaper::Instance ()->flags.Flip (Shaper::Selected);
                 }
                 virtual bool IsChecked () const {
-                    return Shaper::Instance ().flags.Test (Shaper::Selected);
+                    return Shaper::Instance ()->flags.Test (Shaper::Selected);
                 }
             };
 

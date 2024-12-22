@@ -102,14 +102,13 @@ fi
 if [ "$TOOLCHAIN_OS" == "Windows" ]; then
     if [ "$config" == "Debug" ]; then
         cp /c/Qt/5.14.0/msvc2017_64/plugins/platforms/qwindowsd.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
-        cp bin
     else
         cp /c/Qt/5.14.0/msvc2017_64/plugins/platforms/qwindows.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
     fi
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_shaper.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_shaper
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_lofter.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_lofter
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_editor.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_editor
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_keyframer.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_keyframer
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_shaper.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_lofter.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_editor.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_keyframer.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
 elif [ "$TOOLCHAIN_OS" == "OSX" ]; then
     cp ~/Qt/5.14.0/clang_64/plugins/platforms/libqcocoa.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtCore.framework ]; then

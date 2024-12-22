@@ -73,12 +73,15 @@ namespace thekogans {
                         core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATEARC_0);
+                        core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATEARC_0);
                     }
 
-                    virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             last = pt;
@@ -105,10 +108,13 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void LButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 1) {
                             UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATEARC_1);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATEARC_1);
                         }
                         else if (state == 3) {
                             UpdateState (4, flags | ScrollLockOff);
@@ -118,8 +124,10 @@ namespace thekogans {
                             if (radius != 0.0f) {
                                 bool closed = spanAngle > 359.5f;
                                 if (closed && QMessageBox::question (
-                                        core::UI::Instance ().mainFrameWindow->GetQWidget (), "Arc",
-                                        "Connect these vertices?", QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
+                                        core::UI::Instance ()->mainFrameWindow->GetQWidget (),
+                                        "Arc",
+                                        "Connect these vertices?",
+                                        QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes) {
                                     closed = false;
                                 }
                                 core::WaitCursor waitCursor;
@@ -133,11 +141,14 @@ namespace thekogans {
                             else {
                                 AbortTransaction ();
                             }
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATEARC_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATEARC_0);
                         }
                     }
 
-                    virtual void RButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void RButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                         }
@@ -153,15 +164,21 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void RButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void RButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATEARC_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATEARC_0);
                         }
                     }
 
-                    virtual void MouseMove (const _3ds::opengl::View &view, util::ui32, const blas::Point2 &pt) {
+                    virtual void MouseMove (
+                            const _3ds::opengl::View &view,
+                            util::ui32,
+                            const blas::Point2 &pt) {
                         if (state == 2) {
                             core::DrawLine2 (view, center, last);
                             last = pt;
@@ -176,7 +193,7 @@ namespace thekogans {
                                 4 * (core::GetIOProject ().shaper.steps + 1));
                             blas::Point d1 = view.P2D (pt);
                             blas::Point d2 = view.P2D (last);
-                            core::UI::Instance ().viewLayoutWindow->SetMousePosition (d2);
+                            core::UI::Instance ()->viewLayoutWindow->SetMousePosition (d2);
                             if (d1.x < d2.x) {
                                 if (clockWise) {
                                     spanAngle -= ((util::f32)d2.x - d1.x) * 0.25f;
@@ -218,12 +235,14 @@ namespace thekogans {
                     virtual void UpdateStatus (core::StatusBar::Item::EventHandler::UI &ui) {
                         if (state == 2) {
                             ui.SetText (IDS_CREATEARC_2,
-                                _3ds::ext::Units (core::GetIOProject ().units).Format (radius).c_str (),
+                                _3ds::ext::Units (
+                                    core::GetIOProject ().units).Format (radius).c_str (),
                                 util::DEG (startAngle));
                         }
                         else if (state == 4) {
                             ui.SetText (IDS_CREATEARC_4,
-                                _3ds::ext::Units (core::GetIOProject ().units).Format (radius).c_str (),
+                                _3ds::ext::Units (
+                                    core::GetIOProject ().units).Format (radius).c_str (),
                                 util::DEG (startAngle), spanAngle);
                         }
                         else {
@@ -237,7 +256,9 @@ namespace thekogans {
                     ToolEventHandler (module, tool), tool (module) {}
             };
 
-            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarCreateArcEventHandler, Shaper)
+            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (
+                SpeedBarCreateArcEventHandler,
+                Shaper)
 
         } // namespace shaper
     } // namespace mex

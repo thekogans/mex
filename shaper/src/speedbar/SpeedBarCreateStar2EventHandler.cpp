@@ -137,8 +137,8 @@ namespace thekogans {
                         core::Tool (module), circular (circular_) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATESTAR2_0,
+                        core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATESTAR2_0,
                             core::GetIOProject ().shaper.create.star2Vertices);
                     }
 
@@ -161,11 +161,11 @@ namespace thekogans {
                     virtual void LButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
                         if (state == 1) {
                             UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATESTAR2_1);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATESTAR2_1);
                         }
                         else if (state == 3) {
                             UpdateState (4, flags | ScrollLockOff | CursorVisible);
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATESTAR2_3);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATESTAR2_3);
                         }
                         else if (state == 5) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
@@ -190,7 +190,7 @@ namespace thekogans {
                             else {
                                 AbortTransaction ();
                             }
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATESTAR2_0,
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATESTAR2_0,
                                 core::GetIOProject ().shaper.create.star2Vertices);
                         }
                     }
@@ -214,7 +214,7 @@ namespace thekogans {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATESTAR2_0,
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATESTAR2_0,
                                 core::GetIOProject ().shaper.create.star2Vertices);
                         }
                     }

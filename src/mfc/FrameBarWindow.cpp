@@ -100,7 +100,7 @@ namespace thekogans {
                     if (CWnd::OnCreate (lpCreateStruct) == -1) {
                         return -1;
                     }
-                    core::UI::Instance ().frameBarWindow = this;
+                    core::UI::Instance ()->frameBarWindow = this;
                     return 0;
                 }
 
@@ -120,7 +120,7 @@ namespace thekogans {
                         boxMode = IsBoxMode ();
                         SetBoxMode (true);
                         if (!GoToFrame (point)) {
-                            core::UI::Instance ().viewLayoutWindow->Draw ();
+                            core::UI::Instance ()->viewLayoutWindow->Draw ();
                         }
                     }
                 }
@@ -131,7 +131,7 @@ namespace thekogans {
                         dragging = false;
                         if (!boxMode) {
                             SetBoxMode (false);
-                            core::UI::Instance ().viewLayoutWindow->Draw ();
+                            core::UI::Instance ()->viewLayoutWindow->Draw ();
                         }
                     }
                 }

@@ -116,8 +116,8 @@ namespace thekogans {
                 explicit ToolBarPlayEventHandler (core::Module &module_) : module (module_) {}
 
                 virtual void OnClickLeft () {
-                    assert (core::UI::Instance ().viewLayoutWindow != 0);
-                    assert (core::UI::Instance ().frameBarWindow != 0);
+                    assert (core::UI::Instance ()->viewLayoutWindow != 0);
+                    assert (core::UI::Instance ()->frameBarWindow != 0);
                     struct ModalLoop : public core::ModalLoop {
                         core::Module &module;
                         _3ds::io::Keyframer &ioKeyframer;
@@ -128,24 +128,24 @@ namespace thekogans {
                                                                      ioKeyframer (static_cast<_3ds::io::Keyframer &> (module.GetIOModule ())),
                                                                      segment (ioKeyframer.segment),
                                                                      maximized (ioKeyframer.viewLayout.layout.maximized),
-                                                                     cursorVisible (core::CursorMgr::Instance ().IsCursorVisible ()) {
+                                                                     cursorVisible (core::CursorMgr::Instance ()->IsCursorVisible ()) {
                             if (!maximized) {
                                 _3ds::io::command::ViewLayoutToggleMaximizedCommand (ioKeyframer.viewLayout).Execute ();
-                                core::UI::Instance ().viewLayoutWindow->SetViewLayout (*module.viewLayout);
+                                core::UI::Instance ()->viewLayoutWindow->SetViewLayout (*module.viewLayout);
                             }
                             if (cursorVisible) {
-                                core::CursorMgr::Instance ().ShowCursor (false);
+                                core::CursorMgr::Instance ()->ShowCursor (false);
                             }
-                            core::UI::Instance ().frameBarWindow->SetModal (true);
+                            core::UI::Instance ()->frameBarWindow->SetModal (true);
                         }
                         ~ModalLoop () {
-                            core::UI::Instance ().frameBarWindow->SetModal (false);
+                            core::UI::Instance ()->frameBarWindow->SetModal (false);
                             if (cursorVisible) {
-                                core::CursorMgr::Instance ().ShowCursor (true);
+                                core::CursorMgr::Instance ()->ShowCursor (true);
                             }
                             if (!maximized) {
                                 _3ds::io::command::ViewLayoutToggleMaximizedCommand (ioKeyframer.viewLayout).Execute ();
-                                core::UI::Instance ().viewLayoutWindow->SetViewLayout (*module.viewLayout);
+                                core::UI::Instance ()->viewLayoutWindow->SetViewLayout (*module.viewLayout);
                             }
                         }
                         virtual void DoIteration () {

@@ -81,10 +81,10 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATELINE_0);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATELINE_0);
                     }
 
                     virtual void LButtonDown (
@@ -358,7 +358,7 @@ namespace thekogans {
                         else if (state == 3) {
                             BezierPolygon (ioBezierPolygon ()).DrawVertexSegments (
                                 view, vertexIndex, red, yellow);
-                            core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                            core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                             if (ioBezierPolygon ().vertices[vertexIndex].yellow.IsZero ()) {
                                 yellow *= blas::Matrix2::Translate (pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {

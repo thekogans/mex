@@ -51,7 +51,7 @@ namespace thekogans {
                     virtual bool Execute () {
                         util::ui16 selectMask = core::GetIOProject ().shaper.selectMask;
                         _3ds::ext::BezierPolygon2::PickInfo pickInfo (
-                            Shaper::Instance ().flags.Test (Shaper::SelectPolygonWindow) ?
+                            Shaper::Instance ()->flags.Test (Shaper::SelectPolygonWindow) ?
                                 _3ds::ext::BezierPolygon2::PickInfo::PolygonWindow :
                                 _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                             core::GetIOProject ().shaper.polygons2,
@@ -101,7 +101,7 @@ namespace thekogans {
                     virtual bool Execute () {
                         util::ui16 selectMask = core::GetIOProject ().shaper.selectMask;
                         _3ds::ext::BezierPolygon2::PickInfo pickInfo (
-                            Shaper::Instance ().flags.Test (Shaper::SelectPolygonWindow) ?
+                            Shaper::Instance ()->flags.Test (Shaper::SelectPolygonWindow) ?
                                 _3ds::ext::BezierPolygon2::PickInfo::PolygonWindow :
                                 _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                             core::GetIOProject ().shaper.polygons2,

@@ -44,12 +44,12 @@ namespace thekogans {
 
                     virtual BOOL OnIdle (LONG lCount) {
                         CWinApp::OnIdle (lCount);
-                        core::UI::Instance ().menuBarWindow->OnIdle ();
-                        core::UI::Instance ().toolBarWindow->OnIdle ();
-                        core::UI::Instance ().viewLayoutWindow->OnIdle ();
-                        core::UI::Instance ().speedBarWindow->OnIdle ();
-                        core::UI::Instance ().consoleWindow->OnIdle ();
-                        core::UI::Instance ().statusBarWindow->OnIdle ();
+                        core::UI::Instance ()->menuBarWindow->OnIdle ();
+                        core::UI::Instance ()->toolBarWindow->OnIdle ();
+                        core::UI::Instance ()->viewLayoutWindow->OnIdle ();
+                        core::UI::Instance ()->speedBarWindow->OnIdle ();
+                        core::UI::Instance ()->consoleWindow->OnIdle ();
+                        core::UI::Instance ()->statusBarWindow->OnIdle ();
                         return TRUE;
                     }
                 } mex;

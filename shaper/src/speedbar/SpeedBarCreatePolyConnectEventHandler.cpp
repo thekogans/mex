@@ -60,10 +60,10 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -121,13 +121,13 @@ namespace thekogans {
                             else if (bezierPolygon1->IsClosed ()) {
                                 core::DrawBound2 (view, bound1);
                                 UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_10);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_10);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
                             }
                             else {
                                 core::DrawBound2 (view, bound1);
                                 UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_12);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_12);
                             }
                         }
                         else if (state == 3) {
@@ -137,15 +137,15 @@ namespace thekogans {
                             else if (bezierPolygon1 == bezierPolygon2) {
                                 UpdateState (2, flags);
                                 core::DrawBound2 (view, bound2);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_11);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_12);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_11);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_12);
                             }
                             else if (bezierPolygon2->IsClosed ()) {
                                 UpdateState (2, flags);
                                 core::DrawBound2 (view, bound1);
                                 core::DrawBound2 (view, bound2);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_10);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_12);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_10);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_12);
                             }
                             else {
                                 core::DrawBound2 (view, bound1);
@@ -167,7 +167,7 @@ namespace thekogans {
                                     command::FinalOperation::SharedPtr (
                                         new core::command::FlipFramebufferFinalOperation));
                                 CommitTransaction ();
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
                             }
                         }
                     }
@@ -175,7 +175,7 @@ namespace thekogans {
                     virtual void RButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATEPOLYCONNECT_0);
                         }
                     }
                 } tool;

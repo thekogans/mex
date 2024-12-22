@@ -60,9 +60,9 @@ namespace thekogans {
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATECOPY_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATECOPY_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -71,7 +71,7 @@ namespace thekogans {
                             start = pt;
                             xform = blas::Matrix2::Identity;
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,
@@ -180,7 +180,7 @@ namespace thekogans {
                             if (state == 2) {
                                 DrawPolygons2 (view, bezierPolygons, xform);
                                 RollbackTransaction ();
-                                core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                                core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                                 xform = blas::Matrix2::Identity;
                                 DrawPolygons2 (view, bezierPolygons, xform);
                             }
@@ -195,7 +195,7 @@ namespace thekogans {
                                     cursor = core::CursorMgr::FOURWAY_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
 

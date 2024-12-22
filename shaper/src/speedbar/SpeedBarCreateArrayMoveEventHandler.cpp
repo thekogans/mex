@@ -65,17 +65,20 @@ namespace thekogans {
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATEARRAYMOVE_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATEARRAYMOVE_0);
                     }
 
-                    virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             start = pt;
                             xform = blas::Matrix2::Identity;
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 bound = GetPickBound (view, pt);
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
@@ -196,7 +199,7 @@ namespace thekogans {
                             if (state == 2) {
                                 core::DrawBound2 (view, bound * xform);
                                 RollbackTransaction ();
-                                core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                                core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                                 xform = blas::Matrix2::Identity;
                                 core::DrawBound2 (view, bound * xform);
                             }
@@ -211,7 +214,7 @@ namespace thekogans {
                                     cursor = core::CursorMgr::FOURWAY_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
 

@@ -98,7 +98,7 @@ namespace thekogans {
                                 return morphTracks.size ();
                             }
                         } job (vertices, morphTrack.morphTracks, frame, xform);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class XformVerticesJob : public util::Vectorizer::Job {
@@ -128,7 +128,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (vertices, mesh.vertices, ixform * xform);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     hidden = objectNode.IsHide () || !hideTrack.GetTween (frame);
                     for (std::vector<Node *>::iterator it = children.begin (),
@@ -186,7 +186,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, vertices, xform);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }
@@ -231,7 +231,7 @@ namespace thekogans {
                             return vertices.size ();
                         }
                     } job (bound, vertices, xform.Invert ());
-                    util::GlobalVectorizer::Instance ()->Execute (job);
+                    util::Vectorizer::Instance ()->Execute (job);
                     return bound;
                 }
 

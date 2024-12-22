@@ -63,9 +63,9 @@ namespace thekogans {
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_MODIFYPOLYGONSCALE_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_MODIFYPOLYGONSCALE_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -75,7 +75,7 @@ namespace thekogans {
                             start = pt;
                             xform = blas::Matrix2::Identity;
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,
@@ -85,7 +85,7 @@ namespace thekogans {
                                     _3ds::io::BezierPolygon2 *bezierPolygon =
                                         core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                                     bezierPolygons.push_back (bezierPolygon);
-                                    if (Shaper::Instance ().flags.Test (Shaper::UseLocalAxis)) {
+                                    if (Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis)) {
                                         axis = GetPolygonsBound (bezierPolygons).Center ();
                                     }
                                     else {
@@ -97,7 +97,7 @@ namespace thekogans {
                             else {
                                 GetSelectedPolygons (bezierPolygons, core::GetIOProject ().shaper.selectMask);
                                 if (!bezierPolygons.empty ()) {
-                                    if (Shaper::Instance ().flags.Test (Shaper::UseLocalAxis)) {
+                                    if (Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis)) {
                                         axis = GetPolygonsBound (bezierPolygons).Center ();
                                     }
                                     else {
@@ -182,7 +182,7 @@ namespace thekogans {
                             DrawPolygons2 (view, bezierPolygons, xform);
                             blas::Point d1 = view.P2D (pt);
                             blas::Point d2 = view.P2D (start);
-                            core::UI::Instance ().viewLayoutWindow->SetMousePosition (d2);
+                            core::UI::Instance ()->viewLayoutWindow->SetMousePosition (d2);
                             util::f32 sx;
                             util::f32 sy;
                             switch (cursor) {
@@ -215,7 +215,7 @@ namespace thekogans {
                         if (key == Qt::Key_Tab) {
                             if (state == 2) {
                                 DrawPolygons2 (view, bezierPolygons, xform);
-                                core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                                core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                                 scale = 1.0f;
                                 xform = blas::Matrix2::Identity;
                                 DrawPolygons2 (view, bezierPolygons, xform);
@@ -231,7 +231,7 @@ namespace thekogans {
                                     cursor = core::CursorMgr::FOURWAY_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
 

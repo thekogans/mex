@@ -61,17 +61,17 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATEOUTLINE_0);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATEOUTLINE_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,
@@ -120,16 +120,16 @@ namespace thekogans {
                             }
                             else {
                                 core::DrawBound2 (view, bound);
-                                core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
+                                core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
                                 UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                                core::UI::Instance ().consoleWindow->Print (IDS_CREATEOUTLINE_1);
+                                core::UI::Instance ()->consoleWindow->Print (IDS_CREATEOUTLINE_1);
                             }
                         }
                         else if (state == 3) {
                             UpdateState (4, flags | ScrollLockOff);
                         }
                         else if (state == 5) {
-                            core::CursorMgr::Instance ().SetPickCursor (
+                            core::CursorMgr::Instance ()->SetPickCursor (
                                 core::GetIOProject ().programConfiguration.pickBoxSize);
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             util::f32 width = (end - start).Length ();
@@ -162,7 +162,7 @@ namespace thekogans {
                             else {
                                 AbortTransaction ();
                             }
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATEOUTLINE_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATEOUTLINE_0);
                         }
                     }
 
@@ -172,13 +172,13 @@ namespace thekogans {
                         }
                         else if (state == 2) {
                             UpdateState (3, flags | ScrollLockOn | CursorHidden | ViewCaptured);
-                            core::CursorMgr::Instance ().SetPickCursor (
+                            core::CursorMgr::Instance ()->SetPickCursor (
                                 core::GetIOProject ().programConfiguration.pickBoxSize);
                         }
                         else if (state == 4) {
                             UpdateState (5, flags | ScrollLockOn);
                             core::DrawLine2 (view, start, end);
-                            core::CursorMgr::Instance ().SetPickCursor (
+                            core::CursorMgr::Instance ()->SetPickCursor (
                                 core::GetIOProject ().programConfiguration.pickBoxSize);
                         }
                     }
@@ -187,7 +187,7 @@ namespace thekogans {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATEOUTLINE_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATEOUTLINE_0);
                         }
                     }
 

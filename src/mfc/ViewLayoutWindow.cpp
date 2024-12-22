@@ -39,7 +39,7 @@ namespace thekogans {
                         POINT pt;
                         GetCursorPos (&pt);
                         if (!rect.PtInRect (pt)) {
-                            core::CursorMgr::Instance ().OnMouseMove (blas::Point (-1, -1));
+                            core::CursorMgr::Instance ()->OnMouseMove (blas::Point (-1, -1));
                         }
                     }
                 }
@@ -84,8 +84,8 @@ namespace thekogans {
                         return -1;
                     }
                     openGLRC.reset (new win::util::OpenGLRC (m_hWnd));
-                    assert (core::UI::Instance ().viewLayoutWindow == 0);
-                    core::UI::Instance ().viewLayoutWindow = this;
+                    assert (core::UI::Instance ()->viewLayoutWindow == 0);
+                    core::UI::Instance ()->viewLayoutWindow = this;
                     return 0;
                 }
 
@@ -95,7 +95,7 @@ namespace thekogans {
                 }
 
                 void ViewLayoutWindow::OnKillFocus (CWnd *pNewWnd) {
-                    core::CursorMgr::Instance ().OnMouseMove (blas::Point (-1, -1));
+                    core::CursorMgr::Instance ()->OnMouseMove (blas::Point (-1, -1));
                 }
 
                 void ViewLayoutWindow::OnActivate (UINT nState, CWnd *pWndOther, BOOL bMinimized) {
@@ -131,7 +131,7 @@ namespace thekogans {
 
                 BOOL ViewLayoutWindow::OnSetCursor (CWnd *pWnd, UINT nHitTest, UINT message) {
                     //if (::GetFocus () == m_hWnd) {
-                        core::CursorMgr::Instance ().OnSetCursor ();
+                        core::CursorMgr::Instance ()->OnSetCursor ();
                     //}
                     //else {
                         //SetCursor (arrowCursor);
@@ -182,7 +182,7 @@ namespace thekogans {
                     //if (::GetFocus () == m_hWnd) {
                         openGLRC->SetCurrent ();
                         blas::Point pt = openGLRC->Win2GL (dp);
-                        core::CursorMgr::Instance ().OnMouseMove (pt);
+                        core::CursorMgr::Instance ()->OnMouseMove (pt);
                         if (viewLayout != 0) {
                             viewLayout->MouseMove (GetControlKeyState (), pt);
                         }

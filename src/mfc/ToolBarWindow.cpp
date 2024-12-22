@@ -67,8 +67,8 @@ namespace thekogans {
                                         image.width, image.height, &bits[0], (LPBITMAPINFO)&bitmapInfo,
                                         DIB_RGB_COLORS, SRCCOPY);
                                     if (rc == GDI_ERROR) {
-                                        assert (core::UI::Instance ().consoleWindow != 0);
-                                        core::UI::Instance ().consoleWindow->Print (
+                                        assert (core::UI::Instance ()->consoleWindow != 0);
+                                        core::UI::Instance ()->consoleWindow->Print (
                                             "ToolBarWindow: StretchDIBits - '%s'.\n",
                                             win::util::Error (THEKOGANS_UTIL_OS_ERROR_CODE).message.c_str ());
                                     }
@@ -175,8 +175,8 @@ namespace thekogans {
                     if (CToolBar::OnCreate (lpCreateStruct) == -1) {
                         return -1;
                     }
-                    assert (core::UI::Instance ().toolBarWindow == 0);
-                    core::UI::Instance ().toolBarWindow = this;
+                    assert (core::UI::Instance ()->toolBarWindow == 0);
+                    core::UI::Instance ()->toolBarWindow = this;
                     return 0;
                 }
 

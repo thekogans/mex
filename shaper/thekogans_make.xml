@@ -1,6 +1,6 @@
 <thekogans_make organization = "thekogans"
                 project = "mex_shaper"
-                project_type = "plugin"
+                project_type = "library"
                 major_version = "0"
                 minor_version = "1"
                 patch_version = "0"
@@ -19,10 +19,6 @@
       </if>
     </constants>
   </if>
-  <plugin_hosts>
-    <project organization = "thekogans"
-             name = "mex"/>
-  </plugin_hosts>
   <dependencies>
     <dependency organization = "thekogans"
                 name = "util"/>

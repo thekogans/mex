@@ -47,7 +47,7 @@ namespace thekogans {
                 explicit SpeedBarDisplay3DDisplayChooseEventHandler (core::Module &) {}
 
                 virtual void OnSetFocus () {
-                    _3DDisplayDialog dialog (core::UI::Instance ().mainFrameWindow->GetQWidget ());
+                    _3DDisplayDialog dialog (core::UI::Instance ()->mainFrameWindow->GetQWidget ());
                     dialog.exec ();
                 }
             };

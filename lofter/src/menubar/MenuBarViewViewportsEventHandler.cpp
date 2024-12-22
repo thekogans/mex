@@ -246,8 +246,8 @@ namespace thekogans {
                                 FinalOperation (_3ds::io::ViewLayout &viewLayout_) : viewLayout (viewLayout_) {}
                                 virtual bool Execute () {
                                     core::HideCursor hideCursor;
-                                    assert (core::UI::Instance ().viewLayoutWindow != 0);
-                                    core::UI::Instance ().viewLayoutWindow->Draw ();
+                                    assert (core::UI::Instance ()->viewLayoutWindow != 0);
+                                    core::UI::Instance ()->viewLayoutWindow->Draw ();
                                     return true;
                                 }
                             };

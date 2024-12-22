@@ -34,10 +34,10 @@ namespace thekogans {
                     module (module_) {}
 
                 virtual void OnSetFocus () {
-                    Shaper::Instance ().flags.Set (Shaper::DisplayFreezePolygonWindow, false);
+                    Shaper::Instance ()->flags.Set (Shaper::DisplayFreezePolygonWindow, false);
                 }
                 virtual bool IsChecked () const {
-                    return !Shaper::Instance ().flags.Test (Shaper::DisplayFreezePolygonWindow);
+                    return !Shaper::Instance ()->flags.Test (Shaper::DisplayFreezePolygonWindow);
                 }
             };
 

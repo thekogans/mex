@@ -34,7 +34,7 @@ namespace thekogans {
                 }
 
                 SpeedBarWindow::SpeedBarWindow () : speedBar (0),
-                    font (util::FontMgr::Instance ().GetSystemFont ()) {
+                    font (util::FontMgr::Instance ()->GetSystemFont ()) {
                     assert (font != 0);
                     for (util::ui32 i = 0; i < SB_COLOR_COUNT; ++i) {
                         colors[i] = opengl::DefaultPalette[defaultColors[i]];
@@ -128,8 +128,8 @@ namespace thekogans {
                         return -1;
                     }
                     openGLRC.reset (new win::util::OpenGLRC (m_hWnd));
-                    assert (core::UI::Instance ().speedBarWindow == 0);
-                    core::UI::Instance ().speedBarWindow = this;
+                    assert (core::UI::Instance ()->speedBarWindow == 0);
+                    core::UI::Instance ()->speedBarWindow = this;
                     return 0;
                 }
 

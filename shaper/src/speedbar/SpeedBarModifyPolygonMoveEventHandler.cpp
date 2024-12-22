@@ -37,17 +37,22 @@ namespace thekogans {
         namespace shaper {
 
             namespace {
-                const char *IDS_MODIFYPOLYGONMOVE_0 = "Select polygon to move, [Tab] = change cursor [Shift] = clone\n";
-                const char *IDS_MODIFYPOLYGONMOVE_2 = "Offsets: x: %s, y: %s";
+                const char *IDS_MODIFYPOLYGONMOVE_0 =
+                    "Select polygon to move, [Tab] = change cursor [Shift] = clone\n";
+                const char *IDS_MODIFYPOLYGONMOVE_2 =
+                    "Offsets: x: %s, y: %s";
             }
 
-            class SpeedBarModifyPolygonMoveEventHandler : public core::SpeedBar::Item::ToolEventHandler {
-                THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarModifyPolygonMoveEventHandler)
+            class SpeedBarModifyPolygonMoveEventHandler :
+                    public core::SpeedBar::Item::ToolEventHandler {
+                THEKOGANS_MEX_CORE_DECLARE_SPEEDBAR_ITEM_EVENT_HANDLER (
+                    SpeedBarModifyPolygonMoveEventHandler)
 
             private:
                 // Move polygon or a selection set of polygons.
                 class Tool : public core::Tool {
-                    THEKOGANS_MEX_CORE_DECLARE_TOOL (SpeedBarModifyPolygonMoveEventHandlerTool)
+                    THEKOGANS_MEX_CORE_DECLARE_TOOL (
+                        SpeedBarModifyPolygonMoveEventHandlerTool)
 
                 private:
                     blas::Point2 start;
@@ -60,22 +65,26 @@ namespace thekogans {
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_MODIFYPOLYGONMOVE_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_MODIFYPOLYGONMOVE_0);
                     }
 
-                    virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                             start = pt;
                             xform = blas::Matrix2::Identity;
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                                     core::GetIOProject ().shaper.polygons2,
-                                    blas::Region2::UniquePtr (new blas::BoundRegion2 (GetPickBound (view, pt))),
+                                    blas::Region2::UniquePtr (
+                                        new blas::BoundRegion2 (GetPickBound (view, pt))),
                                     core::GetIOProject ().shaper.steps);
                                 if (pickInfo.FindFirst ()) {
                                     BeginTransaction ();
@@ -86,7 +95,9 @@ namespace thekogans {
                                 }
                             }
                             else {
-                                GetSelectedPolygons (bezierPolygons, core::GetIOProject ().shaper.selectMask);
+                                GetSelectedPolygons (
+                                    bezierPolygons,
+                                    core::GetIOProject ().shaper.selectMask);
                                 if (!bezierPolygons.empty ()) {
                                     BeginTransaction ();
                                     DrawPolygons2 (view, bezierPolygons, xform);
@@ -99,7 +110,10 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void LButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void LButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 1) {
                             if (bezierPolygons.empty ()) {
                                 UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
@@ -117,7 +131,8 @@ namespace thekogans {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             if (IsClone ()) {
                                 util::OwnerVector<_3ds::io::BezierPolygon2> newBezierPolygons;
-                                for (std::size_t i = 0, count = bezierPolygons.size (); i < count; ++i) {
+                                for (std::size_t i = 0,
+                                         count = bezierPolygons.size (); i < count; ++i) {
                                     _3ds::io::BezierPolygon2::UniquePtr bezierPolygon =
                                         *bezierPolygons[i] * xform;
                                     assert (bezierPolygon.get () != 0);
@@ -139,7 +154,8 @@ namespace thekogans {
                             }
                             else {
                                 ErasePolygons (bezierPolygons, false);
-                                for (std::size_t i = 0, count = bezierPolygons.size (); i < count; ++i) {
+                                for (std::size_t i = 0,
+                                         count = bezierPolygons.size (); i < count; ++i) {
                                     ExecuteAndAddCommand (
                                         command::Command::SharedPtr (
                                             new _3ds::ext::command::BezierPolygon2XformCommand (
@@ -151,7 +167,10 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void RButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void RButtonDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 0) {
                             UpdateState (1, flags | ScrollLockOn | CursorHidden | ViewCaptured);
                         }
@@ -161,14 +180,20 @@ namespace thekogans {
                         }
                     }
 
-                    virtual void RButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void RButtonUp (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
                         }
                     }
 
-                    virtual void MouseMove (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
+                    virtual void MouseMove (
+                            const _3ds::opengl::View &view,
+                            util::ui32 flags,
+                            const blas::Point2 &pt) {
                         if (state == 2) {
                             DrawPolygons2 (view, bezierPolygons, xform);
                             switch (cursor) {
@@ -176,22 +201,29 @@ namespace thekogans {
                                     xform = blas::Matrix2::Translate (pt - start);
                                     break;
                                 case core::CursorMgr::HORIZONTAL_CURSOR:
-                                    xform = blas::Matrix2::Translate (blas::Point2 (pt.x - start.x, 0.0f));
+                                    xform = blas::Matrix2::Translate (
+                                        blas::Point2 (pt.x - start.x, 0.0f));
                                     break;
                                 case core::CursorMgr::VERTICAL_CURSOR:
-                                    xform = blas::Matrix2::Translate (blas::Point2 (0.0f, pt.y - start.y));
+                                    xform = blas::Matrix2::Translate (
+                                        blas::Point2 (0.0f, pt.y - start.y));
                                     break;
                             }
                             DrawPolygons2 (view, bezierPolygons, xform);
                         }
                     }
 
-                    virtual void KeyDown (const _3ds::opengl::View &view, util::ui32 key, util::ui32 repeatCount, util::ui32 flags) {
+                    virtual void KeyDown (
+                            const _3ds::opengl::View &view,
+                            util::ui32 key,
+                            util::ui32 repeatCount,
+                            util::ui32 flags) {
                         if (key == Qt::Key_Tab) {
                             if (state == 2) {
                                 DrawPolygons2 (view, bezierPolygons, xform);
                                 RollbackTransaction ();
-                                core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                                core::UI::Instance ()->viewLayoutWindow->SetMousePosition (
+                                    view.P2D (start));
                                 xform = blas::Matrix2::Identity;
                                 DrawPolygons2 (view, bezierPolygons, xform);
                             }
@@ -206,7 +238,7 @@ namespace thekogans {
                                     cursor = core::CursorMgr::FOURWAY_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
 
@@ -219,8 +251,10 @@ namespace thekogans {
                     virtual void UpdateStatus (core::StatusBar::Item::EventHandler::UI &ui) {
                         if (state == 2) {
                             ui.SetText (IDS_MODIFYPOLYGONMOVE_2,
-                                _3ds::ext::Units (core::GetIOProject ().units).Format (xform.t.x).c_str (),
-                                _3ds::ext::Units (core::GetIOProject ().units).Format (xform.t.y).c_str ());
+                                _3ds::ext::Units (
+                                    core::GetIOProject ().units).Format (xform.t.x).c_str (),
+                                _3ds::ext::Units (
+                                    core::GetIOProject ().units).Format (xform.t.y).c_str ());
                         }
                         else {
                             ui.SetText ("");
@@ -233,7 +267,9 @@ namespace thekogans {
                     ToolEventHandler (module, tool), tool (module) {}
             };
 
-            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (SpeedBarModifyPolygonMoveEventHandler, Shaper)
+            THEKOGANS_MEX_CORE_IMPLEMENT_SPEEDBAR_ITEM_EVENT_HANDLER (
+                SpeedBarModifyPolygonMoveEventHandler,
+                Shaper)
 
         } // namespace shaper
     } // namespace mex

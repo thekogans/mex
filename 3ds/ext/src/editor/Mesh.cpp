@@ -75,7 +75,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, mesh.vertexFlags, xform);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class CalcBoundJob : public util::Vectorizer::Job {
@@ -112,7 +112,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, xform);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }
@@ -162,7 +162,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, mesh.vertexFlags, mesh.xform.Invert ());
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     else {
                         class CalcBoundJob : public util::Vectorizer::Job {
@@ -202,7 +202,7 @@ namespace thekogans {
                                 return vertices.size ();
                             }
                         } job (bound, mesh.vertices, mesh.xform.Invert ());
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     return bound;
                 }

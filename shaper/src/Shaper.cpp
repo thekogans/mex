@@ -24,9 +24,9 @@ namespace thekogans {
 
             THEKOGANS_MEX_CORE_IMPLEMENT_MODULE (Shaper, "2D Shaper")
 
-            Shaper &Shaper::Instance () {
+            Shaper *Shaper::Instance () {
                 static Shaper shaper;
-                return shaper;
+                return &shaper;
             }
 
         } // namespace shaper
@@ -43,7 +43,7 @@ extern "C" _LIB_THEKOGANS_MEX_SHAPER_DECL const core::Module::ModuleInterface &
         virtual ui32 GetMajorVersion () const {return 1;}
         virtual ui32 GetMinorVersion () const {return 0;}
         virtual core::Module *GetModule () const {
-            return &shaper::Shaper::Instance ();
+            return shaper::Shaper::Instance ();
         }
     } static const shaperInterface;
     return shaperInterface;

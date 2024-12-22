@@ -55,8 +55,8 @@ namespace thekogans {
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
-                        core::UI::Instance ().consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_0);
+                        core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -78,7 +78,7 @@ namespace thekogans {
                     virtual void LButtonUp (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
                         if (state == 1) {
                             UpdateState (2, flags | ScrollLockOff | CursorVisible);
-                            core::UI::Instance ().consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_1);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_1);
                         }
                         else if (state == 3) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
@@ -97,7 +97,7 @@ namespace thekogans {
                             else {
                                 AbortTransaction ();
                             }
-                            core::UI::Instance ().consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_0);
                         }
                     }
 
@@ -116,7 +116,7 @@ namespace thekogans {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
-                            core::UI::Instance ().consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_DISPLAYFREEZEPOLYGONCIRCLE_0);
                         }
                     }
 

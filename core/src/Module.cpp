@@ -41,28 +41,30 @@ namespace thekogans {
             Module *Module::GetModuleByName (const std::string &name) {
                 for (std::size_t i = 0, count = modules.size (); i < count; ++i) {
                     if (modules[i].first == name) {
-                        assert (modules[i].second != 0);
+                        assert (modules[i].second != nullptr);
                         return modules[i].second;
                     }
                 }
-                return 0;
+                return nullptr;
             }
 
             void Module::SetCurrModule (util::ui32 currModule_) {
                 assert (currModule_ < modules.size ());
                 Module *module = GetCurrModule ();
-                if (module != 0) {
+                if (module != nullptr) {
                     module->KillFocus ();
                 }
                 currModule = currModule_;
                 module = GetCurrModule ();
-                if (module != 0) {
+                if (module != nullptr) {
                     module->SetFocus ();
                 }
             }
 
             namespace {
-                void ParsePlugin (const XERCES_CPP_NAMESPACE::DOMNode &node, Module &module) {
+                void ParsePlugin (
+                        const XERCES_CPP_NAMESPACE::DOMNode &node,
+                        Module &module) {
                     const XERCES_CPP_NAMESPACE::DOMNamedNodeMap *attributes = node.getAttributes ();
                     std::string path = util::GetAttributeValue ("path", attributes);
                     util::DynamicLibrary dynamicLibrary;
@@ -75,26 +77,32 @@ namespace thekogans {
                             (_LIB_THEKOGANS_MEX_CORE_API *GetPluginInterfaceProc) ();
                         GetPluginInterfaceProc GetPluginInterface = (GetPluginInterfaceProc)
                             dynamicLibrary.GetProc ("GetPluginInterface");
-                        assert (GetPluginInterface != 0);
+                        assert (GetPluginInterface != nullptr);
                         const Module::PluginInterface &pluginInterface = GetPluginInterface ();
-                        if (pluginInterface.GetMajorVersion () != Module::PluginInterface::MAJOR_VERSION) {
+                        if (pluginInterface.GetMajorVersion () !=
+                                Module::PluginInterface::MAJOR_VERSION) {
                             dynamicLibrary.Unload ();
                             THEKOGANS_UTIL_THROW_STRING_EXCEPTION ("%s", "Major version mismatch.");
                         }
-                        if (pluginInterface.GetMinorVersion () != Module::PluginInterface::MINOR_VERSION) {
-                            assert (UI::Instance ()->consoleWindow != 0);
+                        if (pluginInterface.GetMinorVersion () !=
+                                Module::PluginInterface::MINOR_VERSION) {
+                            assert (UI::Instance ()->consoleWindow != nullptr);
                             UI::Instance ()->consoleWindow->Print (
                                 "'%s': *** WARNING ***, plugin '%s' minor version mismatch (%u - %u).\n",
-                                module.GetName (), path.c_str (), pluginInterface.GetMinorVersion (),
+                                module.GetName (),
+                                path.c_str (),
+                                pluginInterface.GetMinorVersion (),
                                 Module::PluginInterface::MINOR_VERSION);
                         }
                         pluginInterface.LoadPlugins (module);
                     }
                     THEKOGANS_UTIL_CATCH (util::Exception) {
-                        assert (UI::Instance ()->consoleWindow != 0);
+                        assert (UI::Instance ()->consoleWindow != nullptr);
                         UI::Instance ()->consoleWindow->Print (
                             "'%s': Unable to load plugin '%s' (%s).\n",
-                            module.GetName (), path.c_str (), exception.what ());
+                            module.GetName (),
+                            path.c_str (),
+                            exception.what ());
                     }
                 }
 
@@ -106,7 +114,8 @@ namespace thekogans {
                     std::string toolBarPath = util::GetAttributeValue ("toolBarPath", attributes);
                     std::string speedBarPath = util::GetAttributeValue ("speedBarPath", attributes);
                     std::string statusBarPath = util::GetAttributeValue ("statusBarPath", attributes);
-                    std::string acceleratorsPath = util::GetAttributeValue ("acceleratorsPath", attributes);
+                    std::string acceleratorsPath =
+                        util::GetAttributeValue ("acceleratorsPath", attributes);
                     std::string filtersPath = util::GetAttributeValue ("filtersPath", attributes);
                     std::string _default = util::GetAttributeValue ("default", attributes);
                     util::DynamicLibrary dynamicLibrary;
@@ -119,22 +128,26 @@ namespace thekogans {
                             (_LIB_THEKOGANS_MEX_CORE_API *GetModuleInterfaceProc) (const char *name);
                         GetModuleInterfaceProc GetModuleInterface = (GetModuleInterfaceProc)
                             dynamicLibrary.GetProc ("GetModuleInterface");
-                        assert (GetModuleInterface != 0);
-                        const Module::ModuleInterface &moduleInterface = GetModuleInterface (name.c_str ());
-                        if (moduleInterface.GetMajorVersion () != Module::ModuleInterface::MAJOR_VERSION) {
+                        assert (GetModuleInterface != nullptr);
+                        const Module::ModuleInterface &moduleInterface =
+                            GetModuleInterface (name.c_str ());
+                        if (moduleInterface.GetMajorVersion () !=
+                                Module::ModuleInterface::MAJOR_VERSION) {
                             dynamicLibrary.Unload ();
                             THEKOGANS_UTIL_THROW_STRING_EXCEPTION ("%s", "Major version mismatch.");
                         }
-                        if (moduleInterface.GetMinorVersion () != Module::ModuleInterface::MINOR_VERSION) {
-                            assert (UI::Instance ()->consoleWindow != 0);
+                        if (moduleInterface.GetMinorVersion () !=
+                                Module::ModuleInterface::MINOR_VERSION) {
+                            assert (UI::Instance ()->consoleWindow != nullptr);
                             UI::Instance ()->consoleWindow->Print (
                                 "*** WARNING ***, module '%s' minor version mismatch (%u - %u).\n",
-                                path.c_str (), moduleInterface.GetMinorVersion (),
+                                path.c_str (),
+                                moduleInterface.GetMinorVersion (),
                                 Module::ModuleInterface::MINOR_VERSION);
                         }
                         Module *module = moduleInterface.GetModule ();
-                        assert (module != 0);
-                        if (module != 0) {
+                        assert (module != nullptr);
+                        if (module != nullptr) {
                             if (_default == "true") {
                                 Module::currModule = Module::modules.size ();
                             }
@@ -142,7 +155,8 @@ namespace thekogans {
                             const XERCES_CPP_NAMESPACE::DOMNodeList *children = node.getChildNodes ();
                             for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                                 const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
-                                if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
+                                if (child.getNodeType () ==
+                                        XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
                                         util::XMLChTostring (child.getNodeName ()) == "plugin") {
                                     ParsePlugin (child, *module);
                                 }
@@ -150,15 +164,21 @@ namespace thekogans {
                             // Now that plugins had a chance to load, and register
                             // themselves, load the module UI. In the process this
                             // should hookup all event handlers.
-                            module->LoadUI (menuBarPath, toolBarPath, speedBarPath,
-                                statusBarPath, acceleratorsPath, filtersPath);
+                            module->LoadUI (
+                                menuBarPath,
+                                toolBarPath,
+                                speedBarPath,
+                                statusBarPath,
+                                acceleratorsPath,
+                                filtersPath);
                         }
                     }
                     THEKOGANS_UTIL_CATCH (util::Exception) {
-                        assert (UI::Instance ()->consoleWindow != 0);
+                        assert (UI::Instance ()->consoleWindow != nullptr);
                         UI::Instance ()->consoleWindow->Print (
                             "Unable to load module '%s' (%s).\n",
-                            path.c_str (), exception.what ());
+                            path.c_str (),
+                            exception.what ());
                     }
                 }
             }
@@ -175,16 +195,17 @@ namespace thekogans {
                     for (std::size_t i = 0, count = children->getLength (); i < count; ++i) {
                         const XERCES_CPP_NAMESPACE::DOMNode &child = *children->item (i);
                         if (child.getNodeType () == XERCES_CPP_NAMESPACE::DOMNode::ELEMENT_NODE &&
-                            util::XMLChTostring (child.getNodeName ()) == "module") {
+                                util::XMLChTostring (child.getNodeName ()) == "module") {
                             ParseModule (child);
                         }
                     }
                 }
-                THEKOGANS_UTIL_CATCH (std::string) {
-                    assert (UI::Instance ()->consoleWindow != 0);
+                THEKOGANS_UTIL_CATCH (util::Exception) {
+                    assert (UI::Instance ()->consoleWindow != nullptr);
                     UI::Instance ()->consoleWindow->Print (
                         "Module: Unable to load '%s'.\n\t%s\n",
-                        path.c_str (), exception.c_str ());
+                        path.c_str (),
+                        exception.what ());
                 }
                 // Guard against default not being set.
                 if (Module::currModule == util::NIDX && !Module::modules.empty ()) {
@@ -220,8 +241,10 @@ namespace thekogans {
                 viewLayout->KillFocus ();
             }
 
-            bool Module::TranslateAccelerator (util::ui32 ch, util::ui32 flags) {
-                if (accelerators.get () != 0) {
+            bool Module::TranslateAccelerator (
+                    util::ui32 ch,
+                    util::ui32 flags) {
+                if (accelerators.get () != nullptr) {
                     const std::vector<Accelerators::Item *> &items = accelerators->GetItems ();
                     for (std::size_t i = 0, count = items.size (); i < count; ++i) {
                         if (items[i]->HandleEvent (ch, flags)) {

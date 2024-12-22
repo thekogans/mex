@@ -107,8 +107,8 @@ namespace thekogans {
                         return -1;
                     }
                     frameBarWindow.SetFont ((HFONT)SendMessage (WM_GETFONT));
-                    assert (core::UI::Instance ().statusBarWindow == 0);
-                    core::UI::Instance ().statusBarWindow = this;
+                    assert (core::UI::Instance ()->statusBarWindow == 0);
+                    core::UI::Instance ()->statusBarWindow = this;
                     return 0;
                 }
 

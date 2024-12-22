@@ -69,9 +69,9 @@ namespace thekogans {
                     }
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (cursor);
-                        assert (core::UI::Instance ().consoleWindow != 0);
-                        core::UI::Instance ().consoleWindow->Print (IDS_MODIFYVERTEXMOVE_0);
+                        core::CursorMgr::Instance ()->SetCursor (cursor);
+                        assert (core::UI::Instance ()->consoleWindow != 0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_MODIFYVERTEXMOVE_0);
                     }
 
                     virtual void LButtonDown (
@@ -85,7 +85,7 @@ namespace thekogans {
                             red = blas::Matrix2::Identity;
                             yellow = blas::Matrix2::Identity;
                             bezierPolygonVertices.deleteAndClear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Vertex,
                                     core::GetIOProject ().shaper.polygons2,
@@ -191,7 +191,7 @@ namespace thekogans {
                             }
                         }
                         else if (state == 3) {
-                            if (Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                                 XformVertices (bezierPolygonVertices, xform);
                                 UnhideVertexSegments (bezierPolygonVertices);
@@ -225,7 +225,7 @@ namespace thekogans {
                         else if (state == 2) {
                             UpdateState (3, flags | ScrollLockOn);
                             /*
-                            if (Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 HideVertexSegments (bezierPolygonVertices);
                                 DrawSegmentListGDIS (view, bezierPolygonSegments, xform, GetEditor ()->GetSelset ());
                                 DrawSegmentListGDI (view, bezierPolygonSegments, true);
@@ -277,7 +277,7 @@ namespace thekogans {
                         }
                         else if (state == 4) {
                             DrawVertexSegments2 (view, bezierPolygonVertices, red, yellow);
-                            core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                            core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                             if (bezierPolygonVertices[0]->bezierPolygon.vertices[
                                     bezierPolygonVertices[0]->vertexIndex].yellow.IsZero ()) {
                                 yellow *= blas::Matrix2::Translate (pt - start);
@@ -306,7 +306,7 @@ namespace thekogans {
                             if (state == 2) {
                                 DrawVertexSegments2 (view, bezierPolygonVertices, xform);
                                 RollbackTransaction ();
-                                core::UI::Instance ().viewLayoutWindow->SetMousePosition (view.P2D (start));
+                                core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                                 xform = blas::Matrix2::Identity;
                                 DrawVertexSegments2 (view, bezierPolygonVertices, xform);
                             }
@@ -321,7 +321,7 @@ namespace thekogans {
                                     cursor = core::CursorMgr::FOURWAY_CURSOR;
                                     break;
                             }
-                            core::CursorMgr::Instance ().SetCursor (cursor);
+                            core::CursorMgr::Instance ()->SetCursor (cursor);
                         }
                     }
 

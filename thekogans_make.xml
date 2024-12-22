@@ -20,6 +20,16 @@
     </constants>
   </if>
   <dependencies>
+    <!-- mex depends on these plugins, but does not link against them. -->
+    <dependency organization = "thekogans"
+                name = "mex_shaper"/>
+    <dependency organization = "thekogans"
+                name = "mex_lofter"/>
+    <dependency organization = "thekogans"
+                name = "mex_editor"/>
+    <dependency organization = "thekogans"
+                name = "mex_keyframer"/>
+    <!-- -->
     <dependency organization = "thekogans"
                 name = "util"/>
     <dependency organization = "thekogans"
@@ -44,16 +54,6 @@
                 name = "mex_core"/>
     <dependency organization = "thekogans"
                 name = "mex_common"/>
-    <!-- mex depends on these plugins, but does not link against them.
-    <dependency organization = "thekogans"
-                name = "mex_shaper"/>
-    <dependency organization = "thekogans"
-                name = "mex_lofter"/>
-    <dependency organization = "thekogans"
-                name = "mex_editor"/>
-    <dependency organization = "thekogans"
-                name = "mex_keyframer"/>
-    -->
     <toolchain organization = "thekogans"
                name = "xerces"/>
     <choose>

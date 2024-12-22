@@ -132,7 +132,7 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_SHAPER_DECL BezierPolygonSegment {
                 typedef std::unique_ptr<BezierPolygonSegment> UniquePtr;
-                THEKOGANS_UTIL_DECLARE_HEAP (BezierPolygonSegment)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
                 _3ds::io::BezierPolygon2 &bezierPolygon;
                 std::size_t vertexIndex1;
                 std::size_t vertexIndex2;
@@ -185,7 +185,7 @@ namespace thekogans {
 
             struct _LIB_THEKOGANS_MEX_SHAPER_DECL BezierPolygonVertex {
                 typedef std::unique_ptr<BezierPolygonVertex> UniquePtr;
-                THEKOGANS_UTIL_DECLARE_HEAP (BezierPolygonVertex)
+                THEKOGANS_UTIL_DECLARE_STD_ALLOCATOR_FUNCTIONS
                 _3ds::io::BezierPolygon2 &bezierPolygon;
                 std::size_t vertexIndex;
                 BezierPolygonVertex (

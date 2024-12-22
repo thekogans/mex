@@ -118,7 +118,7 @@ namespace thekogans {
                                 return faces.size ();
                             }
                         } job (faceNormals, vertices, mesh.faces);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                     if (!mesh.faceSmoothGroups.empty ()) {
                         assert (mesh.faceSmoothGroups.size () == mesh.faces.size ());
@@ -184,7 +184,7 @@ namespace thekogans {
                                         return vertexNormals.size ();
                                     }
                                 } job (vertexNormals, oneNormalPerVertex);
-                                util::GlobalVectorizer::Instance ()->Execute (job);
+                                util::Vectorizer::Instance ()->Execute (job);
                             }
                             if (!vertexNormals.empty () && oneNormalPerVertex) {
                                 vertexNormals2.resize (vertexNormals.size ());
@@ -212,7 +212,7 @@ namespace thekogans {
                                         return vertexNormals.size ();
                                     }
                                 } job (vertexNormals2, vertexNormals);
-                                util::GlobalVectorizer::Instance ()->Execute (job);
+                                util::Vectorizer::Instance ()->Execute (job);
                                 vertexNormals.deleteAndClear ();
                             }
                         }

@@ -38,8 +38,8 @@ namespace thekogans {
     namespace mex {
         namespace shaper {
 
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (BezierPolygonSegment)
-            THEKOGANS_UTIL_IMPLEMENT_HEAP (BezierPolygonVertex)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (BezierPolygonSegment)
+            THEKOGANS_UTIL_IMPLEMENT_HEAP_FUNCTIONS (BezierPolygonVertex)
 
             // Polygon
 

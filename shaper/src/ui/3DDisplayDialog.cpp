@@ -70,7 +70,7 @@ namespace thekogans {
                 for (const_iterator it = selectedItems.begin (), end = selectedItems.end (); it != end; ++it) {
                     core::GetIOProject ().shaper.meshes.push_back ((*it)->text ().toStdString ());
                 }
-                core::command::DrawViewLayoutFinalOperation (Shaper::Instance ()).Execute ();
+                core::command::DrawViewLayoutFinalOperation (*Shaper::Instance ()).Execute ();
                 core::command::FlipFramebufferFinalOperation ().Execute ();
                 QDialog::accept ();
             }

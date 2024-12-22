@@ -93,7 +93,8 @@ namespace thekogans {
                 public:
                     Viewport2D (
                         const _3ds::opengl::View &view,
-                        const opengl::ui8Color &color_ = _3ds::opengl::SystemXORPalette[_3ds::opengl::WHITE]) :
+                        const opengl::ui8Color &color_ =
+                           _3ds::opengl::SystemXORPalette[_3ds::opengl::WHITE]) :
                         shadeModel (GL_FLAT),
                         lighting (GL_LIGHTING, false),
                         depthTest (GL_DEPTH_TEST, false),

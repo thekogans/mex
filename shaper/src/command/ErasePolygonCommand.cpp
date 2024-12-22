@@ -38,9 +38,9 @@ namespace thekogans {
                         core::GetOpenGLProject ().shaper.GetView (view);
                     assert (openglView.get () != 0);
                     if (openglView.get () != 0) {
-                        core::UI::Instance ().viewLayoutWindow->MakeCurrent ();
+                        core::UI::Instance ()->viewLayoutWindow->MakeCurrent ();
                         opengl::BindFramebuffer bindFramebuffer (
-                            GL_FRAMEBUFFER_EXT, core::UI::Instance ().framebuffer->id);
+                            GL_FRAMEBUFFER_EXT, core::UI::Instance ()->framebuffer->id);
                         opengl::Enable scissorTest (GL_SCISSOR_TEST, true);
                         opengl::Scissor scissor (view.size);
                         // FIXME: jitter?
@@ -63,9 +63,9 @@ namespace thekogans {
                         core::GetOpenGLProject ().shaper.GetView (view);
                     assert (openglView.get () != 0);
                     if (openglView.get () != 0) {
-                        core::UI::Instance ().viewLayoutWindow->MakeCurrent ();
+                        core::UI::Instance ()->viewLayoutWindow->MakeCurrent ();
                         opengl::BindFramebuffer bindFramebuffer (
-                            GL_FRAMEBUFFER_EXT, core::UI::Instance ().framebuffer->id);
+                            GL_FRAMEBUFFER_EXT, core::UI::Instance ()->framebuffer->id);
                         opengl::Enable scissorTest (GL_SCISSOR_TEST, true);
                         opengl::Scissor scissor (view.size);
                         // FIXME: jitter?

@@ -70,7 +70,9 @@ namespace thekogans {
                 }
             }
 
-            void Tool::UpdateState (util::ui32 state_, util::ui32 stateFlags) {
+            void Tool::UpdateState (
+                    util::ui32 state_,
+                    util::ui32 stateFlags) {
                 state = state_;
                 flags = stateFlags & (FLAG_CTRL | FLAG_ALT | FLAG_SHIFT);
                 if (util::Flags32 (stateFlags).Test (CursorVisible)) {

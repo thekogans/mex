@@ -85,13 +85,13 @@ namespace thekogans {
                     // Each one of the above created UI components
                     // initializes its coresponding member in core::UI.
                     // This is just a sanity check.
-                    assert (core::UI::Instance ().menuBarWindow != 0);
-                    assert (core::UI::Instance ().toolBarWindow != 0);
-                    assert (core::UI::Instance ().viewLayoutWindow != 0);
-                    assert (core::UI::Instance ().speedBarWindow != 0);
-                    assert (core::UI::Instance ().consoleWindow != 0);
-                    assert (core::UI::Instance ().statusBarWindow != 0);
-                    assert (core::UI::Instance ().frameBarWindow != 0);
+                    assert (core::UI::Instance ()->menuBarWindow != 0);
+                    assert (core::UI::Instance ()->toolBarWindow != 0);
+                    assert (core::UI::Instance ()->viewLayoutWindow != 0);
+                    assert (core::UI::Instance ()->speedBarWindow != 0);
+                    assert (core::UI::Instance ()->consoleWindow != 0);
+                    assert (core::UI::Instance ()->statusBarWindow != 0);
+                    assert (core::UI::Instance ()->frameBarWindow != 0);
 
                     EnableDocking (CBRS_ALIGN_ANY);
 
@@ -108,16 +108,16 @@ namespace thekogans {
                     win::mfc::WindowPlacement ().Restore ("Settings", this);
                     LoadBarState ("BarState");
                     win::mfc::SizingControlBar::GlobalLoadState ("BarState");
-                    core::UI::Instance ().menuBarWindow->Restore ("MenuBarWindow");
-                    core::UI::Instance ().toolBarWindow->Restore ("ToolBarWindow");
-                    core::UI::Instance ().viewLayoutWindow->Restore ("ViewLayoutWindow");
-                    core::UI::Instance ().speedBarWindow->Restore ("SpeedBarWindow");
-                    core::UI::Instance ().consoleWindow->Restore ("ConsoleWindow");
-                    core::UI::Instance ().statusBarWindow->Restore ("StatusBarWindow");
-                    core::UI::Instance ().frameBarWindow->Restore ("FrameBarWindow");
+                    core::UI::Instance ()->menuBarWindow->Restore ("MenuBarWindow");
+                    core::UI::Instance ()->toolBarWindow->Restore ("ToolBarWindow");
+                    core::UI::Instance ()->viewLayoutWindow->Restore ("ViewLayoutWindow");
+                    core::UI::Instance ()->speedBarWindow->Restore ("SpeedBarWindow");
+                    core::UI::Instance ()->consoleWindow->Restore ("ConsoleWindow");
+                    core::UI::Instance ()->statusBarWindow->Restore ("StatusBarWindow");
+                    core::UI::Instance ()->frameBarWindow->Restore ("FrameBarWindow");
 
-                    assert (core::UI::Instance ().mainFrameWindow == 0);
-                    core::UI::Instance ().mainFrameWindow = this;
+                    assert (core::UI::Instance ()->mainFrameWindow == 0);
+                    core::UI::Instance ()->mainFrameWindow = this;
 
                     return 0;
                 }
@@ -126,13 +126,13 @@ namespace thekogans {
                     win::mfc::WindowPlacement ().Save ("Settings", this);
                     SaveBarState ("BarState");
                     win::mfc::SizingControlBar::GlobalSaveState ("BarState");
-                    core::UI::Instance ().menuBarWindow->Save ("MenuBarWindow");
-                    core::UI::Instance ().toolBarWindow->Save ("ToolBarWindow");
-                    core::UI::Instance ().viewLayoutWindow->Save ("ViewLayoutWindow");
-                    core::UI::Instance ().speedBarWindow->Save ("SpeedBarWindow");
-                    core::UI::Instance ().consoleWindow->Save ("ConsoleWindow");
-                    core::UI::Instance ().statusBarWindow->Save ("StatusBarWindow");
-                    core::UI::Instance ().frameBarWindow->Save ("FrameBarWindow");
+                    core::UI::Instance ()->menuBarWindow->Save ("MenuBarWindow");
+                    core::UI::Instance ()->toolBarWindow->Save ("ToolBarWindow");
+                    core::UI::Instance ()->viewLayoutWindow->Save ("ViewLayoutWindow");
+                    core::UI::Instance ()->speedBarWindow->Save ("SpeedBarWindow");
+                    core::UI::Instance ()->consoleWindow->Save ("ConsoleWindow");
+                    core::UI::Instance ()->statusBarWindow->Save ("StatusBarWindow");
+                    core::UI::Instance ()->frameBarWindow->Save ("FrameBarWindow");
                     CFrameWnd::OnClose ();
                 }
 
@@ -149,7 +149,7 @@ namespace thekogans {
                 }
 
                 void MainFrame::OnEnterMenuLoop (BOOL bIsTrackPopupMenu) {
-                    core::CursorMgr::Instance ().OnMouseMove (blas::Point (-1, -1));
+                    core::CursorMgr::Instance ()->OnMouseMove (blas::Point (-1, -1));
                 }
 
                 void MainFrame::OnGetMinMaxInfo (LPMINMAXINFO lpMMI) {

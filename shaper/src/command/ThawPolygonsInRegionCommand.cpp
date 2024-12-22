@@ -34,7 +34,7 @@ namespace thekogans {
             bool ThawPolygonsInRegionCommand::Execute () {
                 std::vector<_3ds::io::BezierPolygon2 *> bezierPolygons;
                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
-                    Shaper::Instance ().flags.Test (Shaper::DisplayFreezePolygonWindow) ?
+                    Shaper::Instance ()->flags.Test (Shaper::DisplayFreezePolygonWindow) ?
                         _3ds::ext::BezierPolygon2::PickInfo::PolygonWindow :
                         _3ds::ext::BezierPolygon2::PickInfo::Polygon,
                     core::GetIOProject ().shaper.polygons2, std::move (region),

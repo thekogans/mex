@@ -291,8 +291,8 @@ namespace thekogans {
                                 explicit FinalOperation (_3ds::io::ViewLayout &viewLayout_) : viewLayout (viewLayout_) {}
                                 virtual bool Execute () {
                                     core::HideCursor hideCursor;
-                                    assert (core::UI::Instance ().viewLayoutWindow != 0);
-                                    core::UI::Instance ().viewLayoutWindow->Draw ();
+                                    assert (core::UI::Instance ()->viewLayoutWindow != 0);
+                                    core::UI::Instance ()->viewLayoutWindow->Draw ();
                                     return true;
                                 }
                             };
@@ -317,7 +317,7 @@ namespace thekogans {
                     afx_msg void IDSingle () {
                         SetLayout (_3ds::io::ViewLayout::Layout::Single);
                     }
-                    
+
                     afx_msg void IDTwoVert () {
                         SetLayout (_3ds::io::ViewLayout::Layout::TwoVert);
                     }

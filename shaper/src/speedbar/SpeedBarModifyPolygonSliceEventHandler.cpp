@@ -134,7 +134,7 @@ namespace MEX {
                     for (ui32 i = 0; i < bezierPolygons.GetCount (); ++i) {
                         bezierPolygons[i]->Xform (xform);
                         bezierPolygons[i]->Slice (tempBezierPolygons);
-                        for (ui32 j=0 ; j<tempBezierPolygons.GetCount () ; ++j) {
+                        for (ui32 j = 0 ; j < tempBezierPolygons.GetCount (); ++j) {
                             tempBezierPolygons[j]->Xform (ixform);
                             newBezierPolygons.Add (tempBezierPolygons[j]);
                         }

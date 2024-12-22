@@ -62,7 +62,7 @@ namespace thekogans {
                                 return element.faces.size ();
                             }
                         } job (*this);
-                        util::GlobalVectorizer::Instance ()->Execute (job);
+                        util::Vectorizer::Instance ()->Execute (job);
                     }
                 }
 
@@ -126,7 +126,7 @@ namespace thekogans {
                             return element.faces.size ();
                         }
                     } job (*this, vertices, normals, flat);
-                    util::GlobalVectorizer::Instance ()->Execute (job);
+                    util::Vectorizer::Instance ()->Execute (job);
                 }
 
                 void Element::Draw () const {

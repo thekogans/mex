@@ -92,8 +92,8 @@ namespace thekogans {
                     if (CMenuBar::OnCreate (lpCreateStruct) == -1) {
                         return -1;
                     }
-                    assert (core::UI::Instance ().menuBarWindow == 0);
-                    core::UI::Instance ().menuBarWindow = this;
+                    assert (core::UI::Instance ()->menuBarWindow == 0);
+                    core::UI::Instance ()->menuBarWindow = this;
                     return 0;
                 }
 

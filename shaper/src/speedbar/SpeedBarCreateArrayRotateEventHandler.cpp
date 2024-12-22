@@ -68,9 +68,9 @@ namespace thekogans {
                         rotate (true) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetPickCursor (
+                        core::CursorMgr::Instance ()->SetPickCursor (
                             core::GetIOProject ().programConfiguration.pickBoxSize);
-                        core::UI::Instance ().consoleWindow->Print (IDC_CREATEARRAYROTATE_0);
+                        core::UI::Instance ()->consoleWindow->Print (IDC_CREATEARRAYROTATE_0);
                     }
 
                     virtual void LButtonDown (const _3ds::opengl::View &view, util::ui32 flags, const blas::Point2 &pt) {
@@ -81,7 +81,7 @@ namespace thekogans {
                             start = pt;
                             xform = blas::Matrix2::Identity;
                             bezierPolygons.clear ();
-                            if (IsSelect () || !Shaper::Instance ().flags.Test (Shaper::Selected)) {
+                            if (IsSelect () || !Shaper::Instance ()->flags.Test (Shaper::Selected)) {
                                 bound = GetPickBound (view, pt);
                                 _3ds::ext::BezierPolygon2::PickInfo pickInfo (
                                     _3ds::ext::BezierPolygon2::PickInfo::Polygon,
@@ -93,7 +93,7 @@ namespace thekogans {
                                         core::GetIOProject ().shaper.polygons2[pickInfo.polygonIndex];
                                     bound = _3ds::ext::BezierPolygon2 (*bezierPolygon).GetBound (
                                         core::GetIOProject ().shaper.steps);
-                                    axis = Shaper::Instance ().flags.Test (Shaper::UseLocalAxis) ?
+                                    axis = Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis) ?
                                         bound.Center () : core::GetIOProject ().shaper.axis.axis;
                                     core::DrawBound2 (view, bound, xform);
                                     bezierPolygons.push_back (bezierPolygon);
@@ -103,7 +103,7 @@ namespace thekogans {
                                 GetSelectedPolygons (bezierPolygons, core::GetIOProject ().shaper.selectMask);
                                 if (!bezierPolygons.empty ()) {
                                     bound = GetPolygonsBound (bezierPolygons);
-                                    axis = Shaper::Instance ().flags.Test (Shaper::UseLocalAxis) ?
+                                    axis = Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis) ?
                                         bound.Center () : core::GetIOProject ().shaper.axis.axis;
                                     core::DrawBound2 (view, bound, xform);
                                 }
@@ -144,7 +144,7 @@ namespace thekogans {
                                             blas::Matrix2::Translate (axis);
                                     }
                                     else {
-                                        if (Shaper::Instance ().flags.Test (Shaper::UseLocalAxis)) {
+                                        if (Shaper::Instance ()->flags.Test (Shaper::UseLocalAxis)) {
                                             xform = blas::Matrix2::Identity;
                                         }
                                         else {
@@ -187,7 +187,7 @@ namespace thekogans {
                             core::DrawBound2 (view, bound, xform);
                             blas::Point d1 = view.P2D (pt);
                             blas::Point d2 = view.P2D (start);
-                            core::UI::Instance ().viewLayoutWindow->SetMousePosition (d2);
+                            core::UI::Instance ()->viewLayoutWindow->SetMousePosition (d2);
                             theta += ((util::f32)d1.x - d2.x) * 0.25f;
                             util::CLAMP (theta, -180.0f, 180.0f);
                             theta2 = core::GetIOProject ().drawingAids.useAngleSnap ?

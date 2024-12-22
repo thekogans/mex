@@ -37,8 +37,8 @@ namespace thekogans {
                     if (CRichEditCtrl::OnCreate (lpCreateStruct) == -1) {
                         return -1;
                     }
-                    assert (core::UI::Instance ().consoleWindow == 0);
-                    core::UI::Instance ().consoleWindow = this;
+                    assert (core::UI::Instance ()->consoleWindow == 0);
+                    core::UI::Instance ()->consoleWindow = this;
                     return 0;
                 }
 

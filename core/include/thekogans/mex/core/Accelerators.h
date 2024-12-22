@@ -43,10 +43,14 @@ namespace thekogans {
                         typedef EventHandler *(*Factory) (Module &);
                         typedef std::map<std::string, Factory> Map;
 
-                        static EventHandler *Get (const std::string &eventHandler, Module &module);
+                        static EventHandler *Get (
+                            const std::string &eventHandler,
+                            Module &module);
 
                         struct _LIB_THEKOGANS_MEX_CORE_DECL MapInitializer {
-                            MapInitializer (const std::string &eventHandler, Factory factory);
+                            MapInitializer (
+                                const std::string &eventHandler,
+                                Factory factory);
                         };
 
                         virtual ~EventHandler () {}
@@ -60,12 +64,18 @@ namespace thekogans {
                     EventHandler *eventHandler;
 
                 public:
-                    Item (util::ui32 ch_, util::ui32 flags_, EventHandler *eventHandler_) :
-                            ch (ch_), flags (flags_), eventHandler (eventHandler_) {
+                    Item (util::ui32 ch_,
+                            util::ui32 flags_,
+                            EventHandler *eventHandler_) :
+                            ch (ch_),
+                            flags (flags_),
+                            eventHandler (eventHandler_) {
                         assert (eventHandler != 0);
                     }
 
-                    inline bool HandleEvent (util::ui32 ch_, util::ui32 flags_) {
+                    inline bool HandleEvent (
+                            util::ui32 ch_,
+                            util::ui32 flags_) {
                         if (ch == ch_ && (flags & flags_) == flags) {
                             assert (eventHandler != 0);
                             eventHandler->OnSetFocus ();
@@ -79,9 +89,13 @@ namespace thekogans {
                 util::OwnerVector<Item> items;
 
             public:
-                Accelerators (const std::string &path, Module &module);
+                Accelerators (
+                    const std::string &path,
+                    Module &module);
 
-                inline const std::vector<Item *> &GetItems () const {return items;}
+                inline const std::vector<Item *> &GetItems () const {
+                    return items;
+                }
             };
 
             #define THEKOGANS_MEX_CORE_DECLARE_ACCELERATORS_ITEM_EVENT_HANDLER(type)\

@@ -57,7 +57,7 @@ namespace thekogans {
                 explicit SpeedBarCreateTextFontEventHandler (core::Module &) {}
 
                 virtual void OnSetFocus () {
-                    ChooseFontDialog (core::UI::Instance ().mainFrameWindow->GetQWidget ());
+                    ChooseFontDialog (core::UI::Instance ()->mainFrameWindow->GetQWidget ());
                 }
             };
 
@@ -325,7 +325,7 @@ namespace thekogans {
                                             core::GetIOProject ().shaper.create.fontFile)));
                             }
                             catch (const GlyphOutline::FreeTypeError &error) {
-                                core::UI::Instance ().consoleWindow->Print ("%s\n", error.message.c_str ());
+                                core::UI::Instance ()->consoleWindow->Print ("%s\n", error.message.c_str ());
                                 return;
                             }
                             util::f32 horizontalAdvance = 0;
@@ -349,7 +349,7 @@ namespace thekogans {
                                     horizontalAdvance += glyphHorizontalAdvance;
                                 }
                                 catch (const GlyphOutline::FreeTypeError &error) {
-                                    core::UI::Instance ().consoleWindow->Print (
+                                    core::UI::Instance ()->consoleWindow->Print (
                                         "%s, skipping\n", error.message.c_str ());
                                 }
                             }
@@ -376,15 +376,15 @@ namespace thekogans {
                         else {
                             AbortTransaction ();
                         }
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATETEXT_0);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATETEXT_0);
                     }
 
                 public:
                     Tool (core::Module &module) : core::Tool (module) {}
 
                     virtual void SetFocus () {
-                        core::CursorMgr::Instance ().SetCursor (core::CursorMgr::CROSS_CURSOR);
-                        core::UI::Instance ().consoleWindow->Print (IDS_CREATETEXT_0);
+                        core::CursorMgr::Instance ()->SetCursor (core::CursorMgr::CROSS_CURSOR);
+                        core::UI::Instance ()->consoleWindow->Print (IDS_CREATETEXT_0);
                     }
 
                     virtual void LButtonDown (
@@ -423,7 +423,7 @@ namespace thekogans {
                             const blas::Point2 &pt) {
                         if (state == 1) {
                             UpdateState (2, flags | ScrollLockOff);
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATETEXT_1);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATETEXT_1);
                         }
                         else if (state == 3) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
@@ -452,7 +452,7 @@ namespace thekogans {
                         if (IsOddState ()) {
                             UpdateState (0, flags | ScrollLockOff | CursorVisible | ViewReleased);
                             AbortTransaction ();
-                            core::UI::Instance ().consoleWindow->Print (IDS_CREATETEXT_0);
+                            core::UI::Instance ()->consoleWindow->Print (IDS_CREATETEXT_0);
                         }
                     }
 

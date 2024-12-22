@@ -51,7 +51,7 @@ namespace thekogans {
                 virtual _3ds::ext::Module &GetExtModule () const {return core::GetExtProject ().shaper;}
                 virtual _3ds::opengl::Module &GetOpenGLModule () const {return core::GetOpenGLProject ().shaper;}
 
-                static Shaper &Instance ();
+                static Shaper *Instance ();
             };
 
         } // namespace shaper

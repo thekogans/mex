@@ -20,7 +20,7 @@
 
 #include "thekogans/mex/core/Accelerators.h"
 #include "thekogans/mex/core/Module.h"
-#include "thekogans/mex/core/command/Command.h"
+//#include "thekogans/mex/core/command/Command.h"
 #include "thekogans/mex/core/command/TransactionFactory.h"
 #include "thekogans/mex/common/FileOpenCommand.h"
 

@@ -36,17 +36,28 @@ namespace thekogans {
                 explicit BezierPolygon (const _3ds::io::BezierPolygon2 &bezierPolygon_) :
                     bezierPolygon (bezierPolygon_) {}
 
-                void DrawVertexHandles (const _3ds::opengl::View &view, std::size_t vertexIndex,
-                    const blas::Matrix2 &red, const blas::Matrix2 &yellow) const;
+                void DrawVertexHandles (
+                    const _3ds::opengl::View &view,
+                    std::size_t vertexIndex,
+                    const blas::Matrix2 &red,
+                    const blas::Matrix2 &yellow) const;
 
-                void DrawVertexSegments (const _3ds::opengl::View &view,
-                    std::size_t vertexIndex, const blas::Matrix2 &xform) const;
-                void DrawVertexSegments (const _3ds::opengl::View &view, std::size_t vertexIndex,
-                    const blas::Matrix2 &red, const blas::Matrix2 &yellow) const;
+                void DrawVertexSegments (
+                    const _3ds::opengl::View &view,
+                    std::size_t vertexIndex,
+                    const blas::Matrix2 &xform) const;
+                void DrawVertexSegments (
+                    const _3ds::opengl::View &view,
+                    std::size_t vertexIndex,
+                    const blas::Matrix2 &red,
+                    const blas::Matrix2 &yellow) const;
 
-                void DrawSegment (const _3ds::opengl::View &view,
-                    std::size_t vertexIndex1, const blas::Matrix2 &xform1,
-                    std::size_t vertexIndex2, const blas::Matrix2 &xform2) const;
+                void DrawSegment (
+                    const _3ds::opengl::View &view,
+                    std::size_t vertexIndex1,
+                    const blas::Matrix2 &xform1,
+                    std::size_t vertexIndex2,
+                    const blas::Matrix2 &xform2) const;
                 void DrawSegment (const _3ds::opengl::View &view,
                     std::size_t vertexIndex1, const blas::Matrix2 &red1, const blas::Matrix2 &yellow1,
                     std::size_t vertexIndex2, const blas::Matrix2 &red2, const blas::Matrix2 &yellow2) const;
