@@ -112,25 +112,25 @@ if [ "$TOOLCHAIN_OS" == "Windows" ]; then
 elif [ "$TOOLCHAIN_OS" == "OSX" ]; then
     cp ~/Qt/5.14.0/clang_64/plugins/platforms/libqcocoa.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtCore.framework ]; then
-        cp -r "$TOOLCHAIN_DIR"/frameworks/QtCore.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+        cp -r ~/Qt/5.14.0/clang_64/lib/QtCore.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtDBus.framework ]; then
-        cp -r "$TOOLCHAIN_DIR"/frameworks/QtDBus.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+        cp -r ~/Qt/5.14.0/clang_64/lib/QtDBus.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtGui.framework ]; then
-        cp -r "$TOOLCHAIN_DIR"/frameworks/QtGui.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+        cp -r ~/Qt/5.14.0/clang_64/lib/QtGui.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtOpenGL.framework ]; then
-        cp -r "$TOOLCHAIN_DIR"/frameworks/QtOpenGL.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+        cp -r ~/Qt/5.14.0/clang_64/lib/QtOpenGL.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtPrintSupport.framework ]; then
-        cp -r "$TOOLCHAIN_DIR"/frameworks/QtPrintSupport.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+        cp -r ~/Qt/5.14.0/clang_64/lib/QtPrintSupport.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtWidgets.framework ]; then
-        cp -r "$TOOLCHAIN_DIR"/frameworks/QtWidgets.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
+        cp -r ~/Qt/5.14.0/clang_64/lib/QtWidgets.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_shaper.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_shaper
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_lofter.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_lofter
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_editor.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_editor
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_keyframer.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/thekogans_mex_keyframer
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_shaper.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_lofter.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_editor.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_keyframer.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
 fi
