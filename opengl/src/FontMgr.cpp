@@ -17,7 +17,7 @@
 
 #include "thekogans/mex/opengl/FontMgr.h"
 #include "system10.h"
-#include "arial18.h"
+//#include "arial18.h"
 
 namespace thekogans {
     namespace mex {
@@ -39,7 +39,7 @@ namespace thekogans {
             }
 
             FontMgr::FontMgr () :
-                systemFont (new arial18) {}
+                systemFont (new system10/*arial18*/) {}
 
         } // namespace opengl
     } // namespace mex

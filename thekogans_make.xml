@@ -19,6 +19,13 @@
       </if>
     </constants>
   </if>
+  <!--
+  <if condition = "$(TOOLCHAIN_OS) == 'OSX'">
+    <framework_directories>
+      <framework_directory>/Users/boris/Qt/5.14.0/clang_64/lib</framework_directory>
+    </framework_directories>
+  </if>
+  -->
   <dependencies>
     <!-- mex depends on these plugins, but does not link against them. -->
     <dependency organization = "thekogans"
@@ -73,10 +80,10 @@
         <library>GLU</library>
       </when>
       <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
-        <framework>QtCore</framework>
-        <framework>QtGui</framework>
-        <framework>QtWidgets</framework>
-        <framework>QtOpenGL</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtCore</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtGui</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtWidgets</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtOpenGL</framework>
         <framework>OpenGL</framework>
         <framework>AGL</framework>
       </when>

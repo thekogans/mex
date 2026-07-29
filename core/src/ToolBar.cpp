@@ -19,8 +19,8 @@
 #include <cctype>
 #include "thekogans/util/Buffer.h"
 #include "thekogans/util/ByteSwap.h"
-#include "thekogans/util/XercesUtils.h"
 #include "thekogans/util/Exception.h"
+#include "thekogans/mex/core/XercesUtils.h"
 #include "thekogans/mex/core/UI.h"
 #include "thekogans/mex/core/ViewLayout.h"
 #include "thekogans/mex/core/Module.h"

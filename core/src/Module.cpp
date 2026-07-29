@@ -20,7 +20,7 @@
 #include "thekogans/util/SystemInfo.h"
 #include "thekogans/util/DynamicLibrary.h"
 #include "thekogans/util/Exception.h"
-#include "thekogans/util/XercesUtils.h"
+#include "thekogans/mex/core/XercesUtils.h"
 #include "thekogans/mex/core/UI.h"
 #include "thekogans/mex/core/ViewLayout.h"
 #include "thekogans/mex/core/Module.h"

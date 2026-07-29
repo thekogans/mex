@@ -16,7 +16,7 @@
 // along with libthekogans_mex_core. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
-#include "thekogans/util/XercesUtils.h"
+#include "thekogans/mex/core/XercesUtils.h"
 #include "thekogans/mex/core/UI.h"
 #include "thekogans/mex/core/Module.h"
 #include "thekogans/mex/core/Util.h"
@@ -39,13 +39,15 @@ namespace thekogans {
             }
 
             Accelerators::Item::EventHandler *Accelerators::Item::EventHandler::Get (
-                    const std::string &eventHandler, Module &module) {
+                    const std::string &eventHandler,
+                    Module &module) {
                 Map::iterator it = GetMap ().find (eventHandler);
                 return it != GetMap ().end () ? it->second (module) : 0;
             }
 
             Accelerators::Item::EventHandler::MapInitializer::MapInitializer (
-                    const std::string &eventHandler, Factory factory) {
+                    const std::string &eventHandler,
+                    Factory factory) {
                 std::pair<Item::EventHandler::Map::iterator, bool> result =
                     GetMap ().insert (Item::EventHandler::Map::value_type (eventHandler, factory));
                 assert (result.second);
@@ -98,7 +100,9 @@ namespace thekogans {
                 }
             }
 
-            Accelerators::Accelerators (const std::string &path, Module &module) {
+            Accelerators::Accelerators (
+                    const std::string &path,
+                    Module &module) {
                 util::XercesPlatformInit xercesPlatformInit;
                 util::XercesErrorHandler errorHandler;
                 XERCES_CPP_NAMESPACE::XercesDOMParser parser;

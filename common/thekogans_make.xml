@@ -19,6 +19,13 @@
       </if>
     </constants>
   </if>
+  <!--
+  <if condition = "$(TOOLCHAIN_OS) == 'OSX'">
+    <framework_directories>
+      <framework_directory>/Users/boris/Qt/5.14.0/clang_64/lib</framework_directory>
+    </framework_directories>
+  </if>
+  -->
   <dependencies>
     <dependency organization = "thekogans"
                 name = "util"/>
@@ -60,9 +67,9 @@
         <library>GLU</library>
       </when>
       <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
-        <framework>QtCore</framework>
-        <framework>QtGui</framework>
-        <framework>QtWidgets</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtCore</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtGui</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtWidgets</framework>
         <framework>OpenGL</framework>
         <framework>AGL</framework>
       </when>

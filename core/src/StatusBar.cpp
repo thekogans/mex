@@ -17,7 +17,7 @@
 
 #include <cassert>
 #include <cctype>
-#include "thekogans/util/XercesUtils.h"
+#include "thekogans/mex/core/XercesUtils.h"
 #include "thekogans/mex/core/UI.h"
 #include "thekogans/mex/core/Module.h"
 #include "thekogans/mex/core/StatusBar.h"

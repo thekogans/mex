@@ -18,10 +18,10 @@
 #if !defined (__thekogans_mex_common_AcceleratorsFileOpenEventHandler_h)
 #define __thekogans_mex_common_AcceleratorsFileOpenEventHandler_h
 
+#include "thekogans/mex/command/Command.h"
+#include "thekogans/mex/core/command/TransactionFactory.h"
 #include "thekogans/mex/core/Accelerators.h"
 #include "thekogans/mex/core/Module.h"
-//#include "thekogans/mex/core/command/Command.h"
-#include "thekogans/mex/core/command/TransactionFactory.h"
 #include "thekogans/mex/common/FileOpenCommand.h"
 
 namespace thekogans {

@@ -45,11 +45,22 @@ namespace thekogans {
                 };
                 util::Flags32 flags;
 
-                Shaper () : flags (SelectPolygonWindow | ShapeAssignWindow | DisplayHidePolygonWindow | DisplayFreezePolygonWindow) {}
+                Shaper () :
+                    flags (
+                        SelectPolygonWindow |
+                        ShapeAssignWindow |
+                        DisplayHidePolygonWindow |
+                        DisplayFreezePolygonWindow) {}
 
-                virtual _3ds::io::Module &GetIOModule () const {return core::GetIOProject ().shaper;}
-                virtual _3ds::ext::Module &GetExtModule () const {return core::GetExtProject ().shaper;}
-                virtual _3ds::opengl::Module &GetOpenGLModule () const {return core::GetOpenGLProject ().shaper;}
+                virtual _3ds::io::Module &GetIOModule () const {
+                    return core::GetIOProject ().shaper;
+                }
+                virtual _3ds::ext::Module &GetExtModule () const {
+                    return core::GetExtProject ().shaper;
+                }
+                virtual _3ds::opengl::Module &GetOpenGLModule () const {
+                    return core::GetOpenGLProject ().shaper;
+                }
 
                 static Shaper *Instance ();
             };
