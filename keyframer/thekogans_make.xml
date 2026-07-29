@@ -62,9 +62,9 @@
         <library>GLU</library>
       </when>
       <when condition = "$(TOOLCHAIN_OS) == 'OSX'">
-        <framework>QtCore</framework>
-        <framework>QtGui</framework>
-        <framework>QtWidgets</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtCore</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtGui</framework>
+        <framework path = "/Users/boris/Qt/5.14.0/clang_64/lib">QtWidgets</framework>
         <framework>OpenGL</framework>
         <framework>AGL</framework>
       </when>
