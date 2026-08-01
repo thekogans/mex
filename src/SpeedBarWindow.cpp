@@ -29,7 +29,7 @@
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QScrollBar>
 #include "thekogans/util/Types.h"
-#include "thekogans/mex/opengl/Font.h"
+#include "thekogans/mex/opengl/Font2.h"
 #include "thekogans/mex/opengl/Viewport2D.h"
 #include "thekogans/mex/opengl/DrawBuffer.h"
 #include "thekogans/mex/opengl/ClearColor.h"
@@ -60,7 +60,9 @@ namespace thekogans {
         SpeedBarWindow::SpeedBarWindow (QWidget *parent) :
                 QGLWidget (parent),
                 speedBar (0),
-                font (opengl::FontMgr::Instance ()->GetSystemFont ()) {
+                font (0) {
+            makeCurrent ();
+            font = new opengl::Font2 ("fonts/SpeedBar.ttf", 50);
             assert (font != 0);
             setObjectName ("SpeedBarWindow");
             setMouseTracking (true);
@@ -333,7 +335,7 @@ namespace thekogans {
                 }
             } ui (*item);
             item->eventHandler->OnUpdateUI (ui);
-            opengl::Color color_ (
+            opengl::ui8Color color_ (
                 ui.enabled ?
                     !item->children.empty () ?
                         colors[SB_COLOR_POPUP] :
@@ -343,9 +345,9 @@ namespace thekogans {
             util::i32 y =
                 HeightInPixels () - (startLine - speedBar->origin.y + 1) * font->GetHeight ();
             if (ui.checked) {
-                opengl::Font (font).DrawText (x - font->GetStringWidth ("*"), y, "*");
+                font->DrawText ("*", x - font->GetStringWidth ("*"), y, color_);
             }
-            opengl::Font (font).DrawText (x, y, item->text.c_str ());
+            font->DrawText (item->text.c_str (), x, y, color_);
         }
 
     } // namespace mex

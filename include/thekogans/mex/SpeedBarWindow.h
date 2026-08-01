@@ -32,7 +32,7 @@
 #include "thekogans/util/Constants.h"
 #include "thekogans/mex/blas/Rect.h"
 #include "thekogans/mex/opengl/ui8Color.h"
-#include "thekogans/mex/opengl/FontMgr.h"
+#include "thekogans/mex/opengl/Font2.h"
 #include "thekogans/mex/3ds/opengl/DefaultPalette.h"
 #include "thekogans/mex/core/UI.h"
 #include "thekogans/mex/core/SpeedBar.h"
@@ -56,7 +56,7 @@ namespace thekogans {
 
         protected:
             core::SpeedBar *speedBar;
-            const opengl::FontMgr::Font *font;
+            opengl::Font2 *font;
             opengl::ui8Color colors[SB_COLOR_COUNT];
             struct HitTestInfo {
                 core::SpeedBar::Item *item;
@@ -87,12 +87,17 @@ namespace thekogans {
 
         private:
             void UpdateScrollBars ();
-            bool HitTest (const QPoint &pt, HitTestInfo &hitTestInfo);
+            bool HitTest (
+                const QPoint &pt,
+                HitTestInfo &hitTestInfo);
             void RemoveFlyby ();
             util::ui32 GetWidth () const;
             util::ui32 GetHeight () const;
-            void DrawItem (core::SpeedBar::Item *item, util::i32 startLine,
-                util::i32 level, const opengl::ui8Color &color);
+            void DrawItem (
+                core::SpeedBar::Item *item,
+                util::i32 startLine,
+                util::i32 level,
+                const opengl::ui8Color &color);
             inline int WidthInPixels () const {
                 return width () * devicePixelRatio ();
             }
