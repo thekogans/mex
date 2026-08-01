@@ -105,10 +105,10 @@ if [ "$TOOLCHAIN_OS" == "Windows" ]; then
     else
         cp /c/Qt/5.14.0/msvc2017_64/plugins/platforms/qwindows.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
     fi
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_shaper.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_lofter.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_editor.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_keyframer.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+    cp shaper/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_shaper.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+    cp lofter/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_lofter.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+    cp editor/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_editor.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+    cp keyframer/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_keyframer.0.1.0.dll bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
 elif [ "$TOOLCHAIN_OS" == "OSX" ]; then
     cp ~/Qt/5.14.0/clang_64/plugins/platforms/libqcocoa.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/platforms/
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtCore.framework ]; then
@@ -129,8 +129,8 @@ elif [ "$TOOLCHAIN_OS" == "OSX" ]; then
     if [ ! -e bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/QtWidgets.framework ]; then
         cp -r ~/Qt/5.14.0/clang_64/lib/QtWidgets.framework bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/
     fi
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_shaper.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_lofter.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_editor.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
-    cp bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_keyframer.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
+    cp shaper/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_shaper.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/shaper/
+    cp lofter/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_lofter.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/lofter/
+    cp editor/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_editor.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/editor/
+    cp keyframer/lib/"$TOOLCHAIN_BRANCH"/"$config"/Shared/libthekogans_mex_keyframer.0.1.0.dylib bin/"$TOOLCHAIN_BRANCH"/"$config"/Shared/keyframer/
 fi

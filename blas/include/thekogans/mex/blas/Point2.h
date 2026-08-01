@@ -23,6 +23,7 @@
 #include "thekogans/util/Constants.h"
 #include "thekogans/util/Serializer.h"
 #include "thekogans/mex/blas/Config.h"
+#include "thekogans/mex/blas/Point.h"
 #include "thekogans/mex/blas/Matrix.h"
 #include "thekogans/mex/blas/MathUtil.h"
 
@@ -68,6 +69,9 @@ namespace thekogans {
                     x (xy[0]),
                     y (xy[1]) {}
                 Point2 (const Point2 &pt) :
+                    x (pt.x),
+                    y (pt.y) {}
+                Point2 (const Point &pt) :
                     x (pt.x),
                     y (pt.y) {}
                 // Loose the third dimension. It is explicit to

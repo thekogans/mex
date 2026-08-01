@@ -1,6 +1,6 @@
 <thekogans_make organization = "thekogans"
                 project = "mex_editor"
-                project_type = "library"
+                project_type = "plugin"
                 major_version = "0"
                 minor_version = "1"
                 patch_version = "0"

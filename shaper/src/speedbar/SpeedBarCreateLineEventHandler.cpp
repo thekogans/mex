@@ -360,16 +360,16 @@ namespace thekogans {
                                 view, vertexIndex, red, yellow);
                             core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                             if (ioBezierPolygon ().vertices[vertexIndex].yellow.IsZero ()) {
-                                yellow *= blas::Matrix2::Translate (pt - start);
+                                yellow = blas::Matrix2::Translate (pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    red *= blas::Matrix2::Translate (start - pt);
+                                    red = blas::Matrix2::Translate (start - pt);
                                 }
                             }
                             else {
                                 blas::Point2 t1 = ioBezierPolygon ().vertices[vertexIndex].yellow * yellow;
-                                yellow *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                yellow = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    red *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                    red = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 }
                             }
                             BezierPolygon (ioBezierPolygon ()).DrawVertexSegments (

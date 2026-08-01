@@ -156,29 +156,29 @@ namespace thekogans {
                                 vertexIndex1, red1, yellow1, vertexIndex2, red2, yellow2);
                             core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                             if (bezierPolygon->vertices[vertexIndex1].yellow.IsZero ()) {
-                                yellow1 *= blas::Matrix2::Translate (pt - start);
+                                yellow1 = blas::Matrix2::Translate (pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    red1 *= blas::Matrix2::Translate (start - pt);
+                                    red1 = blas::Matrix2::Translate (start - pt);
                                 }
                             }
                             else {
                                 blas::Point2 t1 = bezierPolygon->vertices[vertexIndex1].yellow * yellow1;
-                                yellow1 *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                yellow1 = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    red1 *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                    red1 = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 }
                             }
                             if (bezierPolygon->vertices[vertexIndex2].red.IsZero ()) {
-                                red2 *= blas::Matrix2::Translate (pt - start);
+                                red2 = blas::Matrix2::Translate (pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    yellow2 *= blas::Matrix2::Translate (start - pt);
+                                    yellow2 = blas::Matrix2::Translate (start - pt);
                                 }
                             }
                             else {
                                 blas::Point2 t1 = bezierPolygon->vertices[vertexIndex2].red * red2;
-                                red2 *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                red2 = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    yellow2 *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                    yellow2 = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 }
                             }
                             BezierPolygon (*bezierPolygon).DrawSegmentSegments (view,

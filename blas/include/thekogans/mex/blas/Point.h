@@ -72,6 +72,18 @@ namespace thekogans {
                 bool InSize (const Size &size) const;
             };
 
+            inline Point operator + (
+                    const Point &pt1,
+                    const Point &pt2) {
+                return Point (pt1.x + pt2.x, pt1.y + pt2.y);
+            }
+
+            inline Point operator - (
+                    const Point &pt1,
+                    const Point &pt2) {
+                return Point (pt1.x - pt2.x, pt1.y - pt2.y);
+            }
+
             inline Point operator * (
                     const Point &pt,
                     util::f32 scale) {

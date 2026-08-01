@@ -201,17 +201,17 @@ namespace thekogans {
                             core::UI::Instance ()->viewLayoutWindow->SetMousePosition (view.P2D (start));
                             if (bezierPolygonVertices[referenceVertexIndex]->bezierPolygon.vertices[
                                     bezierPolygonVertices[referenceVertexIndex]->vertexIndex].yellow.IsZero ()) {
-                                yellow *= blas::Matrix2::Translate (pt - start);
+                                yellow = blas::Matrix2::Translate (pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    red *= blas::Matrix2::Translate (start - pt);
+                                    red = blas::Matrix2::Translate (start - pt);
                                 }
                             }
                             else {
                                 blas::Point2 t1 = bezierPolygonVertices[referenceVertexIndex]->bezierPolygon.vertices[
                                     bezierPolygonVertices[referenceVertexIndex]->vertexIndex].yellow * yellow;
-                                yellow *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                yellow = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 if (!util::Flags32 (flags).Test (core::FLAG_CTRL)) {
-                                    red *= blas::Matrix2::Aim2D (t1, t1 + pt - start);
+                                    red = blas::Matrix2::Aim2D (t1, t1 + pt - start);
                                 }
                             }
                             DrawVertexSegments2 (view, bezierPolygonVertices, red, yellow);

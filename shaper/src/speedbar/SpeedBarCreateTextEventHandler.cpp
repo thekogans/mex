@@ -104,8 +104,11 @@ namespace thekogans {
                         struct FreeTypeError {
                             std::string message;
                             explicit FreeTypeError (FT_Error error) {
-                                // FIXME: implement
-                                assert (0);
+                                const char *str = nullptr; // FT_Error_String (error);
+                                if (str == nullptr) {
+                                    str = "Unknown FreeType error";
+                                }
+                                message = str;
                             }
                             explicit FreeTypeError (const std::string &message_) :
                                 message (message_) {}
